@@ -1,0 +1,6 @@
+endpoint: https://us1.prisma.sh/sid-ff4600/voicestory-winter-2020-server/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
