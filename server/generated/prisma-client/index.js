@@ -9,7 +9,11 @@ var models = [
     embedded: false
   },
   {
-    name: "Post",
+    name: "Video",
+    embedded: false
+  },
+  {
+    name: "Speaker",
     embedded: false
   }
 ];

@@ -1,23 +1,22 @@
 type User {
   id: ID! @id
   email: String @unique
-  first_name: String!
-  last_name: String !
-}
-
-type Speaker {
-  id: ID! @id
-  profile_picture: String
-  titles: [String]!
-  description: String!
-  social_media: [String!]!
-  videos: [Video!]!
-
+  name: String!
 }
 
 type Video {
   id: ID! @id
   title: String!
-  url: String! @default(value: "www.youtube.com")
+  published: Boolean! @default(value: false)
   author: Speaker @relation(link: INLINE)
+}
+
+type Speaker {
+  id: ID! @id
+  profile_picture: String
+  social_medias: [String]! @scalarList(strategy: RELATION)
+  titles: [String!]! @scalarList(strategy: RELATION)
+  description: String!
+  videos: [Video!]! 
+  // TODO Q/A Question not sure where the data is pulled from
 }

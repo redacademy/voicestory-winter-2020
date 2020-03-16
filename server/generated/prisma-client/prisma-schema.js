@@ -3,11 +3,15 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregatePost {
+/* GraphQL */ `type AggregateSpeaker {
   count: Int!
 }
 
 type AggregateUser {
+  count: Int!
+}
+
+type AggregateVideo {
   count: Int!
 }
 
@@ -18,18 +22,24 @@ type BatchPayload {
 scalar Long
 
 type Mutation {
-  createPost(data: PostCreateInput!): Post!
-  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
-  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  deletePost(where: PostWhereUniqueInput!): Post
-  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createSpeaker(data: SpeakerCreateInput!): Speaker!
+  updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
+  updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
+  upsertSpeaker(where: SpeakerWhereUniqueInput!, create: SpeakerCreateInput!, update: SpeakerUpdateInput!): Speaker!
+  deleteSpeaker(where: SpeakerWhereUniqueInput!): Speaker
+  deleteManySpeakers(where: SpeakerWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createVideo(data: VideoCreateInput!): Video!
+  updateVideo(data: VideoUpdateInput!, where: VideoWhereUniqueInput!): Video
+  updateManyVideos(data: VideoUpdateManyMutationInput!, where: VideoWhereInput): BatchPayload!
+  upsertVideo(where: VideoWhereUniqueInput!, create: VideoCreateInput!, update: VideoUpdateInput!): Video!
+  deleteVideo(where: VideoWhereUniqueInput!): Video
+  deleteManyVideos(where: VideoWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -49,161 +59,149 @@ type PageInfo {
   endCursor: String
 }
 
-type Post {
+type Query {
+  speaker(where: SpeakerWhereUniqueInput!): Speaker
+  speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
+  speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  video(where: VideoWhereUniqueInput!): Video
+  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video]!
+  videosConnection(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VideoConnection!
+  node(id: ID!): Node
+}
+
+type Speaker {
   id: ID!
-  title: String!
-  published: Boolean!
-  author: User
+  profile_picture: String
+  social_medias: [String!]!
+  titles: [String!]!
+  description: String!
+  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
 }
 
-type PostConnection {
+type SpeakerConnection {
   pageInfo: PageInfo!
-  edges: [PostEdge]!
-  aggregate: AggregatePost!
+  edges: [SpeakerEdge]!
+  aggregate: AggregateSpeaker!
 }
 
-input PostCreateInput {
+input SpeakerCreateInput {
   id: ID
-  title: String!
-  published: Boolean
-  author: UserCreateOneWithoutPostsInput
+  profile_picture: String
+  social_medias: SpeakerCreatesocial_mediasInput
+  titles: SpeakerCreatetitlesInput
+  description: String!
+  videos: VideoCreateManyWithoutAuthorInput
 }
 
-input PostCreateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  connect: [PostWhereUniqueInput!]
+input SpeakerCreateOneWithoutVideosInput {
+  create: SpeakerCreateWithoutVideosInput
+  connect: SpeakerWhereUniqueInput
 }
 
-input PostCreateWithoutAuthorInput {
+input SpeakerCreatesocial_mediasInput {
+  set: [String!]
+}
+
+input SpeakerCreatetitlesInput {
+  set: [String!]
+}
+
+input SpeakerCreateWithoutVideosInput {
   id: ID
-  title: String!
-  published: Boolean
+  profile_picture: String
+  social_medias: SpeakerCreatesocial_mediasInput
+  titles: SpeakerCreatetitlesInput
+  description: String!
 }
 
-type PostEdge {
-  node: Post!
+type SpeakerEdge {
+  node: Speaker!
   cursor: String!
 }
 
-enum PostOrderByInput {
+enum SpeakerOrderByInput {
   id_ASC
   id_DESC
-  title_ASC
-  title_DESC
-  published_ASC
-  published_DESC
+  profile_picture_ASC
+  profile_picture_DESC
+  description_ASC
+  description_DESC
 }
 
-type PostPreviousValues {
+type SpeakerPreviousValues {
   id: ID!
-  title: String!
-  published: Boolean!
+  profile_picture: String
+  social_medias: [String!]!
+  titles: [String!]!
+  description: String!
 }
 
-input PostScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  published: Boolean
-  published_not: Boolean
-  AND: [PostScalarWhereInput!]
-  OR: [PostScalarWhereInput!]
-  NOT: [PostScalarWhereInput!]
-}
-
-type PostSubscriptionPayload {
+type SpeakerSubscriptionPayload {
   mutation: MutationType!
-  node: Post
+  node: Speaker
   updatedFields: [String!]
-  previousValues: PostPreviousValues
+  previousValues: SpeakerPreviousValues
 }
 
-input PostSubscriptionWhereInput {
+input SpeakerSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
+  node: SpeakerWhereInput
+  AND: [SpeakerSubscriptionWhereInput!]
+  OR: [SpeakerSubscriptionWhereInput!]
+  NOT: [SpeakerSubscriptionWhereInput!]
 }
 
-input PostUpdateInput {
-  title: String
-  published: Boolean
-  author: UserUpdateOneWithoutPostsInput
+input SpeakerUpdateInput {
+  profile_picture: String
+  social_medias: SpeakerUpdatesocial_mediasInput
+  titles: SpeakerUpdatetitlesInput
+  description: String
+  videos: VideoUpdateManyWithoutAuthorInput
 }
 
-input PostUpdateManyDataInput {
-  title: String
-  published: Boolean
+input SpeakerUpdateManyMutationInput {
+  profile_picture: String
+  social_medias: SpeakerUpdatesocial_mediasInput
+  titles: SpeakerUpdatetitlesInput
+  description: String
 }
 
-input PostUpdateManyMutationInput {
-  title: String
-  published: Boolean
+input SpeakerUpdateOneWithoutVideosInput {
+  create: SpeakerCreateWithoutVideosInput
+  update: SpeakerUpdateWithoutVideosDataInput
+  upsert: SpeakerUpsertWithoutVideosInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: SpeakerWhereUniqueInput
 }
 
-input PostUpdateManyWithoutAuthorInput {
-  create: [PostCreateWithoutAuthorInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
+input SpeakerUpdatesocial_mediasInput {
+  set: [String!]
 }
 
-input PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput!
-  data: PostUpdateManyDataInput!
+input SpeakerUpdatetitlesInput {
+  set: [String!]
 }
 
-input PostUpdateWithoutAuthorDataInput {
-  title: String
-  published: Boolean
+input SpeakerUpdateWithoutVideosDataInput {
+  profile_picture: String
+  social_medias: SpeakerUpdatesocial_mediasInput
+  titles: SpeakerUpdatetitlesInput
+  description: String
 }
 
-input PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutAuthorDataInput!
+input SpeakerUpsertWithoutVideosInput {
+  update: SpeakerUpdateWithoutVideosDataInput!
+  create: SpeakerCreateWithoutVideosInput!
 }
 
-input PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutAuthorDataInput!
-  create: PostCreateWithoutAuthorInput!
-}
-
-input PostWhereInput {
+input SpeakerWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -218,52 +216,56 @@ input PostWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  published: Boolean
-  published_not: Boolean
-  author: UserWhereInput
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
+  profile_picture: String
+  profile_picture_not: String
+  profile_picture_in: [String!]
+  profile_picture_not_in: [String!]
+  profile_picture_lt: String
+  profile_picture_lte: String
+  profile_picture_gt: String
+  profile_picture_gte: String
+  profile_picture_contains: String
+  profile_picture_not_contains: String
+  profile_picture_starts_with: String
+  profile_picture_not_starts_with: String
+  profile_picture_ends_with: String
+  profile_picture_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  videos_every: VideoWhereInput
+  videos_some: VideoWhereInput
+  videos_none: VideoWhereInput
+  AND: [SpeakerWhereInput!]
+  OR: [SpeakerWhereInput!]
+  NOT: [SpeakerWhereInput!]
 }
 
-input PostWhereUniqueInput {
+input SpeakerWhereUniqueInput {
   id: ID
 }
 
-type Query {
-  post(where: PostWhereUniqueInput!): Post
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  node(id: ID!): Node
-}
-
 type Subscription {
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
 }
 
 type User {
   id: ID!
   email: String
   name: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
 }
 
 type UserConnection {
@@ -273,18 +275,6 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  id: ID
-  email: String
-  name: String!
-  posts: PostCreateManyWithoutAuthorInput
-}
-
-input UserCreateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutPostsInput {
   id: ID
   email: String
   name: String!
@@ -331,31 +321,11 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   email: String
   name: String
-  posts: PostUpdateManyWithoutAuthorInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   name: String
-}
-
-input UserUpdateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  update: UserUpdateWithoutPostsDataInput
-  upsert: UserUpsertWithoutPostsInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutPostsDataInput {
-  email: String
-  name: String
-}
-
-input UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput!
-  create: UserCreateWithoutPostsInput!
 }
 
 input UserWhereInput {
@@ -401,9 +371,6 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -412,6 +379,201 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+}
+
+type Video {
+  id: ID!
+  title: String!
+  published: Boolean!
+  author: Speaker
+}
+
+type VideoConnection {
+  pageInfo: PageInfo!
+  edges: [VideoEdge]!
+  aggregate: AggregateVideo!
+}
+
+input VideoCreateInput {
+  id: ID
+  title: String!
+  published: Boolean
+  author: SpeakerCreateOneWithoutVideosInput
+}
+
+input VideoCreateManyWithoutAuthorInput {
+  create: [VideoCreateWithoutAuthorInput!]
+  connect: [VideoWhereUniqueInput!]
+}
+
+input VideoCreateWithoutAuthorInput {
+  id: ID
+  title: String!
+  published: Boolean
+}
+
+type VideoEdge {
+  node: Video!
+  cursor: String!
+}
+
+enum VideoOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  published_ASC
+  published_DESC
+}
+
+type VideoPreviousValues {
+  id: ID!
+  title: String!
+  published: Boolean!
+}
+
+input VideoScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  published: Boolean
+  published_not: Boolean
+  AND: [VideoScalarWhereInput!]
+  OR: [VideoScalarWhereInput!]
+  NOT: [VideoScalarWhereInput!]
+}
+
+type VideoSubscriptionPayload {
+  mutation: MutationType!
+  node: Video
+  updatedFields: [String!]
+  previousValues: VideoPreviousValues
+}
+
+input VideoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: VideoWhereInput
+  AND: [VideoSubscriptionWhereInput!]
+  OR: [VideoSubscriptionWhereInput!]
+  NOT: [VideoSubscriptionWhereInput!]
+}
+
+input VideoUpdateInput {
+  title: String
+  published: Boolean
+  author: SpeakerUpdateOneWithoutVideosInput
+}
+
+input VideoUpdateManyDataInput {
+  title: String
+  published: Boolean
+}
+
+input VideoUpdateManyMutationInput {
+  title: String
+  published: Boolean
+}
+
+input VideoUpdateManyWithoutAuthorInput {
+  create: [VideoCreateWithoutAuthorInput!]
+  delete: [VideoWhereUniqueInput!]
+  connect: [VideoWhereUniqueInput!]
+  set: [VideoWhereUniqueInput!]
+  disconnect: [VideoWhereUniqueInput!]
+  update: [VideoUpdateWithWhereUniqueWithoutAuthorInput!]
+  upsert: [VideoUpsertWithWhereUniqueWithoutAuthorInput!]
+  deleteMany: [VideoScalarWhereInput!]
+  updateMany: [VideoUpdateManyWithWhereNestedInput!]
+}
+
+input VideoUpdateManyWithWhereNestedInput {
+  where: VideoScalarWhereInput!
+  data: VideoUpdateManyDataInput!
+}
+
+input VideoUpdateWithoutAuthorDataInput {
+  title: String
+  published: Boolean
+}
+
+input VideoUpdateWithWhereUniqueWithoutAuthorInput {
+  where: VideoWhereUniqueInput!
+  data: VideoUpdateWithoutAuthorDataInput!
+}
+
+input VideoUpsertWithWhereUniqueWithoutAuthorInput {
+  where: VideoWhereUniqueInput!
+  update: VideoUpdateWithoutAuthorDataInput!
+  create: VideoCreateWithoutAuthorInput!
+}
+
+input VideoWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  published: Boolean
+  published_not: Boolean
+  author: SpeakerWhereInput
+  AND: [VideoWhereInput!]
+  OR: [VideoWhereInput!]
+  NOT: [VideoWhereInput!]
+}
+
+input VideoWhereUniqueInput {
+  id: ID
 }
 `
       }
