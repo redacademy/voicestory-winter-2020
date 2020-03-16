@@ -7,6 +7,7 @@ import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
 import VideosScreen from '../screens/Videos';
 import SpeakersScreen from '../screens/Speakers';
+import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Theme';
 import {sharedScreenOptions} from './config';
 
@@ -31,7 +32,7 @@ const ExploreStackScreens = props => {
         }}
       />
       <ExploreStack.Screen
-        name="Themes"
+        name="Theme"
         component={ThemeScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -40,6 +41,13 @@ const ExploreStackScreens = props => {
       <ExploreStack.Screen
         name="Speakers"
         component={SpeakersScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <ExploreStack.Screen
+        name="SpeakerProfile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
