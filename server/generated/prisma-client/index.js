@@ -7,11 +7,15 @@ var models = [
   {
     name: "User",
     embedded: false
+  },
+  {
+    name: "Post",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/sid-ff4600/voicestory-winter-2020-server/dev`
+  endpoint: `https://us1.prisma.sh/ivandaixivwork/voicestory-2020/voicestory-2020-dev`
 });
 exports.prisma = new exports.Prisma();
