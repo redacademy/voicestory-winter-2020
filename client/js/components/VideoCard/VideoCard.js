@@ -13,6 +13,7 @@ const VideoCard = () => {
           <Text style={styles.min}>Mins</Text>
         </View>
         <View style={styles.titleContainer}>
+          <View style={styles.play}></View>
           <View>
             <Text style={styles.speaker}>Birnie McIntosh</Text>
             <Text style={styles.title}>

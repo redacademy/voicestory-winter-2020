@@ -44,6 +44,11 @@ const styles = StyleSheet.create({
   min: {
     color: 'white',
   },
+  play: {
+    backgroundColor: 'darkgrey',
+    height: 100,
+    width: 100,
+  },
 });
 
 export default styles;
