@@ -5,6 +5,9 @@ import ExploreScreen from '../screens/Explore';
 import EventsScreen from '../screens/Events';
 import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
+import VideosScreen from '../screens/Videos';
+import SpeakersScreen from '../screens/Speakers';
+import ThemeScreen from '../screens/Theme';
 import {sharedScreenOptions} from './config';
 
 const ExploreStack = createStackNavigator();
@@ -16,6 +19,27 @@ const ExploreStackScreens = props => {
       <ExploreStack.Screen
         name="Explore"
         component={ExploreScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <ExploreStack.Screen
+        name="Videos"
+        component={VideosScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <ExploreStack.Screen
+        name="Themes"
+        component={ThemeScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <ExploreStack.Screen
+        name="Speakers"
+        component={SpeakersScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -46,7 +70,7 @@ const TicketsStackScreens = props => {
       initialRouteName="Tickets"
       screenOptions={sharedScreenOptions}>
       <TicketsStack.Screen
-        name="Tickets"
+        name="My Tickets"
         component={TicketsScreen}
         options={{
           headerTintColor: '#FBF7EF',
