@@ -1,8 +1,15 @@
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import {Text, View} from 'react-native';
+
+import EventCard from '../../components/EventCard';
 
 const Events = () => {
-  return <Text>Events Page</Text>;
+  return (
+    <View>
+      <Text>Events Page</Text>
+      <EventCard />
+    </View>
+  );
 };
 
 export default Events;
