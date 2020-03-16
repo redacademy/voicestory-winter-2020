@@ -3,6 +3,8 @@ type User {
   email: String @unique
   name: String!
   isSpeaker: Speaker
+  favouritedVideos: [Video!]!
+  ownedTickets: [String!]! @scalarList(strategy:RELATION)
 }
 
 type Video {
@@ -38,5 +40,7 @@ type Event {
   location_address: String!
   location_coordinates: longLat! 
   price: Float
+  maxTickets: Int!
+  soldTickets: Int @default(value: 0)
   speakers: [Speaker]!
 }

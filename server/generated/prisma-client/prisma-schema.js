@@ -34,6 +34,8 @@ type Event {
   location_address: String!
   location_coordinates: longLat!
   price: Float
+  maxTickets: Int!
+  soldTickets: Int
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker!]
 }
 
@@ -52,6 +54,8 @@ input EventCreateInput {
   location_address: String!
   location_coordinates: longLat!
   price: Float
+  maxTickets: Int!
+  soldTickets: Int
   speakers: SpeakerCreateManyInput
 }
 
@@ -77,6 +81,10 @@ enum EventOrderByInput {
   location_coordinates_DESC
   price_ASC
   price_DESC
+  maxTickets_ASC
+  maxTickets_DESC
+  soldTickets_ASC
+  soldTickets_DESC
 }
 
 type EventPreviousValues {
@@ -88,6 +96,8 @@ type EventPreviousValues {
   location_address: String!
   location_coordinates: longLat!
   price: Float
+  maxTickets: Int!
+  soldTickets: Int
 }
 
 type EventSubscriptionPayload {
@@ -116,6 +126,8 @@ input EventUpdateInput {
   location_address: String
   location_coordinates: longLat
   price: Float
+  maxTickets: Int
+  soldTickets: Int
   speakers: SpeakerUpdateManyInput
 }
 
@@ -127,6 +139,8 @@ input EventUpdateManyMutationInput {
   location_address: String
   location_coordinates: longLat
   price: Float
+  maxTickets: Int
+  soldTickets: Int
 }
 
 input EventWhereInput {
@@ -226,6 +240,22 @@ input EventWhereInput {
   price_lte: Float
   price_gt: Float
   price_gte: Float
+  maxTickets: Int
+  maxTickets_not: Int
+  maxTickets_in: [Int!]
+  maxTickets_not_in: [Int!]
+  maxTickets_lt: Int
+  maxTickets_lte: Int
+  maxTickets_gt: Int
+  maxTickets_gte: Int
+  soldTickets: Int
+  soldTickets_not: Int
+  soldTickets_in: [Int!]
+  soldTickets_not_in: [Int!]
+  soldTickets_lt: Int
+  soldTickets_lte: Int
+  soldTickets_gt: Int
+  soldTickets_gte: Int
   speakers_every: SpeakerWhereInput
   speakers_some: SpeakerWhereInput
   speakers_none: SpeakerWhereInput
@@ -681,6 +711,8 @@ type User {
   email: String
   name: String!
   isSpeaker: Speaker
+  favouritedVideos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
+  ownedTickets: [String!]!
 }
 
 type UserConnection {
@@ -694,6 +726,8 @@ input UserCreateInput {
   email: String
   name: String!
   isSpeaker: SpeakerCreateOneWithoutOwnerInput
+  favouritedVideos: VideoCreateManyInput
+  ownedTickets: UserCreateownedTicketsInput
 }
 
 input UserCreateOneWithoutIsSpeakerInput {
@@ -701,10 +735,16 @@ input UserCreateOneWithoutIsSpeakerInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateownedTicketsInput {
+  set: [String!]
+}
+
 input UserCreateWithoutIsSpeakerInput {
   id: ID
   email: String
   name: String!
+  favouritedVideos: VideoCreateManyInput
+  ownedTickets: UserCreateownedTicketsInput
 }
 
 type UserEdge {
@@ -725,6 +765,7 @@ type UserPreviousValues {
   id: ID!
   email: String
   name: String!
+  ownedTickets: [String!]!
 }
 
 type UserSubscriptionPayload {
@@ -749,11 +790,14 @@ input UserUpdateInput {
   email: String
   name: String
   isSpeaker: SpeakerUpdateOneWithoutOwnerInput
+  favouritedVideos: VideoUpdateManyInput
+  ownedTickets: UserUpdateownedTicketsInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   name: String
+  ownedTickets: UserUpdateownedTicketsInput
 }
 
 input UserUpdateOneWithoutIsSpeakerInput {
@@ -765,9 +809,15 @@ input UserUpdateOneWithoutIsSpeakerInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateownedTicketsInput {
+  set: [String!]
+}
+
 input UserUpdateWithoutIsSpeakerDataInput {
   email: String
   name: String
+  favouritedVideos: VideoUpdateManyInput
+  ownedTickets: UserUpdateownedTicketsInput
 }
 
 input UserUpsertWithoutIsSpeakerInput {
@@ -819,6 +869,9 @@ input UserWhereInput {
   name_ends_with: String
   name_not_ends_with: String
   isSpeaker: SpeakerWhereInput
+  favouritedVideos_every: VideoWhereInput
+  favouritedVideos_some: VideoWhereInput
+  favouritedVideos_none: VideoWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -850,6 +903,11 @@ input VideoCreateInput {
   url: String!
   published: Boolean
   author: SpeakerCreateOneWithoutVideosInput
+}
+
+input VideoCreateManyInput {
+  create: [VideoCreateInput!]
+  connect: [VideoWhereUniqueInput!]
 }
 
 input VideoCreateManyWithoutAuthorInput {
@@ -966,6 +1024,13 @@ input VideoSubscriptionWhereInput {
   NOT: [VideoSubscriptionWhereInput!]
 }
 
+input VideoUpdateDataInput {
+  title: String
+  url: String
+  published: Boolean
+  author: SpeakerUpdateOneWithoutVideosInput
+}
+
 input VideoUpdateInput {
   title: String
   url: String
@@ -977,6 +1042,18 @@ input VideoUpdateManyDataInput {
   title: String
   url: String
   published: Boolean
+}
+
+input VideoUpdateManyInput {
+  create: [VideoCreateInput!]
+  update: [VideoUpdateWithWhereUniqueNestedInput!]
+  upsert: [VideoUpsertWithWhereUniqueNestedInput!]
+  delete: [VideoWhereUniqueInput!]
+  connect: [VideoWhereUniqueInput!]
+  set: [VideoWhereUniqueInput!]
+  disconnect: [VideoWhereUniqueInput!]
+  deleteMany: [VideoScalarWhereInput!]
+  updateMany: [VideoUpdateManyWithWhereNestedInput!]
 }
 
 input VideoUpdateManyMutationInput {
@@ -1008,9 +1085,20 @@ input VideoUpdateWithoutAuthorDataInput {
   published: Boolean
 }
 
+input VideoUpdateWithWhereUniqueNestedInput {
+  where: VideoWhereUniqueInput!
+  data: VideoUpdateDataInput!
+}
+
 input VideoUpdateWithWhereUniqueWithoutAuthorInput {
   where: VideoWhereUniqueInput!
   data: VideoUpdateWithoutAuthorDataInput!
+}
+
+input VideoUpsertWithWhereUniqueNestedInput {
+  where: VideoWhereUniqueInput!
+  update: VideoUpdateDataInput!
+  create: VideoCreateInput!
 }
 
 input VideoUpsertWithWhereUniqueWithoutAuthorInput {
