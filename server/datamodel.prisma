@@ -1,13 +1,23 @@
 type User {
   id: ID! @id
   email: String @unique
-  name: String!
-  posts: [Post!]!
+  first_name: String!
+  last_name: String !
 }
 
-type Post {
+type Speaker {
+  id: ID! @id
+  profile_picture: String
+  titles: [String]!
+  description: String!
+  social_media: [String!]!
+  videos: [Video!]!
+
+}
+
+type Video {
   id: ID! @id
   title: String!
-  published: Boolean! @default(value: false)
-  author: User @relation(link: INLINE)
+  url: String! @default(value: "www.youtube.com")
+  author: Speaker @relation(link: INLINE)
 }
