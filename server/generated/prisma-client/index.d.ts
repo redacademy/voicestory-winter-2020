@@ -224,9 +224,7 @@ export type SpeakerOrderByInput =
   | "profile_picture_ASC"
   | "profile_picture_DESC"
   | "description_ASC"
-  | "description_DESC"
-  | "QAs_ASC"
-  | "QAs_DESC";
+  | "description_DESC";
 
 export type VideoOrderByInput =
   | "id_ASC"
@@ -238,7 +236,9 @@ export type VideoOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "published_ASC"
-  | "published_DESC";
+  | "published_DESC"
+  | "theme_ASC"
+  | "theme_DESC";
 
 export type EventOrderByInput =
   | "id_ASC"
@@ -274,33 +274,24 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface SpeakerUpdateWithWhereUniqueNestedInput {
-  where: SpeakerWhereUniqueInput;
-  data: SpeakerUpdateDataInput;
+export interface UserUpdateWithoutIsSpeakerDataInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  favouritedVideos?: Maybe<VideoUpdateManyInput>;
+  ownedTickets?: Maybe<EventUpdateManyInput>;
 }
 
 export type EventWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface VideoUpdateManyInput {
-  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
-  update?: Maybe<
-    | VideoUpdateWithWhereUniqueNestedInput[]
-    | VideoUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | VideoUpsertWithWhereUniqueNestedInput[]
-    | VideoUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-  set?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-  disconnect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-  deleteMany?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
-  updateMany?: Maybe<
-    VideoUpdateManyWithWhereNestedInput[] | VideoUpdateManyWithWhereNestedInput
-  >;
+export interface SpeakerUpdateOneWithoutVideosInput {
+  create?: Maybe<SpeakerCreateWithoutVideosInput>;
+  update?: Maybe<SpeakerUpdateWithoutVideosDataInput>;
+  upsert?: Maybe<SpeakerUpsertWithoutVideosInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
 export interface UserWhereInput {
@@ -350,17 +341,16 @@ export interface UserWhereInput {
   favouritedVideos_every?: Maybe<VideoWhereInput>;
   favouritedVideos_some?: Maybe<VideoWhereInput>;
   favouritedVideos_none?: Maybe<VideoWhereInput>;
+  ownedTickets_every?: Maybe<EventWhereInput>;
+  ownedTickets_some?: Maybe<EventWhereInput>;
+  ownedTickets_none?: Maybe<EventWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface VideoCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  url: String;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerCreateOneWithoutVideosInput>;
+export interface SpeakerCreatetitlesInput {
+  set?: Maybe<String[] | String>;
 }
 
 export interface VideoUpsertWithWhereUniqueWithoutAuthorInput {
@@ -369,14 +359,446 @@ export interface VideoUpsertWithWhereUniqueWithoutAuthorInput {
   create: VideoCreateWithoutAuthorInput;
 }
 
-export interface SpeakerCreateOneWithoutVideosInput {
-  create?: Maybe<SpeakerCreateWithoutVideosInput>;
-  connect?: Maybe<SpeakerWhereUniqueInput>;
+export interface SpeakerCreatesocial_mediasInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface SpeakerUpdateWithoutVideosDataInput {
+  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+}
+
+export interface EventCreateManyInput {
+  create?: Maybe<EventCreateInput[] | EventCreateInput>;
+  connect?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+}
+
+export interface SpeakerWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  owner?: Maybe<UserWhereInput>;
+  profile_picture?: Maybe<String>;
+  profile_picture_not?: Maybe<String>;
+  profile_picture_in?: Maybe<String[] | String>;
+  profile_picture_not_in?: Maybe<String[] | String>;
+  profile_picture_lt?: Maybe<String>;
+  profile_picture_lte?: Maybe<String>;
+  profile_picture_gt?: Maybe<String>;
+  profile_picture_gte?: Maybe<String>;
+  profile_picture_contains?: Maybe<String>;
+  profile_picture_not_contains?: Maybe<String>;
+  profile_picture_starts_with?: Maybe<String>;
+  profile_picture_not_starts_with?: Maybe<String>;
+  profile_picture_ends_with?: Maybe<String>;
+  profile_picture_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  videos_every?: Maybe<VideoWhereInput>;
+  videos_some?: Maybe<VideoWhereInput>;
+  videos_none?: Maybe<VideoWhereInput>;
+  AND?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+  OR?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+  NOT?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+}
+
+export interface VideoCreateManyWithoutAuthorInput {
+  create?: Maybe<
+    VideoCreateWithoutAuthorInput[] | VideoCreateWithoutAuthorInput
+  >;
+  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
+export interface VideoCreateWithoutAuthorInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  url: String;
+  published?: Maybe<Boolean>;
+  theme: String;
+}
+
+export interface EventSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<EventWhereInput>;
+  AND?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+  OR?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+  NOT?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
+}
+
+export interface EventUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_coordinates?: Maybe<longLat>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+  speakers?: Maybe<SpeakerUpdateManyInput>;
+}
+
+export interface VideoUpdateInput {
+  title?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
+  theme?: Maybe<String>;
+}
+
+export interface SpeakerUpdateManyInput {
+  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
+  update?: Maybe<
+    | SpeakerUpdateWithWhereUniqueNestedInput[]
+    | SpeakerUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | SpeakerUpsertWithWhereUniqueNestedInput[]
+    | SpeakerUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+  set?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+  disconnect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+  deleteMany?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
+  updateMany?: Maybe<
+    | SpeakerUpdateManyWithWhereNestedInput[]
+    | SpeakerUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SpeakerUpsertWithoutOwnerInput {
+  update: SpeakerUpdateWithoutOwnerDataInput;
+  create: SpeakerCreateWithoutOwnerInput;
+}
+
+export interface SpeakerUpdateWithWhereUniqueNestedInput {
+  where: SpeakerWhereUniqueInput;
+  data: SpeakerUpdateDataInput;
+}
+
+export type SpeakerWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SpeakerUpdateDataInput {
+  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
+}
+
+export interface UserUpdateInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  isSpeaker?: Maybe<SpeakerUpdateOneWithoutOwnerInput>;
+  favouritedVideos?: Maybe<VideoUpdateManyInput>;
+  ownedTickets?: Maybe<EventUpdateManyInput>;
+}
+
+export interface UserUpdateOneWithoutIsSpeakerInput {
+  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
+  update?: Maybe<UserUpdateWithoutIsSpeakerDataInput>;
+  upsert?: Maybe<UserUpsertWithoutIsSpeakerInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface SpeakerScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  profile_picture?: Maybe<String>;
+  profile_picture_not?: Maybe<String>;
+  profile_picture_in?: Maybe<String[] | String>;
+  profile_picture_not_in?: Maybe<String[] | String>;
+  profile_picture_lt?: Maybe<String>;
+  profile_picture_lte?: Maybe<String>;
+  profile_picture_gt?: Maybe<String>;
+  profile_picture_gte?: Maybe<String>;
+  profile_picture_contains?: Maybe<String>;
+  profile_picture_not_contains?: Maybe<String>;
+  profile_picture_starts_with?: Maybe<String>;
+  profile_picture_not_starts_with?: Maybe<String>;
+  profile_picture_ends_with?: Maybe<String>;
+  profile_picture_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  AND?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
+  OR?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
+  NOT?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  name: String;
+  isSpeaker?: Maybe<SpeakerCreateOneWithoutOwnerInput>;
+  favouritedVideos?: Maybe<VideoCreateManyInput>;
+  ownedTickets?: Maybe<EventCreateManyInput>;
+}
+
+export interface VideoUpdateManyInput {
+  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
+  update?: Maybe<
+    | VideoUpdateWithWhereUniqueNestedInput[]
+    | VideoUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | VideoUpsertWithWhereUniqueNestedInput[]
+    | VideoUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+  set?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+  disconnect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+  deleteMany?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
+  updateMany?: Maybe<
+    VideoUpdateManyWithWhereNestedInput[] | VideoUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SpeakerUpdateInput {
+  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
 }
 
 export interface VideoUpdateWithWhereUniqueNestedInput {
   where: VideoWhereUniqueInput;
   data: VideoUpdateDataInput;
+}
+
+export interface EventUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_coordinates?: Maybe<longLat>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+}
+
+export interface VideoUpdateDataInput {
+  title?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
+  theme?: Maybe<String>;
+}
+
+export interface SpeakerUpdateManyWithWhereNestedInput {
+  where: SpeakerScalarWhereInput;
+  data: SpeakerUpdateManyDataInput;
+}
+
+export interface VideoWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  url?: Maybe<String>;
+  url_not?: Maybe<String>;
+  url_in?: Maybe<String[] | String>;
+  url_not_in?: Maybe<String[] | String>;
+  url_lt?: Maybe<String>;
+  url_lte?: Maybe<String>;
+  url_gt?: Maybe<String>;
+  url_gte?: Maybe<String>;
+  url_contains?: Maybe<String>;
+  url_not_contains?: Maybe<String>;
+  url_starts_with?: Maybe<String>;
+  url_not_starts_with?: Maybe<String>;
+  url_ends_with?: Maybe<String>;
+  url_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  published?: Maybe<Boolean>;
+  published_not?: Maybe<Boolean>;
+  author?: Maybe<SpeakerWhereInput>;
+  theme?: Maybe<String>;
+  theme_not?: Maybe<String>;
+  theme_in?: Maybe<String[] | String>;
+  theme_not_in?: Maybe<String[] | String>;
+  theme_lt?: Maybe<String>;
+  theme_lte?: Maybe<String>;
+  theme_gt?: Maybe<String>;
+  theme_gte?: Maybe<String>;
+  theme_contains?: Maybe<String>;
+  theme_not_contains?: Maybe<String>;
+  theme_starts_with?: Maybe<String>;
+  theme_not_starts_with?: Maybe<String>;
+  theme_ends_with?: Maybe<String>;
+  theme_not_ends_with?: Maybe<String>;
+  AND?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  OR?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  NOT?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+}
+
+export interface EventCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  thumbnail_url: String;
+  location_name: String;
+  location_address: String;
+  location_coordinates: longLat;
+  price?: Maybe<Float>;
+  maxTickets: Int;
+  soldTickets?: Maybe<Int>;
+  speakers?: Maybe<SpeakerCreateManyInput>;
+}
+
+export interface SpeakerUpsertWithWhereUniqueNestedInput {
+  where: SpeakerWhereUniqueInput;
+  update: SpeakerUpdateDataInput;
+  create: SpeakerCreateInput;
+}
+
+export interface SpeakerCreateInput {
+  id?: Maybe<ID_Input>;
+  owner?: Maybe<UserCreateOneWithoutIsSpeakerInput>;
+  profile_picture: String;
+  titles?: Maybe<SpeakerCreatetitlesInput>;
+  social_medias?: Maybe<SpeakerCreatesocial_mediasInput>;
+  description: String;
+  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
+}
+
+export interface SpeakerUpdatetitlesInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface UserCreateWithoutIsSpeakerInput {
+  id?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  name: String;
+  favouritedVideos?: Maybe<VideoCreateManyInput>;
+  ownedTickets?: Maybe<EventCreateManyInput>;
+}
+
+export interface SpeakerUpdatesocial_mediasInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface VideoCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  url: String;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerCreateOneWithoutVideosInput>;
+  theme: String;
+}
+
+export interface SpeakerUpsertWithoutVideosInput {
+  update: SpeakerUpdateWithoutVideosDataInput;
+  create: SpeakerCreateWithoutVideosInput;
 }
 
 export interface SpeakerCreateWithoutVideosInput {
@@ -386,7 +808,12 @@ export interface SpeakerCreateWithoutVideosInput {
   titles?: Maybe<SpeakerCreatetitlesInput>;
   social_medias?: Maybe<SpeakerCreatesocial_mediasInput>;
   description: String;
-  QAs?: Maybe<String>;
+}
+
+export interface VideoUpsertWithWhereUniqueNestedInput {
+  where: VideoWhereUniqueInput;
+  update: VideoUpdateDataInput;
+  create: VideoCreateInput;
 }
 
 export interface VideoSubscriptionWhereInput {
@@ -400,23 +827,298 @@ export interface VideoSubscriptionWhereInput {
   NOT?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
 }
 
-export interface SpeakerCreatetitlesInput {
-  set?: Maybe<String[] | String>;
+export interface VideoScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  url?: Maybe<String>;
+  url_not?: Maybe<String>;
+  url_in?: Maybe<String[] | String>;
+  url_not_in?: Maybe<String[] | String>;
+  url_lt?: Maybe<String>;
+  url_lte?: Maybe<String>;
+  url_gt?: Maybe<String>;
+  url_gte?: Maybe<String>;
+  url_contains?: Maybe<String>;
+  url_not_contains?: Maybe<String>;
+  url_starts_with?: Maybe<String>;
+  url_not_starts_with?: Maybe<String>;
+  url_ends_with?: Maybe<String>;
+  url_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  published?: Maybe<Boolean>;
+  published_not?: Maybe<Boolean>;
+  theme?: Maybe<String>;
+  theme_not?: Maybe<String>;
+  theme_in?: Maybe<String[] | String>;
+  theme_not_in?: Maybe<String[] | String>;
+  theme_lt?: Maybe<String>;
+  theme_lte?: Maybe<String>;
+  theme_gt?: Maybe<String>;
+  theme_gte?: Maybe<String>;
+  theme_contains?: Maybe<String>;
+  theme_not_contains?: Maybe<String>;
+  theme_starts_with?: Maybe<String>;
+  theme_not_starts_with?: Maybe<String>;
+  theme_ends_with?: Maybe<String>;
+  theme_not_ends_with?: Maybe<String>;
+  AND?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
+  OR?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
+  NOT?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
 }
 
-export interface SpeakerSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SpeakerWhereInput>;
-  AND?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
-  OR?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
-  NOT?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+export interface VideoUpdateManyMutationInput {
+  title?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  theme?: Maybe<String>;
 }
 
-export interface SpeakerCreatesocial_mediasInput {
-  set?: Maybe<String[] | String>;
+export interface VideoUpdateManyWithWhereNestedInput {
+  where: VideoScalarWhereInput;
+  data: VideoUpdateManyDataInput;
+}
+
+export interface SpeakerUpdateWithoutOwnerDataInput {
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
+}
+
+export interface VideoUpdateManyDataInput {
+  title?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  theme?: Maybe<String>;
+}
+
+export interface SpeakerCreateWithoutOwnerInput {
+  id?: Maybe<ID_Input>;
+  profile_picture: String;
+  titles?: Maybe<SpeakerCreatetitlesInput>;
+  social_medias?: Maybe<SpeakerCreatesocial_mediasInput>;
+  description: String;
+  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
+}
+
+export interface EventUpdateManyInput {
+  create?: Maybe<EventCreateInput[] | EventCreateInput>;
+  update?: Maybe<
+    | EventUpdateWithWhereUniqueNestedInput[]
+    | EventUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | EventUpsertWithWhereUniqueNestedInput[]
+    | EventUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+  connect?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+  set?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+  disconnect?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+  deleteMany?: Maybe<EventScalarWhereInput[] | EventScalarWhereInput>;
+  updateMany?: Maybe<
+    EventUpdateManyWithWhereNestedInput[] | EventUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SpeakerUpdateManyMutationInput {
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+}
+
+export interface EventUpdateWithWhereUniqueNestedInput {
+  where: EventWhereUniqueInput;
+  data: EventUpdateDataInput;
+}
+
+export interface SpeakerUpdateManyDataInput {
+  profile_picture?: Maybe<String>;
+  titles?: Maybe<SpeakerUpdatetitlesInput>;
+  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
+  description?: Maybe<String>;
+}
+
+export interface EventUpdateDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_coordinates?: Maybe<longLat>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+  speakers?: Maybe<SpeakerUpdateManyInput>;
+}
+
+export interface SpeakerCreateManyInput {
+  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
+  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+}
+
+export interface EventUpsertWithWhereUniqueNestedInput {
+  where: EventWhereUniqueInput;
+  update: EventUpdateDataInput;
+  create: EventCreateInput;
+}
+
+export interface VideoCreateManyInput {
+  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
+  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+}
+
+export interface EventScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  thumbnail_url_not?: Maybe<String>;
+  thumbnail_url_in?: Maybe<String[] | String>;
+  thumbnail_url_not_in?: Maybe<String[] | String>;
+  thumbnail_url_lt?: Maybe<String>;
+  thumbnail_url_lte?: Maybe<String>;
+  thumbnail_url_gt?: Maybe<String>;
+  thumbnail_url_gte?: Maybe<String>;
+  thumbnail_url_contains?: Maybe<String>;
+  thumbnail_url_not_contains?: Maybe<String>;
+  thumbnail_url_starts_with?: Maybe<String>;
+  thumbnail_url_not_starts_with?: Maybe<String>;
+  thumbnail_url_ends_with?: Maybe<String>;
+  thumbnail_url_not_ends_with?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_name_not?: Maybe<String>;
+  location_name_in?: Maybe<String[] | String>;
+  location_name_not_in?: Maybe<String[] | String>;
+  location_name_lt?: Maybe<String>;
+  location_name_lte?: Maybe<String>;
+  location_name_gt?: Maybe<String>;
+  location_name_gte?: Maybe<String>;
+  location_name_contains?: Maybe<String>;
+  location_name_not_contains?: Maybe<String>;
+  location_name_starts_with?: Maybe<String>;
+  location_name_not_starts_with?: Maybe<String>;
+  location_name_ends_with?: Maybe<String>;
+  location_name_not_ends_with?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_address_not?: Maybe<String>;
+  location_address_in?: Maybe<String[] | String>;
+  location_address_not_in?: Maybe<String[] | String>;
+  location_address_lt?: Maybe<String>;
+  location_address_lte?: Maybe<String>;
+  location_address_gt?: Maybe<String>;
+  location_address_gte?: Maybe<String>;
+  location_address_contains?: Maybe<String>;
+  location_address_not_contains?: Maybe<String>;
+  location_address_starts_with?: Maybe<String>;
+  location_address_not_starts_with?: Maybe<String>;
+  location_address_ends_with?: Maybe<String>;
+  location_address_not_ends_with?: Maybe<String>;
+  location_coordinates?: Maybe<longLat>;
+  location_coordinates_not?: Maybe<longLat>;
+  location_coordinates_in?: Maybe<longLat[] | longLat>;
+  location_coordinates_not_in?: Maybe<longLat[] | longLat>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  maxTickets_not?: Maybe<Int>;
+  maxTickets_in?: Maybe<Int[] | Int>;
+  maxTickets_not_in?: Maybe<Int[] | Int>;
+  maxTickets_lt?: Maybe<Int>;
+  maxTickets_lte?: Maybe<Int>;
+  maxTickets_gt?: Maybe<Int>;
+  maxTickets_gte?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+  soldTickets_not?: Maybe<Int>;
+  soldTickets_in?: Maybe<Int[] | Int>;
+  soldTickets_not_in?: Maybe<Int[] | Int>;
+  soldTickets_lt?: Maybe<Int>;
+  soldTickets_lte?: Maybe<Int>;
+  soldTickets_gt?: Maybe<Int>;
+  soldTickets_gte?: Maybe<Int>;
+  AND?: Maybe<EventScalarWhereInput[] | EventScalarWhereInput>;
+  OR?: Maybe<EventScalarWhereInput[] | EventScalarWhereInput>;
+  NOT?: Maybe<EventScalarWhereInput[] | EventScalarWhereInput>;
 }
 
 export interface EventWhereInput {
@@ -540,437 +1242,26 @@ export interface EventWhereInput {
   NOT?: Maybe<EventWhereInput[] | EventWhereInput>;
 }
 
-export interface UserCreateownedTicketsInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface VideoUpdateInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
-}
-
-export interface VideoCreateManyWithoutAuthorInput {
-  create?: Maybe<
-    VideoCreateWithoutAuthorInput[] | VideoCreateWithoutAuthorInput
-  >;
-  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-}
-
-export interface SpeakerUpsertWithoutOwnerInput {
-  update: SpeakerUpdateWithoutOwnerDataInput;
-  create: SpeakerCreateWithoutOwnerInput;
-}
-
-export interface VideoCreateWithoutAuthorInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  url: String;
-  published?: Maybe<Boolean>;
-}
-
-export type SpeakerWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface EventUpdateInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  thumbnail_url?: Maybe<String>;
-  location_name?: Maybe<String>;
-  location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
-  price?: Maybe<Float>;
-  maxTickets?: Maybe<Int>;
-  soldTickets?: Maybe<Int>;
-  speakers?: Maybe<SpeakerUpdateManyInput>;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  isSpeaker?: Maybe<SpeakerUpdateOneWithoutOwnerInput>;
-  favouritedVideos?: Maybe<VideoUpdateManyInput>;
-  ownedTickets?: Maybe<UserUpdateownedTicketsInput>;
-}
-
-export interface SpeakerUpdateManyInput {
-  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
-  update?: Maybe<
-    | SpeakerUpdateWithWhereUniqueNestedInput[]
-    | SpeakerUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | SpeakerUpsertWithWhereUniqueNestedInput[]
-    | SpeakerUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
-  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
-  set?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
-  disconnect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
-  deleteMany?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
-  updateMany?: Maybe<
-    | SpeakerUpdateManyWithWhereNestedInput[]
-    | SpeakerUpdateManyWithWhereNestedInput
-  >;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export interface SpeakerScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  profile_picture?: Maybe<String>;
-  profile_picture_not?: Maybe<String>;
-  profile_picture_in?: Maybe<String[] | String>;
-  profile_picture_not_in?: Maybe<String[] | String>;
-  profile_picture_lt?: Maybe<String>;
-  profile_picture_lte?: Maybe<String>;
-  profile_picture_gt?: Maybe<String>;
-  profile_picture_gte?: Maybe<String>;
-  profile_picture_contains?: Maybe<String>;
-  profile_picture_not_contains?: Maybe<String>;
-  profile_picture_starts_with?: Maybe<String>;
-  profile_picture_not_starts_with?: Maybe<String>;
-  profile_picture_ends_with?: Maybe<String>;
-  profile_picture_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  QAs?: Maybe<String>;
-  QAs_not?: Maybe<String>;
-  QAs_in?: Maybe<String[] | String>;
-  QAs_not_in?: Maybe<String[] | String>;
-  QAs_lt?: Maybe<String>;
-  QAs_lte?: Maybe<String>;
-  QAs_gt?: Maybe<String>;
-  QAs_gte?: Maybe<String>;
-  QAs_contains?: Maybe<String>;
-  QAs_not_contains?: Maybe<String>;
-  QAs_starts_with?: Maybe<String>;
-  QAs_not_starts_with?: Maybe<String>;
-  QAs_ends_with?: Maybe<String>;
-  QAs_not_ends_with?: Maybe<String>;
-  AND?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
-  OR?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
-  NOT?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
-  isSpeaker?: Maybe<SpeakerCreateOneWithoutOwnerInput>;
-  favouritedVideos?: Maybe<VideoCreateManyInput>;
-  ownedTickets?: Maybe<UserCreateownedTicketsInput>;
-}
-
-export interface SpeakerUpdateDataInput {
-  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
-  QAs?: Maybe<String>;
-}
-
-export interface SpeakerUpdateInput {
-  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
-  QAs?: Maybe<String>;
-}
-
-export interface UserUpdateOneWithoutIsSpeakerInput {
-  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
-  update?: Maybe<UserUpdateWithoutIsSpeakerDataInput>;
-  upsert?: Maybe<UserUpsertWithoutIsSpeakerInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface EventUpdateManyMutationInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  thumbnail_url?: Maybe<String>;
-  location_name?: Maybe<String>;
-  location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
-  price?: Maybe<Float>;
-  maxTickets?: Maybe<Int>;
-  soldTickets?: Maybe<Int>;
-}
-
-export interface UserUpdateWithoutIsSpeakerDataInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  favouritedVideos?: Maybe<VideoUpdateManyInput>;
-  ownedTickets?: Maybe<UserUpdateownedTicketsInput>;
-}
-
-export interface SpeakerUpdateManyWithWhereNestedInput {
-  where: SpeakerScalarWhereInput;
-  data: SpeakerUpdateManyDataInput;
-}
-
-export interface VideoWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  author?: Maybe<SpeakerWhereInput>;
-  AND?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-  OR?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-  NOT?: Maybe<VideoWhereInput[] | VideoWhereInput>;
-}
-
-export interface EventCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  description: String;
-  thumbnail_url: String;
-  location_name: String;
-  location_address: String;
-  location_coordinates: longLat;
-  price?: Maybe<Float>;
-  maxTickets: Int;
-  soldTickets?: Maybe<Int>;
-  speakers?: Maybe<SpeakerCreateManyInput>;
-}
-
-export interface SpeakerUpsertWithWhereUniqueNestedInput {
-  where: SpeakerWhereUniqueInput;
-  update: SpeakerUpdateDataInput;
-  create: SpeakerCreateInput;
-}
-
-export interface SpeakerCreateInput {
-  id?: Maybe<ID_Input>;
-  owner?: Maybe<UserCreateOneWithoutIsSpeakerInput>;
-  profile_picture: String;
-  titles?: Maybe<SpeakerCreatetitlesInput>;
-  social_medias?: Maybe<SpeakerCreatesocial_mediasInput>;
-  description: String;
-  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
-  QAs?: Maybe<String>;
-}
-
-export interface VideoUpdateDataInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
-}
-
-export interface UserCreateWithoutIsSpeakerInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
-  favouritedVideos?: Maybe<VideoCreateManyInput>;
-  ownedTickets?: Maybe<UserCreateownedTicketsInput>;
-}
-
-export interface SpeakerUpdateOneWithoutVideosInput {
-  create?: Maybe<SpeakerCreateWithoutVideosInput>;
-  update?: Maybe<SpeakerUpdateWithoutVideosDataInput>;
-  upsert?: Maybe<SpeakerUpsertWithoutVideosInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<SpeakerWhereUniqueInput>;
-}
-
-export interface SpeakerWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  owner?: Maybe<UserWhereInput>;
-  profile_picture?: Maybe<String>;
-  profile_picture_not?: Maybe<String>;
-  profile_picture_in?: Maybe<String[] | String>;
-  profile_picture_not_in?: Maybe<String[] | String>;
-  profile_picture_lt?: Maybe<String>;
-  profile_picture_lte?: Maybe<String>;
-  profile_picture_gt?: Maybe<String>;
-  profile_picture_gte?: Maybe<String>;
-  profile_picture_contains?: Maybe<String>;
-  profile_picture_not_contains?: Maybe<String>;
-  profile_picture_starts_with?: Maybe<String>;
-  profile_picture_not_starts_with?: Maybe<String>;
-  profile_picture_ends_with?: Maybe<String>;
-  profile_picture_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  videos_every?: Maybe<VideoWhereInput>;
-  videos_some?: Maybe<VideoWhereInput>;
-  videos_none?: Maybe<VideoWhereInput>;
-  QAs?: Maybe<String>;
-  QAs_not?: Maybe<String>;
-  QAs_in?: Maybe<String[] | String>;
-  QAs_not_in?: Maybe<String[] | String>;
-  QAs_lt?: Maybe<String>;
-  QAs_lte?: Maybe<String>;
-  QAs_gt?: Maybe<String>;
-  QAs_gte?: Maybe<String>;
-  QAs_contains?: Maybe<String>;
-  QAs_not_contains?: Maybe<String>;
-  QAs_starts_with?: Maybe<String>;
-  QAs_not_starts_with?: Maybe<String>;
-  QAs_ends_with?: Maybe<String>;
-  QAs_not_ends_with?: Maybe<String>;
-  AND?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
-  OR?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
-  NOT?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
-}
-
-export interface SpeakerUpdateWithoutVideosDataInput {
-  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  QAs?: Maybe<String>;
-}
-
-export interface EventSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<EventWhereInput>;
-  AND?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-  OR?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-  NOT?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
-}
-
-export interface SpeakerUpdatetitlesInput {
-  set?: Maybe<String[] | String>;
+export interface EventUpdateManyWithWhereNestedInput {
+  where: EventScalarWhereInput;
+  data: EventUpdateManyDataInput;
 }
 
 export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   name?: Maybe<String>;
-  ownedTickets?: Maybe<UserUpdateownedTicketsInput>;
 }
 
-export interface SpeakerUpdatesocial_mediasInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface SpeakerUpdateOneWithoutOwnerInput {
-  create?: Maybe<SpeakerCreateWithoutOwnerInput>;
-  update?: Maybe<SpeakerUpdateWithoutOwnerDataInput>;
-  upsert?: Maybe<SpeakerUpsertWithoutOwnerInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<SpeakerWhereUniqueInput>;
-}
-
-export interface SpeakerUpsertWithoutVideosInput {
-  update: SpeakerUpdateWithoutVideosDataInput;
-  create: SpeakerCreateWithoutVideosInput;
+export interface EventUpdateManyDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_coordinates?: Maybe<longLat>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
 }
 
 export interface SpeakerCreateOneWithoutOwnerInput {
@@ -978,126 +1269,11 @@ export interface SpeakerCreateOneWithoutOwnerInput {
   connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
-export interface VideoUpsertWithWhereUniqueNestedInput {
-  where: VideoWhereUniqueInput;
-  update: VideoUpdateDataInput;
-  create: VideoCreateInput;
-}
-
-export type VideoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface VideoScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  AND?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
-  OR?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
-  NOT?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
-}
-
-export interface UserCreateOneWithoutIsSpeakerInput {
-  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface VideoUpdateManyWithWhereNestedInput {
-  where: VideoScalarWhereInput;
-  data: VideoUpdateManyDataInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface VideoUpdateManyDataInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-}
-
-export interface SpeakerUpdateWithoutOwnerDataInput {
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
-  QAs?: Maybe<String>;
-}
-
-export interface UserUpdateownedTicketsInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface SpeakerUpdateManyMutationInput {
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  QAs?: Maybe<String>;
-}
-
 export interface VideoUpdateWithoutAuthorDataInput {
   title?: Maybe<String>;
   url?: Maybe<String>;
   published?: Maybe<Boolean>;
+  theme?: Maybe<String>;
 }
 
 export interface VideoUpdateWithWhereUniqueWithoutAuthorInput {
@@ -1132,38 +1308,38 @@ export interface UserUpsertWithoutIsSpeakerInput {
   create: UserCreateWithoutIsSpeakerInput;
 }
 
-export interface SpeakerUpdateManyDataInput {
-  profile_picture?: Maybe<String>;
-  titles?: Maybe<SpeakerUpdatetitlesInput>;
-  social_medias?: Maybe<SpeakerUpdatesocial_mediasInput>;
-  description?: Maybe<String>;
-  QAs?: Maybe<String>;
+export interface UserCreateOneWithoutIsSpeakerInput {
+  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface SpeakerCreateWithoutOwnerInput {
-  id?: Maybe<ID_Input>;
-  profile_picture: String;
-  titles?: Maybe<SpeakerCreatetitlesInput>;
-  social_medias?: Maybe<SpeakerCreatesocial_mediasInput>;
-  description: String;
-  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
-  QAs?: Maybe<String>;
+export type VideoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SpeakerUpdateOneWithoutOwnerInput {
+  create?: Maybe<SpeakerCreateWithoutOwnerInput>;
+  update?: Maybe<SpeakerUpdateWithoutOwnerDataInput>;
+  upsert?: Maybe<SpeakerUpsertWithoutOwnerInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
-export interface VideoUpdateManyMutationInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
+export interface SpeakerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SpeakerWhereInput>;
+  AND?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+  OR?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+  NOT?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
 }
 
-export interface VideoCreateManyInput {
-  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
-  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-}
-
-export interface SpeakerCreateManyInput {
-  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
-  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
+export interface SpeakerCreateOneWithoutVideosInput {
+  create?: Maybe<SpeakerCreateWithoutVideosInput>;
+  connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
 export interface NodeNode {
@@ -1176,6 +1352,7 @@ export interface VideoPreviousValues {
   url: String;
   createdAt?: DateTimeOutput;
   published: Boolean;
+  theme: String;
 }
 
 export interface VideoPreviousValuesPromise
@@ -1186,6 +1363,7 @@ export interface VideoPreviousValuesPromise
   url: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   published: () => Promise<Boolean>;
+  theme: () => Promise<String>;
 }
 
 export interface VideoPreviousValuesSubscription
@@ -1196,6 +1374,7 @@ export interface VideoPreviousValuesSubscription
   url: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   published: () => Promise<AsyncIterator<Boolean>>;
+  theme: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SpeakerConnection {
@@ -1225,7 +1404,6 @@ export interface SpeakerPreviousValues {
   titles: String[];
   social_medias: String[];
   description: String;
-  QAs?: String;
 }
 
 export interface SpeakerPreviousValuesPromise
@@ -1236,7 +1414,6 @@ export interface SpeakerPreviousValuesPromise
   titles: () => Promise<String[]>;
   social_medias: () => Promise<String[]>;
   description: () => Promise<String>;
-  QAs: () => Promise<String>;
 }
 
 export interface SpeakerPreviousValuesSubscription
@@ -1247,7 +1424,6 @@ export interface SpeakerPreviousValuesSubscription
   titles: () => Promise<AsyncIterator<String[]>>;
   social_medias: () => Promise<AsyncIterator<String[]>>;
   description: () => Promise<AsyncIterator<String>>;
-  QAs: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateEvent {
@@ -1327,7 +1503,6 @@ export interface UserPreviousValues {
   id: ID_Output;
   email?: String;
   name: String;
-  ownedTickets: String[];
 }
 
 export interface UserPreviousValuesPromise
@@ -1336,7 +1511,6 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   name: () => Promise<String>;
-  ownedTickets: () => Promise<String[]>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -1345,7 +1519,6 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
-  ownedTickets: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface BatchPayload {
@@ -1453,6 +1626,7 @@ export interface Video {
   url: String;
   createdAt?: DateTimeOutput;
   published: Boolean;
+  theme: String;
 }
 
 export interface VideoPromise extends Promise<Video>, Fragmentable {
@@ -1462,6 +1636,7 @@ export interface VideoPromise extends Promise<Video>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   published: () => Promise<Boolean>;
   author: <T = SpeakerPromise>() => T;
+  theme: () => Promise<String>;
 }
 
 export interface VideoSubscription
@@ -1473,6 +1648,7 @@ export interface VideoSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   published: () => Promise<AsyncIterator<Boolean>>;
   author: <T = SpeakerSubscription>() => T;
+  theme: () => Promise<AsyncIterator<String>>;
 }
 
 export interface VideoNullablePromise
@@ -1484,6 +1660,7 @@ export interface VideoNullablePromise
   createdAt: () => Promise<DateTimeOutput>;
   published: () => Promise<Boolean>;
   author: <T = SpeakerPromise>() => T;
+  theme: () => Promise<String>;
 }
 
 export interface AggregateSpeaker {
@@ -1655,7 +1832,6 @@ export interface User {
   id: ID_Output;
   email?: String;
   name: String;
-  ownedTickets: String[];
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1672,7 +1848,15 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
-  ownedTickets: () => Promise<String[]>;
+  ownedTickets: <T = FragmentableArray<Event>>(args?: {
+    where?: EventWhereInput;
+    orderBy?: EventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface UserSubscription
@@ -1691,7 +1875,15 @@ export interface UserSubscription
     first?: Int;
     last?: Int;
   }) => T;
-  ownedTickets: () => Promise<AsyncIterator<String[]>>;
+  ownedTickets: <T = Promise<AsyncIterator<EventSubscription>>>(args?: {
+    where?: EventWhereInput;
+    orderBy?: EventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface UserNullablePromise
@@ -1710,7 +1902,15 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  ownedTickets: () => Promise<String[]>;
+  ownedTickets: <T = FragmentableArray<Event>>(args?: {
+    where?: EventWhereInput;
+    orderBy?: EventOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface EventPreviousValues {
@@ -1842,7 +2042,6 @@ export interface Speaker {
   titles: String[];
   social_medias: String[];
   description: String;
-  QAs?: String;
 }
 
 export interface SpeakerPromise extends Promise<Speaker>, Fragmentable {
@@ -1861,7 +2060,6 @@ export interface SpeakerPromise extends Promise<Speaker>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
-  QAs: () => Promise<String>;
 }
 
 export interface SpeakerSubscription
@@ -1882,7 +2080,6 @@ export interface SpeakerSubscription
     first?: Int;
     last?: Int;
   }) => T;
-  QAs: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SpeakerNullablePromise
@@ -1903,7 +2100,6 @@ export interface SpeakerNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  QAs: () => Promise<String>;
 }
 
 /*
