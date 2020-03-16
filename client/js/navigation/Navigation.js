@@ -1,7 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ExploreScreen from '../screens/Explore';
 import EventsScreen from '../screens/Events';
 import TicketsScreen from '../screens/Tickets';
@@ -18,7 +17,7 @@ const ExploreStackScreens = props => {
         name="Explore"
         component={ExploreScreen}
         options={{
-          headerTintColor: 'white',
+          headerTintColor: '#FBF7EF',
         }}
       />
     </ExploreStack.Navigator>
@@ -34,7 +33,7 @@ const EventsStackScreens = props => {
         name="Events"
         component={EventsScreen}
         options={{
-          headerTintColor: 'white',
+          headerTintColor: '#FBF7EF',
         }}
       />
     </EventsStack.Navigator>
@@ -50,7 +49,7 @@ const TicketsStackScreens = props => {
         name="Tickets"
         component={TicketsScreen}
         options={{
-          headerTintColor: 'white',
+          headerTintColor: '#FBF7EF',
         }}
       />
     </TicketsStack.Navigator>
@@ -66,7 +65,7 @@ const UserProfileStackScreens = props => {
         name="Explore"
         component={UserProfileScreen}
         options={{
-          headerTintColor: 'white',
+          headerTintColor: '#FBF7EF',
         }}
       />
     </UserProfileStack.Navigator>
@@ -77,32 +76,32 @@ const BottomTabNav = createBottomTabNavigator();
 const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator
     tabBarOptions={{
-      activeTintColor: 'white',
+      activeTintColor: '#FBF7EF',
       inactiveTintColor: '#CACACA',
       style: {
-        backgroundColor: 'black',
+        backgroundColor: '#DB4F48',
       },
       labelStyle: {
-        fontSize: 10,
+        fontSize: 12,
         // fontFamily: '',
       },
     }}
     screenOptions={({route}) => ({
-      tabBarIcon: ({focused, size, color}) => {
-        let iconName;
-        if (route.name === 'Explore') {
-          iconName = focused ? 'calendar-blank' : 'calendar-blank-outline';
-        } else if (route.name === 'Events') {
-          iconName = focused ? 'map' : 'map-outline';
-        } else if (route.name === 'Tickets') {
-          iconName = focused ? 'heart' : 'heart-outline';
-        } else if (route.name === 'Profile') {
-          iconName = focused ? 'information' : 'information-outline';
-        }
-        return (
-          <MaterialCommunityIcons name={iconName} size={size} color={color} />
-        );
-      },
+      //   tabBarIcon: ({focused, size, color}) => {
+      //     let iconName;
+      //     if (route.name === 'Explore') {
+      //       iconName = focused ? 'calendar-blank' : 'calendar-blank-outline';
+      //     } else if (route.name === 'Events') {
+      //       iconName = focused ? 'map' : 'map-outline';
+      //     } else if (route.name === 'Tickets') {
+      //       iconName = focused ? 'heart' : 'heart-outline';
+      //     } else if (route.name === 'Profile') {
+      //       iconName = focused ? 'information' : 'information-outline';
+      //     }
+      //     return (
+      //       <MaterialCommunityIcons name={iconName} size={size} color={color} />
+      //     );
+      //   },
     })}>
     <BottomTabNav.Screen name="Explore" component={ExploreStackScreens} />
     <BottomTabNav.Screen name="Events" component={EventsStackScreens} />
