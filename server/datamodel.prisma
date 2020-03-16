@@ -8,6 +8,8 @@ type User {
 type Video {
   id: ID! @id
   title: String!
+  url: String!
+  createdAt: DateTime @createdAt
   published: Boolean! @default(value: false)
   author: Speaker @relation(link: INLINE)
 }
@@ -22,4 +24,19 @@ type Speaker {
   videos: [Video!]! 
   QAs: String
 }
-  
+enum longLat {
+  LONGITUDE
+  LATITUDE
+}
+
+type Event {
+  id: ID! @id
+  title: String!
+  description: String!
+  thumbnail_url: String!
+  location_name: String!
+  location_address: String!
+  location_coordinates: longLat! 
+  price: Float
+  speakers: [Speaker]!
+}

@@ -15,6 +15,14 @@ var models = [
   {
     name: "Speaker",
     embedded: false
+  },
+  {
+    name: "longLat",
+    embedded: false
+  },
+  {
+    name: "Event",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
