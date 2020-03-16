@@ -74,11 +74,13 @@ type Query {
 
 type Speaker {
   id: ID!
-  profile_picture: String
-  social_medias: [String!]!
+  owner: User
+  profile_picture: String!
   titles: [String!]!
+  social_medias: [String!]!
   description: String!
   videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
+  QAs: String
 }
 
 type SpeakerConnection {
@@ -89,11 +91,18 @@ type SpeakerConnection {
 
 input SpeakerCreateInput {
   id: ID
-  profile_picture: String
-  social_medias: SpeakerCreatesocial_mediasInput
+  owner: UserCreateOneWithoutIsSpeakerInput
+  profile_picture: String!
   titles: SpeakerCreatetitlesInput
+  social_medias: SpeakerCreatesocial_mediasInput
   description: String!
   videos: VideoCreateManyWithoutAuthorInput
+  QAs: String
+}
+
+input SpeakerCreateOneWithoutOwnerInput {
+  create: SpeakerCreateWithoutOwnerInput
+  connect: SpeakerWhereUniqueInput
 }
 
 input SpeakerCreateOneWithoutVideosInput {
@@ -109,12 +118,24 @@ input SpeakerCreatetitlesInput {
   set: [String!]
 }
 
+input SpeakerCreateWithoutOwnerInput {
+  id: ID
+  profile_picture: String!
+  titles: SpeakerCreatetitlesInput
+  social_medias: SpeakerCreatesocial_mediasInput
+  description: String!
+  videos: VideoCreateManyWithoutAuthorInput
+  QAs: String
+}
+
 input SpeakerCreateWithoutVideosInput {
   id: ID
-  profile_picture: String
-  social_medias: SpeakerCreatesocial_mediasInput
+  owner: UserCreateOneWithoutIsSpeakerInput
+  profile_picture: String!
   titles: SpeakerCreatetitlesInput
+  social_medias: SpeakerCreatesocial_mediasInput
   description: String!
+  QAs: String
 }
 
 type SpeakerEdge {
@@ -129,14 +150,17 @@ enum SpeakerOrderByInput {
   profile_picture_DESC
   description_ASC
   description_DESC
+  QAs_ASC
+  QAs_DESC
 }
 
 type SpeakerPreviousValues {
   id: ID!
-  profile_picture: String
-  social_medias: [String!]!
+  profile_picture: String!
   titles: [String!]!
+  social_medias: [String!]!
   description: String!
+  QAs: String
 }
 
 type SpeakerSubscriptionPayload {
@@ -158,18 +182,30 @@ input SpeakerSubscriptionWhereInput {
 }
 
 input SpeakerUpdateInput {
+  owner: UserUpdateOneWithoutIsSpeakerInput
   profile_picture: String
-  social_medias: SpeakerUpdatesocial_mediasInput
   titles: SpeakerUpdatetitlesInput
+  social_medias: SpeakerUpdatesocial_mediasInput
   description: String
   videos: VideoUpdateManyWithoutAuthorInput
+  QAs: String
 }
 
 input SpeakerUpdateManyMutationInput {
   profile_picture: String
-  social_medias: SpeakerUpdatesocial_mediasInput
   titles: SpeakerUpdatetitlesInput
+  social_medias: SpeakerUpdatesocial_mediasInput
   description: String
+  QAs: String
+}
+
+input SpeakerUpdateOneWithoutOwnerInput {
+  create: SpeakerCreateWithoutOwnerInput
+  update: SpeakerUpdateWithoutOwnerDataInput
+  upsert: SpeakerUpsertWithoutOwnerInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: SpeakerWhereUniqueInput
 }
 
 input SpeakerUpdateOneWithoutVideosInput {
@@ -189,11 +225,27 @@ input SpeakerUpdatetitlesInput {
   set: [String!]
 }
 
-input SpeakerUpdateWithoutVideosDataInput {
+input SpeakerUpdateWithoutOwnerDataInput {
   profile_picture: String
-  social_medias: SpeakerUpdatesocial_mediasInput
   titles: SpeakerUpdatetitlesInput
+  social_medias: SpeakerUpdatesocial_mediasInput
   description: String
+  videos: VideoUpdateManyWithoutAuthorInput
+  QAs: String
+}
+
+input SpeakerUpdateWithoutVideosDataInput {
+  owner: UserUpdateOneWithoutIsSpeakerInput
+  profile_picture: String
+  titles: SpeakerUpdatetitlesInput
+  social_medias: SpeakerUpdatesocial_mediasInput
+  description: String
+  QAs: String
+}
+
+input SpeakerUpsertWithoutOwnerInput {
+  update: SpeakerUpdateWithoutOwnerDataInput!
+  create: SpeakerCreateWithoutOwnerInput!
 }
 
 input SpeakerUpsertWithoutVideosInput {
@@ -216,6 +268,7 @@ input SpeakerWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  owner: UserWhereInput
   profile_picture: String
   profile_picture_not: String
   profile_picture_in: [String!]
@@ -247,6 +300,20 @@ input SpeakerWhereInput {
   videos_every: VideoWhereInput
   videos_some: VideoWhereInput
   videos_none: VideoWhereInput
+  QAs: String
+  QAs_not: String
+  QAs_in: [String!]
+  QAs_not_in: [String!]
+  QAs_lt: String
+  QAs_lte: String
+  QAs_gt: String
+  QAs_gte: String
+  QAs_contains: String
+  QAs_not_contains: String
+  QAs_starts_with: String
+  QAs_not_starts_with: String
+  QAs_ends_with: String
+  QAs_not_ends_with: String
   AND: [SpeakerWhereInput!]
   OR: [SpeakerWhereInput!]
   NOT: [SpeakerWhereInput!]
@@ -266,6 +333,7 @@ type User {
   id: ID!
   email: String
   name: String!
+  isSpeaker: Speaker
 }
 
 type UserConnection {
@@ -275,6 +343,18 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
+  email: String
+  name: String!
+  isSpeaker: SpeakerCreateOneWithoutOwnerInput
+}
+
+input UserCreateOneWithoutIsSpeakerInput {
+  create: UserCreateWithoutIsSpeakerInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutIsSpeakerInput {
   id: ID
   email: String
   name: String!
@@ -321,11 +401,31 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   email: String
   name: String
+  isSpeaker: SpeakerUpdateOneWithoutOwnerInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   name: String
+}
+
+input UserUpdateOneWithoutIsSpeakerInput {
+  create: UserCreateWithoutIsSpeakerInput
+  update: UserUpdateWithoutIsSpeakerDataInput
+  upsert: UserUpsertWithoutIsSpeakerInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutIsSpeakerDataInput {
+  email: String
+  name: String
+}
+
+input UserUpsertWithoutIsSpeakerInput {
+  update: UserUpdateWithoutIsSpeakerDataInput!
+  create: UserCreateWithoutIsSpeakerInput!
 }
 
 input UserWhereInput {
@@ -371,6 +471,7 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  isSpeaker: SpeakerWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

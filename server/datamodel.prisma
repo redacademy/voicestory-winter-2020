@@ -2,6 +2,7 @@ type User {
   id: ID! @id
   email: String @unique
   name: String!
+  isSpeaker: Speaker
 }
 
 type Video {
@@ -13,10 +14,12 @@ type Video {
 
 type Speaker {
   id: ID! @id
-  profile_picture: String
-  social_medias: [String]! @scalarList(strategy: RELATION)
+  owner: User @relation(link:INLINE)
+  profile_picture: String!
   titles: [String!]! @scalarList(strategy: RELATION)
+  social_medias: [String]! @scalarList(strategy: RELATION)
   description: String!
   videos: [Video!]! 
-  // TODO Q/A Question not sure where the data is pulled from
+  QAs: String
 }
+  
