@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
+import VideoList from '../../components/VideoList';
 
 const Videos = ({navigation}) => {
   return (
@@ -12,10 +13,11 @@ const Videos = ({navigation}) => {
         <TouchableOpacity>
           <Text>Most Viewed</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Theme')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Video')}>
           <Text>Theme</Text>
         </TouchableOpacity>
       </View>
+      <VideoList />
     </>
   );
 };

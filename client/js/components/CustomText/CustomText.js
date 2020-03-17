@@ -17,6 +17,6 @@ export default class CustomText extends React.Component {
 
 const styles = StyleSheet.create({
   defaultFont: {
-    fontFamily: 'Montserrat-Regular',
+    // fontFamily: 'Lato-Regular',
   },
 });

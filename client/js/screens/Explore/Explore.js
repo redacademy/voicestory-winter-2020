@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import ThemesButton from '../../components/ThemesButton';
 import {ScrollView} from 'react-native-gesture-handler';
+import Text from '../../components/CustomText/CustomText';
 
 const Explore = ({navigation}) => {
   return (
