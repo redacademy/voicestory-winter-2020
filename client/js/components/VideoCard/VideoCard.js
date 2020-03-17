@@ -3,7 +3,10 @@ import {View, Text, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const VideoCard = ({route}) => {
+const VideoCard = ({route, navigation}) => {
+  {
+    console.log(navigation);
+  }
   const buttonStyle =
     route.name !== 'Explore' ? styles.largeButton : styles.smallButton;
   const cardStyle =
@@ -12,7 +15,9 @@ const VideoCard = ({route}) => {
   return (
     <TouchableHighlight
       style={buttonStyle}
-      onPress={() => {}}
+      onPress={() => {
+        navigation.navigate('Video');
+      }}
       underlayColor={'transparent'}>
       <View style={cardStyle}>
         <Image

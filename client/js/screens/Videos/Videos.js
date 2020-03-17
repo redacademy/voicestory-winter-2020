@@ -17,7 +17,7 @@ const Videos = ({navigation, route}) => {
           <Text>Theme</Text>
         </TouchableOpacity>
       </View>
-      <VideoList route={route} />
+      <VideoList route={route} navigation={navigation} />
     </>
   );
 };
