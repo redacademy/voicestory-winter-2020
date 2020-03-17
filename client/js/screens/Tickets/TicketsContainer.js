@@ -3,6 +3,6 @@ import Tickets from './Tickets';
 
 export default class TicketsContainer extends Component {
   render() {
-    return <Tickets />;
+    return <Tickets navigation={this.props.navigation} />;
   }
 }
