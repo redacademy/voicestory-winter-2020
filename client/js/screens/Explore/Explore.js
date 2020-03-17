@@ -4,6 +4,7 @@ import styles from './styles';
 import ThemesButton from '../../components/ThemesButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
+import VideoCard from '../../components/VideoCard';
 
 const Explore = ({navigation}) => {
   return (
@@ -14,6 +15,7 @@ const Explore = ({navigation}) => {
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
+      <VideoCard />
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Themes</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Videos')}>

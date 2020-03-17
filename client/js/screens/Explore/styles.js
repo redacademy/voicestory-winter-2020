@@ -13,14 +13,17 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   themeContainer: {
-    height: 100,
+    height: 110,
+    marginLeft: 30,
   },
   themeButton: {
     height: 100,
     width: 100,
+    marginRight: 10,
   },
   heading: {
-    fontWeight: '600',
+    fontFamily: 'Lato-Black',
+    fontSize: 16,
   },
   seeAll: {
     color: '#3C3C3C',
