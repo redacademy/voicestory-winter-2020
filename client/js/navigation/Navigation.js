@@ -15,6 +15,7 @@ import TicketInfoScreen from '../screens/TicketInfo';
 import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
+import {Image} from 'react-native';
 
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -156,31 +157,56 @@ const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
-      inactiveTintColor: '#CACACA',
+      inactiveTintColor: '#FBF7EF',
+      //   activeBackgroundColor: '#C24640',
+      //   inactiveBackgroundColor: '#DB4F48',
       style: {
         backgroundColor: '#DB4F48',
+        borderRadius: 20,
+        height: 100,
       },
       labelStyle: {
-        fontSize: 12,
+        fontSize: 14,
         fontFamily: 'Lato-Regular',
+        transform: [{translateY: 10}],
       },
     }}
     screenOptions={({route}) => ({
-      //   tabBarIcon: ({focused, size, color}) => {
-      //     let iconName;
-      //     if (route.name === 'Explore') {
-      //       iconName = focused ? 'calendar-blank' : 'calendar-blank-outline';
-      //     } else if (route.name === 'Events') {
-      //       iconName = focused ? 'map' : 'map-outline';
-      //     } else if (route.name === 'Tickets') {
-      //       iconName = focused ? 'heart' : 'heart-outline';
-      //     } else if (route.name === 'Profile') {
-      //       iconName = focused ? 'information' : 'information-outline';
-      //     }
-      //     return (
-      //       <MaterialCommunityIcons name={iconName} size={size} color={color} />
-      //     );
-      //   },
+      tabBarIcon: ({focused}) => {
+        if (route.name === 'Explore') {
+          return (
+            <Image
+              style={{height: 40, width: 40, transform: [{translateY: 10}]}}
+              resizeMode={'contain'}
+              source={require('../assets/icons/explore.png')}
+            />
+          );
+        } else if (route.name === 'Events') {
+          return (
+            <Image
+              style={{height: 35, width: 35, transform: [{translateY: 10}]}}
+              resizeMode={'contain'}
+              source={require('../assets/icons/event.png')}
+            />
+          );
+        } else if (route.name === 'Tickets') {
+          return (
+            <Image
+              style={{height: 35, width: 35, transform: [{translateY: 10}]}}
+              resizeMode={'contain'}
+              source={require('../assets/icons/ticket.png')}
+            />
+          );
+        } else if (route.name === 'Profile') {
+          return (
+            <Image
+              style={{height: 30, width: 30, transform: [{translateY: 10}]}}
+              resizeMode={'contain'}
+              source={require('../assets/icons/profile.png')}
+            />
+          );
+        }
+      },
     })}>
     <BottomTabNav.Screen name="Explore" component={ExploreStackScreens} />
     <BottomTabNav.Screen name="Events" component={EventsStackScreens} />
