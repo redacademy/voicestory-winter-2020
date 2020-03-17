@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import VideoList from '../../components/VideoList';
 
-const Videos = ({navigation}) => {
+const Videos = ({navigation, route}) => {
   return (
     <>
       <View style={styles.filterContainer}>
@@ -17,7 +17,7 @@ const Videos = ({navigation}) => {
           <Text>Theme</Text>
         </TouchableOpacity>
       </View>
-      <VideoList />
+      <VideoList route={route} />
     </>
   );
 };

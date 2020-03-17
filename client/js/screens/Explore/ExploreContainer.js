@@ -7,6 +7,8 @@ export default class ExploreContainer extends Component {
     console.log(this.props);
   }
   render() {
-    return <Explore navigation={this.props.navigation} />;
+    return (
+      <Explore navigation={this.props.navigation} route={this.props.route} />
+    );
   }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import styles from './styles';
+import VideoList from '../../components/VideoList';
 
-const Explore = ({navigation}) => {
+const Explore = ({navigation, route}) => {
   return (
     <>
       <View style={styles.headingContainer}>
@@ -11,6 +12,7 @@ const Explore = ({navigation}) => {
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
+      <VideoList horizontal={true} route={route} />
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Themes</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Videos')}>
