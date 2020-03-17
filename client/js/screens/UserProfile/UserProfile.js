@@ -1,22 +1,24 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, Button, View} from 'react-native';
 
 const UserProfile = ({navigation}) => {
   return (
-    <>
+    <View>
+      <Text>Firstname Lastname Placeholder</Text>
+      <Text>emailplaceholder@gmail.com</Text>
       <TouchableOpacity>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Application')}>
-        <Text>Apply to be a Speaker</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Theme')}>
-        <Text>Favorite Videos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text>Downloaded Videos</Text>
-      </TouchableOpacity>
-    </>
+      <Button
+        title="Apply to be a Speaker"
+        onPress={() => navigation.navigate('Application')}
+      />
+      <Button
+        title="Favorite Videos"
+        onPress={() => navigation.navigate('Theme')}
+      />
+      <Button title="Downloaded Videos" />
+    </View>
   );
 };
 
