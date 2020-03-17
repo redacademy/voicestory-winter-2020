@@ -1,4 +1,4 @@
-endpoint: https://us1.prisma.sh/sid-ff4600/voicestory-winter-2020-server/dev
+endpoint: https://us1.prisma.sh/ivandaixivwork/voicestory-2020/voicestory-2020-dev
 datamodel: datamodel.prisma
 
 generate:
