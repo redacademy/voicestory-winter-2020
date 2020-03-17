@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import VideoList from '../../components/VideoList';
+import Text from '../../components/CustomText/CustomText';
 
 const Videos = ({navigation}) => {
   return (

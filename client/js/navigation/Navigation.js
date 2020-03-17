@@ -162,7 +162,7 @@ const BottomTabNavScreens = props => (
       },
       labelStyle: {
         fontSize: 12,
-        // fontFamily: '',
+        fontFamily: 'Lato-Regular',
       },
     }}
     screenOptions={({route}) => ({
