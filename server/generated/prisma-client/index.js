@@ -17,7 +17,7 @@ var models = [
     embedded: false
   },
   {
-    name: "location",
+    name: "Location",
     embedded: false
   },
   {
