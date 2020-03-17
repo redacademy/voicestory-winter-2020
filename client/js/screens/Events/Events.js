@@ -5,16 +5,9 @@ import styles from './styles';
 
 const Events = ({navigation}) => {
   return (
-    <>
-      <View>
-        <TouchableOpacity onPress={() => navigation.navigate('EventInfo')}>
-          <Text>Event Info</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.events}>
-        <EventCard />
-      </View>
-    </>
+    <View style={styles.events}>
+      <EventCard navigation={navigation} />
+    </View>
   );
 };
 
