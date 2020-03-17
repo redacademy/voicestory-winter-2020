@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateLocation {
+  count: Int!
+}
+
 type AggregateSpeaker {
   count: Int!
 }
@@ -32,7 +36,7 @@ type Event {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: location!
+  location: Location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -52,7 +56,7 @@ input EventCreateInput {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: location!
+  location: LocationCreateOneInput!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -82,8 +86,6 @@ enum EventOrderByInput {
   location_name_DESC
   location_address_ASC
   location_address_DESC
-  location_coordinates_ASC
-  location_coordinates_DESC
   price_ASC
   price_DESC
   maxTickets_ASC
@@ -99,7 +101,6 @@ type EventPreviousValues {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -190,10 +191,6 @@ input EventScalarWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location_coordinates: location
-  location_coordinates_not: location
-  location_coordinates_in: [location!]
-  location_coordinates_not_in: [location!]
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -247,7 +244,7 @@ input EventUpdateDataInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: location
+  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -260,7 +257,7 @@ input EventUpdateInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: location
+  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -273,7 +270,6 @@ input EventUpdateManyDataInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -297,7 +293,6 @@ input EventUpdateManyMutationInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -404,10 +399,7 @@ input EventWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location_coordinates: location
-  location_coordinates_not: location
-  location_coordinates_in: [location!]
-  location_coordinates_not_in: [location!]
+  location: LocationWhereInput
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -444,9 +436,132 @@ input EventWhereUniqueInput {
   id: ID
 }
 
-enum location {
-  LONGITUDE
-  LATITUDE
+type Location {
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+}
+
+type LocationConnection {
+  pageInfo: PageInfo!
+  edges: [LocationEdge]!
+  aggregate: AggregateLocation!
+}
+
+input LocationCreateInput {
+  id: ID
+  latitude: Float!
+  longitude: Float!
+}
+
+input LocationCreateOneInput {
+  create: LocationCreateInput
+  connect: LocationWhereUniqueInput
+}
+
+type LocationEdge {
+  node: Location!
+  cursor: String!
+}
+
+enum LocationOrderByInput {
+  id_ASC
+  id_DESC
+  latitude_ASC
+  latitude_DESC
+  longitude_ASC
+  longitude_DESC
+}
+
+type LocationPreviousValues {
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+}
+
+type LocationSubscriptionPayload {
+  mutation: MutationType!
+  node: Location
+  updatedFields: [String!]
+  previousValues: LocationPreviousValues
+}
+
+input LocationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LocationWhereInput
+  AND: [LocationSubscriptionWhereInput!]
+  OR: [LocationSubscriptionWhereInput!]
+  NOT: [LocationSubscriptionWhereInput!]
+}
+
+input LocationUpdateDataInput {
+  latitude: Float
+  longitude: Float
+}
+
+input LocationUpdateInput {
+  latitude: Float
+  longitude: Float
+}
+
+input LocationUpdateManyMutationInput {
+  latitude: Float
+  longitude: Float
+}
+
+input LocationUpdateOneRequiredInput {
+  create: LocationCreateInput
+  update: LocationUpdateDataInput
+  upsert: LocationUpsertNestedInput
+  connect: LocationWhereUniqueInput
+}
+
+input LocationUpsertNestedInput {
+  update: LocationUpdateDataInput!
+  create: LocationCreateInput!
+}
+
+input LocationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  latitude: Float
+  latitude_not: Float
+  latitude_in: [Float!]
+  latitude_not_in: [Float!]
+  latitude_lt: Float
+  latitude_lte: Float
+  latitude_gt: Float
+  latitude_gte: Float
+  longitude: Float
+  longitude_not: Float
+  longitude_in: [Float!]
+  longitude_not_in: [Float!]
+  longitude_lt: Float
+  longitude_lte: Float
+  longitude_gt: Float
+  longitude_gte: Float
+  AND: [LocationWhereInput!]
+  OR: [LocationWhereInput!]
+  NOT: [LocationWhereInput!]
+}
+
+input LocationWhereUniqueInput {
+  id: ID
 }
 
 scalar Long
@@ -458,6 +573,12 @@ type Mutation {
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   deleteEvent(where: EventWhereUniqueInput!): Event
   deleteManyEvents(where: EventWhereInput): BatchPayload!
+  createLocation(data: LocationCreateInput!): Location!
+  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
+  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
+  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
+  deleteLocation(where: LocationWhereUniqueInput!): Location
+  deleteManyLocations(where: LocationWhereInput): BatchPayload!
   createSpeaker(data: SpeakerCreateInput!): Speaker!
   updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
   updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
@@ -499,6 +620,9 @@ type Query {
   event(where: EventWhereUniqueInput!): Event
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  location(where: LocationWhereUniqueInput!): Location
+  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
+  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
   speaker(where: SpeakerWhereUniqueInput!): Speaker
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
   speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
@@ -515,8 +639,9 @@ type Speaker {
   id: ID!
   owner: User
   profile_picture: String!
-  titles: [String!]!
-  social_medias: [String!]!
+  title: String!
+  linkedin: String
+  facebook: String
   description: String!
   videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
 }
@@ -531,8 +656,9 @@ input SpeakerCreateInput {
   id: ID
   owner: UserCreateOneWithoutIsSpeakerInput
   profile_picture: String!
-  titles: SpeakerCreatetitlesInput
-  social_medias: SpeakerCreatesocial_mediasInput
+  title: String!
+  linkedin: String
+  facebook: String
   description: String!
   videos: VideoCreateManyWithoutAuthorInput
 }
@@ -552,19 +678,12 @@ input SpeakerCreateOneWithoutVideosInput {
   connect: SpeakerWhereUniqueInput
 }
 
-input SpeakerCreatesocial_mediasInput {
-  set: [String!]
-}
-
-input SpeakerCreatetitlesInput {
-  set: [String!]
-}
-
 input SpeakerCreateWithoutOwnerInput {
   id: ID
   profile_picture: String!
-  titles: SpeakerCreatetitlesInput
-  social_medias: SpeakerCreatesocial_mediasInput
+  title: String!
+  linkedin: String
+  facebook: String
   description: String!
   videos: VideoCreateManyWithoutAuthorInput
 }
@@ -573,8 +692,9 @@ input SpeakerCreateWithoutVideosInput {
   id: ID
   owner: UserCreateOneWithoutIsSpeakerInput
   profile_picture: String!
-  titles: SpeakerCreatetitlesInput
-  social_medias: SpeakerCreatesocial_mediasInput
+  title: String!
+  linkedin: String
+  facebook: String
   description: String!
 }
 
@@ -588,6 +708,12 @@ enum SpeakerOrderByInput {
   id_DESC
   profile_picture_ASC
   profile_picture_DESC
+  title_ASC
+  title_DESC
+  linkedin_ASC
+  linkedin_DESC
+  facebook_ASC
+  facebook_DESC
   description_ASC
   description_DESC
 }
@@ -595,8 +721,9 @@ enum SpeakerOrderByInput {
 type SpeakerPreviousValues {
   id: ID!
   profile_picture: String!
-  titles: [String!]!
-  social_medias: [String!]!
+  title: String!
+  linkedin: String
+  facebook: String
   description: String!
 }
 
@@ -629,6 +756,48 @@ input SpeakerScalarWhereInput {
   profile_picture_not_starts_with: String
   profile_picture_ends_with: String
   profile_picture_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  linkedin: String
+  linkedin_not: String
+  linkedin_in: [String!]
+  linkedin_not_in: [String!]
+  linkedin_lt: String
+  linkedin_lte: String
+  linkedin_gt: String
+  linkedin_gte: String
+  linkedin_contains: String
+  linkedin_not_contains: String
+  linkedin_starts_with: String
+  linkedin_not_starts_with: String
+  linkedin_ends_with: String
+  linkedin_not_ends_with: String
+  facebook: String
+  facebook_not: String
+  facebook_in: [String!]
+  facebook_not_in: [String!]
+  facebook_lt: String
+  facebook_lte: String
+  facebook_gt: String
+  facebook_gte: String
+  facebook_contains: String
+  facebook_not_contains: String
+  facebook_starts_with: String
+  facebook_not_starts_with: String
+  facebook_ends_with: String
+  facebook_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
@@ -669,8 +838,9 @@ input SpeakerSubscriptionWhereInput {
 input SpeakerUpdateDataInput {
   owner: UserUpdateOneWithoutIsSpeakerInput
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
   videos: VideoUpdateManyWithoutAuthorInput
 }
@@ -678,16 +848,18 @@ input SpeakerUpdateDataInput {
 input SpeakerUpdateInput {
   owner: UserUpdateOneWithoutIsSpeakerInput
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
   videos: VideoUpdateManyWithoutAuthorInput
 }
 
 input SpeakerUpdateManyDataInput {
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
 }
 
@@ -705,8 +877,9 @@ input SpeakerUpdateManyInput {
 
 input SpeakerUpdateManyMutationInput {
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
 }
 
@@ -733,18 +906,11 @@ input SpeakerUpdateOneWithoutVideosInput {
   connect: SpeakerWhereUniqueInput
 }
 
-input SpeakerUpdatesocial_mediasInput {
-  set: [String!]
-}
-
-input SpeakerUpdatetitlesInput {
-  set: [String!]
-}
-
 input SpeakerUpdateWithoutOwnerDataInput {
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
   videos: VideoUpdateManyWithoutAuthorInput
 }
@@ -752,8 +918,9 @@ input SpeakerUpdateWithoutOwnerDataInput {
 input SpeakerUpdateWithoutVideosDataInput {
   owner: UserUpdateOneWithoutIsSpeakerInput
   profile_picture: String
-  titles: SpeakerUpdatetitlesInput
-  social_medias: SpeakerUpdatesocial_mediasInput
+  title: String
+  linkedin: String
+  facebook: String
   description: String
 }
 
@@ -808,6 +975,48 @@ input SpeakerWhereInput {
   profile_picture_not_starts_with: String
   profile_picture_ends_with: String
   profile_picture_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  linkedin: String
+  linkedin_not: String
+  linkedin_in: [String!]
+  linkedin_not_in: [String!]
+  linkedin_lt: String
+  linkedin_lte: String
+  linkedin_gt: String
+  linkedin_gte: String
+  linkedin_contains: String
+  linkedin_not_contains: String
+  linkedin_starts_with: String
+  linkedin_not_starts_with: String
+  linkedin_ends_with: String
+  linkedin_not_ends_with: String
+  facebook: String
+  facebook_not: String
+  facebook_in: [String!]
+  facebook_not_in: [String!]
+  facebook_lt: String
+  facebook_lte: String
+  facebook_gt: String
+  facebook_gte: String
+  facebook_contains: String
+  facebook_not_contains: String
+  facebook_starts_with: String
+  facebook_not_starts_with: String
+  facebook_ends_with: String
+  facebook_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
@@ -836,6 +1045,7 @@ input SpeakerWhereUniqueInput {
 
 type Subscription {
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
+  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
   speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
