@@ -26,7 +26,7 @@ type Speaker {
   description: String!
   videos: [Video!]! 
 }
-enum location {
+enum Location {
   LONGITUDE
   LATITUDE
 }
@@ -38,7 +38,7 @@ type Event {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: location! 
+  location_coordinates: Location! 
   price: Float
   maxTickets: Int!
   soldTickets: Int @default(value: 0)
