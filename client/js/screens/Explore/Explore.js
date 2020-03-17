@@ -1,25 +1,26 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import styles from './styles';
 
 const Explore = ({navigation}) => {
   return (
     <>
-      <View>
-        <Text>Videos</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>Videos</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Videos')}>
-          <Text>See All</Text>
+          <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <Text>Themes</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>Themes</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Videos')}>
-          <Text>See All</Text>
+          <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <Text>Speakers</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>Speakers</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
-          <Text>See All</Text>
+          <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
     </>

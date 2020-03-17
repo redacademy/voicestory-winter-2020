@@ -1,13 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-
+import {Text, TouchableOpacity, View} from 'react-native';
 import EventCard from '../../components/EventCard';
 import styles from './styles';
 
-const Events = () => {
+const Events = ({navigation}) => {
   return (
     <>
-      <Text>Events Page</Text>
+      <View>
+        <TouchableOpacity onPress={() => navigation.navigate('EventInfo')}>
+          <Text>Event Info</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.events}>
         <EventCard />
       </View>

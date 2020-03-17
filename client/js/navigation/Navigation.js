@@ -7,7 +7,12 @@ import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
 import VideosScreen from '../screens/Videos';
 import SpeakersScreen from '../screens/Speakers';
+import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Theme';
+import EventInfoScreen from '../screens/EventInfo';
+import TicketInfoScreen from '../screens/TicketInfo';
+import ApplicationScreen from '../screens/Application';
+import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
 
 const ExploreStack = createStackNavigator();
@@ -31,7 +36,7 @@ const ExploreStackScreens = props => {
         }}
       />
       <ExploreStack.Screen
-        name="Themes"
+        name="Theme"
         component={ThemeScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -40,6 +45,13 @@ const ExploreStackScreens = props => {
       <ExploreStack.Screen
         name="Speakers"
         component={SpeakersScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <ExploreStack.Screen
+        name="SpeakerProfile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -60,6 +72,13 @@ const EventsStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <EventsStack.Screen
+        name="EventInfo"
+        component={EventInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </EventsStack.Navigator>
   );
 };
@@ -76,6 +95,13 @@ const TicketsStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <TicketsStack.Screen
+        name="TicketInfo"
+        component={TicketInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </TicketsStack.Navigator>
   );
 };
@@ -83,11 +109,25 @@ const UserProfileStack = createStackNavigator();
 const UserProfileStackScreens = props => {
   return (
     <UserProfileStack.Navigator
-      initialRouteName="Explore"
+      initialRouteName="Profile"
       screenOptions={sharedScreenOptions}>
       <UserProfileStack.Screen
-        name="Explore"
+        name="Profile"
         component={UserProfileScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <UserProfileStack.Screen
+        name="Application"
+        component={ApplicationScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <UserProfileStack.Screen
+        name="FAQ"
+        component={FAQScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
