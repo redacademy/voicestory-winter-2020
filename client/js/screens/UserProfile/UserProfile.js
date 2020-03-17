@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, TouchableOpacity, Button, View} from 'react-native';
+import styles from './styles';
 
-const UserProfile = ({navigation}) => {
+const UserProfile = ({navigation, users}) => {
   return (
     <View>
       <Text>Firstname Lastname Placeholder</Text>
