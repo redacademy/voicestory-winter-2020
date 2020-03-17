@@ -3,6 +3,7 @@ import UserProfile from './UserProfile';
 import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
+import styles from './styles';
 const ALL_USERS = gql`
   {
     users {
@@ -41,6 +42,7 @@ export default class UserProfileContainer extends Component {
             <UserProfile
               navigation={this.props.navigation}
               users={data.users}
+              style={styles.container}
             />
           );
         }}

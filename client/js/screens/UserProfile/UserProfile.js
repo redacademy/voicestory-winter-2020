@@ -4,21 +4,32 @@ import styles from './styles';
 
 const UserProfile = ({navigation, users}) => {
   return (
-    <View>
-      <Text>Firstname Lastname Placeholder</Text>
-      <Text>emailplaceholder@gmail.com</Text>
-      <TouchableOpacity>
-        <Text>Edit</Text>
-      </TouchableOpacity>
-      <Button
-        title="Apply to be a Speaker"
-        onPress={() => navigation.navigate('Application')}
-      />
-      <Button
-        title="Favorite Videos"
-        onPress={() => navigation.navigate('Theme')}
-      />
-      <Button title="Downloaded Videos" />
+    <View style={styles.main}>
+      <View>
+        <Text style={styles.name}>Firstname Lastname Placeholder</Text>
+        <View style={styles.email}>
+          <Text>emailplaceholder@gmail.com</Text>
+          <TouchableOpacity>
+            <Text>Edit</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View>
+        <Button
+          title="Apply to be a Speaker"
+          onPress={() => navigation.navigate('Application')}
+          style={(styles.apply, styles.button)}
+        />
+        <Button
+          title="Favorite Videos"
+          onPress={() => navigation.navigate('Theme')}
+          style={(styles.favourite, styles.button)}
+        />
+        <Button
+          title="Downloaded Videos"
+          style={(styles.download, styles.button)}
+        />
+      </View>
     </View>
   );
 };
