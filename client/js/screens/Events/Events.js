@@ -2,13 +2,16 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 import EventCard from '../../components/EventCard';
+import styles from './styles';
 
 const Events = () => {
   return (
-    <View>
+    <>
       <Text>Events Page</Text>
-      <EventCard />
-    </View>
+      <View style={styles.events}>
+        <EventCard />
+      </View>
+    </>
   );
 };
 

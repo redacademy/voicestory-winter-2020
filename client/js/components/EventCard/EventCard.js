@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card, CardActions, CardContent, Typography} from '@material-ui/core';
 import styles from './styles';
 import {View, Image, Text} from 'react-native';
 
