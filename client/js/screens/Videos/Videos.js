@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
+import VideoList from '../../components/VideoList';
 
 const Videos = ({navigation}) => {
   return (
@@ -16,6 +17,7 @@ const Videos = ({navigation}) => {
           <Text>Theme</Text>
         </TouchableOpacity>
       </View>
+      <VideoList />
     </>
   );
 };
