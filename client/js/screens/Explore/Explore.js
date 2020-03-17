@@ -5,6 +5,7 @@ import ThemesButton from '../../components/ThemesButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 import VideoCard from '../../components/VideoCard';
+import SpeakerCard from '../../components/SpeakerCard';
 
 const Explore = ({navigation}) => {
   return (
@@ -71,6 +72,25 @@ const Explore = ({navigation}) => {
         <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.speakerContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <SpeakerCard
+            style={styles.speakerCard}
+            name="Ivan Dai"
+            source={require('../../assets/images/winstonatstage.jpg')}
+          />
+          <SpeakerCard
+            style={styles.speakerCard}
+            name="Ivan Dai"
+            source={require('../../assets/images/winstonatstage.jpg')}
+          />
+          <SpeakerCard
+            style={styles.speakerCard}
+            name="Ivan Dai"
+            source={require('../../assets/images/winstonatstage.jpg')}
+          />
+        </ScrollView>
       </View>
     </View>
   );

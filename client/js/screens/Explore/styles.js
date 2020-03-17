@@ -21,8 +21,17 @@ const styles = StyleSheet.create({
     width: 100,
     marginRight: 10,
   },
+  speakerContainer: {
+    height: 175,
+    marginLeft: 30,
+  },
+  speakerCard: {
+    height: 150,
+    width: 100,
+    marginRight: 10,
+  },
   heading: {
-    fontFamily: 'Lato-Black',
+    fontFamily: 'Lato-Bold',
     fontSize: 16,
   },
   seeAll: {

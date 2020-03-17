@@ -158,8 +158,12 @@ const BottomTabNavScreens = props => (
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
       inactiveTintColor: '#FBF7EF',
-      //   activeBackgroundColor: '#C24640',
-      //   inactiveBackgroundColor: '#DB4F48',
+      activeBackgroundColor: '#C24640',
+      inactiveBackgroundColor: '#DB4F48',
+      tabStyle: {
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+      },
       style: {
         backgroundColor: '#DB4F48',
         borderRadius: 20,
