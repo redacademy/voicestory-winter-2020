@@ -1,22 +1,9 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text} from 'react-native';
+import styles from './styles';
 
-export default class CustomText extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Text style={[styles.defaultFont, this.props.style]}>
-        {this.props.children}
-      </Text>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  defaultFont: {
-    fontFamily: 'Lato-Regular',
-  },
-});
+export default CustomText = props => {
+  return (
+    <Text style={[styles.defaultFont, props.style]}>{props.children}</Text>
+  );
+};

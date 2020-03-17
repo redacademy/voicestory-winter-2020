@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="47px" viewBox="0 0 31 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Pricing Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path id="path-1"></path>
+        <filter x="-116.7%" y="-26.6%" width="233.3%" height="74.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <polygon id="path-3" points="15.6072324 0 30.6071094 12.8181818 30.6071094 47 15.6072324 47"></polygon>
+        <filter x="-116.7%" y="-26.6%" width="333.3%" height="174.5%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-5" cx="15.9994833" cy="16" r="4"></circle>
+        <filter x="-218.8%" y="-156.2%" width="537.5%" height="537.5%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Pricing-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M0.696560538,12.7418609 L10.2018397,4.61916776 L10.2018397,4.61916776 L15.6072488,0 L30.6072488,12.7790068 L30.6072488,47 L15.381704,47 L0.862171991,47 C0.721381793,47 0.607248787,46.885867 0.607248787,46.7450768 L0.607248787,12.9356615 C0.607248787,12.8611096 0.639883806,12.7902937 0.696560538,12.7418609 Z" id="Rectangle" fill="#507EA2"></path>
+        <circle id="Oval" fill="#FBF7EF" cx="15.6072488" cy="16" r="4"></circle>
+        <g id="Combined-Shape">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#507EA2" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <g id="Path-8">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <use fill="#507EA2" fill-rule="evenodd" xlink:href="#path-3"></use>
+        </g>
+        <g id="Oval">
+            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+            <use fill="#507EA2" fill-rule="evenodd" xlink:href="#path-5"></use>
+        </g>
+        <path d="M14.3140858,38.1673306 C13.2519466,37.8513877 12.6002349,37.0409869 12.6164369,36.0590006 C12.6209064,35.7834092 12.8262249,35.5660145 13.1272889,35.5178749 C13.4434375,35.4672823 13.7289979,35.602993 13.8385011,35.8661357 C13.8739081,35.9511925 13.896116,36.044896 13.8987698,36.1352268 C13.9135751,36.6447092 14.2429926,36.9509015 14.7530764,37.1101607 C15.3723841,37.3033937 15.9995833,37.2908835 16.6075775,37.0568086 C17.1312794,36.8551742 17.371516,36.4403152 17.3282874,35.9421778 C17.2946962,35.5550374 17.0647254,35.3046502 16.7075131,35.1314704 C16.2348615,34.9022401 15.7479633,34.6956998 15.2691661,34.4761587 C14.7646692,34.2448434 14.2506745,34.0272034 13.7621701,33.7720943 C13.0113608,33.3800479 12.6472347,32.7930515 12.6098025,32.0146007 C12.5539335,30.8544673 13.4203916,29.9607267 14.6580991,29.7172078 C14.7314271,29.7027966 14.8032188,29.6820077 14.8903046,29.6606668 C14.8903046,29.2914944 14.8827623,28.9244684 14.8923997,28.557749 C14.9024561,28.1779062 15.2541513,27.9391706 15.6747051,28.013557 C15.9835908,28.068197 16.1712407,28.306258 16.1729866,28.6501647 C16.1744532,28.9362427 16.1771768,29.2224433 16.1699837,29.5084599 C16.1673299,29.6133244 16.1961722,29.6526947 16.3260676,29.6742808 C17.3095014,29.8375875 18.0703672,30.2652632 18.416685,31.1277897 C18.5155033,31.3738842 18.5546116,31.6442018 18.5784257,31.9063633 C18.6053825,32.2042155 18.3129782,32.4690139 17.9883096,32.4840996 C17.6384301,32.5002893 17.3120854,32.2793991 17.3080349,31.9743106 C17.2970007,31.1341675 16.6614911,30.829079 15.9340769,30.7520557 C15.526373,30.7089447 15.1216022,30.7399748 14.7303098,30.8625621 C14.2082839,31.0260527 13.9352941,31.3688556 13.8946494,31.8520912 C13.8565189,32.30491 14.0403278,32.642623 14.4937046,32.8544372 C15.0472266,33.1129805 15.6104558,33.3555795 16.1661427,33.610566 C16.5980798,33.8087662 17.0331595,34.0034096 17.4524562,34.2211109 C18.2835772,34.6525888 18.6271714,35.3145848 18.6063602,36.1484115 C18.5805208,37.1821555 17.8105066,37.9781451 16.6107899,38.2523874 C16.5488452,38.2665534 16.487529,38.2826817 16.4253049,38.2956211 C16.1722883,38.3482987 16.1742437,38.3479921 16.1716597,38.5847652 C16.1683076,38.8905896 16.1861857,39.1988669 16.1491026,39.5016251 C16.1074104,39.8411778 15.8068353,40.0319578 15.4437567,39.9955925 C15.0958326,39.9607602 14.8785721,39.7168734 14.8838098,39.3806322 C14.8893269,39.028692 14.8850669,38.6766291 14.8850669,38.3267125 C14.6891762,38.2721952 14.5004787,38.2228291 14.3140858,38.1673306 Z" id="Fill-8-Copy" fill-opacity="0.3" fill="#000000"></path>
+    </g>
+</svg>

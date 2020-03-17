@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="28px" viewBox="0 0 16 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Footer-Events Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.9679238,28 L0.0240561334,28 L0.0240561334,24.4262099 C2.57027867,24.4264119 4.39224235,24.4263614 5.48994718,24.4260585 C6.08930268,24.425907 6.08966385,24.4253011 6.08984443,23.906238 C6.08984443,23.3488547 6.08117644,22.7914714 6.09399784,22.2345425 C6.09887359,22.020677 6.02176458,21.9246496 5.76046075,21.8540679 C2.69849271,21.0267778 0.799660799,19.301616 0.134392443,16.6510162 C0.0459066956,16.2985622 0.00834539858,15.9308104 0.00708131647,15.5701773 C0.000543663991,13.5802073 0,9.50762302 0,7.03933557 C0.000632326727,2.00026164 4.00047425,0 8.0002794,0 C12.0001581,0 16,2.00026164 16,7.00026492 C16,9.78681217 15.9984423,12.446862 15.995553,15.233324 C15.9923025,18.4226771 13.8030929,20.9206024 10.1793306,21.8560369 C9.93319579,21.9196513 9.85969845,22.0134068 9.86222661,22.2107629 C9.87017227,22.8285798 9.88136843,23.4468512 9.85771203,24.0642137 C9.84633529,24.3638072 9.98971832,24.4324199 10.3158515,24.4306023 C11.4520807,24.4241399 13.3361048,24.4226758 15.9679238,24.4262099 L15.9679238,28 Z" id="path-1"></path>
+        <filter x="-62.5%" y="-17.9%" width="225.0%" height="171.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M15.9721206,28 L8,28 C8,9.33333333 8,0 8,0 C11.6950687,-0.00160666684 16.004215,2.0001108 15.9909119,6.8739353 C15.9776088,11.7477598 16.0026565,12.4467039 15.9997655,15.233164 C15.9965132,18.4225149 13.8060635,20.9204385 10.1802487,21.8558723 C9.93397445,21.9194867 9.86043547,22.0132421 9.86296507,22.2105981 C9.87091523,22.8284146 9.88211773,23.4466855 9.85844793,24.0640476 C9.84706475,24.363641 9.99052899,24.4322536 10.3168469,24.430436 C11.4537197,24.4239736 13.338811,24.4225095 15.9721206,24.4260436 L15.9721206,28 Z" id="path-3"></path>
+        <filter x="-218.8%" y="-44.6%" width="537.5%" height="225.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Footer-Events-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Path-Copy-3">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <g id="Path-Copy-6">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="27px" viewBox="0 0 28 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Email Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M13.3763441,2 L24.8673835,2 C26.5242378,2 27.8673835,3.34314575 27.8673835,5 L27.8673835,24 C27.8673835,25.6568542 26.5242378,27 24.8673835,27 L13.3763441,27 L13.3763441,27 L13.3763441,2 Z" id="path-1"></path>
+        <filter x="-65.6%" y="-22.0%" width="231.1%" height="176.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Email-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-Copy-24" fill="#DB4F48" x="-1.04805054e-13" y="2" width="27.8673835" height="25" rx="3"></rect>
+        <g id="Rectangle-Copy-25">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#DB4F48" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <text id="speaker-name-copy-4" font-family="Lato-Black, Lato" font-size="18" font-weight="700" line-spacing="26" fill="#FFFFFF">
+            <tspan x="5.5734767" y="18">@</tspan>
+        </text>
+    </g>
+</svg>

@@ -22,14 +22,17 @@ const Explore = ({navigation}) => {
       </View>
       <View style={styles.themeContainer}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <ThemesButton theme="Vulnerability" />
-          <ThemesButton theme="Love & Relationships" />
-          <ThemesButton theme="Trauma" />
-          <ThemesButton theme="Mental Health" />
-          <ThemesButton theme="Abuse" />
-          <ThemesButton theme="Miscellaneous" />
-          <ThemesButton theme="Pain" />
-          <ThemesButton theme="Growth" />
+          <ThemesButton theme="Vulnerability" style={styles.themeButton} />
+          <ThemesButton
+            theme="Love & Relationships"
+            style={styles.themeButton}
+          />
+          <ThemesButton theme="Trauma" style={styles.themeButton} />
+          <ThemesButton theme="Mental Health" style={styles.themeButton} />
+          <ThemesButton theme="Abuse" style={styles.themeButton} />
+          <ThemesButton theme="Miscellaneous" style={styles.themeButton} />
+          <ThemesButton theme="Pain" style={styles.themeButton} />
+          <ThemesButton theme="Growth" style={styles.themeButton} />
         </ScrollView>
       </View>
       <View style={styles.headingContainer}>

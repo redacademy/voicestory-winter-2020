@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="31px" viewBox="0 0 20 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Footer-Explore Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10,24 C10,8 10,0 10,0 C19,9 16.5813825,17.0989 16.3555547,18.34 C18.5019123,19.0344 20,21.5031 20,24 C20,25.7507 19.1986755,26.9843 18,28 L14,24 L10,24 Z" id="path-1"></path>
+        <filter x="-175.0%" y="-44.6%" width="450.0%" height="225.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Footer-Explore-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,24 L1.98469376,28 C0.78601826,26.9843 0,25.7507 0,24 C0,21.5038 1.62641561,19.0344 3.77277323,18.34 C3.54694541,17.0989 1,9 10,0 C19,9 16.5813825,17.0989 16.3555547,18.34 C18.5019123,19.0344 20,21.5031 20,24 C20,25.7507 19.1986755,26.9843 18,28 L14,24 L6,24 Z" id="Fill-1" fill="#FFFFFF"></path>
+        <path d="M13,26 C12.725473,27.9520131 11.3083784,29.6936899 10,31 C8.69195946,29.6936899 7.27452703,27.9517332 7,26 L13,26 Z" id="Fill-4" fill="#FFFFFF"></path>
+        <g id="Fill-1">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <path d="M13,26 C12.725473,27.9520131 11.3083784,29.6936899 10,31 C10,31 10,26 10,26 L13,26 Z" id="Fill-4" fill="#FFFFFF"></path>
+    </g>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Small Red Heart-Favourite Video</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11,3.05877018 C11,3.01959006 11.0004143,8 11.0012429,18 L20.0641438,9.6329572 C21.8750151,8.019387 22.6517996,4.67348782 21.3567755,2.46153407 C20.6442465,1.2659144 16.1777352,-2.73774771 11,3.05877018 Z" id="path-1"></path>
+        <filter x="-109.1%" y="-50.0%" width="318.2%" height="233.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Small-Red-Heart-Favourite-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M10.999931,3.05877018 C5.56240497,-2.73774771 1.35438122,1.2659144 0.643152805,2.46153407 C-0.651910549,4.67234039 0.124878891,8.019387 1.93821616,9.6329572 L11.0011739,18 L20.0641317,9.6329572 C21.8750143,8.019387 22.6518037,4.67348782 21.3567714,2.46153407 C20.644238,1.2659144 16.1776987,-2.73774771 10.999931,3.05877018 Z" id="Fill-1-Copy-19" fill="#DB4F48"></path>
+        <g id="Fill-1-Copy-19">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#DA4E47" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

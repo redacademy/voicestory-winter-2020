@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="25px" viewBox="0 0 28 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Facebook Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M13.3763441,0 L24.8673835,0 C26.5242378,-3.04359188e-16 27.8673835,1.34314575 27.8673835,3 L27.8673835,22 C27.8673835,23.6568542 26.5242378,25 24.8673835,25 L13.3763441,25 L13.3763441,25 L13.3763441,0 Z" id="path-1"></path>
+        <filter x="-65.6%" y="-22.0%" width="231.1%" height="176.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Facebook-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-Copy" transform="translate(-0.000000, 0.000000)">
+            <rect id="Rectangle-Copy-22" fill="#507EA2" x="0" y="0" width="27.8673835" height="25" rx="3"></rect>
+            <g id="Rectangle-Copy-23">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#507EA2" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <text id="speaker-name-copy-3" font-family="Lato-Black, Lato" font-size="24" font-weight="700" line-spacing="26" fill="#FFFFFF">
+                <tspan x="14.4910394" y="27">f</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

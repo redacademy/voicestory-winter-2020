@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="16px" viewBox="0 0 30 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Footer-My Tickets Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M29.9995285,0 L29.999355,3.47444895 C28.6907218,4.5504946 27.8567051,6.17828113 27.8567051,8 C27.8567051,9.82171887 28.6907218,11.4495054 29.999355,12.525551 L29.9995285,16 L-1.82964754e-13,16 L0.000173553185,12.525551 C1.30880674,11.4495054 2.14282347,9.82171887 2.14282347,8 C2.14282347,6.17828113 1.30880674,4.5504946 0.000173553185,3.47444895 L-1.82964754e-13,0 L29.9995285,0 Z" id="path-1"></path>
+        <filter x="-33.3%" y="-31.2%" width="166.7%" height="225.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M29.99952,0 L29.9991246,3.47462557 C28.6668562,4.55067272 27.8177891,6.1783808 27.8177891,8 C27.8177891,9.8216192 28.6668562,11.4493273 29.9991246,12.5253744 L29.99952,16 L18,16 L18,0 L29.99952,0 Z" id="path-3"></path>
+        <filter x="-145.8%" y="-78.1%" width="391.7%" height="318.8%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Footer-My-Tickets-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <g id="Combined-Shape">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+        </g>
+    </g>
+</svg>

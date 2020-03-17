@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
   themeContainer: {
     height: 100,
   },
+  themeButton: {
+    height: 100,
+    width: 100,
+  },
   heading: {
     fontWeight: '600',
   },
