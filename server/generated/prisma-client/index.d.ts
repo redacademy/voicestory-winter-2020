@@ -262,7 +262,7 @@ export type EventOrderByInput =
   | "soldTickets_ASC"
   | "soldTickets_DESC";
 
-export type longLat = "LONGITUDE" | "LATITUDE";
+export type location = "LONGITUDE" | "LATITUDE";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -471,7 +471,7 @@ export interface EventUpdateInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
+  location_coordinates?: Maybe<location>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
@@ -649,7 +649,7 @@ export interface EventUpdateManyMutationInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
+  location_coordinates?: Maybe<location>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
@@ -748,7 +748,7 @@ export interface EventCreateInput {
   thumbnail_url: String;
   location_name: String;
   location_address: String;
-  location_coordinates: longLat;
+  location_coordinates: location;
   price?: Maybe<Float>;
   maxTickets: Int;
   soldTickets?: Maybe<Int>;
@@ -980,7 +980,7 @@ export interface EventUpdateDataInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
+  location_coordinates?: Maybe<location>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
@@ -1088,10 +1088,10 @@ export interface EventScalarWhereInput {
   location_address_not_starts_with?: Maybe<String>;
   location_address_ends_with?: Maybe<String>;
   location_address_not_ends_with?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
-  location_coordinates_not?: Maybe<longLat>;
-  location_coordinates_in?: Maybe<longLat[] | longLat>;
-  location_coordinates_not_in?: Maybe<longLat[] | longLat>;
+  location_coordinates?: Maybe<location>;
+  location_coordinates_not?: Maybe<location>;
+  location_coordinates_in?: Maybe<location[] | location>;
+  location_coordinates_not_in?: Maybe<location[] | location>;
   price?: Maybe<Float>;
   price_not?: Maybe<Float>;
   price_in?: Maybe<Float[] | Float>;
@@ -1206,10 +1206,10 @@ export interface EventWhereInput {
   location_address_not_starts_with?: Maybe<String>;
   location_address_ends_with?: Maybe<String>;
   location_address_not_ends_with?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
-  location_coordinates_not?: Maybe<longLat>;
-  location_coordinates_in?: Maybe<longLat[] | longLat>;
-  location_coordinates_not_in?: Maybe<longLat[] | longLat>;
+  location_coordinates?: Maybe<location>;
+  location_coordinates_not?: Maybe<location>;
+  location_coordinates_in?: Maybe<location[] | location>;
+  location_coordinates_not_in?: Maybe<location[] | location>;
   price?: Maybe<Float>;
   price_not?: Maybe<Float>;
   price_in?: Maybe<Float[] | Float>;
@@ -1258,7 +1258,7 @@ export interface EventUpdateManyDataInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location_coordinates?: Maybe<longLat>;
+  location_coordinates?: Maybe<location>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
@@ -1686,7 +1686,7 @@ export interface Event {
   thumbnail_url: String;
   location_name: String;
   location_address: String;
-  location_coordinates: longLat;
+  location_coordinates: location;
   price?: Float;
   maxTickets: Int;
   soldTickets?: Int;
@@ -1699,7 +1699,7 @@ export interface EventPromise extends Promise<Event>, Fragmentable {
   thumbnail_url: () => Promise<String>;
   location_name: () => Promise<String>;
   location_address: () => Promise<String>;
-  location_coordinates: () => Promise<longLat>;
+  location_coordinates: () => Promise<location>;
   price: () => Promise<Float>;
   maxTickets: () => Promise<Int>;
   soldTickets: () => Promise<Int>;
@@ -1723,7 +1723,7 @@ export interface EventSubscription
   thumbnail_url: () => Promise<AsyncIterator<String>>;
   location_name: () => Promise<AsyncIterator<String>>;
   location_address: () => Promise<AsyncIterator<String>>;
-  location_coordinates: () => Promise<AsyncIterator<longLat>>;
+  location_coordinates: () => Promise<AsyncIterator<location>>;
   price: () => Promise<AsyncIterator<Float>>;
   maxTickets: () => Promise<AsyncIterator<Int>>;
   soldTickets: () => Promise<AsyncIterator<Int>>;
@@ -1747,7 +1747,7 @@ export interface EventNullablePromise
   thumbnail_url: () => Promise<String>;
   location_name: () => Promise<String>;
   location_address: () => Promise<String>;
-  location_coordinates: () => Promise<longLat>;
+  location_coordinates: () => Promise<location>;
   price: () => Promise<Float>;
   maxTickets: () => Promise<Int>;
   soldTickets: () => Promise<Int>;
@@ -1920,7 +1920,7 @@ export interface EventPreviousValues {
   thumbnail_url: String;
   location_name: String;
   location_address: String;
-  location_coordinates: longLat;
+  location_coordinates: location;
   price?: Float;
   maxTickets: Int;
   soldTickets?: Int;
@@ -1935,7 +1935,7 @@ export interface EventPreviousValuesPromise
   thumbnail_url: () => Promise<String>;
   location_name: () => Promise<String>;
   location_address: () => Promise<String>;
-  location_coordinates: () => Promise<longLat>;
+  location_coordinates: () => Promise<location>;
   price: () => Promise<Float>;
   maxTickets: () => Promise<Int>;
   soldTickets: () => Promise<Int>;
@@ -1950,7 +1950,7 @@ export interface EventPreviousValuesSubscription
   thumbnail_url: () => Promise<AsyncIterator<String>>;
   location_name: () => Promise<AsyncIterator<String>>;
   location_address: () => Promise<AsyncIterator<String>>;
-  location_coordinates: () => Promise<AsyncIterator<longLat>>;
+  location_coordinates: () => Promise<AsyncIterator<location>>;
   price: () => Promise<AsyncIterator<Float>>;
   maxTickets: () => Promise<AsyncIterator<Int>>;
   soldTickets: () => Promise<AsyncIterator<Int>>;
@@ -2158,7 +2158,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "longLat",
+    name: "location",
     embedded: false
   },
   {

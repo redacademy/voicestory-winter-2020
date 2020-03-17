@@ -32,7 +32,7 @@ type Event {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: longLat!
+  location_coordinates: location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -52,7 +52,7 @@ input EventCreateInput {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: longLat!
+  location_coordinates: location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -99,7 +99,7 @@ type EventPreviousValues {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location_coordinates: longLat!
+  location_coordinates: location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -190,10 +190,10 @@ input EventScalarWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location_coordinates: longLat
-  location_coordinates_not: longLat
-  location_coordinates_in: [longLat!]
-  location_coordinates_not_in: [longLat!]
+  location_coordinates: location
+  location_coordinates_not: location
+  location_coordinates_in: [location!]
+  location_coordinates_not_in: [location!]
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -247,7 +247,7 @@ input EventUpdateDataInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: longLat
+  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -260,7 +260,7 @@ input EventUpdateInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: longLat
+  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -273,7 +273,7 @@ input EventUpdateManyDataInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: longLat
+  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -297,7 +297,7 @@ input EventUpdateManyMutationInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location_coordinates: longLat
+  location_coordinates: location
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -404,10 +404,10 @@ input EventWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location_coordinates: longLat
-  location_coordinates_not: longLat
-  location_coordinates_in: [longLat!]
-  location_coordinates_not_in: [longLat!]
+  location_coordinates: location
+  location_coordinates_not: location
+  location_coordinates_in: [location!]
+  location_coordinates_not_in: [location!]
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -444,12 +444,12 @@ input EventWhereUniqueInput {
   id: ID
 }
 
-scalar Long
-
-enum longLat {
+enum location {
   LONGITUDE
   LATITUDE
 }
+
+scalar Long
 
 type Mutation {
   createEvent(data: EventCreateInput!): Event!

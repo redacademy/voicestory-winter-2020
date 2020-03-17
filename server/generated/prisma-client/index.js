@@ -17,7 +17,7 @@ var models = [
     embedded: false
   },
   {
-    name: "longLat",
+    name: "location",
     embedded: false
   },
   {
