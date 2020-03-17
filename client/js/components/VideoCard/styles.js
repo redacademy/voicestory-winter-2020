@@ -1,12 +1,27 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Dimensions.get('window').width,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 17,
+  },
   card: {
     width: Dimensions.get('window').width - 75,
     borderRadius: 10,
     height: 275,
     marginVertical: 20,
     overflow: 'hidden',
+    position: 'relative',
   },
   image: {
     height: '70%',
@@ -17,7 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   timeContainer: {
-    backgroundColor: 'red',
+    backgroundColor: '#cb584e',
     height: '100%',
     width: '25%',
     alignItems: 'center',
@@ -45,9 +60,23 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   play: {
-    backgroundColor: 'darkgrey',
-    height: 100,
-    width: 100,
+    backgroundColor: '#454545',
+    height: 60,
+    width: 60,
+    borderRadius: 50,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: 30,
+    bottom: 60,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
 });
 
