@@ -132,6 +132,13 @@ const UserProfileStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <UserProfileStack.Screen
+        name="Fav"
+        component={ThemeScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </UserProfileStack.Navigator>
   );
 };

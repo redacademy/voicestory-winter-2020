@@ -10,7 +10,7 @@ const UserProfile = ({navigation}) => {
       <TouchableOpacity onPress={() => navigation.navigate('Application')}>
         <Text>Apply to be a Speaker</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Theme')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Fav')}>
         <Text>Favorite Videos</Text>
       </TouchableOpacity>
       <TouchableOpacity>

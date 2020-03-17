@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
+import ThemesButton from '../../components/ThemesButton';
 
 const Explore = ({navigation}) => {
   return (
@@ -17,6 +18,7 @@ const Explore = ({navigation}) => {
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
+      <ThemesButton />
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Speakers</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
