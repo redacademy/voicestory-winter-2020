@@ -1,5 +1,10 @@
-import {makeStyles} from '@material-ui/core';
+import {StyleSheet, Dimensions} from 'react-native';
 
-const useStyles = makeStyles({});
+const styles = StyleSheet.create({
+  container: {
+    height: Dimensions.get('window').height,
+    justifyContent: 'center',
+  },
+});
 
-export default useStyles;
+export default styles;
