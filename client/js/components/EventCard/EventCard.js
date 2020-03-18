@@ -3,7 +3,7 @@ import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 
-const EventCard = ({navigation}) => {
+const EventCard = ({event, navigation}) => {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('EventInfo')}
@@ -15,7 +15,7 @@ const EventCard = ({navigation}) => {
         </View>
         <View style={styles.info}>
           <View style={styles.details}>
-            <Text style={[styles.bigText, styles.bold]}>Event Title</Text>
+            <Text style={[styles.bigText, styles.bold]}>{event.title}</Text>
             <Text style={styles.text}>Event Time</Text>
           </View>
           <View style={styles.details}>
