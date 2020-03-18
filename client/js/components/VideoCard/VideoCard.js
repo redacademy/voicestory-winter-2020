@@ -46,53 +46,46 @@ class VideoCard extends Component {
         <Text>There was an error getting Videos</Text>
       </View>
     ) : (
-      (console.log(this.state.data.items[0]),
-      (
-        <TouchableHighlight
-          style={buttonStyle}
-          onPress={() => {
-            // navigation.navigate('Video');
-          }}
-          underlayColor={'transparent'}>
-          <View style={cardStyle}>
-            <Image
-              source={{uri: item.snippet.thumbnails.high.url}}
-              style={styles.image}
-            />
-            {route.name === 'Explore' && (
-              <View
-                style={playIcon}
-                transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
-                <Icon name="play" size={40} color="white" />
-              </View>
-            )}
-            <View style={styles.info}>
-              <View style={styles.timeContainer}>
-                <Text style={styles.time}>
-                  {/* {console.log(
-                    this.state.data.items[0].contentDetails.duration,
-                  )} */}
-                  {/* {this.state.data.items[0].contentDetails.duration} */}
-                </Text>
-                <Text style={styles.min}>Mins</Text>
-              </View>
-              <View style={styles.titleContainer}>
-                {route.name !== 'Explore' && (
-                  <View style={playIcon}>
-                    <Icon name="play" size={50} color="white" />
-                  </View>
-                )}
-                <View>
-                  {route.name !== 'Explore' && (
-                    <Text style={styles.speaker}>Birnie McIntosh</Text>
-                  )}
-                  <Text style={styles.title}>{item.snippet.title}</Text>
+      <TouchableHighlight
+        style={buttonStyle}
+        onPress={() => {
+          // TODO - navigation to single video
+          // navigation.navigate('Video');
+        }}
+        underlayColor={'transparent'}>
+        <View style={cardStyle}>
+          <Image
+            source={{uri: item.snippet.thumbnails.high.url}}
+            style={styles.image}
+          />
+          {route.name === 'Explore' && (
+            <View
+              style={playIcon}
+              transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
+              <Icon name="play" size={40} color="white" />
+            </View>
+          )}
+          <View style={styles.info}>
+            <View style={styles.timeContainer}>
+              <Text style={styles.time}>14</Text>
+              <Text style={styles.min}>Mins</Text>
+            </View>
+            <View style={styles.titleContainer}>
+              {route.name !== 'Explore' && (
+                <View style={playIcon}>
+                  <Icon name="play" size={50} color="white" />
                 </View>
+              )}
+              <View>
+                {route.name !== 'Explore' && (
+                  <Text style={styles.speaker}>Birnie McIntosh</Text>
+                )}
+                <Text style={styles.title}>{item.snippet.title}</Text>
               </View>
             </View>
           </View>
-        </TouchableHighlight>
-      ))
+        </View>
+      </TouchableHighlight>
     );
   }
 }

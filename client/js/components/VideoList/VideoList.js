@@ -37,14 +37,19 @@ class VideoList extends Component {
     ) : (
       <View style={styles.container}>
         <ScrollView horizontal={horizontal}>
-          {this.state.data.items.map(item => (
-            <VideoCard
-              key={item.id.videoId}
-              route={route}
-              navigation={navigation}
-              item={item}
-            />
-          ))}
+          {this.state.data.items.map(
+            item => (
+              console.log(item),
+              (
+                <VideoCard
+                  key={item.etag}
+                  route={route}
+                  navigation={navigation}
+                  item={item}
+                />
+              )
+            ),
+          )}
         </ScrollView>
       </View>
     );
