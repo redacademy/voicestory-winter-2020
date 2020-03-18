@@ -22,7 +22,6 @@
     "react": "16.9.0",
     "react-final-form": "^6.3.5",
     "react-native": "0.61.5",
-    "react-native-drawer": "^2.5.1",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-reanimated": "^1.7.0",

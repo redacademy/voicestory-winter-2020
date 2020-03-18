@@ -2,6 +2,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import {View} from 'react-native';
 import SearchBar from '../components/SearchBar';
+import {Header} from '@react-navigation/stack';
 
 const SearchButton = ({navigation}) => {
   return (
@@ -33,7 +34,7 @@ const NotificationButton = ({navigation}) => {
       name="bell"
       color="white"
       size={25}
-      onPress={() => navigation.toggleDrawer()}
+      onPress={() => navigation.navigate('Notification')}
     />
   );
 };
@@ -55,22 +56,26 @@ const MeatballButton = ({navigation}) => {
   );
 };
 
-export const sharedScreenOptions = props => ({
-  headerBackTitleVisible: false,
-  headerLeft: props => (
-    <View style={{flexDirection: 'row'}}>
-      <SearchButton {...props} />
-      <SearchBar />
-    </View>
-  ),
-  headerRight: props => (
-    <View style={{flexDirection: 'row'}}>
-      <NotificationButton {...props} />
-      <MeatballButton {...props} />
-    </View>
-  ),
+export const sharedScreenOptions = props => {
+  return {
+    headerBackTitleVisible: false,
+    headerLeft: props => (
+      <View style={{flexDirection: 'row'}}>
+        <SearchButton {...props} />
+        <SearchBar />
+      </View>
+    ),
+    headerRight: () => {
+      return (
+        <View style={{flexDirection: 'row'}}>
+          <NotificationButton {...props} navigation={props.navigation} />
+          <MeatballButton {...props} />
+        </View>
+      );
+    },
 
-  headerStyle: {
-    backgroundColor: '#DB4F48',
-  },
-});
+    headerStyle: {
+      backgroundColor: '#DB4F48',
+    },
+  };
+};

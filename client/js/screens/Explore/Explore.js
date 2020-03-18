@@ -6,6 +6,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 import VideoList from '../../components/VideoList';
 import SpeakerCard from '../../components/SpeakerCard';
+import Notification from '../../components/Notification';
 
 const Explore = ({navigation, route}) => {
   return (

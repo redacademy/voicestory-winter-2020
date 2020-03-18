@@ -19,6 +19,9 @@ export default class Search extends Component {
         onChangeText={this.updateSearch}
         value={search}
         searchIcon={null}
+        clearIcon={{
+          color: '#FBF7EF',
+        }}
         containerStyle={{
           backgroundColor: '#DB4F48',
           borderTopWidth: 0,
@@ -27,9 +30,11 @@ export default class Search extends Component {
         inputContainerStyle={{
           backgroundColor: '#9F3833',
           borderRadius: 10,
+          width: 250,
         }}
         inputStyle={{
           fontFamily: 'Lato-Regular',
+          color: '#FBF7EF',
           fontSize: 15,
         }}
         placeholderTextColor="#FBF7EF"
