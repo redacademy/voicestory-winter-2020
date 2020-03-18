@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './styles';
 import PropTypes from 'prop-types';
 import LoginForm from '../../components/LoginForm';
+import {View} from 'react-native';
+import SignUpForm from '../../components/SignUpForm';
 
 const Home = () => {
-  return <LoginForm />;
+  return <SignUpForm />;
 };
-
-Home.propTypes = {};
 
 export default Home;
