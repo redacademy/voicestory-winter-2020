@@ -5,7 +5,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 
 const ThemesButton = ({theme, style, source}) => {
-  console.log(source);
   return (
     <TouchableOpacity style={[styles.button, style]}>
       <Image
