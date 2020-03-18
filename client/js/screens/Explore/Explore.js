@@ -16,7 +16,12 @@ const Explore = ({navigation, route}) => {
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
-      <VideoList horizontal={true} route={route} navigation={navigation} />
+      <VideoList
+        horizontal={true}
+        route={route}
+        navigation={navigation}
+        offset={-20}
+      />
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Themes</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Videos')}>

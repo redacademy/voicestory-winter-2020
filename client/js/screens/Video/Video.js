@@ -27,13 +27,7 @@ const Video = ({route, navigation}) => {
       alert(error.message);
     }
   };
-  const onBuffer = () => {
-    console.log('loading');
-  };
 
-  const onError = () => {
-    alert('There was an error loading the video!');
-  };
   return (
     <ScrollView>
       <View style={styles.root}>
@@ -109,7 +103,12 @@ const Video = ({route, navigation}) => {
           </View>
           <CustomText style={styles.title}>Watch Next</CustomText>
         </View>
-        <VideoList route={route} navigation={navigation} horizontal={true} />
+        <VideoList
+          route={route}
+          navigation={navigation}
+          horizontal={true}
+          offset={-20}
+        />
       </View>
     </ScrollView>
   );

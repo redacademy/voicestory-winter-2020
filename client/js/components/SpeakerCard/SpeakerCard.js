@@ -5,7 +5,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
 
 const SpeakerCard = ({name, style, source, route}) => {
-  console.log(route);
   return route?.name === 'Video' ? (
     <TouchableOpacity style={[styles.button, style]}>
       <Image

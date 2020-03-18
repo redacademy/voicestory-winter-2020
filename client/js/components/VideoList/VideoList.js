@@ -29,7 +29,7 @@ class VideoList extends Component {
   // }
 
   render() {
-    const {route, navigation, horizontal} = this.props;
+    const {route, navigation, horizontal, offset} = this.props;
     // UNCOMMENT WHEN API KEY IS RENEWED
     // return this.state.loading ? (
     //   <ActivityIndicator />
@@ -42,7 +42,6 @@ class VideoList extends Component {
     //     <ScrollView horizontal={horizontal}>
     //       {this.state.data.items.map(
     //         item => (
-    //           console.log(item),
     //           (
     //             <VideoCard
     //               key={item.etag}
@@ -60,7 +59,7 @@ class VideoList extends Component {
     // REMOVE ONCE API KEY IS RENEWED
     return (
       <View style={styles.container}>
-        <ScrollView horizontal={horizontal} contentOffset={{x: -20}}>
+        <ScrollView horizontal={horizontal} contentOffset={{x: offset}}>
           <VideoCard route={route} navigation={navigation} />
           <VideoCard route={route} navigation={navigation} />
           <VideoCard route={route} navigation={navigation} />
