@@ -1,41 +1,45 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Input, Button} from 'react-native-elements';
-import style from './styles';
+import styles from './styles';
 
 const LoginForm = props => {
   const {navigation} = props;
   return (
     <>
-      <View style={style.form}>
-        <View style={style.formcontent}>
+      <View style={styles.form}>
+        <View style={styles.formcontent}>
           <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+            inputContainerStyle={styles.textinput}
+            inputStyle={styles.input}
             placeholder="Email"
             placeholderTextColor="white"
           />
           <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+            inputContainerStyle={styles.textinput}
+            inputStyle={styles.input}
             placeholder="Password"
             placeholderTextColor="white"
           />
         </View>
-        <View style={style.buttonbox}>
+        <View style={styles.buttonbox}>
           <Button
-            buttonStyle={style.button}
-            titleStyle={style.title}
+            buttonStyle={
+              props.route.name == 'Main' ? styles.button : styles.buttonLogin
+            }
+            titleStyle={styles.title}
             title="Login"
           />
-          <Button
-            buttonStyle={style.button}
-            titleStyle={style.title}
-            title="Sign Up"
-            onPress={() => {
-              navigation.navigate('Login');
-            }}
-          />
+          {props.route.name == 'Main' && (
+            <Button
+              buttonStyle={styles.button}
+              titleStyle={styles.title}
+              title="Sign Up"
+              onPress={() => {
+                navigation.navigate('Login');
+              }}
+            />
+          )}
         </View>
       </View>
     </>

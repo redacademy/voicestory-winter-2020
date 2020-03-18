@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
   },
+  buttonLogin: {
+    width: 330,
+    backgroundColor: '#D84F48',
+    borderRadius: 10,
+    paddingVertical: 15,
+  },
   title: {
     fontWeight: 'bold',
   },

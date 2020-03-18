@@ -10,28 +10,7 @@ import styles from './styles';
 const Home = props => {
   return (
     <View style={styles.container}>
-      <LoginForm navigation={props.navigation} />
-      {/* <View style={styles.toggleContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setFormToggle(true);
-          }}
-          style={formToggle && styles.borderBottom}>
-          <Text style={formToggle ? styles.underline : styles.formToggle}>
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setFormToggle(false);
-          }}
-          style={!formToggle && styles.borderBottom}>
-          <Text style={!formToggle ? styles.underline : styles.formToggle}>
-            Login
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {formToggle ? <SignUpForm /> : <LoginForm />} */}
+      <LoginForm navigation={props.navigation} route={props.route} />
     </View>
   );
 };
