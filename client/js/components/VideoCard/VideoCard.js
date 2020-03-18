@@ -9,7 +9,7 @@ import {
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const key = 'get your own key';
+import {key} from '../../apiKeys';
 
 class VideoCard extends Component {
   constructor(props) {

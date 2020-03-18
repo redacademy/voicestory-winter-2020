@@ -3,7 +3,7 @@ import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
 import styles from './styles';
 import VideoCard from '../VideoCard';
 
-const key = 'get your own key';
+import {key} from '../../apiKeys';
 class VideoList extends Component {
   constructor(props) {
     super(props);
