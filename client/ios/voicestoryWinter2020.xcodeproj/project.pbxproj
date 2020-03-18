@@ -30,6 +30,10 @@
 		8CFF326E6072A721244EE747 /* libPods-voicestoryWinter2020-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAAAD9C12DFC00AA4948D7B /* libPods-voicestoryWinter2020-tvOS.a */; };
 		B58D3C01B9394B599B2FCDD7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2720D0C9D4A24893A188249F /* MaterialIcons.ttf */; };
 		B7FA33CA84A049008981DB47 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5952B42A80DF41F8A322F8F6 /* Ionicons.ttf */; };
+		BE46672A2421628E00B1D52B /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE4667292421628E00B1D52B /* Lato-Regular.ttf */; };
+		BE46672E2421839900B1D52B /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE46672B2421839900B1D52B /* Lato-Black.ttf */; };
+		BE46672F2421839900B1D52B /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE46672C2421839900B1D52B /* Lato-Bold.ttf */; };
+		BE4667302421839900B1D52B /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE46672D2421839900B1D52B /* Lato-Light.ttf */; };
 		C999CAB43C034DD3B9B5841C /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 125C083A6EDE4BC6A243FBB5 /* FontAwesome5_Brands.ttf */; };
 		DE519A76602E4A6E8E347EA6 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30DFDBD751B241A89FEC3099 /* EvilIcons.ttf */; };
 		DE8004C61A19534BED146E84 /* libPods-voicestoryWinter2020.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEFD0B9175996591B1FE6AF /* libPods-voicestoryWinter2020.a */; };
@@ -96,6 +100,10 @@
 		9FDD26DAAC896175FC59F18A /* Pods-voicestoryWinter2020-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voicestoryWinter2020-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-voicestoryWinter2020-tvOSTests/Pods-voicestoryWinter2020-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ABAAAD9C12DFC00AA4948D7B /* libPods-voicestoryWinter2020-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-voicestoryWinter2020-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC655DC93E2A4DE6BE7D0EB9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		BE4667292421628E00B1D52B /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../js/assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		BE46672B2421839900B1D52B /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../js/assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		BE46672C2421839900B1D52B /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../js/assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		BE46672D2421839900B1D52B /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../js/assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F51A22609966455E917D9895 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BE46672B2421839900B1D52B /* Lato-Black.ttf */,
+				BE46672C2421839900B1D52B /* Lato-Bold.ttf */,
+				BE46672D2421839900B1D52B /* Lato-Light.ttf */,
+				BE4667292421628E00B1D52B /* Lato-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* voicestoryWinter2020 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* voicestoryWinter2020Tests */,
@@ -397,6 +409,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE46672E2421839900B1D52B /* Lato-Black.ttf in Resources */,
+				BE46672F2421839900B1D52B /* Lato-Bold.ttf in Resources */,
+				BE4667302421839900B1D52B /* Lato-Light.ttf in Resources */,
+				BE46672A2421628E00B1D52B /* Lato-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0B97CEE38C4D4C1B8BC26E63 /* AntDesign.ttf in Resources */,
@@ -448,7 +464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
