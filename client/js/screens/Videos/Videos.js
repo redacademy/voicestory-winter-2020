@@ -4,7 +4,7 @@ import styles from './styles';
 import VideoList from '../../components/VideoList';
 import Text from '../../components/CustomText/CustomText';
 
-const Videos = ({navigation}) => {
+const Videos = ({navigation, route}) => {
   return (
     <>
       <View style={styles.filterContainer}>
@@ -18,7 +18,7 @@ const Videos = ({navigation}) => {
           <Text>Theme</Text>
         </TouchableOpacity>
       </View>
-      <VideoList />
+      <VideoList route={route} navigation={navigation} />
     </>
   );
 };

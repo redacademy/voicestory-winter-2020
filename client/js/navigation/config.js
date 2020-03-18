@@ -1,6 +1,7 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import {View} from 'react-native';
+import SearchBar from '../components/SearchBar';
 
 const SearchButton = ({navigation}) => {
   return (
@@ -59,6 +60,7 @@ export const sharedScreenOptions = props => ({
   headerLeft: props => (
     <View style={{flexDirection: 'row'}}>
       <SearchButton {...props} />
+      <SearchBar />
     </View>
   ),
   headerRight: props => (
@@ -67,6 +69,7 @@ export const sharedScreenOptions = props => ({
       <MeatballButton {...props} />
     </View>
   ),
+
   headerStyle: {
     backgroundColor: '#DB4F48',
   },
