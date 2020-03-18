@@ -34,7 +34,7 @@ const EventInfo = ({navigation}) => {
       </View>
       <View style={styles.container}>
         <Text style={styles.bigtext}>About</Text>
-        <Text>
+        <Text style={}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
           condimentum risus. Vivamus consectetur neque a mauris rutrum, in
           semper mi facilisis. Aliquam tempor at turpis eu consectetur. Praesent
