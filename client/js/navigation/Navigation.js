@@ -161,8 +161,8 @@ const BottomTabNavScreens = props => (
       activeBackgroundColor: '#C24640',
       inactiveBackgroundColor: '#DB4F48',
       tabStyle: {
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderRadius: 20,
+        height: 100,
       },
       style: {
         backgroundColor: '#DB4F48',
@@ -172,7 +172,7 @@ const BottomTabNavScreens = props => (
       labelStyle: {
         fontSize: 14,
         fontFamily: 'Lato-Regular',
-        transform: [{translateY: 10}],
+        transform: [{translateY: -20}],
       },
     }}
     screenOptions={({route}) => ({
@@ -180,7 +180,7 @@ const BottomTabNavScreens = props => (
         if (route.name === 'Explore') {
           return (
             <Image
-              style={{height: 40, width: 40, transform: [{translateY: 10}]}}
+              style={{height: 40, width: 40}}
               resizeMode={'contain'}
               source={require('../assets/icons/explore.png')}
             />
@@ -188,7 +188,7 @@ const BottomTabNavScreens = props => (
         } else if (route.name === 'Events') {
           return (
             <Image
-              style={{height: 35, width: 35, transform: [{translateY: 10}]}}
+              style={{height: 35, width: 35}}
               resizeMode={'contain'}
               source={require('../assets/icons/event.png')}
             />
@@ -196,7 +196,7 @@ const BottomTabNavScreens = props => (
         } else if (route.name === 'Tickets') {
           return (
             <Image
-              style={{height: 35, width: 35, transform: [{translateY: 10}]}}
+              style={{height: 35, width: 35}}
               resizeMode={'contain'}
               source={require('../assets/icons/ticket.png')}
             />
@@ -204,7 +204,7 @@ const BottomTabNavScreens = props => (
         } else if (route.name === 'Profile') {
           return (
             <Image
-              style={{height: 30, width: 30, transform: [{translateY: 10}]}}
+              style={{height: 30, width: 30}}
               resizeMode={'contain'}
               source={require('../assets/icons/profile.png')}
             />
