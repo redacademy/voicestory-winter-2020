@@ -1,12 +1,13 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import Text from '../../components/CustomText/CustomText';
+import {View} from 'react-native';
+import EventCard from '../../components/EventCard';
+import styles from './styles';
 
 const Events = ({navigation}) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('EventInfo')}>
-      <Text>Event Info</Text>
-    </TouchableOpacity>
+    <View style={styles.events}>
+      <EventCard navigation={navigation} />
+    </View>
   );
 };
 
