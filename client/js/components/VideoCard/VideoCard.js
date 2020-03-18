@@ -9,6 +9,8 @@ import {
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import {key} from '../../apiKeys';
+
 class VideoCard extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class VideoCard extends Component {
 
   componentDidMount() {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=AIzaSyDHEf8wOydqsAsoTdjNDO5a4W_2Fm4Yzyg&part=snippet,contentDetails,statistics,status`,
+      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`,
     )
       .then(resp => resp.json())
       .then(data => this.setState({data, loading: false}))
