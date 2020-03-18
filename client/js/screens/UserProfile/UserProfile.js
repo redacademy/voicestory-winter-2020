@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, TouchableOpacity, Button, View} from 'react-native';
+import Text from '../../components/CustomText/CustomText';
+import {TouchableOpacity, Button, View} from 'react-native';
 import styles from './styles';
 
 const UserProfile = ({navigation, users}) => {
@@ -22,7 +23,7 @@ const UserProfile = ({navigation, users}) => {
         />
         <Button
           title="Favorite Videos"
-          onPress={() => navigation.navigate('Theme')}
+          onPress={() => navigation.navigate('Fav')}
           style={(styles.favourite, styles.button)}
         />
         <Button
