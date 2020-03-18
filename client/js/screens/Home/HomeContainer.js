@@ -3,6 +3,6 @@ import Home from './Home';
 
 export default class HomeContainer extends Component {
   render() {
-    return <Home />;
+    return <Home navigation={this.props.navigation} route={this.props.route} />;
   }
 }

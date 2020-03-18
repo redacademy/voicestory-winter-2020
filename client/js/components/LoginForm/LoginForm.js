@@ -3,7 +3,8 @@ import {View} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import style from './styles';
 
-const LoginForm = () => {
+const LoginForm = props => {
+  const {navigation} = props;
   return (
     <>
       <View style={style.form}>
@@ -31,6 +32,9 @@ const LoginForm = () => {
             buttonStyle={style.button}
             titleStyle={style.title}
             title="Sign Up"
+            onPress={() => {
+              navigation.navigate('Login');
+            }}
           />
         </View>
       </View>

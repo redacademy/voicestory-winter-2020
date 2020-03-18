@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from '../../components/LoginForm';
-import {View, Image} from 'react-native';
+import {View} from 'react-native';
 import SignUpForm from '../../components/SignUpForm';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 
-const Home = props => {
+const Login = () => {
+  const [formToggle, setFormToggle] = useState(true);
+
   return (
     <View style={styles.container}>
-      <LoginForm navigation={props.navigation} />
-      {/* <View style={styles.toggleContainer}>
+      <View style={styles.toggleContainer}>
         <TouchableOpacity
           onPress={() => {
             setFormToggle(true);
@@ -31,9 +32,9 @@ const Home = props => {
           </Text>
         </TouchableOpacity>
       </View>
-      {formToggle ? <SignUpForm /> : <LoginForm />} */}
+      {formToggle ? <SignUpForm /> : <LoginForm />}
     </View>
   );
 };
 
-export default Home;
+export default Login;
