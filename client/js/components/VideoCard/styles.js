@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 20,
     fontWeight: '600',
-    color: 'white',
+    color: '#fbf7ef',
   },
   min: {
-    color: 'white',
+    color: '#fbf7ef',
   },
   play: {
-    backgroundColor: '#454545',
+    backgroundColor: '#3c3c3c',
     height: 60,
     width: 60,
     borderRadius: 50,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
   centerPlay: {
-    backgroundColor: '#454545',
+    backgroundColor: '#3c3c3c',
     height: 50,
     width: 50,
     borderRadius: 50,

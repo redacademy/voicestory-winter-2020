@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     transform: [{translateY: -14}],
   },
+  videoLabel: {
+    fontFamily: 'Lato-Bold',
+    paddingLeft: 10,
+    fontSize: 18,
+  },
 });
 
 export default styles;

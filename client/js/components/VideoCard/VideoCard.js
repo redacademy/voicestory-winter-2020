@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  Image,
-  ActivityIndicator,
-} from 'react-native';
+import {View, TouchableHighlight, Image, ActivityIndicator} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import CustomText from '../CustomText';
 import {key} from '../../apiKeys';
 
 class VideoCard extends Component {
@@ -20,47 +14,51 @@ class VideoCard extends Component {
       data: {},
     };
   }
-
-  componentDidMount() {
-    fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`,
-    )
-      .then(resp => resp.json())
-      .then(data => this.setState({data, loading: false}))
-      .catch(e => {
-        this.setState({loading: false, error: true});
-        throw new Error(e);
-      });
-  }
+  // UNCOMMENT WHEN API KEY IS RENEWED
+  // componentDidMount() {
+  //   fetch(
+  //     `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`,
+  //   )
+  //     .then(resp => resp.json())
+  //     .then(data => this.setState({data, loading: false}))
+  //     .catch(e => {
+  //       this.setState({loading: false, error: true});
+  //       throw new Error(e);
+  //     });
+  // }
 
   render() {
     const {route, navigation, item} = this.props;
     const buttonStyle =
-      route.name !== 'Explore' ? styles.largeButton : styles.smallButton;
+      route.name === 'Videos' ? styles.largeButton : styles.smallButton;
     const cardStyle =
-      route.name !== 'Explore' ? styles.largeCard : styles.smallCard;
-    const playIcon = route.name !== 'Explore' ? styles.play : styles.centerPlay;
+      route.name === 'Videos' ? styles.largeCard : styles.smallCard;
+    const playIcon = route.name === 'Videos' ? styles.play : styles.centerPlay;
 
-    return this.state.loading ? (
-      <ActivityIndicator style={styles.loader} />
-    ) : this.state.data.error ? (
-      <View style={styles.errorContainer}>
-        <Text>There was an error getting Videos</Text>
-      </View>
-    ) : (
+    // UNCOMMENT WHEN API KEY IS RENEWED
+    // return this.state.loading ? (
+    //   <ActivityIndicator style={styles.loader} />
+    // ) : this.state.data.error ? (
+    //   <View style={styles.errorContainer}>
+    //     <CustomText>There was an error getting Videos</CustomText>
+    //   </View>
+    // ) : (
+    return (
       <TouchableHighlight
         style={buttonStyle}
         onPress={() => {
           // TODO - navigation to single video
-          // navigation.navigate('Video');
+          navigation.navigate('Video');
         }}
         underlayColor={'transparent'}>
         <View style={cardStyle}>
           <Image
-            source={{uri: item.snippet.thumbnails.high.url}}
+            // UNCOMMENT WHEN API KEY IS RENEWED
+            // source={{uri: item.snippet.thumbnails.high.url}}
+            source={require('../../assets/images/audiencemember.jpg')}
             style={styles.image}
           />
-          {route.name === 'Explore' && (
+          {route.name !== 'Videos' && (
             <View
               style={playIcon}
               transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
@@ -69,20 +67,26 @@ class VideoCard extends Component {
           )}
           <View style={styles.info}>
             <View style={styles.timeContainer}>
-              <Text style={styles.time}>14</Text>
-              <Text style={styles.min}>Mins</Text>
+              <CustomText style={styles.time}>14</CustomText>
+              <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
-              {route.name !== 'Explore' && (
+              {route.name === 'Videos' && (
                 <View style={playIcon}>
                   <Icon name="play" size={50} color="white" />
                 </View>
               )}
               <View>
-                {route.name !== 'Explore' && (
-                  <Text style={styles.speaker}>Birnie McIntosh</Text>
+                {route.name === 'Videos' && (
+                  <CustomText style={styles.speaker}>
+                    Birnie McIntosh
+                  </CustomText>
                 )}
-                <Text style={styles.title}>{item.snippet.title}</Text>
+                <CustomText style={styles.title}>
+                  {/*  UNCOMMENT WHEN API KEY IS RENEWED */}
+                  {/* {item.snippet.title} */}
+                  This is the title
+                </CustomText>
               </View>
             </View>
           </View>
