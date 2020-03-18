@@ -3,6 +3,7 @@ import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
 import styles from './styles';
 import VideoCard from '../VideoCard';
 
+const key = 'get your own key';
 class VideoList extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class VideoList extends Component {
   //Only grabs 20 most recent videos
   componentDidMount() {
     fetch(
-      'https://www.googleapis.com/youtube/v3/search?key=AIzaSyDHEf8wOydqsAsoTdjNDO5a4W_2Fm4Yzyg&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&part=snippet,id&order=date&maxResults=20',
+      `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&part=snippet,id&order=date&maxResults=20`,
     )
       .then(resp => resp.json())
       .then(data => this.setState({data, loading: false}))
