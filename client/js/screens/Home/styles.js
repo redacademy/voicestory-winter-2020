@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     height: Dimensions.get('window').height,
     justifyContent: 'center',
+    backgroundColor: '#FBF7EF',
   },
   toggleContainer: {
     width: 150,
