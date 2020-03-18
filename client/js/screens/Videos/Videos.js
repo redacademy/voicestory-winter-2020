@@ -14,7 +14,7 @@ const Videos = ({navigation, route}) => {
         <TouchableOpacity>
           <CustomText>Most Viewed</CustomText>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Video')}>
+        <TouchableOpacity>
           <CustomText>Theme</CustomText>
         </TouchableOpacity>
       </View>
