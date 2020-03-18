@@ -7,6 +7,7 @@ import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
 import VideosScreen from '../screens/Videos';
 import VideoScreen from '../screens/Video';
+import VideoPlayer from '../screens/VideoPlayer';
 import SpeakersScreen from '../screens/Speakers';
 import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Theme';
@@ -51,6 +52,14 @@ const ExploreStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <ExploreStack.Screen
+        name="Now Playing"
+        component={VideoPlayer}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+
       <ExploreStack.Screen
         name="Speakers"
         component={SpeakersScreen}

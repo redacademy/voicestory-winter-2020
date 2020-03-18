@@ -1,15 +1,47 @@
 import React from 'react';
-import {TouchableOpacity, View, Image, ScrollView} from 'react-native';
+import {TouchableOpacity, View, Image, ScrollView, Share} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
+
 const Video = ({route, navigation}) => {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        // TODO - change URL to videoId pulled from Youtube API
+        url: 'https://www.youtube.com/voiceStory',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  const onBuffer = () => {
+    console.log('loading');
+  };
+
+  const onError = () => {
+    alert('There was an error loading the video!');
+  };
   return (
     <ScrollView>
       <View style={styles.root}>
-        <View>
+        <TouchableOpacity
+          onPress={() => {
+            // TODO - open video player with youtube video data
+            navigation.navigate('Now Playing');
+          }}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
@@ -19,7 +51,7 @@ const Video = ({route, navigation}) => {
           <View style={styles.play}>
             <Icon name="play" size={55} color="rgb(255,255,255)" />
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.info}>
           <CustomText style={styles.title}>This is the title</CustomText>
           <View style={styles.videoActions}>
@@ -42,7 +74,7 @@ const Video = ({route, navigation}) => {
                 color="#2f9e99"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={onShare}>
               <Icon
                 style={styles.icon}
                 name="share-variant"
