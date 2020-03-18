@@ -27,7 +27,6 @@ class VideoList extends Component {
   }
 
   render() {
-    console.log(this.state.data);
     const {route, navigation, horizontal} = this.props;
     return this.state.loading ? (
       <ActivityIndicator />
@@ -38,9 +37,14 @@ class VideoList extends Component {
     ) : (
       <View style={styles.container}>
         <ScrollView horizontal={horizontal}>
-          {this.state.data.items.map(item => {
-            <VideoCard route={route} navigation={navigation} item={item} />;
-          })}
+          {this.state.data.items.map(item => (
+            <VideoCard
+              key={item.id.videoId}
+              route={route}
+              navigation={navigation}
+              item={item}
+            />
+          ))}
         </ScrollView>
       </View>
     );

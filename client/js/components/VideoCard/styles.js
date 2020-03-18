@@ -119,6 +119,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
   },
+  loader: {
+    width: Dimensions.get('window').width * 0.6,
+    borderRadius: 10,
+    height: 175,
+    marginVertical: 20,
+    overflow: 'hidden',
+  },
 });
 
 export default styles;
