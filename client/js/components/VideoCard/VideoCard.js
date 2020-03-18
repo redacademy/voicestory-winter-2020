@@ -4,6 +4,7 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const VideoCard = ({route, navigation, item}) => {
+  console.log(item);
   const buttonStyle =
     route.name !== 'Explore' ? styles.largeButton : styles.smallButton;
   const cardStyle =
