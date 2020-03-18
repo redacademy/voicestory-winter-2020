@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   buttonLogin: {
-    width: 330,
+    marginTop: 35,
+    width: 340,
     backgroundColor: '#D84F48',
     borderRadius: 10,
     paddingVertical: 15,
