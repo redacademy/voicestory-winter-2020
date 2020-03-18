@@ -6,6 +6,8 @@ export default class VideosContainer extends Component {
     super(props);
   }
   render() {
-    return <Videos navigation={this.props.navigation} />;
+    return (
+      <Videos navigation={this.props.navigation} route={this.props.route} />
+    );
   }
 }

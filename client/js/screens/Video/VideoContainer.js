@@ -3,6 +3,11 @@ import Video from './Video';
 
 export default class VideoContainer extends Component {
   render() {
-    return <Video />;
+    return (
+      <Video
+        item={this.props.route.params.item}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }
