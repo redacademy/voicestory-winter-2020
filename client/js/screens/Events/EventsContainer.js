@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
-import Events from '../Events';
+import Events from '../Events/Events';
 import Loader from '../../components/Loader';
 const ALL_EVENTS = gql`
   {
@@ -33,13 +33,10 @@ export default class EventsContainer extends Component {
     return (
       <Query query={ALL_EVENTS}>
         {({data, loading, error}) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
           return (
-            <>
-              {console.log(data.events)};
-              <Events navigation={this.props.navigation} events={data.events} />
-            </>
+            <Events navigation={this.props.navigation} events={data.events} />
           );
         }}
       </Query>
