@@ -14,7 +14,8 @@ class VideoList extends Component {
     };
   }
 
-  // Only grabs 20 most recent videos
+  // Only grabs 1 most recent videos
+  // TODO - for production, request 20 or so videos from API, not only 1
   componentDidMount() {
     fetch(
       `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&part=snippet,id&order=date&maxResults=1`,
