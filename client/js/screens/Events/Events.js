@@ -3,10 +3,13 @@ import {View} from 'react-native';
 import EventCard from '../../components/EventCard';
 import styles from './styles';
 
-const Events = ({navigation}) => {
+const Events = ({events, navigation}) => {
   return (
     <View style={styles.events}>
-      <EventCard navigation={navigation} />
+      {events &&
+        events.map(event => (
+          <EventCard key={event} event={event} navigation={navigation} />
+        ))}
     </View>
   );
 };
