@@ -1,25 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
-import {Input, Button} from 'react-native-elements';
+import {TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
 import styles from './styles';
 
 const LoginForm = props => {
   const {navigation} = props;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <>
       <View style={styles.form}>
         <View style={styles.formcontent}>
-          <Input
+          <TextInput
             inputContainerStyle={styles.textinput}
             inputStyle={styles.input}
             placeholder="Email"
             placeholderTextColor="white"
+            onChangeText={value => {
+              setEmail(value);
+            }}
           />
-          <Input
+          <TextInput
             inputContainerStyle={styles.textinput}
             inputStyle={styles.input}
             placeholder="Password"
+            secureTextEntry={true}
             placeholderTextColor="white"
+            textContentType="password"
+            onChangeText={value => {
+              setPassword(value);
+            }}
           />
         </View>
         <View style={styles.buttonbox}>
@@ -29,6 +40,9 @@ const LoginForm = props => {
             }
             titleStyle={styles.title}
             title="Login"
+            onPress={() => {
+              console.log('Email:', email, ' Password:', password);
+            }}
           />
           {props.route.name == 'Main' && (
             <Button
