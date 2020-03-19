@@ -3,7 +3,8 @@ import React from 'react';
 import {View} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import {DrawerActions} from '@react-navigation/native';
-import MeatballDrawer from '../components/MeatballDrawer';
+import MeatballDrawer from './Drawer';
+import {openDrawer} from './Drawer';
 
 const SearchButton = ({navigation}) => {
   return (
@@ -52,9 +53,7 @@ const MeatballButton = ({navigation}) => {
       name="dots-vertical"
       color="white"
       size={25}
-      onPress={() => {
-        this._drawer.open();
-      }}
+      onPress={openDrawer}
     />
   );
 };

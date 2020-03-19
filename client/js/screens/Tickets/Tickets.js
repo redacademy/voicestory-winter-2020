@@ -2,9 +2,10 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 
-const Tickets = ({navigation}) => {
+const Tickets = ({navigation, tickets}) => {
+  console.log(tickets);
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('TicketInfo')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Ticket Info')}>
       <Text>Ticket Info</Text>
     </TouchableOpacity>
   );

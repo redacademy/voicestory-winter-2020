@@ -119,7 +119,7 @@ const TicketsStackScreens = props => {
         }}
       />
       <TicketsStack.Screen
-        name="TicketInfo"
+        name="Ticket Info"
         component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
