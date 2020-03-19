@@ -70,7 +70,7 @@ const Video = ({route, navigation, item}) => {
           <CustomText style={styles.speakerName}>
             {parseSpeakerName(video)}
           </CustomText>
-          <CustomText style={styles.title}>{parseTitle(video)}</CustomText>
+          <CustomText style={styles.videoTitle}>{parseTitle(video)}</CustomText>
           <View style={styles.videoActions}>
             <CustomText style={styles.videoLength}>
               {parseDuration(video.contentDetails.duration)}

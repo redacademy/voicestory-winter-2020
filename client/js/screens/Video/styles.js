@@ -43,9 +43,14 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 60,
     justifyContent: 'center',
   },
+  videoTitle: {
+    fontWeight: '600',
+    fontSize: 18,
+  },
   title: {
     fontWeight: '600',
     fontSize: 18,
+    paddingTop: 20,
   },
   videoActions: {
     flexDirection: 'row',
