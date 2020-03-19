@@ -2,7 +2,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import {View} from 'react-native';
 import SearchBar from '../components/SearchBar';
-import {Header} from '@react-navigation/stack';
+import {DrawerActions} from '@react-navigation/native';
+import MeatballDrawer from '../components/MeatballDrawer';
 
 const SearchButton = ({navigation}) => {
   return (
@@ -51,7 +52,9 @@ const MeatballButton = ({navigation}) => {
       name="dots-vertical"
       color="white"
       size={25}
-      onPress={() => navigation.toggleDrawer()}
+      onPress={() => {
+        this._drawer.open();
+      }}
     />
   );
 };
@@ -59,18 +62,23 @@ const MeatballButton = ({navigation}) => {
 export const sharedScreenOptions = props => {
   return {
     headerBackTitleVisible: false,
-    headerLeft: props => (
-      <View style={{flexDirection: 'row'}}>
-        <SearchButton {...props} />
-        <SearchBar />
-      </View>
+    headerLeft: () => (
+      <>
+        <View style={{flexDirection: 'row'}}>
+          <SearchButton {...props} />
+          {/* <SearchBar /> */}
+        </View>
+        <MeatballDrawer navigation={props.navigation} />
+      </>
     ),
     headerRight: () => {
       return (
-        <View style={{flexDirection: 'row'}}>
-          <NotificationButton {...props} navigation={props.navigation} />
-          <MeatballButton {...props} />
-        </View>
+        <>
+          <View style={{flexDirection: 'row'}}>
+            <NotificationButton {...props} navigation={props.navigation} />
+            <MeatballButton {...props} />
+          </View>
+        </>
       );
     },
 
