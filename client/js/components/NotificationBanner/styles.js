@@ -9,6 +9,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
     justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   author: {
     fontFamily: 'Lato-Bold',
@@ -16,14 +25,12 @@ const styles = StyleSheet.create({
   authorContainer: {
     width: '95%',
     marginTop: 9,
-    marginLeft: 10,
   },
   message: {
     fontSize: 14,
   },
   messageContainer: {
-    width: '85%',
-    transform: [{translateX: 10}],
+    width: 250,
   },
   image: {
     height: 60,
