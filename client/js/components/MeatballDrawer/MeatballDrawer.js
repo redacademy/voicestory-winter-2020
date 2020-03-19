@@ -55,7 +55,7 @@ class MeatballDrawer extends Component {
           onPress={() => {
             this._drawer.open();
           }}>
-          <Text>Hello</Text>
+          <Text>drawer</Text>
         </TouchableOpacity>
       </>
     );

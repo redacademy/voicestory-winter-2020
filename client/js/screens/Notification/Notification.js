@@ -5,6 +5,7 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import NotificationsList from '../../components/NotificationsList';
 
 const Notification = ({navigation}) => {
   return (
@@ -19,12 +20,16 @@ const Notification = ({navigation}) => {
         <View style={styles.border}>
           <Text style={styles.heading}>New</Text>
         </View>
+        <NotificationsList />
         <View style={styles.border}>
           <Text style={styles.heading}>This Week</Text>
         </View>
+        <NotificationsList />
+
         <View style={styles.border}>
           <Text style={styles.heading}>This Month</Text>
         </View>
+        <NotificationsList />
       </ScrollView>
     </>
   );
