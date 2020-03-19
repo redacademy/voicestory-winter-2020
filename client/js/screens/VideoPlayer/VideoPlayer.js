@@ -9,7 +9,6 @@ const VideoPlayer = ({item}) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        // TODO - change URL to videoId pulled from Youtube API
         url: `https://www.youtube.com/watch?v=${item.id}`,
       });
 
@@ -50,7 +49,6 @@ const VideoPlayer = ({item}) => {
     <View style={styles.root}>
       <View style={styles.container}>
         <WebView
-          // TODO - videoId should be endpoint
           source={{uri: `https://www.youtube.com/embed/${item.id}`}}
           startInLoadingState={true}
           renderLoading={displaySpinner}
