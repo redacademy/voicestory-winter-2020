@@ -1,6 +1,7 @@
 type User {
   id: ID! @id
   email: String @unique
+  password: String!
   name: String!
   isSpeaker: Speaker
   favouritedVideos: [Video!]!
@@ -38,6 +39,8 @@ type Event {
   id: ID! @id
   title: String!
   description: String!
+  date: String
+  time: String
   thumbnail_url: String!
   location_name: String!
   location_address: String!
