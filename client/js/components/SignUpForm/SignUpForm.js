@@ -1,43 +1,84 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
-import {Input, Button} from 'react-native-elements';
-import style from './styles';
+import {TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
+import styles from './styles';
 
 const SignUpForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  const formSubmit = () => {
+    console.log(
+      'First:',
+      first_name,
+      'Last: ',
+      last_name,
+      'Email: ',
+      email,
+      'Password',
+      password,
+    );
+  };
   return (
     <>
-      <View style={style.form}>
-        <View style={style.formcontent}>
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+      <View style={styles.form}>
+        <View style={styles.formcontent}>
+          <TextInput
+            style={styles.textinput}
             placeholder="First Name"
             placeholderTextColor="white"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
+            onChangeText={value => {
+              setFirst_name(value);
+            }}
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
             placeholder="Last Name"
             placeholderTextColor="white"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
+            onChangeText={value => {
+              setLast_name(value);
+            }}
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
             placeholder="Email"
             placeholderTextColor="white"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
+            onChangeText={value => {
+              setEmail(value);
+            }}
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
             placeholder="Password"
+            secureTextEntry={true}
             placeholderTextColor="white"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
+            onChangeText={value => {
+              setPassword(value);
+            }}
           />
         </View>
-        <View style={style.buttonbox}>
+        <View style={styles.buttonbox}>
           <Button
-            buttonStyle={style.button}
-            titleStyle={style.title}
+            buttonStyle={styles.button}
+            titleStyle={styles.title}
             title="Sign Up"
+            onPress={() => {
+              formSubmit();
+            }}
           />
         </View>
       </View>

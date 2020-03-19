@@ -119,7 +119,7 @@ const TicketsStackScreens = props => {
         }}
       />
       <TicketsStack.Screen
-        name="Ticket Info"
+        name="TicketInfo"
         component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -166,82 +166,6 @@ const UserProfileStackScreens = props => {
   );
 };
 
-const SettingsStack = createStackNavigator();
-const SettingsStackScreens = props => {
-  return (
-    <SettingsStack.Navigator
-      initialRouteName="Settings"
-      screenOptions={sharedScreenOptions}>
-      <SettingsStack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontFamily: 'Lato-Regular',
-          },
-        }}
-      />
-    </SettingsStack.Navigator>
-  );
-};
-const AboutUsStack = createStackNavigator();
-const AboutUsStackScreens = props => {
-  return (
-    <AboutUsStack.Navigator
-      initialRouteName="About Us"
-      screenOptions={sharedScreenOptions}>
-      <AboutUsStack.Screen
-        name="About Us"
-        component={AboutUsScreen}
-        options={{
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontFamily: 'Lato-Regular',
-          },
-        }}
-      />
-    </AboutUsStack.Navigator>
-  );
-};
-const ContactUsStack = createStackNavigator();
-const ContactUsStackScreens = props => {
-  return (
-    <ContactUsStack.Navigator
-      initialRouteName="Contact Us"
-      screenOptions={sharedScreenOptions}>
-      <ContactUsStack.Screen
-        name="Contact Us"
-        component={ContactUsScreen}
-        options={{
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontFamily: 'Lato-Regular',
-          },
-        }}
-      />
-    </ContactUsStack.Navigator>
-  );
-};
-const PrivacyPolicyStack = createStackNavigator();
-const PrivacyPolicyStackScreens = props => {
-  return (
-    <PrivacyPolicyStack.Navigator
-      initialRouteName="Privacy Policy"
-      screenOptions={sharedScreenOptions}>
-      <PrivacyPolicyStack.Screen
-        name="Privacy Policy"
-        component={PrivacyPolicyScreen}
-        options={{
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontFamily: 'Lato-Regular',
-          },
-        }}
-      />
-    </PrivacyPolicyStack.Navigator>
-  );
-};
 const BottomTabNav = createBottomTabNavigator();
 const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator

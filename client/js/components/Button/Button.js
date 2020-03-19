@@ -3,10 +3,12 @@ import styles from './styles';
 import Text from '../CustomText/CustomText';
 import {TouchableOpacity} from 'react-native';
 
-export default Button = ({text}) => {
+export default Button = ({text, onPress, bgcolor}) => {
   return (
-    <Button style={styles.button}>
-      <Text style={styles.text}>{text}</Text>
-    </Button>
+    <TouchableOpacity
+      style={[styles.button, {backgroundColor: `${bgcolor}`}]}
+      onPress={onPress}>
+      <Text style={styles.label}>{text}</Text>
+    </TouchableOpacity>
   );
 };

@@ -5,9 +5,11 @@ import Button from '../../components/Button/';
 
 const TicketInfo = ({navigation}) => {
   return (
-    // <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
-    <Button text="View Ticket" />
-    // </TouchableOpacity>
+    <Button
+      bgcolor="#D84F48"
+      text="View Ticket"
+      onPress={() => navigation.navigate('QRCode')}
+    />
   );
 };
 

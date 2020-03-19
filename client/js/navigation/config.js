@@ -2,8 +2,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import {View} from 'react-native';
 import SearchBar from '../components/SearchBar';
-import {DrawerActions} from '@react-navigation/native';
-import MeatballDrawer from './Drawer';
+import Drawer from './Drawer';
 import {openDrawer} from './Drawer';
 
 const SearchButton = ({navigation}) => {
@@ -67,7 +66,7 @@ export const sharedScreenOptions = props => {
           <SearchButton {...props} />
           {/* <SearchBar /> */}
         </View>
-        <MeatballDrawer navigation={props.navigation} />
+        <Drawer navigation={props.navigation} />
       </>
     ),
     headerRight: () => {
