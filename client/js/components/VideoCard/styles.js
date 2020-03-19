@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     position: 'relative',
   },
+  speaker: {
+    fontWeight: '300',
+  },
   info: {
     height: '30%',
     flexDirection: 'row',
@@ -129,6 +132,11 @@ const styles = StyleSheet.create({
     height: 175,
     marginVertical: 20,
     overflow: 'hidden',
+  },
+  errorContainer: {
+    height: 175,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

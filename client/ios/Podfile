@@ -3,7 +3,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'voicestoryWinter2020' do
   # Pods for voicestoryWinter2020
-  pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"

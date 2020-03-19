@@ -1,2 +1,2 @@
-import VideoPlayer from './VideoPlayer';
-export default VideoPlayer;
+import VideoPlayerContainer from './VideoPlayerContainer';
+export default VideoPlayerContainer;

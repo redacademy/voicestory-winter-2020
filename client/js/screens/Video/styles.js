@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
   },
+  speakerName: {
+    fontWeight: '300',
+    fontSize: 14,
+    paddingTop: 20,
+  },
   info: {
     width: Dimensions.get('window').width - 60,
     justifyContent: 'center',
@@ -41,7 +46,6 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '600',
     fontSize: 18,
-    paddingTop: 20,
   },
   videoActions: {
     flexDirection: 'row',
@@ -88,6 +92,9 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 10,
     overflow: 'hidden',
+  },
+  watchNextContainer: {
+    paddingTop: 20,
   },
 });
 

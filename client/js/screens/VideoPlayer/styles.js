@@ -31,8 +31,13 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '600',
     fontSize: 18,
-    paddingTop: 20,
     color: '#fbf7ef',
+  },
+  speakerName: {
+    fontWeight: '300',
+    fontSize: 14,
+    color: '#fbf7ef',
+    paddingTop: 20,
   },
   infoContainer: {
     paddingTop: 20,

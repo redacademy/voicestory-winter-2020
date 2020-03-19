@@ -6,12 +6,11 @@ import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 
-const Video = ({route, navigation}) => {
-  const onShare = async () => {
+const Video = ({route, navigation, item}) => {
+  const onShare = async video => {
     try {
       const result = await Share.share({
-        // TODO - change URL to videoId pulled from Youtube API
-        url: 'https://www.youtube.com/voiceStory',
+        url: `https://www.youtube.com/watch?v=${video.id}`,
       });
 
       if (result.action === Share.sharedAction) {
@@ -28,18 +27,39 @@ const Video = ({route, navigation}) => {
     }
   };
 
+  const parseSpeakerName = item => {
+    const indexCheck = item.snippet.title.indexOf('|');
+    if (indexCheck !== -1) {
+      const first = item.snippet.title.slice(indexCheck + 1);
+      const second = first.slice(1, first.indexOf('|') - 1);
+      return second;
+    }
+  };
+  const parseTitle = item => {
+    return item.snippet.title.slice(0, item.snippet.title.indexOf('|') - 1);
+  };
+
+  const parseDuration = duration => {
+    const mins = duration.slice(2, 4);
+    let secs = duration.slice(5, duration.length - 1);
+    if (secs.length === 1) {
+      secs = '0' + secs;
+    }
+    return `${mins}:${secs}`;
+  };
+  const video = item.items[0];
   return (
     <ScrollView>
       <View style={styles.root}>
         <TouchableOpacity
           onPress={() => {
             // TODO - open video player with youtube video data
-            navigation.navigate('Now Playing');
+            navigation.navigate('Now Playing', {item: video});
           }}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require('../../assets/images/audiencemember.jpg')}
+              source={{uri: video.snippet.thumbnails.high.url}}
             />
           </View>
           <View style={styles.play}>
@@ -47,9 +67,16 @@ const Video = ({route, navigation}) => {
           </View>
         </TouchableOpacity>
         <View style={styles.info}>
-          <CustomText style={styles.title}>This is the title</CustomText>
+          <CustomText style={styles.speakerName}>
+            {parseSpeakerName(video)}
+          </CustomText>
+          <CustomText style={styles.title}>{parseTitle(video)}</CustomText>
           <View style={styles.videoActions}>
-            <CustomText style={styles.videoLength}>18:30</CustomText>
+            <CustomText style={styles.videoLength}>
+              {parseDuration(video.contentDetails.duration)}
+
+              {/* 18:30 */}
+            </CustomText>
             <View style={styles.divider}></View>
             <TouchableOpacity onPress={() => {}}>
               {/* TODO - add logic to check if video is faved  */}
@@ -68,7 +95,10 @@ const Video = ({route, navigation}) => {
                 color="#2f9e99"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onShare}>
+            <TouchableOpacity
+              onPress={() => {
+                onShare(video);
+              }}>
               <Icon
                 style={styles.icon}
                 name="share-variant"
@@ -78,15 +108,7 @@ const Video = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
           <CustomText style={styles.description}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            {video.snippet.description}
           </CustomText>
         </View>
       </View>
@@ -94,6 +116,7 @@ const Video = ({route, navigation}) => {
         <View style={styles.speakerContainer}>
           <CustomText style={styles.title}>About The Speaker</CustomText>
           <View style={styles.speakerCardContainer}>
+            {/* TODO - integrate actual speakers */}
             <SpeakerCard
               style={styles.speakerCard}
               name="Ivan Dai"
@@ -103,12 +126,14 @@ const Video = ({route, navigation}) => {
           </View>
           <CustomText style={styles.title}>Watch Next</CustomText>
         </View>
-        <VideoList
-          route={route}
-          navigation={navigation}
-          horizontal={true}
-          offset={-20}
-        />
+        <View style={styles.watchNextContainer}>
+          <VideoList
+            route={route}
+            navigation={navigation}
+            horizontal={true}
+            offset={-20}
+          />
+        </View>
       </View>
     </ScrollView>
   );

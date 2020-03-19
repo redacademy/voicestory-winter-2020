@@ -14,18 +14,29 @@ class VideoCard extends Component {
       data: {},
     };
   }
-  // UNCOMMENT WHEN API KEY IS RENEWED
-  // componentDidMount() {
-  //   fetch(
-  //     `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`,
-  //   )
-  //     .then(resp => resp.json())
-  //     .then(data => this.setState({data, loading: false}))
-  //     .catch(e => {
-  //       this.setState({loading: false, error: true});
-  //       throw new Error(e);
-  //     });
-  // }
+  componentDidMount() {
+    fetch(
+      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics`,
+    )
+      .then(resp => resp.json())
+      .then(data => this.setState({data, loading: false}))
+      .catch(e => {
+        this.setState({loading: false, error: true});
+        throw new Error(e);
+      });
+  }
+
+  parseSpeakerName = item => {
+    const indexCheck = item.snippet.title.indexOf('|');
+    if (indexCheck !== -1) {
+      const first = item.snippet.title.slice(indexCheck + 1);
+      const second = first.slice(1, first.indexOf('|') - 1);
+      return second;
+    }
+  };
+  parseTitle = item => {
+    return item.snippet.title.slice(0, item.snippet.title.indexOf('|') - 1);
+  };
 
   render() {
     const {route, navigation, item} = this.props;
@@ -35,27 +46,22 @@ class VideoCard extends Component {
       route.name === 'Videos' ? styles.largeCard : styles.smallCard;
     const playIcon = route.name === 'Videos' ? styles.play : styles.centerPlay;
 
-    // UNCOMMENT WHEN API KEY IS RENEWED
-    // return this.state.loading ? (
-    //   <ActivityIndicator style={styles.loader} />
-    // ) : this.state.data.error ? (
-    //   <View style={styles.errorContainer}>
-    //     <CustomText>There was an error getting Videos</CustomText>
-    //   </View>
-    // ) : (
-    return (
+    return this.state.loading ? (
+      <ActivityIndicator style={styles.loader} />
+    ) : this.state.data.error ? (
+      <View style={styles.errorContainer}>
+        <CustomText>There was an error getting Videos</CustomText>
+      </View>
+    ) : (
       <TouchableHighlight
         style={buttonStyle}
         onPress={() => {
-          // TODO - navigation to single video
-          navigation.navigate('Video');
+          navigation.navigate('Video', {item: this.state.data});
         }}
         underlayColor={'transparent'}>
         <View style={cardStyle}>
           <Image
-            // UNCOMMENT WHEN API KEY IS RENEWED
-            // source={{uri: item.snippet.thumbnails.high.url}}
-            source={require('../../assets/images/audiencemember.jpg')}
+            source={{uri: item.snippet.thumbnails.high.url}}
             style={styles.image}
           />
           {route.name !== 'Videos' && (
@@ -67,7 +73,9 @@ class VideoCard extends Component {
           )}
           <View style={styles.info}>
             <View style={styles.timeContainer}>
-              <CustomText style={styles.time}>14</CustomText>
+              <CustomText style={styles.time}>
+                {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+              </CustomText>
               <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
@@ -79,13 +87,11 @@ class VideoCard extends Component {
               <View>
                 {route.name === 'Videos' && (
                   <CustomText style={styles.speaker}>
-                    Birnie McIntosh
+                    {this.parseSpeakerName(item)}
                   </CustomText>
                 )}
                 <CustomText style={styles.title}>
-                  {/*  UNCOMMENT WHEN API KEY IS RENEWED */}
-                  {/* {item.snippet.title} */}
-                  This is the title
+                  {this.parseTitle(item)}
                 </CustomText>
               </View>
             </View>

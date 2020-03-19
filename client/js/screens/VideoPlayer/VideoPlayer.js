@@ -5,12 +5,12 @@ import styles from './styles';
 import CustomText from '../../components/CustomText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const VideoPlayer = ({navigation}) => {
+const VideoPlayer = ({item}) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
         // TODO - change URL to videoId pulled from Youtube API
-        url: 'https://www.youtube.com/voiceStory',
+        url: `https://www.youtube.com/watch?v=${item.id}`,
       });
 
       if (result.action === Share.sharedAction) {
@@ -35,18 +35,32 @@ const VideoPlayer = ({navigation}) => {
     );
   };
 
+  const parseSpeakerName = item => {
+    const indexCheck = item.snippet.title.indexOf('|');
+    if (indexCheck !== -1) {
+      const first = item.snippet.title.slice(indexCheck + 1);
+      const second = first.slice(1, first.indexOf('|') - 1);
+      return second;
+    }
+  };
+  const parseTitle = item => {
+    return item.snippet.title.slice(0, item.snippet.title.indexOf('|') - 1);
+  };
   return (
     <View style={styles.root}>
       <View style={styles.container}>
         <WebView
           // TODO - videoId should be endpoint
-          source={{uri: `https://www.youtube.com/embed/${'Kacy7rAa3qw'}`}}
+          source={{uri: `https://www.youtube.com/embed/${item.id}`}}
           startInLoadingState={true}
           renderLoading={displaySpinner}
         />
         <View style={styles.infoContainer}>
           <View style={styles.info}>
-            <CustomText style={styles.title}>This is the title</CustomText>
+            <CustomText style={styles.speakerName}>
+              {parseSpeakerName(item)}
+            </CustomText>
+            <CustomText style={styles.title}>{parseTitle(item)}</CustomText>
           </View>
           <View style={styles.actionContainer}>
             <TouchableOpacity onPress={() => {}}>

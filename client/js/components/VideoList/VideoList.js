@@ -14,58 +14,38 @@ class VideoList extends Component {
     };
   }
 
-  // UNCOMMENT WHEN API KEY IS RENEWED
-  //Only grabs 20 most recent videos
-  // componentDidMount() {
-  //   fetch(
-  //     `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&part=snippet,id&order=date&maxResults=20`,
-  //   )
-  //     .then(resp => resp.json())
-  //     .then(data => this.setState({data, loading: false}))
-  //     .catch(e => {
-  //       this.setState({loading: false, error: true});
-  //       throw new Error(e);
-  //     });
-  // }
+  // Only grabs 20 most recent videos
+  componentDidMount() {
+    fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&part=snippet,id&order=date&maxResults=1`,
+    )
+      .then(resp => resp.json())
+      .then(data => this.setState({data, loading: false}))
+      .catch(e => {
+        this.setState({loading: false, error: true});
+        throw new Error(e);
+      });
+  }
 
   render() {
     const {route, navigation, horizontal, offset} = this.props;
-    // UNCOMMENT WHEN API KEY IS RENEWED
-    // return this.state.loading ? (
-    //   <ActivityIndicator />
-    // ) : this.state.data.error ? (
-    //   <View style={styles.errorContainer}>
-    //     <CustomText>There was an error getting Videos</CustomText>
-    //   </View>
-    // ) : (
-    //   <View style={styles.container}>
-    //     <ScrollView horizontal={horizontal}>
-    //       {this.state.data.items.map(
-    //         item => (
-    //           (
-    //             <VideoCard
-    //               key={item.etag}
-    //               route={route}
-    //               navigation={navigation}
-    //               item={item}
-    //             />
-    //           )
-    //         ),
-    //       )}
-    //     </ScrollView>
-    //   </View>
-    // );
-
-    // REMOVE ONCE API KEY IS RENEWED
-    return (
+    return this.state.loading ? (
+      <ActivityIndicator />
+    ) : this.state.data.error ? (
+      <View style={styles.errorContainer}>
+        <CustomText>There was an error getting Videos</CustomText>
+      </View>
+    ) : (
       <View style={styles.container}>
-        <ScrollView horizontal={horizontal} contentOffset={{x: offset}}>
-          <VideoCard route={route} navigation={navigation} />
-          <VideoCard route={route} navigation={navigation} />
-          <VideoCard route={route} navigation={navigation} />
-          <VideoCard route={route} navigation={navigation} />
-          <VideoCard route={route} navigation={navigation} />
-          <VideoCard route={route} navigation={navigation} />
+        <ScrollView horizontal={horizontal} offset={offset}>
+          {this.state.data.items.map(item => (
+            <VideoCard
+              key={item.etag}
+              route={route}
+              navigation={navigation}
+              item={item}
+            />
+          ))}
         </ScrollView>
       </View>
     );
