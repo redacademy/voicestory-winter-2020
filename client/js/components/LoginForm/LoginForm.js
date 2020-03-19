@@ -8,6 +8,9 @@ const LoginForm = props => {
   const {navigation} = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const formSubmit = () => {
+    console.log('Email: ', email, 'Password', password);
+  };
   return (
     <>
       <View style={styles.form}>
@@ -16,6 +19,9 @@ const LoginForm = props => {
             style={styles.textinput}
             placeholder="Email"
             placeholderTextColor="white"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
             onChangeText={value => {
               setEmail(value);
             }}
@@ -26,6 +32,9 @@ const LoginForm = props => {
             secureTextEntry={true}
             placeholderTextColor="white"
             textContentType="password"
+            onSubmitEditing={() => {
+              formSubmit();
+            }}
             onChangeText={value => {
               setPassword(value);
             }}
@@ -39,7 +48,7 @@ const LoginForm = props => {
             titleStyle={styles.title}
             title="Login"
             onPress={() => {
-              console.log('Email:', email, ' Password:', password);
+              formSubmit();
             }}
           />
           {props.route.name == 'Main' && (
