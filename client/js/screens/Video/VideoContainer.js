@@ -5,7 +5,7 @@ export default class VideoContainer extends Component {
   render() {
     return (
       <Video
-        item={this.props.route.params.item}
+        video={this.props.route.params.video}
         navigation={this.props.navigation}
         route={this.props.route}
       />

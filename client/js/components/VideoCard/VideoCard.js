@@ -39,12 +39,19 @@ class VideoCard extends Component {
   };
 
   render() {
-    const {route, navigation, item} = this.props;
+    const {route, navigation} = this.props;
     const buttonStyle =
-      route.name === 'Videos' ? styles.largeButton : styles.smallButton;
+      route.name === 'Videos' || route.name === 'Fav'
+        ? styles.largeButton
+        : styles.smallButton;
     const cardStyle =
-      route.name === 'Videos' ? styles.largeCard : styles.smallCard;
-    const playIcon = route.name === 'Videos' ? styles.play : styles.centerPlay;
+      route.name === 'Videos' || route.name === 'Fav'
+        ? styles.largeCard
+        : styles.smallCard;
+    const playIcon =
+      route.name === 'Videos' || route.name === 'Fav'
+        ? styles.play
+        : styles.centerPlay;
 
     return this.state.loading ? (
       <ActivityIndicator style={styles.loader} />
@@ -56,15 +63,15 @@ class VideoCard extends Component {
       <TouchableHighlight
         style={buttonStyle}
         onPress={() => {
-          navigation.navigate('Video', {item: this.state.data});
+          navigation.navigate('Video', {video: this.state.data.items[0]});
         }}
         underlayColor={'transparent'}>
         <View style={cardStyle}>
           <Image
-            source={{uri: item.snippet.thumbnails.high.url}}
+            source={{uri: this.state.data.items[0].snippet.thumbnails.high.url}}
             style={styles.image}
           />
-          {route.name !== 'Videos' && (
+          {(route.name === 'Explore' || route.name === 'Video') && (
             <View
               style={playIcon}
               transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
@@ -79,19 +86,19 @@ class VideoCard extends Component {
               <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
-              {route.name === 'Videos' && (
+              {(route.name === 'Videos' || route.name === 'Fav') && (
                 <View style={playIcon}>
                   <Icon name="play" size={50} color="white" />
                 </View>
               )}
               <View>
-                {route.name === 'Videos' && (
+                {(route.name === 'Videos' || route.name === 'Fav') && (
                   <CustomText style={styles.speaker}>
-                    {this.parseSpeakerName(item)}
+                    {this.parseSpeakerName(this.state.data.items[0])}
                   </CustomText>
                 )}
                 <CustomText style={styles.title}>
-                  {this.parseTitle(item)}
+                  {this.parseTitle(this.state.data.items[0])}
                 </CustomText>
               </View>
             </View>

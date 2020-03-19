@@ -20,6 +20,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 18,
   },
+  videoRoute: {
+    height: '100%',
+    width: '25%',
+  },
+  otherRoute: {
+    height: '100%',
+    width: '25%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
 });
 
 export default styles;

@@ -6,7 +6,7 @@ import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 
-const Video = ({route, navigation, item}) => {
+const Video = ({route, navigation, video}) => {
   const onShare = async video => {
     try {
       const result = await Share.share({
@@ -47,7 +47,6 @@ const Video = ({route, navigation, item}) => {
     }
     return `${mins}:${secs}`;
   };
-  const video = item.items[0];
   return (
     <ScrollView>
       <View style={styles.root}>

@@ -40,7 +40,7 @@ const ExploreStackScreens = props => {
       />
       <ExploreStack.Screen
         name="Theme"
-        component={ThemeScreen}
+        component={VideosScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -152,7 +152,7 @@ const UserProfileStackScreens = props => {
       />
       <UserProfileStack.Screen
         name="Fav"
-        component={ThemeScreen}
+        component={VideosScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
