@@ -13,17 +13,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textinput: {
-    backgroundColor: 'darkred',
-    padding: 5,
+    backgroundColor: '#9F3833',
+    padding: 15,
     marginVertical: 5,
     borderRadius: 10,
     borderBottomWidth: 0,
-  },
-  input: {
-    color: 'white',
-  },
-  placeholder: {
-    color: 'white',
+    fontFamily: 'Lato-Regular',
   },
   buttonbox: {
     width: '100%',

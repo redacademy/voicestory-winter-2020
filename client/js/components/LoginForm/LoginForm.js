@@ -13,8 +13,7 @@ const LoginForm = props => {
       <View style={styles.form}>
         <View style={styles.formcontent}>
           <TextInput
-            inputContainerStyle={styles.textinput}
-            inputStyle={styles.input}
+            style={styles.textinput}
             placeholder="Email"
             placeholderTextColor="white"
             onChangeText={value => {
@@ -22,8 +21,7 @@ const LoginForm = props => {
             }}
           />
           <TextInput
-            inputContainerStyle={styles.textinput}
-            inputStyle={styles.input}
+            style={styles.textinput}
             placeholder="Password"
             secureTextEntry={true}
             placeholderTextColor="white"
