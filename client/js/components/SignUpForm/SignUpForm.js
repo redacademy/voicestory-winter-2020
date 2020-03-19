@@ -1,42 +1,41 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Input, Button} from 'react-native-elements';
-import style from './styles';
+import {TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
+import styles from './styles';
 
 const SignUpForm = () => {
   return (
     <>
-      <View style={style.form}>
-        <View style={style.formcontent}>
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+      <View style={styles.form}>
+        <View style={styles.formcontent}>
+          <TextInput
+            style={styles.textinput}
             placeholder="First Name"
             placeholderTextColor="white"
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
             placeholder="Last Name"
             placeholderTextColor="white"
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
+            inputStyle={styles.input}
             placeholder="Email"
             placeholderTextColor="white"
           />
-          <Input
-            inputContainerStyle={style.textinput}
-            inputStyle={style.input}
+          <TextInput
+            style={styles.textinput}
+            inputStyle={styles.input}
             placeholder="Password"
             placeholderTextColor="white"
           />
         </View>
-        <View style={style.buttonbox}>
+        <View style={styles.buttonbox}>
           <Button
-            buttonStyle={style.button}
-            titleStyle={style.title}
+            buttonStyle={styles.button}
+            titleStyle={styles.title}
             title="Sign Up"
           />
         </View>
