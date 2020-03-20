@@ -4,7 +4,7 @@ import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
 
-const SpeakerCard = ({speaker, style}) => {
+const SpeakerCard = ({navigation, speaker, style}) => {
   const speakerimg =
     speaker && speaker.profile_picture
       ? {uri: speaker.profile_picture}
@@ -13,7 +13,7 @@ const SpeakerCard = ({speaker, style}) => {
     speaker && speaker.owner.name ? speaker.owner.name : 'Name';
   return (
     <TouchableOpacity
-      onPress={() => navigation.push('SpeakerProfile', {speaker: speaker})}
+      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
       style={[styles.button, style]}>
       <Image
         style={{height: '75%', width: '100%'}}
