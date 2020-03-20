@@ -4,17 +4,21 @@ import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
 
-const SpeakerCard = ({name, style, source}) => {
+const SpeakerCard = ({speaker, style}) => {
+  const speakerimg =
+    speaker && speaker.profile_picture
+      ? {uri: speaker.profile_picture}
+      : {uri: 'https://placedog.net/500'};
   return (
     <TouchableOpacity style={[styles.button, style]}>
       <Image
         style={{height: '75%', width: '100%'}}
         resizeMode={'cover'}
-        source={source}
+        source={speakerimg}
         borderTopLeftRadius={10}
         borderTopRightRadius={10}
       />
-      <Text style={styles.label}>{name}</Text>
+      <Text style={styles.label}>{speaker.owner.name}</Text>
     </TouchableOpacity>
   );
 };
