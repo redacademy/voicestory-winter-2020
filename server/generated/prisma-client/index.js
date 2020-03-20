@@ -9,10 +9,6 @@ var models = [
     embedded: false
   },
   {
-    name: "LoginResponse",
-    embedded: false
-  },
-  {
     name: "Video",
     embedded: false
   },

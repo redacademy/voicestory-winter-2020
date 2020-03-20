@@ -11,10 +11,6 @@ type AggregateLocation {
   count: Int!
 }
 
-type AggregateLoginResponse {
-  count: Int!
-}
-
 type AggregateSpeaker {
   count: Int!
 }
@@ -642,103 +638,6 @@ input LocationWhereUniqueInput {
   id: ID
 }
 
-type LoginResponse {
-  token: String
-  user: User
-  currentUser: User!
-}
-
-type LoginResponseConnection {
-  pageInfo: PageInfo!
-  edges: [LoginResponseEdge]!
-  aggregate: AggregateLoginResponse!
-}
-
-input LoginResponseCreateInput {
-  token: String
-  user: UserCreateOneInput
-  currentUser: UserCreateOneInput!
-}
-
-input LoginResponseCreateOneInput {
-  create: LoginResponseCreateInput
-}
-
-type LoginResponseEdge {
-  node: LoginResponse!
-  cursor: String!
-}
-
-enum LoginResponseOrderByInput {
-  token_ASC
-  token_DESC
-}
-
-type LoginResponsePreviousValues {
-  token: String
-}
-
-type LoginResponseSubscriptionPayload {
-  mutation: MutationType!
-  node: LoginResponse
-  updatedFields: [String!]
-  previousValues: LoginResponsePreviousValues
-}
-
-input LoginResponseSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: LoginResponseWhereInput
-  AND: [LoginResponseSubscriptionWhereInput!]
-  OR: [LoginResponseSubscriptionWhereInput!]
-  NOT: [LoginResponseSubscriptionWhereInput!]
-}
-
-input LoginResponseUpdateDataInput {
-  token: String
-  user: UserUpdateOneInput
-  currentUser: UserUpdateOneRequiredInput
-}
-
-input LoginResponseUpdateManyMutationInput {
-  token: String
-}
-
-input LoginResponseUpdateOneRequiredInput {
-  create: LoginResponseCreateInput
-  update: LoginResponseUpdateDataInput
-  upsert: LoginResponseUpsertNestedInput
-}
-
-input LoginResponseUpsertNestedInput {
-  update: LoginResponseUpdateDataInput!
-  create: LoginResponseCreateInput!
-}
-
-input LoginResponseWhereInput {
-  token: String
-  token_not: String
-  token_in: [String!]
-  token_not_in: [String!]
-  token_lt: String
-  token_lte: String
-  token_gt: String
-  token_gte: String
-  token_contains: String
-  token_not_contains: String
-  token_starts_with: String
-  token_not_starts_with: String
-  token_ends_with: String
-  token_not_ends_with: String
-  user: UserWhereInput
-  currentUser: UserWhereInput
-  AND: [LoginResponseWhereInput!]
-  OR: [LoginResponseWhereInput!]
-  NOT: [LoginResponseWhereInput!]
-}
-
 scalar Long
 
 type Mutation {
@@ -754,9 +653,6 @@ type Mutation {
   upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
   deleteLocation(where: LocationWhereUniqueInput!): Location
   deleteManyLocations(where: LocationWhereInput): BatchPayload!
-  createLoginResponse(data: LoginResponseCreateInput!): LoginResponse!
-  updateManyLoginResponses(data: LoginResponseUpdateManyMutationInput!, where: LoginResponseWhereInput): BatchPayload!
-  deleteManyLoginResponses(where: LoginResponseWhereInput): BatchPayload!
   createSpeaker(data: SpeakerCreateInput!): Speaker!
   updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
   updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
@@ -801,8 +697,6 @@ type Query {
   location(where: LocationWhereUniqueInput!): Location
   locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
   locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
-  loginResponses(where: LoginResponseWhereInput, orderBy: LoginResponseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LoginResponse]!
-  loginResponsesConnection(where: LoginResponseWhereInput, orderBy: LoginResponseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LoginResponseConnection!
   speaker(where: SpeakerWhereUniqueInput!): Speaker
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
   speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
@@ -1226,7 +1120,6 @@ input SpeakerWhereUniqueInput {
 type Subscription {
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
   location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
-  loginResponse(where: LoginResponseSubscriptionWhereInput): LoginResponseSubscriptionPayload
   speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
@@ -1235,13 +1128,12 @@ type Subscription {
 type User {
   id: ID!
   email: String
+  username: String
   password: String!
   name: String!
   isSpeaker: Speaker
   favouritedVideos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
   ownedTickets(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
-  register: User!
-  login: LoginResponse!
 }
 
 type UserConnection {
@@ -1253,18 +1145,12 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String
+  username: String
   password: String!
   name: String!
   isSpeaker: SpeakerCreateOneWithoutOwnerInput
   favouritedVideos: VideoCreateManyInput
   ownedTickets: EventCreateManyInput
-  register: UserCreateOneInput!
-  login: LoginResponseCreateOneInput!
-}
-
-input UserCreateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutIsSpeakerInput {
@@ -1275,12 +1161,11 @@ input UserCreateOneWithoutIsSpeakerInput {
 input UserCreateWithoutIsSpeakerInput {
   id: ID
   email: String
+  username: String
   password: String!
   name: String!
   favouritedVideos: VideoCreateManyInput
   ownedTickets: EventCreateManyInput
-  register: UserCreateOneInput!
-  login: LoginResponseCreateOneInput!
 }
 
 type UserEdge {
@@ -1293,6 +1178,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   password_ASC
   password_DESC
   name_ASC
@@ -1302,6 +1189,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String
+  username: String
   password: String!
   name: String!
 }
@@ -1324,48 +1212,21 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
-input UserUpdateDataInput {
-  email: String
-  password: String
-  name: String
-  isSpeaker: SpeakerUpdateOneWithoutOwnerInput
-  favouritedVideos: VideoUpdateManyInput
-  ownedTickets: EventUpdateManyInput
-  register: UserUpdateOneRequiredInput
-  login: LoginResponseUpdateOneRequiredInput
-}
-
 input UserUpdateInput {
   email: String
+  username: String
   password: String
   name: String
   isSpeaker: SpeakerUpdateOneWithoutOwnerInput
   favouritedVideos: VideoUpdateManyInput
   ownedTickets: EventUpdateManyInput
-  register: UserUpdateOneRequiredInput
-  login: LoginResponseUpdateOneRequiredInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
+  username: String
   password: String
   name: String
-}
-
-input UserUpdateOneInput {
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneWithoutIsSpeakerInput {
@@ -1379,17 +1240,11 @@ input UserUpdateOneWithoutIsSpeakerInput {
 
 input UserUpdateWithoutIsSpeakerDataInput {
   email: String
+  username: String
   password: String
   name: String
   favouritedVideos: VideoUpdateManyInput
   ownedTickets: EventUpdateManyInput
-  register: UserUpdateOneRequiredInput
-  login: LoginResponseUpdateOneRequiredInput
-}
-
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
 }
 
 input UserUpsertWithoutIsSpeakerInput {
@@ -1426,6 +1281,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -1461,8 +1330,6 @@ input UserWhereInput {
   ownedTickets_every: EventWhereInput
   ownedTickets_some: EventWhereInput
   ownedTickets_none: EventWhereInput
-  register: UserWhereInput
-  login: LoginResponseWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -1471,6 +1338,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }
 
 type Video {
