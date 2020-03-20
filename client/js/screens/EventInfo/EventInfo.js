@@ -4,7 +4,7 @@ import Text from '../../components/CustomText/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 
-const EventInfo = ({event}) => {
+const EventInfo = ({event, navigation}) => {
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
@@ -66,9 +66,9 @@ const EventInfo = ({event}) => {
                 event.speakers.map(speaker => (
                   <SpeakerCard
                     key={speaker}
+                    speaker={speaker}
+                    navigation={navigation}
                     style={styles.speakercard}
-                    name={speaker.owner.name}
-                    source={{uri: speaker.profile_picture}}
                   />
                 ))}
             </ScrollView>
