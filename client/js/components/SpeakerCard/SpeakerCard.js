@@ -12,7 +12,9 @@ const SpeakerCard = ({speaker, style}) => {
   const speakerName =
     speaker && speaker.owner.name ? speaker.owner.name : 'Name';
   return (
-    <TouchableOpacity style={[styles.button, style]}>
+    <TouchableOpacity
+      onPress={() => navigation.push('SpeakerProfile', {speaker: speaker})}
+      style={[styles.button, style]}>
       <Image
         style={{height: '75%', width: '100%'}}
         resizeMode={'cover'}
