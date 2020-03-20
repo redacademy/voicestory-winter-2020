@@ -4,6 +4,10 @@ import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 
 const EventCard = ({event, navigation}) => {
+  const eventimg =
+    event && event.thumbnail_url
+      ? {uri: event.thumbnail_url}
+      : {uri: 'https://placedog.net/500'};
   return (
     <TouchableOpacity
       onPress={() => navigation.push('EventInfo', {event: event})}
@@ -25,10 +29,7 @@ const EventCard = ({event, navigation}) => {
             <Text style={styles.text}>{event.location_address}</Text>
           </View>
         </View>
-        <Image
-          style={styles.image}
-          source={{uri: 'https://placedog.net/500'}}
-        />
+        <Image style={styles.image} source={eventimg} />
       </View>
     </TouchableOpacity>
   );
