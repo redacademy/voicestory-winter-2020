@@ -84,6 +84,7 @@
 		30DFDBD751B241A89FEC3099 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		4E620FA6C04B465FA899ECCC /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		507723BD676860D240A3D49A /* Pods-voicestoryWinter2020Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voicestoryWinter2020Tests.release.xcconfig"; path = "Target Support Files/Pods-voicestoryWinter2020Tests/Pods-voicestoryWinter2020Tests.release.xcconfig"; sourceTree = "<group>"; };
+		543F47562423CFBA003B4BE2 /* libreact-native-video.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-video.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		544E537D2421338700C7F45D /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		566A59CA70785054140EEA80 /* Pods-voicestoryWinter2020-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voicestoryWinter2020-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-voicestoryWinter2020-tvOSTests/Pods-voicestoryWinter2020-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		59171C5421E1C71E58678AEE /* Pods-voicestoryWinter2020-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voicestoryWinter2020-tvOS.release.xcconfig"; path = "Target Support Files/Pods-voicestoryWinter2020-tvOS/Pods-voicestoryWinter2020-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +183,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				543F47562423CFBA003B4BE2 /* libreact-native-video.a */,
 				544E537D2421338700C7F45D /* libRNVectorIcons.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
