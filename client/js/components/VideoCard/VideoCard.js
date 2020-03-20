@@ -41,15 +41,15 @@ class VideoCard extends Component {
   render() {
     const {route, navigation, faveIds, id} = this.props;
     const buttonStyle =
-      route.name === 'Videos' || route.name === 'Fav'
+      route.name === 'Videos' || route.name === 'Faves'
         ? styles.largeButton
         : styles.smallButton;
     const cardStyle =
-      route.name === 'Videos' || route.name === 'Fav'
+      route.name === 'Videos' || route.name === 'Faves'
         ? styles.largeCard
         : styles.smallCard;
     const playIcon =
-      route.name === 'Videos' || route.name === 'Fav'
+      route.name === 'Videos' || route.name === 'Faves'
         ? styles.play
         : styles.centerPlay;
 
@@ -89,13 +89,13 @@ class VideoCard extends Component {
                 <CustomText style={styles.min}>Mins</CustomText>
               </View>
               <View style={styles.titleContainer}>
-                {(route.name === 'Videos' || route.name === 'Fav') && (
+                {(route.name === 'Videos' || route.name === 'Faves') && (
                   <View style={playIcon}>
                     <Icon name="play" size={50} color="white" />
                   </View>
                 )}
                 <View>
-                  {(route.name === 'Videos' || route.name === 'Fav') && (
+                  {(route.name === 'Videos' || route.name === 'Faves') && (
                     <CustomText style={styles.speaker}>
                       {this.parseSpeakerName(this.state.data.items[0])}
                     </CustomText>
@@ -136,13 +136,13 @@ class VideoCard extends Component {
               <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
-              {(route.name === 'Videos' || route.name === 'Fav') && (
+              {(route.name === 'Videos' || route.name === 'Faves') && (
                 <View style={playIcon}>
                   <Icon name="play" size={50} color="white" />
                 </View>
               )}
               <View>
-                {(route.name === 'Videos' || route.name === 'Fav') && (
+                {(route.name === 'Videos' || route.name === 'Faves') && (
                   <CustomText style={styles.speaker}>
                     {this.parseSpeakerName(this.state.data.items[0])}
                   </CustomText>
