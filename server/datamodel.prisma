@@ -8,20 +8,6 @@ type User {
   ownedTickets: [Event!]!
 }
 
-type Query {
-  currentUser: User!
-}
-
-type Mutation {
-  register(username: String!, password: String!): User!
-  login(username: String!, password: String!): LoginResponse!
-}
-
-type LoginResponse {
-  token: String
-  user: User
-}
-
 type Video {
   id: ID! @id
   title: String!
