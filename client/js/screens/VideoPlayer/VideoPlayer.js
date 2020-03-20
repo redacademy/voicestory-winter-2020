@@ -5,7 +5,7 @@ import styles from './styles';
 import CustomText from '../../components/CustomText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const VideoPlayer = ({item}) => {
+const VideoPlayer = ({item, addFave, removeFave, faveIds}) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -61,15 +61,32 @@ const VideoPlayer = ({item}) => {
             <CustomText style={styles.title}>{parseTitle(item)}</CustomText>
           </View>
           <View style={styles.actionContainer}>
-            <TouchableOpacity onPress={() => {}}>
-              {/* TODO - add logic to check if video is faved  */}
-              <Icon
-                style={styles.icon}
-                name="heart-outline"
-                size={24}
-                color="#db4f48"
-              />
-            </TouchableOpacity>
+            {faveIds.includes(item.id) ? (
+              <TouchableOpacity
+                onPress={() => {
+                  removeFave(item.id);
+                }}>
+                <Icon
+                  style={styles.icon}
+                  name="heart"
+                  size={24}
+                  color="#db4f48"
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  addFave(item.id);
+                }}>
+                <Icon
+                  style={styles.icon}
+                  name="heart-outline"
+                  size={24}
+                  color="#db4f48"
+                />
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity onPress={() => {}}>
               <Icon
                 style={styles.icon}

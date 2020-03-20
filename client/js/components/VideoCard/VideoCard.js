@@ -16,7 +16,7 @@ class VideoCard extends Component {
   }
   componentDidMount() {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics`,
+      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.id}&key=${key}&part=snippet,contentDetails,statistics`,
     )
       .then(resp => resp.json())
       .then(data => this.setState({data, loading: false}))
@@ -39,7 +39,7 @@ class VideoCard extends Component {
   };
 
   render() {
-    const {route, navigation} = this.props;
+    const {route, navigation, faveIds, id} = this.props;
     const buttonStyle =
       route.name === 'Videos' || route.name === 'Fav'
         ? styles.largeButton
@@ -59,6 +59,56 @@ class VideoCard extends Component {
       <View style={styles.errorContainer}>
         <CustomText>There was an error getting Videos</CustomText>
       </View>
+    ) : route.name === 'Faves' ? (
+      faveIds.includes(id) && (
+        <TouchableHighlight
+          style={buttonStyle}
+          onPress={() => {
+            navigation.navigate('Video', {video: this.state.data.items[0]});
+          }}
+          underlayColor={'transparent'}>
+          <View style={cardStyle}>
+            <Image
+              source={{
+                uri: this.state.data.items[0].snippet.thumbnails.high.url,
+              }}
+              style={styles.image}
+            />
+            {(route.name === 'Explore' || route.name === 'Video') && (
+              <View
+                style={playIcon}
+                transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
+                <Icon name="play" size={40} color="white" />
+              </View>
+            )}
+            <View style={styles.info}>
+              <View style={styles.timeContainer}>
+                <CustomText style={styles.time}>
+                  {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+                </CustomText>
+                <CustomText style={styles.min}>Mins</CustomText>
+              </View>
+              <View style={styles.titleContainer}>
+                {(route.name === 'Videos' || route.name === 'Fav') && (
+                  <View style={playIcon}>
+                    <Icon name="play" size={50} color="white" />
+                  </View>
+                )}
+                <View>
+                  {(route.name === 'Videos' || route.name === 'Fav') && (
+                    <CustomText style={styles.speaker}>
+                      {this.parseSpeakerName(this.state.data.items[0])}
+                    </CustomText>
+                  )}
+                  <CustomText style={styles.title}>
+                    {this.parseTitle(this.state.data.items[0])}
+                  </CustomText>
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      )
     ) : (
       <TouchableHighlight
         style={buttonStyle}

@@ -6,14 +6,7 @@ export default class VideosContainer extends Component {
     super(props);
   }
   render() {
-    return this.props.route.name === 'Fav' ? (
-      <VideoList
-        route={route}
-        navigation={navigation}
-        //TODO - add fave id list
-        // idList={idList}
-      />
-    ) : (
+    return (
       <Videos navigation={this.props.navigation} route={this.props.route} />
     );
   }

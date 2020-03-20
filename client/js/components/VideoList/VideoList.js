@@ -29,7 +29,7 @@ class VideoList extends Component {
   }
 
   render() {
-    const {route, navigation, horizontal, offset} = this.props;
+    const {route, navigation, horizontal, offset, faveIds} = this.props;
     return this.state.loading ? (
       <ActivityIndicator />
     ) : this.state.data.error ? (
@@ -39,14 +39,27 @@ class VideoList extends Component {
     ) : (
       <View style={styles.container}>
         <ScrollView horizontal={horizontal} offset={offset}>
-          {this.state.data.items.map(item => (
-            <VideoCard
-              key={item.etag}
-              route={route}
-              navigation={navigation}
-              item={item}
-            />
-          ))}
+          {this.state.data.items.map(item => {
+            return route.name === 'Faves' ? (
+              faveIds.includes(item.id.videoId) && (
+                <VideoCard
+                  key={item.etag}
+                  route={route}
+                  navigation={navigation}
+                  id={item.id.videoId}
+                  faveIds={faveIds}
+                />
+              )
+            ) : (
+              <VideoCard
+                key={item.etag}
+                route={route}
+                navigation={navigation}
+                id={item.id.videoId}
+                faveIds={faveIds}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     );

@@ -6,7 +6,7 @@ import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 
-const Video = ({route, navigation, video}) => {
+const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
   const onShare = async video => {
     try {
       const result = await Share.share({
@@ -52,7 +52,6 @@ const Video = ({route, navigation, video}) => {
       <View style={styles.root}>
         <TouchableOpacity
           onPress={() => {
-            // TODO - open video player with youtube video data
             navigation.navigate('Now Playing', {item: video});
           }}>
           <View style={styles.imageContainer}>
@@ -73,19 +72,35 @@ const Video = ({route, navigation, video}) => {
           <View style={styles.videoActions}>
             <CustomText style={styles.videoLength}>
               {parseDuration(video.contentDetails.duration)}
-
-              {/* 18:30 */}
             </CustomText>
             <View style={styles.divider}></View>
-            <TouchableOpacity onPress={() => {}}>
-              {/* TODO - add logic to check if video is faved  */}
-              <Icon
-                style={styles.icon}
-                name="heart-outline"
-                size={18}
-                color="#db4f48"
-              />
-            </TouchableOpacity>
+
+            {faveIds.includes(video.id) ? (
+              <TouchableOpacity
+                onPress={() => {
+                  removeFave(video.id);
+                }}>
+                <Icon
+                  style={styles.icon}
+                  name="heart"
+                  size={18}
+                  color="#db4f48"
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  addFave(video.id);
+                }}>
+                <Icon
+                  style={styles.icon}
+                  name="heart-outline"
+                  size={18}
+                  color="#db4f48"
+                />
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity onPress={() => {}}>
               <Icon
                 style={styles.icon}
