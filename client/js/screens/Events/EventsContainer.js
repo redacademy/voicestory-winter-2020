@@ -21,6 +21,7 @@ const ALL_EVENTS = gql`
       soldTickets
       speakers {
         id
+        profile_picture
         owner {
           name
         }
