@@ -22,8 +22,13 @@ const ALL_EVENTS = gql`
       speakers {
         id
         profile_picture
+        title
+        linkedin
+        facebook
+        description
         owner {
           name
+          email
         }
       }
     }
