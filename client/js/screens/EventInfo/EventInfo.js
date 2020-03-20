@@ -4,7 +4,8 @@ import Text from '../../components/CustomText/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 
-const EventInfo = ({navigation}) => {
+const EventInfo = props => {
+  console.log(props);
   return (
     <View style={styles.eventcontainer}>
       <ScrollView>
