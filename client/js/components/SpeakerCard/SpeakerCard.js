@@ -9,6 +9,8 @@ const SpeakerCard = ({speaker, style}) => {
     speaker && speaker.profile_picture
       ? {uri: speaker.profile_picture}
       : {uri: 'https://placedog.net/500'};
+  const speakerName =
+    speaker && speaker.owner.name ? speaker.owner.name : 'Name';
   return (
     <TouchableOpacity style={[styles.button, style]}>
       <Image
@@ -18,7 +20,7 @@ const SpeakerCard = ({speaker, style}) => {
         borderTopLeftRadius={10}
         borderTopRightRadius={10}
       />
-      <Text style={styles.label}>{speaker.owner.name}</Text>
+      <Text style={styles.label}>{speakerName}</Text>
     </TouchableOpacity>
   );
 };
