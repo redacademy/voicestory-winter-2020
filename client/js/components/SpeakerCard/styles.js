@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     width: '25%',
   },
   otherRoute: {
-    height: '100%',
-    width: '25%',
+    height: '75%',
+    width: '100%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
