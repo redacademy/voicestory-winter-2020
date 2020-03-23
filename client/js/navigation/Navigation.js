@@ -7,6 +7,8 @@ import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
 import VideosScreen from '../screens/Videos';
 import VideoScreen from '../screens/Video';
+import FavesScreen from '../screens/Faves';
+import VideoPlayer from '../screens/VideoPlayer';
 import SpeakersScreen from '../screens/Speakers';
 import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Theme';
@@ -39,7 +41,7 @@ const ExploreStackScreens = props => {
       />
       <ExploreStack.Screen
         name="Theme"
-        component={ThemeScreen}
+        component={VideosScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -51,6 +53,14 @@ const ExploreStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <ExploreStack.Screen
+        name="Now Playing"
+        component={VideoPlayer}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+
       <ExploreStack.Screen
         name="Speakers"
         component={SpeakersScreen}
@@ -142,8 +152,8 @@ const UserProfileStackScreens = props => {
         }}
       />
       <UserProfileStack.Screen
-        name="Fav"
-        component={ThemeScreen}
+        name="Faves"
+        component={FavesScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}

@@ -23,7 +23,7 @@ const UserProfile = ({navigation, users}) => {
         />
         <Button
           title="Favorite Videos"
-          onPress={() => navigation.navigate('Fav')}
+          onPress={() => navigation.navigate('Faves')}
           style={(styles.favourite, styles.button)}
         />
         <Button

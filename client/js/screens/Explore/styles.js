@@ -4,13 +4,14 @@ const styles = StyleSheet.create({
   exploreContainer: {
     height: '100%',
     backgroundColor: '#FBF7EF',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
   },
   headingContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginRight: 30,
     marginLeft: 30,
+    marginBottom: 14,
   },
   themeContainer: {
     height: 110,
