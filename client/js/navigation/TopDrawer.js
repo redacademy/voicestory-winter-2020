@@ -11,12 +11,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../components/CustomText/CustomText';
 import styles from './styles';
-import {DrawerContext} from '../App';
 
 const TopDrawer = props => {
-  const {isOpen, setOpen} = React.useContext(DrawerContext);
-
   const [animatedDrawer, setAnimatedDrawer] = useState(new Animated.Value(0));
+
   const drawer = () => {
     setAnimatedDrawer(0);
     const createAnimation = (value, duration, easing, delay = 0) => {
@@ -31,13 +29,12 @@ const TopDrawer = props => {
       createAnimation(animatedDrawer, 500, Easing.ease),
     ]).start();
   };
-  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleHandle = () => {
-    setOpen(!isOpen);
+    setIsOpen(!isOpen);
     LayoutAnimation.easeInEaseOut();
   };
-
   return (
     <>
       {isOpen ? (
@@ -73,8 +70,8 @@ const TopDrawer = props => {
         size={20}
         color="#FBF7EF"
         onPress={() => {
-          // drawer();
-          // toggleHandle();
+          drawer();
+          toggleHandle();
         }}
       />
     </>

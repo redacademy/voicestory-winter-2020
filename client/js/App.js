@@ -7,6 +7,7 @@ import Drawer from 'react-native-drawer';
 
 export const DrawerContext = React.createContext();
 
+import FavesProvider from './context/FavesContext';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -20,12 +21,17 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <DrawerContext.Provider
+        {/* <DrawerContext.Provider
           value={{isOpen: this.isDrawerOpen, setOpen: this.setDrawerOpen}}>
           <NavigationContainer>
             <RootNav />
           </NavigationContainer>
-        </DrawerContext.Provider>
+        </DrawerContext.Provider> */}
+        <FavesProvider>
+          <NavigationContainer>
+            <RootNav />
+          </NavigationContainer>
+        </FavesProvider>
       </ApolloProvider>
     );
   }

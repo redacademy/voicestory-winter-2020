@@ -47,7 +47,7 @@ const NotificationButton = ({navigation}) => {
 
 const MeatballButton = props => {
   console.log(props);
-  const {setOpen, isOpen} = React.useContext(DrawerContext);
+  // const {setOpen, isOpen} = React.useContext(DrawerContext);
   return (
     <Icon
       style={{
@@ -61,8 +61,8 @@ const MeatballButton = props => {
       color="white"
       size={25}
       onPress={() => {
-        setOpen(!isOpen);
-        // toggleHandle();
+        // setOpen(!isOpen);
+        toggleHandle();
       }}
     />
   );

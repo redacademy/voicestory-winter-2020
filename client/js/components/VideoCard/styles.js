@@ -4,7 +4,9 @@ const styles = StyleSheet.create({
   largeButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: Dimensions.get('window').width,
+    height: 275,
+    marginVertical: 20,
+    width: Dimensions.get('window').width - 75,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -16,9 +18,11 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   smallButton: {
+    marginHorizontal: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    width: Dimensions.get('window').width * 0.65,
+    height: 175,
+    width: Dimensions.get('window').width * 0.6,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -30,24 +34,27 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   largeCard: {
-    width: Dimensions.get('window').width - 75,
+    width: '100%',
     borderRadius: 10,
-    height: 275,
+    height: '100%',
     marginVertical: 20,
     overflow: 'hidden',
     position: 'relative',
   },
   smallCard: {
-    width: Dimensions.get('window').width * 0.6,
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
-    height: 175,
-    marginVertical: 20,
     overflow: 'hidden',
   },
   image: {
     height: '70%',
+    width: '100%',
     backgroundColor: 'blue',
     position: 'relative',
+  },
+  speaker: {
+    fontWeight: '300',
   },
   info: {
     height: '30%',
@@ -76,13 +83,13 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 20,
     fontWeight: '600',
-    color: 'white',
+    color: '#fbf7ef',
   },
   min: {
-    color: 'white',
+    color: '#fbf7ef',
   },
   play: {
-    backgroundColor: '#454545',
+    backgroundColor: '#3c3c3c',
     height: 60,
     width: 60,
     borderRadius: 50,
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
   centerPlay: {
-    backgroundColor: '#454545',
+    backgroundColor: '#3c3c3c',
     height: 50,
     width: 50,
     borderRadius: 50,
@@ -125,6 +132,11 @@ const styles = StyleSheet.create({
     height: 175,
     marginVertical: 20,
     overflow: 'hidden',
+  },
+  errorContainer: {
+    height: 175,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
