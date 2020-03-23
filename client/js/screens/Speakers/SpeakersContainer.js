@@ -31,7 +31,6 @@ export default class SpeakersContainer extends Component {
         {({data, loading, error}) => {
           if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
-          console.log('SpeakerContainer', data);
           return (
             <Speakers navigation={this.props.navigation} users={data.users} />
           );
