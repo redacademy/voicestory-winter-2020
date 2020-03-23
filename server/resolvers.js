@@ -2,6 +2,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const resolvers = {
+  Query: {
+    currentUser: (parent, args, { user, prisma }) => {
+      // this if statement is our authentication check
+      if (!user) {
+        throw new Error("Not Authenticated");
+      }
+      return prisma.user({ id: user.id });
+    }
+  },
   Mutation: {
     register: async (parent, { username, password }, ctx, info) => {
       const hashedPassword = await bcrypt.hash(password, 10);
