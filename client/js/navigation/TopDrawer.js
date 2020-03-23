@@ -35,6 +35,7 @@ const TopDrawer = props => {
     setIsOpen(!isOpen);
     LayoutAnimation.easeInEaseOut();
   };
+
   return (
     <>
       {isOpen ? (
@@ -70,7 +71,7 @@ const TopDrawer = props => {
         size={20}
         color="#FBF7EF"
         onPress={() => {
-          drawer();
+          // drawer();
           toggleHandle();
         }}
       />

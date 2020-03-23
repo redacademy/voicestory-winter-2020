@@ -2,10 +2,10 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   drawerContainer: {
-    height: Dimensions.get('window').height,
+    // height: Dimensions.get('window').height,
     backgroundColor: 'transparent',
     width: Dimensions.get('window').width,
-    transform: [{translateY: 467}],
+    transform: [{translateY: 107}],
   },
   menu: {
     backgroundColor: '#9F3833',

@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import DrawerNav from './Drawer';
@@ -48,6 +48,8 @@ const NotificationButton = ({navigation}) => {
 const MeatballButton = props => {
   console.log(props);
   // const {setOpen, isOpen} = React.useContext(DrawerContext);
+  // const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Icon
       style={{
