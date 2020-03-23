@@ -3,13 +3,13 @@ import SettingsScreen from '../screens/Settings';
 import AboutUsScreen from '../screens/AboutUs';
 import ContactUsScreen from '../screens/ContactUs';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicy';
-import {sharedScreenOptions} from './config';
+import {sharedDrawerOptions} from './config';
 import React from 'react';
 
 const DrawerNavStack = createStackNavigator();
 export const DrawerNavStackScreens = props => {
   return (
-    <DrawerNavStack.Navigator mode="card" screenOptions={sharedScreenOptions}>
+    <DrawerNavStack.Navigator mode="card" screenOptions={sharedDrawerOptions}>
       <DrawerNavStack.Screen
         name="Settings"
         component={SettingsScreen}

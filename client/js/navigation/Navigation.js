@@ -11,7 +11,7 @@ import FavesScreen from '../screens/Faves';
 import VideoPlayer from '../screens/VideoPlayer';
 import SpeakersScreen from '../screens/Speakers';
 import SpeakerScreen from '../screens/SpeakerProfile';
-import ThemeScreen from '../screens/Theme';
+import ThemeScreen from '../screens/Themes';
 import EventInfoScreen from '../screens/EventInfo';
 import TicketInfoScreen from '../screens/TicketInfo';
 import ApplicationScreen from '../screens/Application';
@@ -22,7 +22,6 @@ import SettingsScreen from '../screens/Settings';
 import AboutUsScreen from '../screens/AboutUs';
 import ContactUsScreen from '../screens/ContactUs';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicy';
-import {closeDrawer} from './Drawer';
 
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {

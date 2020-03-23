@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, Component} from 'react';
+import {Dimensions} from 'react-native';
 import {
   Animated,
   Easing,
@@ -12,71 +13,62 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../components/CustomText/CustomText';
 import styles from './styles';
 
-const TopDrawer = props => {
-  const [animatedDrawer, setAnimatedDrawer] = useState(new Animated.Value(0));
-
-  const drawer = () => {
-    setAnimatedDrawer(0);
-    const createAnimation = (value, duration, easing, delay = 0) => {
-      return Animated.timing(value, {
-        toValue: 1,
-        duration,
-        easing,
-        delay,
-      });
+class TopDrawer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      toggleHandle: () => {
+        this.setState({isOpen: !this.state.isOpen});
+        LayoutAnimation.easeInEaseOut();
+      },
     };
-    Animated.parallel([
-      createAnimation(animatedDrawer, 500, Easing.ease),
-    ]).start();
-  };
-  const [isOpen, setIsOpen] = useState(false);
+  }
 
-  const toggleHandle = () => {
-    setIsOpen(!isOpen);
-    LayoutAnimation.easeInEaseOut();
-  };
+  render() {
+    const navigation = this.props.navigation;
 
-  return (
-    <>
-      {isOpen ? (
-        // <TouchableOpacity onPress={(() => this.drawer, this.toggleHandle)}>
-        <View style={styles.drawerContainer}>
-          <View style={styles.menu}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Settings');
-              }}
-              style={styles.border}>
-              <Text style={styles.menuItem}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('About Us');
-              }}
-              style={styles.border}>
-              <Text style={styles.menuItem}>About Us</Text>
-            </TouchableOpacity>
-            <View style={styles.border}>
-              <Text style={styles.menuItem}>Contact Us</Text>
-            </View>
-            <View>
-              <Text style={styles.menuItem}>Privacy Policy</Text>
+    return (
+      <>
+        {this.state.isOpen ? (
+          <View style={styles.drawerContainer}>
+            <View style={styles.menu}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DrawerNav', {screen: 'Settings'});
+                }}
+                style={styles.border}>
+                <Text style={styles.menuItem}>Settings</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DrawerNav', {screen: 'About Us'});
+                }}
+                style={styles.border}>
+                <Text style={styles.menuItem}>About Us</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DrawerNav', {screen: 'Contact Us'});
+                }}
+                style={styles.border}>
+                <Text style={styles.menuItem}>Contact Us</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DrawerNav', {screen: 'Privacy Policy'});
+                }}
+                style={styles.border}>
+                <Text style={styles.menuItem}>Privacy Policy</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.menuItem}>Logout</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </View>
-      ) : null}
-
-      <Icon
-        name="close"
-        size={20}
-        color="#FBF7EF"
-        onPress={() => {
-          // drawer();
-          toggleHandle();
-        }}
-      />
-    </>
-  );
-};
-
+        ) : null}
+      </>
+    );
+  }
+}
 export default TopDrawer;

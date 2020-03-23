@@ -21,12 +21,6 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        {/* <DrawerContext.Provider
-          value={{isOpen: this.isDrawerOpen, setOpen: this.setDrawerOpen}}>
-          <NavigationContainer>
-            <RootNav />
-          </NavigationContainer>
-        </DrawerContext.Provider> */}
         <FavesProvider>
           <NavigationContainer>
             <RootNav />

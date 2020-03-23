@@ -7,7 +7,7 @@ import {DrawerNavStackScreens} from './DrawerNavigation';
 
 const RootStack = createStackNavigator();
 const RootStackScreens = props => (
-  <RootStack.Navigator mode="modal" headerMode="none">
+  <RootStack.Navigator headerMode="none">
     <RootStack.Screen name="Main" component={BottomTabNavScreens} />
     <RootStack.Screen name="DrawerNav" component={DrawerNavStackScreens} />
     <RootStack.Screen name="Ticket" component={TicketScreen} />

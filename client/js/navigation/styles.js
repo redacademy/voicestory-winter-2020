@@ -5,7 +5,9 @@ const styles = StyleSheet.create({
     // height: Dimensions.get('window').height,
     backgroundColor: 'transparent',
     width: Dimensions.get('window').width,
-    transform: [{translateY: 107}],
+    transform: [{translateY: 168}],
+    position: 'absolute',
+    zIndex: 999,
   },
   menu: {
     backgroundColor: '#9F3833',
