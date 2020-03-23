@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Button, Dimensions} from 'react-native';
 import styles from './styles';
 import Text from '../components/CustomText/CustomText';
 import Drawer from 'react-native-drawer';
+import MainView from 'react-native-drawer';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 let drawerRef;
 
@@ -14,7 +16,7 @@ export const openDrawer = () => {
   drawerRef.open();
 };
 
-const MeatballDrawer = ({navigation}) => {
+const DrawerNav = ({navigation}) => {
   return (
     <>
       <Drawer
@@ -23,30 +25,49 @@ const MeatballDrawer = ({navigation}) => {
           drawerRef = ref;
         }}
         content={
-          <View style={styles.drawerContainer}>
-            <View style={styles.menu}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Settings')}
-                style={styles.border}>
-                <Text style={styles.menuItem}>Settings</Text>
-              </TouchableOpacity>
-              <View style={styles.border}>
-                <Text style={styles.menuItem}>About Us</Text>
-              </View>
-              <View style={styles.border}>
-                <Text style={styles.menuItem}>Contact Us</Text>
-              </View>
-              <View>
-                <Text style={styles.menuItem}>Privacy Policy</Text>
+          <>
+            {/* <TouchableOpacity onPress={closeDrawer}> */}
+            <View style={styles.drawerContainer}>
+              <View style={styles.menu}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Settings');
+                    closeDrawer();
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>Settings</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('About Us');
+                    closeDrawer();
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>About Us</Text>
+                </TouchableOpacity>
+                <View style={styles.border}>
+                  <Text style={styles.menuItem}>Contact Us</Text>
+                </View>
+                <View>
+                  <Text style={styles.menuItem}>Privacy Policy</Text>
+                </View>
+                <Icon
+                  name="close"
+                  size={20}
+                  color="#FBF7EF"
+                  onPress={closeDrawer}
+                />
               </View>
             </View>
-            <View></View>
-          </View>
+            {/* </TouchableOpacity> */}
+            <MainView />
+          </>
         }
+        acceptTap={true}
         tapToClose={true}
-        open={false}
         side="top"
-        openDrawerOffset={-1000}
+        panCloseMask={1}
+        // closedDrawerOffset={914}
         styles={drawerStyles}></Drawer>
     </>
   );
@@ -54,7 +75,8 @@ const MeatballDrawer = ({navigation}) => {
 
 const drawerStyles = {
   drawer: {
-    transform: [{translateY: 15}],
+    // transform: [{translateY: 15}],
+    // translateY - 100%
   },
 };
-export default MeatballDrawer;
+export default DrawerNav;

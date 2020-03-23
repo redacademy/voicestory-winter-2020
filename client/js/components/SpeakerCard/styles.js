@@ -10,10 +10,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  labelContainer: {
+    width: 100,
+    height: 75,
+    flex: 1,
+    justifyContent: 'center',
+  },
   label: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: 'Lato-Bold',
-    transform: [{translateY: -14}],
+    marginLeft: 10,
+    fontSize: 12,
   },
 });
 

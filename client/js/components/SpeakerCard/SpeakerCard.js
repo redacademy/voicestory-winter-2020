@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, View} from 'react-native';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
@@ -14,7 +14,9 @@ const SpeakerCard = ({name, style, source}) => {
         borderTopLeftRadius={10}
         borderTopRightRadius={10}
       />
-      <Text style={styles.label}>{name}</Text>
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{name}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

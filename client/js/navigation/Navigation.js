@@ -20,6 +20,7 @@ import SettingsScreen from '../screens/Settings';
 import AboutUsScreen from '../screens/AboutUs';
 import ContactUsScreen from '../screens/ContactUs';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicy';
+import {closeDrawer} from './Drawer';
 
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -69,16 +70,6 @@ const ExploreStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
-      <ExploreStack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontFamily: 'Lato-Regular',
-          },
-        }}
-      />
     </ExploreStack.Navigator>
   );
 };
@@ -119,7 +110,7 @@ const TicketsStackScreens = props => {
         }}
       />
       <TicketsStack.Screen
-        name="TicketInfo"
+        name="Ticket Info"
         component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -167,7 +158,7 @@ const UserProfileStackScreens = props => {
 };
 
 const BottomTabNav = createBottomTabNavigator();
-const BottomTabNavScreens = props => (
+export const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
@@ -232,5 +223,3 @@ const BottomTabNavScreens = props => (
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
   </BottomTabNav.Navigator>
 );
-
-export default BottomTabNavScreens;

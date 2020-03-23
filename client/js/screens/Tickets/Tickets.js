@@ -1,13 +1,17 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
+import EventCard from '../../components/EventCard';
+import styles from './styles';
 
 const Tickets = ({navigation, tickets}) => {
-  console.log(navigation);
+  // console.log(tickets);
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('TicketInfo')}>
-      <Text>Ticket Info</Text>
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity onPress={() => navigation.navigate('Ticket Info')}>
+        <Text>Ticket Info</Text>
+      </TouchableOpacity>
+    </>
   );
 };
 
