@@ -18,10 +18,6 @@ import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
 import {Image} from 'react-native';
-import SettingsScreen from '../screens/Settings';
-import AboutUsScreen from '../screens/AboutUs';
-import ContactUsScreen from '../screens/ContactUs';
-import PrivacyPolicyScreen from '../screens/PrivacyPolicy';
 
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -165,6 +161,13 @@ const UserProfileStackScreens = props => {
       <UserProfileStack.Screen
         name="Faves"
         component={FavesScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <UserProfileStack.Screen
+        name="Video"
+        component={VideoScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
