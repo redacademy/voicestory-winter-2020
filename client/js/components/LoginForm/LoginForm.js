@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
+import {UserContext} from '../../context/UserContext';
 
 const LoginForm = props => {
+  const {setUser} = useContext(UserContext);
   const {
     data,
     error,
@@ -16,7 +18,10 @@ const LoginForm = props => {
     email,
   } = props;
   useEffect(() => {
-    if (data) console.log('useEffect', data);
+    if (data) {
+      setUser(data.login.user);
+      navigation.navigate('Main');
+    }
   }, [data]);
   return (
     <KeyboardAvoidingView style={styles.form} behavior="position">

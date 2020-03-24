@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 380,
     padding: 20,
-    marginBottom: 40,
+    marginBottom: 20,
   },
   formcontent: {
     backgroundColor: '#D84F48',
