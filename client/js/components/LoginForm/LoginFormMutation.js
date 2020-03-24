@@ -6,12 +6,12 @@ import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({uri: 'http://localhost:8383/'});
 const LOGIN = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       token
       user {
         id
-        username
+        email
       }
     }
   }

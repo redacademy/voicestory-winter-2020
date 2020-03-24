@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
@@ -19,7 +19,7 @@ const LoginForm = props => {
     if (data) console.log('useEffect', data);
   }, [data]);
   return (
-    <View style={styles.form}>
+    <KeyboardAvoidingView style={styles.form} behavior="position">
       <View style={styles.formcontent}>
         <TextInput
           style={styles.textinput}
@@ -70,7 +70,7 @@ const LoginForm = props => {
           />
         )}
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
