@@ -19,6 +19,7 @@ const SearchButton = ({navigation}) => {
       name="magnify"
       color="white"
       size={25}
+      onPress={() => navigation.navigate('Search')}
     />
   );
 };
