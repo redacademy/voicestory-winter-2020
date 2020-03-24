@@ -11,10 +11,17 @@ const Notification = ({navigation}) => {
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>
-        <Text style={styles.header}>Notifications</Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon style={styles.close} name="close" size={25} color="#FBF7EF" />
+          <Icon
+            style={styles.close}
+            name="arrow-left"
+            size={25}
+            color="#FBF7EF"
+          />
         </TouchableOpacity>
+        <View style={styles.notification}>
+          <Text style={styles.header}>Notifications</Text>
+        </View>
       </SafeAreaView>
       <ScrollView style={styles.contentContainer}>
         <View style={styles.border}>
