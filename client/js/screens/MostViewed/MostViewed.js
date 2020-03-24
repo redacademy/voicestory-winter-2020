@@ -1,12 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-
-const MostViewed = () => {
-  return (
-    <>
-      <Text>Most Viewed</Text>
-    </>
-  );
+import VideoList from '../../components/VideoList';
+const MostViewed = ({route, navigation}) => {
+  return <VideoList navigation={navigation} route={route} />;
 };
 
 export default MostViewed;

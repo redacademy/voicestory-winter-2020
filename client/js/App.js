@@ -8,6 +8,7 @@ import Drawer from 'react-native-drawer';
 export const DrawerContext = React.createContext();
 
 import FavesProvider from './context/FavesContext';
+import YoutubeDataProvider from './context/YoutubeData';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +23,11 @@ export default class App extends Component {
     return (
       <ApolloProvider client={client}>
         <FavesProvider>
-          <NavigationContainer>
-            <RootNav />
-          </NavigationContainer>
+          <YoutubeDataProvider>
+            <NavigationContainer>
+              <RootNav />
+            </NavigationContainer>
+          </YoutubeDataProvider>
         </FavesProvider>
       </ApolloProvider>
     );

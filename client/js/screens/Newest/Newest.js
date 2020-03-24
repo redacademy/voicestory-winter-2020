@@ -1,12 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-
-const Newest = () => {
-  return (
-    <>
-      <Text>Newest</Text>
-    </>
-  );
+import VideoList from '../../components/VideoList';
+const Newest = ({route, navigation}) => {
+  return <VideoList navigation={navigation} route={route} />;
 };
 
 export default Newest;

@@ -3,6 +3,8 @@ import MostViewed from './MostViewed';
 
 export default class MostViewedContainer extends Component {
   render() {
-    return <MostViewed />;
+    return (
+      <MostViewed navigation={this.props.navigation} route={this.props.route} />
+    );
   }
 }
