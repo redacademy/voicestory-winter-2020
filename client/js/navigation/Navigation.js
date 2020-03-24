@@ -162,6 +162,13 @@ const UserProfileStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <UserProfileStack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </UserProfileStack.Navigator>
   );
 };

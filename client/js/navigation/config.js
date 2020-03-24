@@ -78,34 +78,44 @@ export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
   return {
     headerBackTitleVisible: false,
-    headerLeft: () => (
-      <>
-        <View style={{flexDirection: 'row'}}>
-          <SearchButton {...props} />
-          {/* <SearchBar /> */}
-        </View>
-        <TopDrawer
-          navigation={props.navigation}
-          ref={ref => {
-            drawerRef = ref;
-          }}
-        />
-      </>
-    ),
+    headerLeft: () => {
+      return props.route.name === 'Explore' ||
+        props.route.name === 'Events' ||
+        props.route.name === 'My Tickets' ||
+        props.route.name === 'Profile' ? (
+        <>
+          <View style={{flexDirection: 'row'}}>
+            <SearchButton {...props} />
+          </View>
+          <TopDrawer
+            navigation={props.navigation}
+            ref={ref => {
+              drawerRef = ref;
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <View style={{flexDirection: 'row'}}>
+            <BackButton navigation={props.navigation} />
+          </View>
+          <TopDrawer
+            navigation={props.navigation}
+            ref={ref => {
+              drawerRef = ref;
+            }}
+          />
+        </>
+      );
+    },
     headerRight: () => {
       return (
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            {drawerRef.state && !drawerRef.state.isOpen ? (
-              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <MeatballButton {...props} />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <BackButton {...props} />
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+              <MeatballButton {...props} />
+            </TouchableOpacity>
           </View>
         </>
       );
