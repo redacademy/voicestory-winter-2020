@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 
 const LoginForm = props => {
-  const {navigation, setEmail, login, password, setPassword, email} = props;
+  const {
+    data,
+    error,
+    navigation,
+    setEmail,
+    login,
+    password,
+    setPassword,
+    email,
+  } = props;
+  useEffect(() => {
+    if (data) console.log('useEffect', data);
+  }, [data]);
   return (
     <View style={styles.form}>
       <View style={styles.formcontent}>

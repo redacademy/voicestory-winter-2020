@@ -25,21 +25,21 @@ const LoginFormMutation = props => {
     <Mutation
       mutation={LOGIN}
       client={client}
-      variables={{username: 'USERNAME', password: 'PASSWORD'}}>
-      {(login, {data}) =>
-        console.log(data) || (
-          <LoginForm
-            navigation={navigation}
-            setEmail={setEmail}
-            login={login}
-            password={password}
-            setPassword={setPassword}
-            email={email}
-            setEmail={setEmail}
-            route={props.route}
-          />
-        )
-      }
+      variables={{email: email, password: password}}>
+      {(login, {data, error}) => (
+        <LoginForm
+          data={data}
+          error={error}
+          navigation={navigation}
+          setEmail={setEmail}
+          login={login}
+          password={password}
+          setPassword={setPassword}
+          email={email}
+          setEmail={setEmail}
+          route={props.route}
+        />
+      )}
     </Mutation>
   );
 };
