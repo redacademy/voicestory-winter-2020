@@ -43,7 +43,7 @@ const LoginForm = props => {
         <View style={styles.buttonbox}>
           <Button
             buttonStyle={
-              props.route.name == 'Main' ? styles.button : styles.buttonLogin
+              props.route.name == 'Login' ? styles.button : styles.buttonLogin
             }
             titleStyle={styles.title}
             title="Login"
@@ -51,13 +51,13 @@ const LoginForm = props => {
               formSubmit();
             }}
           />
-          {props.route.name == 'Main' && (
+          {props.route.name == 'Login' && (
             <Button
               buttonStyle={styles.button}
               titleStyle={styles.title}
               title="Sign Up"
               onPress={() => {
-                navigation.navigate('Login');
+                navigation.navigate('Signup');
               }}
             />
           )}

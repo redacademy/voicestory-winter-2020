@@ -4,10 +4,14 @@ import {BottomTabNavScreens} from './Navigation';
 import TicketScreen from '../screens/Ticket';
 import NotificationModal from '../screens/Notification';
 import {DrawerNavStackScreens} from './DrawerNavigation';
+import Home from '../screens/Home';
+import Login from '../screens/Login';
 
 const RootStack = createStackNavigator();
 const RootStackScreens = props => (
   <RootStack.Navigator headerMode="none">
+    <RootStack.Screen name="Login" component={Home} />
+    <RootStack.Screen name="Signup" component={Login} />
     <RootStack.Screen name="Main" component={BottomTabNavScreens} />
     <RootStack.Screen name="DrawerNav" component={DrawerNavStackScreens} />
     <RootStack.Screen name="Ticket" component={TicketScreen} />
