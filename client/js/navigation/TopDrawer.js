@@ -31,41 +31,48 @@ class TopDrawer extends Component {
     return (
       <>
         {this.state.isOpen ? (
-          <View style={styles.drawerContainer}>
-            <View style={styles.menu}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('DrawerNav', {screen: 'Settings'});
-                }}
-                style={styles.border}>
-                <Text style={styles.menuItem}>Settings</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('DrawerNav', {screen: 'About Us'});
-                }}
-                style={styles.border}>
-                <Text style={styles.menuItem}>About Us</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('DrawerNav', {screen: 'Contact Us'});
-                }}
-                style={styles.border}>
-                <Text style={styles.menuItem}>Contact Us</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('DrawerNav', {screen: 'Privacy Policy'});
-                }}
-                style={styles.border}>
-                <Text style={styles.menuItem}>Privacy Policy</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.menuItem}>Logout</Text>
-              </TouchableOpacity>
+          <>
+            <View style={styles.drawerContainer}>
+              <View style={styles.menu}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('DrawerNav', {screen: 'Settings'});
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>Settings</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('DrawerNav', {screen: 'About Us'});
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>About Us</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('DrawerNav', {screen: 'Contact Us'});
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>Contact Us</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('DrawerNav', {
+                      screen: 'Privacy Policy',
+                    });
+                  }}
+                  style={styles.border}>
+                  <Text style={styles.menuItem}>Privacy Policy</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={styles.menuItem}>Logout</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+            <TouchableOpacity onPress={() => this.state.toggleHandle()}>
+              <View style={styles.overlay}></View>
+            </TouchableOpacity>
+          </>
         ) : null}
       </>
     );

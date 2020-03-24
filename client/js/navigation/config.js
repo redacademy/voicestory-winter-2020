@@ -74,6 +74,22 @@ const BackButton = ({navigation}) => {
     />
   );
 };
+const CloseButton = ({navigation}) => {
+  return (
+    <Icon
+      style={{
+        marginLeft: 10,
+        marginRight: 10,
+        textShadowOffset: {width: 2, height: 2},
+        textShadowColor: '#9F3833',
+        textShadowRadius: 1,
+      }}
+      name="close"
+      color="white"
+      size={25}
+    />
+  );
+};
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
@@ -114,9 +130,15 @@ export const sharedScreenOptions = props => {
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-              <MeatballButton {...props} />
-            </TouchableOpacity>
+            {drawerRef.state && !drawerRef.state.isOpen ? (
+              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+                <MeatballButton {...props} />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+                <CloseButton {...props} />
+              </TouchableOpacity>
+            )}
           </View>
         </>
       );
