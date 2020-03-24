@@ -1128,6 +1128,7 @@ type Subscription {
 type User {
   id: ID!
   email: String
+  username: String
   password: String!
   name: String!
   isSpeaker: Speaker
@@ -1144,6 +1145,7 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String
+  username: String
   password: String!
   name: String!
   isSpeaker: SpeakerCreateOneWithoutOwnerInput
@@ -1159,6 +1161,7 @@ input UserCreateOneWithoutIsSpeakerInput {
 input UserCreateWithoutIsSpeakerInput {
   id: ID
   email: String
+  username: String
   password: String!
   name: String!
   favouritedVideos: VideoCreateManyInput
@@ -1175,6 +1178,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   password_ASC
   password_DESC
   name_ASC
@@ -1184,6 +1189,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String
+  username: String
   password: String!
   name: String!
 }
@@ -1208,6 +1214,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   email: String
+  username: String
   password: String
   name: String
   isSpeaker: SpeakerUpdateOneWithoutOwnerInput
@@ -1217,6 +1224,7 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   email: String
+  username: String
   password: String
   name: String
 }
@@ -1232,6 +1240,7 @@ input UserUpdateOneWithoutIsSpeakerInput {
 
 input UserUpdateWithoutIsSpeakerDataInput {
   email: String
+  username: String
   password: String
   name: String
   favouritedVideos: VideoUpdateManyInput
@@ -1272,6 +1281,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -1315,6 +1338,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }
 
 type Video {
