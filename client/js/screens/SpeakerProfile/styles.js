@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f0ea',
   },
   banner: {
-    height: 300,
+    height: 350,
     width: '100%',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.2,
   },
-  scroll: {
-    paddingLeft: 30,
+  biotext: {
+    lineHeight: 23,
   },
 });
 
