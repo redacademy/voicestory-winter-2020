@@ -3,12 +3,32 @@ import {TouchableOpacity, View, Image, ScrollView} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
+import {mapKey} from '../../apiKeys';
+import openMap from 'react-native-open-maps';
 
 const EventInfo = ({event, navigation}) => {
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
       : {uri: 'https://placedog.net/500'};
+
+  const getMap = async address => {
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
+    )
+      .then(resp => resp.json())
+      .then(data => {
+        openMap({
+          latitude: data.results[0].geometry.location.lat,
+          longitude: data.results[0].geometry.location.lng,
+          query: data.results[0].formatted_address,
+        });
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  };
+
   return (
     <View style={styles.eventcontainer}>
       <ScrollView>
@@ -26,7 +46,11 @@ const EventInfo = ({event, navigation}) => {
               <Text style={styles.lighttext}>{event.time}</Text>
             </View>
           </View>
-          <View style={styles.infobox}>
+          <TouchableOpacity
+            onPress={() => {
+              getMap(event.location_address);
+            }}
+            style={styles.infobox}>
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
@@ -37,7 +61,7 @@ const EventInfo = ({event, navigation}) => {
               <Text style={styles.boldtext}>{event.location_name}</Text>
               <Text style={styles.lighttext}>{event.location_address}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.infobox}>
             <View style={styles.iconbox}>
               <Image

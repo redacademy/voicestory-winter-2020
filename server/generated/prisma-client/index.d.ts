@@ -322,6 +322,8 @@ export type UserOrderByInput =
   | "id_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "username_ASC"
+  | "username_DESC"
   | "password_ASC"
   | "password_DESC"
   | "name_ASC"
@@ -387,6 +389,20 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
+  username?: Maybe<String>;
+  username_not?: Maybe<String>;
+  username_in?: Maybe<String[] | String>;
+  username_not_in?: Maybe<String[] | String>;
+  username_lt?: Maybe<String>;
+  username_lte?: Maybe<String>;
+  username_gt?: Maybe<String>;
+  username_gte?: Maybe<String>;
+  username_contains?: Maybe<String>;
+  username_not_contains?: Maybe<String>;
+  username_starts_with?: Maybe<String>;
+  username_not_starts_with?: Maybe<String>;
+  username_ends_with?: Maybe<String>;
+  username_not_ends_with?: Maybe<String>;
   password?: Maybe<String>;
   password_not?: Maybe<String>;
   password_in?: Maybe<String[] | String>;
@@ -430,6 +446,7 @@ export interface UserWhereInput {
 export interface UserCreateWithoutIsSpeakerInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
+  username?: Maybe<String>;
   password: String;
   name: String;
   favouritedVideos?: Maybe<VideoCreateManyInput>;
@@ -612,6 +629,7 @@ export interface LocationUpdateOneRequiredInput {
 
 export interface UserUpdateInput {
   email?: Maybe<String>;
+  username?: Maybe<String>;
   password?: Maybe<String>;
   name?: Maybe<String>;
   isSpeaker?: Maybe<SpeakerUpdateOneWithoutOwnerInput>;
@@ -636,6 +654,7 @@ export interface LocationUpsertNestedInput {
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
+  username?: Maybe<String>;
   password: String;
   name: String;
   isSpeaker?: Maybe<SpeakerCreateOneWithoutOwnerInput>;
@@ -667,6 +686,7 @@ export interface SpeakerUpdateManyInput {
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   email?: Maybe<String>;
+  username?: Maybe<String>;
 }>;
 
 export interface SpeakerUpsertWithWhereUniqueNestedInput {
@@ -722,6 +742,7 @@ export interface SpeakerUpdateManyDataInput {
 
 export interface UserUpdateWithoutIsSpeakerDataInput {
   email?: Maybe<String>;
+  username?: Maybe<String>;
   password?: Maybe<String>;
   name?: Maybe<String>;
   favouritedVideos?: Maybe<VideoUpdateManyInput>;
@@ -1545,6 +1566,7 @@ export interface SpeakerCreateOneWithoutOwnerInput {
 
 export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
+  username?: Maybe<String>;
   password?: Maybe<String>;
   name?: Maybe<String>;
 }
@@ -1811,6 +1833,7 @@ export interface VideoEdgeSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   email?: String;
+  username?: String;
   password: String;
   name: String;
 }
@@ -1820,6 +1843,7 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
+  username: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
 }
@@ -1829,6 +1853,7 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
 }
@@ -2307,6 +2332,7 @@ export interface SpeakerSubscriptionPayloadSubscription
 export interface User {
   id: ID_Output;
   email?: String;
+  username?: String;
   password: String;
   name: String;
 }
@@ -2314,6 +2340,7 @@ export interface User {
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
+  username: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   isSpeaker: <T = SpeakerPromise>() => T;
@@ -2342,6 +2369,7 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
+  username: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   isSpeaker: <T = SpeakerSubscription>() => T;
@@ -2370,6 +2398,7 @@ export interface UserNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
+  username: () => Promise<String>;
   password: () => Promise<String>;
   name: () => Promise<String>;
   isSpeaker: <T = SpeakerPromise>() => T;
