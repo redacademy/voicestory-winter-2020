@@ -4,6 +4,7 @@ import RootNav from './navigation';
 import {ApolloProvider} from '@apollo/react-hooks';
 import client from '../config/api';
 import Drawer from 'react-native-drawer';
+import {UserContextProvider} from './context/UserContext';
 
 export const DrawerContext = React.createContext();
 
@@ -21,11 +22,13 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <FavesProvider>
-          <NavigationContainer>
-            <RootNav />
-          </NavigationContainer>
-        </FavesProvider>
+        <UserContextProvider>
+          <FavesProvider>
+            <NavigationContainer>
+              <RootNav />
+            </NavigationContainer>
+          </FavesProvider>
+        </UserContextProvider>
       </ApolloProvider>
     );
   }
