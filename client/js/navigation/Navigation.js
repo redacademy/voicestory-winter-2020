@@ -7,15 +7,21 @@ import TicketsScreen from '../screens/Tickets';
 import UserProfileScreen from '../screens/UserProfile';
 import VideosScreen from '../screens/Videos';
 import VideoScreen from '../screens/Video';
+import FavesScreen from '../screens/Faves';
+import VideoPlayer from '../screens/VideoPlayer';
 import SpeakersScreen from '../screens/Speakers';
 import SpeakerScreen from '../screens/SpeakerProfile';
-import ThemeScreen from '../screens/Theme';
+import ThemeScreen from '../screens/Themes';
 import EventInfoScreen from '../screens/EventInfo';
 import TicketInfoScreen from '../screens/TicketInfo';
 import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
 import {Image} from 'react-native';
+import SettingsScreen from '../screens/Settings';
+import AboutUsScreen from '../screens/AboutUs';
+import ContactUsScreen from '../screens/ContactUs';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicy';
 
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -39,7 +45,7 @@ const ExploreStackScreens = props => {
       />
       <ExploreStack.Screen
         name="Theme"
-        component={ThemeScreen}
+        component={VideosScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -51,6 +57,14 @@ const ExploreStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <ExploreStack.Screen
+        name="Now Playing"
+        component={VideoPlayer}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+
       <ExploreStack.Screen
         name="Speakers"
         component={SpeakersScreen}
@@ -105,7 +119,7 @@ const TicketsStackScreens = props => {
         }}
       />
       <TicketsStack.Screen
-        name="TicketInfo"
+        name="Ticket Info"
         component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -142,8 +156,8 @@ const UserProfileStackScreens = props => {
         }}
       />
       <UserProfileStack.Screen
-        name="Fav"
-        component={ThemeScreen}
+        name="Faves"
+        component={FavesScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -153,7 +167,7 @@ const UserProfileStackScreens = props => {
 };
 
 const BottomTabNav = createBottomTabNavigator();
-const BottomTabNavScreens = props => (
+export const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
@@ -218,5 +232,3 @@ const BottomTabNavScreens = props => (
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
   </BottomTabNav.Navigator>
 );
-
-export default BottomTabNavScreens;

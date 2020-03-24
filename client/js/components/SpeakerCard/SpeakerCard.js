@@ -1,20 +1,40 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, View} from 'react-native';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
 
-const SpeakerCard = ({name, style, source}) => {
-  return (
-    <TouchableOpacity style={[styles.button, style]}>
+const SpeakerCard = ({navigation, speaker, style, route}) => {
+  const speakerimg =
+    speaker && speaker.profile_picture
+      ? {uri: speaker.profile_picture}
+      : {uri: 'https://placedog.net/500'};
+  const speakerName =
+    speaker && speaker.owner.name ? speaker.owner.name : 'Name';
+
+  return route?.name === 'Video' ? (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      style={[styles.button, style]}>
       <Image
-        style={{height: '75%', width: '100%'}}
+        style={styles.videoRoute}
         resizeMode={'cover'}
-        source={source}
-        borderTopLeftRadius={10}
-        borderTopRightRadius={10}
+        source={speakerimg}
       />
-      <Text style={styles.label}>{name}</Text>
+      <Text style={styles.label}>{speakerName}</Text>
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      style={[styles.button, style]}>
+      <Image
+        style={styles.otherRoute}
+        resizeMode={'cover'}
+        source={speakerimg}
+      />
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{speakerName}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

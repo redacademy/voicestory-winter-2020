@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  Image,
-  ActivityIndicator,
-} from 'react-native';
+import {View, TouchableHighlight, Image, ActivityIndicator} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import CustomText from '../CustomText';
 import {key} from '../../apiKeys';
 
 class VideoCard extends Component {
@@ -20,10 +14,9 @@ class VideoCard extends Component {
       data: {},
     };
   }
-
   componentDidMount() {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.item.id.videoId}&key=${key}&part=snippet,contentDetails,statistics,status`,
+      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.id}&key=${key}&part=snippet,contentDetails,statistics`,
     )
       .then(resp => resp.json())
       .then(data => this.setState({data, loading: false}))
@@ -33,34 +26,102 @@ class VideoCard extends Component {
       });
   }
 
+  parseSpeakerName = item => {
+    const indexCheck = item.snippet.title.indexOf('|');
+    if (indexCheck !== -1) {
+      const first = item.snippet.title.slice(indexCheck + 1);
+      const second = first.slice(1, first.indexOf('|') - 1);
+      return second;
+    }
+  };
+  parseTitle = item => {
+    return item.snippet.title.slice(0, item.snippet.title.indexOf('|') - 1);
+  };
+
   render() {
-    const {route, navigation, item} = this.props;
+    const {route, navigation, faveIds, id} = this.props;
     const buttonStyle =
-      route.name !== 'Explore' ? styles.largeButton : styles.smallButton;
+      route.name === 'Videos' || route.name === 'Faves'
+        ? styles.largeButton
+        : styles.smallButton;
     const cardStyle =
-      route.name !== 'Explore' ? styles.largeCard : styles.smallCard;
-    const playIcon = route.name !== 'Explore' ? styles.play : styles.centerPlay;
+      route.name === 'Videos' || route.name === 'Faves'
+        ? styles.largeCard
+        : styles.smallCard;
+    const playIcon =
+      route.name === 'Videos' || route.name === 'Faves'
+        ? styles.play
+        : styles.centerPlay;
 
     return this.state.loading ? (
       <ActivityIndicator style={styles.loader} />
     ) : this.state.data.error ? (
       <View style={styles.errorContainer}>
-        <Text>There was an error getting Videos</Text>
+        <CustomText>There was an error getting Videos</CustomText>
       </View>
+    ) : route.name === 'Faves' ? (
+      faveIds.includes(id) && (
+        <TouchableHighlight
+          style={buttonStyle}
+          onPress={() => {
+            navigation.navigate('Video', {video: this.state.data.items[0]});
+          }}
+          underlayColor={'transparent'}>
+          <View style={cardStyle}>
+            <Image
+              source={{
+                uri: this.state.data.items[0].snippet.thumbnails.high.url,
+              }}
+              style={styles.image}
+            />
+            {(route.name === 'Explore' || route.name === 'Video') && (
+              <View
+                style={playIcon}
+                transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
+                <Icon name="play" size={40} color="white" />
+              </View>
+            )}
+            <View style={styles.info}>
+              <View style={styles.timeContainer}>
+                <CustomText style={styles.time}>
+                  {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+                </CustomText>
+                <CustomText style={styles.min}>Mins</CustomText>
+              </View>
+              <View style={styles.titleContainer}>
+                {(route.name === 'Videos' || route.name === 'Faves') && (
+                  <View style={playIcon}>
+                    <Icon name="play" size={50} color="white" />
+                  </View>
+                )}
+                <View>
+                  {(route.name === 'Videos' || route.name === 'Faves') && (
+                    <CustomText style={styles.speaker}>
+                      {this.parseSpeakerName(this.state.data.items[0])}
+                    </CustomText>
+                  )}
+                  <CustomText style={styles.title}>
+                    {this.parseTitle(this.state.data.items[0])}
+                  </CustomText>
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      )
     ) : (
       <TouchableHighlight
         style={buttonStyle}
         onPress={() => {
-          // TODO - navigation to single video
-          // navigation.navigate('Video');
+          navigation.navigate('Video', {video: this.state.data.items[0]});
         }}
         underlayColor={'transparent'}>
         <View style={cardStyle}>
           <Image
-            source={{uri: item.snippet.thumbnails.high.url}}
+            source={{uri: this.state.data.items[0].snippet.thumbnails.high.url}}
             style={styles.image}
           />
-          {route.name === 'Explore' && (
+          {(route.name === 'Explore' || route.name === 'Video') && (
             <View
               style={playIcon}
               transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
@@ -69,20 +130,26 @@ class VideoCard extends Component {
           )}
           <View style={styles.info}>
             <View style={styles.timeContainer}>
-              <Text style={styles.time}>14</Text>
-              <Text style={styles.min}>Mins</Text>
+              <CustomText style={styles.time}>
+                {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+              </CustomText>
+              <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
-              {route.name !== 'Explore' && (
+              {(route.name === 'Videos' || route.name === 'Faves') && (
                 <View style={playIcon}>
                   <Icon name="play" size={50} color="white" />
                 </View>
               )}
               <View>
-                {route.name !== 'Explore' && (
-                  <Text style={styles.speaker}>Birnie McIntosh</Text>
+                {(route.name === 'Videos' || route.name === 'Faves') && (
+                  <CustomText style={styles.speaker}>
+                    {this.parseSpeakerName(this.state.data.items[0])}
+                  </CustomText>
                 )}
-                <Text style={styles.title}>{item.snippet.title}</Text>
+                <CustomText style={styles.title}>
+                  {this.parseTitle(this.state.data.items[0])}
+                </CustomText>
               </View>
             </View>
           </View>

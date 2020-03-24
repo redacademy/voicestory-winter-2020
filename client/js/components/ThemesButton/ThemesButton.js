@@ -4,12 +4,14 @@ import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 
-const ThemesButton = ({theme, style, source}) => {
+const ThemesButton = ({theme, style, source, iconDimension}) => {
   return (
     <TouchableOpacity style={[styles.button, style]}>
       <Image
-        style={{height: 40, width: 40, transform: [{translateY: 10}]}}
+        style={{transform: [{translateY: 10}]}}
         resizeMode={'contain'}
+        height={iconDimension}
+        width={iconDimension}
         source={source}
       />
       <Text style={styles.label}>{theme}</Text>
