@@ -19,6 +19,7 @@ const SearchButton = ({navigation}) => {
       name="magnify"
       color="white"
       size={25}
+      onPress={() => navigation.navigate('Search')}
     />
   );
 };
@@ -73,39 +74,71 @@ const BackButton = ({navigation}) => {
     />
   );
 };
+const CloseButton = ({navigation}) => {
+  return (
+    <Icon
+      style={{
+        marginLeft: 10,
+        marginRight: 10,
+        textShadowOffset: {width: 2, height: 2},
+        textShadowColor: '#9F3833',
+        textShadowRadius: 1,
+      }}
+      name="close"
+      color="white"
+      size={25}
+    />
+  );
+};
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
   return {
     headerBackTitleVisible: false,
-    headerLeft: () => (
-      <>
-        <View style={{flexDirection: 'row'}}>
-          <SearchButton {...props} />
-          {/* <SearchBar /> */}
-        </View>
-        <TopDrawer
-          navigation={props.navigation}
-          ref={ref => {
-            drawerRef = ref;
-          }}
-        />
-      </>
-    ),
+    headerLeft: () => {
+      return props.route.name === 'Explore' ||
+        props.route.name === 'Events' ||
+        props.route.name === 'My Tickets' ||
+        props.route.name === 'Profile' ? (
+        <>
+          <View style={{flexDirection: 'row'}}>
+            <SearchButton {...props} />
+          </View>
+          <TopDrawer
+            navigation={props.navigation}
+            ref={ref => {
+              drawerRef = ref;
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <View style={{flexDirection: 'row'}}>
+            <BackButton navigation={props.navigation} />
+          </View>
+          <TopDrawer
+            navigation={props.navigation}
+            ref={ref => {
+              drawerRef = ref;
+            }}
+          />
+        </>
+      );
+    },
     headerRight: () => {
       return (
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            {drawerRef.state && !drawerRef.state.isOpen ? (
+            {/* {drawerRef.state && !drawerRef.state.isOpen ? ( */}
+            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+              <MeatballButton {...props} />
+            </TouchableOpacity>
+            {/* ) : (
               <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <MeatballButton {...props} />
+                <CloseButton {...props} />
               </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <BackButton {...props} />
-              </TouchableOpacity>
-            )}
+            )} */}
           </View>
         </>
       );
