@@ -9,7 +9,7 @@ const Videos = ({navigation, route}) => {
   return (
     <>
       <FilterTabNav />
-      <VideoList route={route} navigation={navigation} />
+      {/* <VideoList route={route} navigation={navigation} /> */}
     </>
   );
 };

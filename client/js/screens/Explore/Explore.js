@@ -31,41 +31,49 @@ const Explore = ({navigation, route}) => {
             theme="Vulnerability"
             style={styles.themeButton}
             source={require('../../assets/icons/vulnerability.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Love & Relationships"
             style={styles.themeButton}
             source={require('../../assets/icons/heart.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Trauma"
             style={styles.themeButton}
             source={require('../../assets/icons/trauma.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Mental Health"
             style={styles.themeButton}
             source={require('../../assets/icons/mentalhealth.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Abuse"
             style={styles.themeButton}
             source={require('../../assets/icons/abuse.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Miscellaneous"
             style={styles.themeButton}
             source={require('../../assets/icons/misc.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Pain"
             style={styles.themeButton}
             source={require('../../assets/icons/pain.png')}
+            iconDimension={40}
           />
           <ThemesButton
             theme="Growth"
             style={styles.themeButton}
             source={require('../../assets/icons/growth.png')}
+            iconDimension={40}
           />
         </ScrollView>
       </View>

@@ -17,6 +17,7 @@ export default FilterTabNav = props => {
         labelStyle: {
           fontFamily: 'Lato-Bold',
           textTransform: 'none',
+          fontSize: 15,
         },
         indicatorStyle: {
           backgroundColor: '#DB4F48',

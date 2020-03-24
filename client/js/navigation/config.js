@@ -19,7 +19,6 @@ const SearchButton = ({navigation}) => {
       name="magnify"
       color="white"
       size={25}
-      onPress={() => navigation.toggleDrawer()}
     />
   );
 };
@@ -70,15 +69,13 @@ const BackButton = ({navigation}) => {
       name="arrow-left"
       color="white"
       size={25}
-      // onPress={() => navigation.goBack()}
+      onPress={() => navigation.goBack()}
     />
   );
 };
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
-
-  // console.log(drawerRef); // whats the output?
   return {
     headerBackTitleVisible: false,
     headerLeft: () => (
@@ -91,7 +88,6 @@ export const sharedScreenOptions = props => {
           navigation={props.navigation}
           ref={ref => {
             drawerRef = ref;
-            // console.log(drawerRef);
           }}
         />
       </>

@@ -36,9 +36,6 @@ export default class TicketsContainer extends Component {
           if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
           const ownedTickets = data.users.map(user => user.ownedTickets);
-          // const ownedTicket = ownedTickets.map(ownedTicket => ownedTicket);
-          // console.log(ownedTicket);
-
           if (data)
             return (
               <Tickets
