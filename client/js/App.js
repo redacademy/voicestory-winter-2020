@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import RootNav from './navigation';
 import {ApolloProvider} from '@apollo/react-hooks';
 import client from '../config/api';
-import Drawer from 'react-native-drawer';
 import {UserContextProvider} from './context/UserContext';
 
 export const DrawerContext = React.createContext();
