@@ -21,18 +21,21 @@ class VideoCard extends Component {
     const {route, navigation, faveIds, id, video} = this.props;
     const buttonStyle =
       route.name === 'Newest' ||
+      route.name === 'Theme' ||
       route.name === 'Most Viewed' ||
       route.name === 'Faves'
         ? styles.largeButton
         : styles.smallButton;
     const cardStyle =
       route.name === 'Newest' ||
+      route.name === 'Theme' ||
       route.name === 'Most Viewed' ||
       route.name === 'Faves'
         ? styles.largeCard
         : styles.smallCard;
     const playIcon =
       route.name === 'Newest' ||
+      route.name === 'Theme' ||
       route.name === 'Most Viewed' ||
       route.name === 'Faves'
         ? styles.play
@@ -68,6 +71,7 @@ class VideoCard extends Component {
               </View>
               <View style={styles.titleContainer}>
                 {(route.name === 'Newest' ||
+                  route.name === 'Theme' ||
                   route.name === 'Most Viewed' ||
                   route.name === 'Faves') && (
                   <View style={playIcon}>
@@ -76,6 +80,7 @@ class VideoCard extends Component {
                 )}
                 <View>
                   {(route.name === 'Newest' ||
+                    route.name === 'Theme' ||
                     route.name === 'Most Viewed' ||
                     route.name === 'Faves') && (
                     <CustomText style={styles.speaker}>
@@ -119,6 +124,7 @@ class VideoCard extends Component {
             </View>
             <View style={styles.titleContainer}>
               {(route.name === 'Newest' ||
+                route.name === 'Theme' ||
                 route.name === 'Most Viewed' ||
                 route.name === 'Faves') && (
                 <View style={playIcon}>
@@ -127,6 +133,7 @@ class VideoCard extends Component {
               )}
               <View>
                 {(route.name === 'Newest' ||
+                  route.name === 'Theme' ||
                   route.name === 'Most Viewed' ||
                   route.name === 'Faves') && (
                   <CustomText style={styles.speaker}>

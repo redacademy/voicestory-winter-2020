@@ -11,6 +11,7 @@ class YoutubeDataProvider extends Component {
       mostViewed: [],
       videos: [],
       playlists: [],
+      playlistVideos: [],
     };
   }
 
@@ -58,7 +59,26 @@ class YoutubeDataProvider extends Component {
       `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&maxResults=3&key=${key}`,
     )
       .then(resp => resp.json())
-      .then(data => this.setState({playlists: [...data]}))
+      .then(async playlists => {
+        this.setState({playlists});
+        this.state.playlists.items.map(playlist => {
+          fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${playlist.id}&maxResults=3&part=contentDetails&key=${key}`,
+          )
+            .then(resp => resp.json())
+            .then(data => {
+              this.setState({
+                playlistVideos: [
+                  ...this.state.playlistVideos,
+                  {data, id: playlist.id},
+                ],
+              });
+            })
+            .catch(e => {
+              throw new Error(e);
+            });
+        });
+      })
       .catch(e => {
         throw new Error(e);
       });
