@@ -4,22 +4,29 @@ import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 
-const SignUpForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [first_name, setFirst_name] = useState('');
-  const [last_name, setLast_name] = useState('');
-  const formSubmit = () => {
-    console.log(
-      'First:',
-      first_name,
-      'Last: ',
-      last_name,
-      'Email: ',
-      email,
-      'Password',
-      password,
-    );
+const SignUpForm = ({
+  fullName,
+  setFullName,
+  data,
+  error,
+  navigation,
+  signup,
+  password,
+  firstName,
+  lastName,
+  setPassword,
+  setFirst_name,
+  setLast_name,
+  email,
+  setEmail,
+  route,
+}) => {
+  const createFullName = () => {
+    return;
+  };
+  const handleSignUp = () => {
+    createFullName();
+    signup();
   };
   return (
     <>
@@ -30,7 +37,7 @@ const SignUpForm = () => {
             placeholder="First Name"
             placeholderTextColor="white"
             onSubmitEditing={() => {
-              formSubmit();
+              handleSignUp();
             }}
             onChangeText={value => {
               setFirst_name(value);
@@ -41,7 +48,7 @@ const SignUpForm = () => {
             placeholder="Last Name"
             placeholderTextColor="white"
             onSubmitEditing={() => {
-              formSubmit();
+              handleSignUp();
             }}
             onChangeText={value => {
               setLast_name(value);
@@ -52,7 +59,7 @@ const SignUpForm = () => {
             placeholder="Email"
             placeholderTextColor="white"
             onSubmitEditing={() => {
-              formSubmit();
+              handleSignUp();
             }}
             onChangeText={value => {
               setEmail(value);
@@ -64,7 +71,7 @@ const SignUpForm = () => {
             secureTextEntry={true}
             placeholderTextColor="white"
             onSubmitEditing={() => {
-              formSubmit();
+              handleSignUp();
             }}
             onChangeText={value => {
               setPassword(value);
@@ -77,7 +84,7 @@ const SignUpForm = () => {
             titleStyle={styles.title}
             title="Sign Up"
             onPress={() => {
-              formSubmit();
+              handleSignUp();
             }}
           />
         </View>

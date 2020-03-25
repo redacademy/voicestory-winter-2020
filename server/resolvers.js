@@ -12,13 +12,12 @@ const resolvers = {
     }
   },
   Mutation: {
-    register: async (parent, { email, password }, ctx, info) => {
+    register: async (parent, { email, password, name }, ctx, info) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await ctx.prisma.createUser({
         email,
         password: hashedPassword,
-        // TODO Change name to custom
-        name: "Test Name"
+        name
       });
       return user;
     },
