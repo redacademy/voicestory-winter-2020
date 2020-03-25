@@ -1,12 +1,14 @@
 import React, {createContext, Component} from 'react';
 export const YoutubeDataContext = createContext();
 import {key} from '../../apiKeys';
+import moment from 'moment';
+
 class YoutubeDataProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
-      sortedVideos: [],
+      mostViewed: [],
       videos: [],
     };
   }
@@ -17,36 +19,42 @@ class YoutubeDataProvider extends Component {
     )
       .then(resp => resp.json())
       .then(data => {
-        this.setState({data, loading: false});
+        this.setState({data});
 
         this.state.data.items.map(video => {
           fetch(
             `https://www.googleapis.com/youtube/v3/videos?id=${video.id.videoId}&key=${key}&part=snippet,contentDetails,statistics`,
           )
             .then(resp => resp.json())
-            .then(data => {
+            .then(async data => {
               this.setState({videos: [...this.state.videos, data]});
-              this.setState({sortedVideos: [...this.state.videos]});
-              this.state.sortedVideos.sort(
+
+              let sorted = await this.state.videos.sort(
+                (a, b) =>
+                  moment(b.items[0].snippet.publishedAt).format('X') -
+                  moment(a.items[0].snippet.publishedAt).format('X'),
+              );
+              this.setState({videos: sorted});
+
+              this.setState({mostViewed: [...this.state.videos]});
+              let mostViewed = await this.state.mostViewed.sort(
                 (a, b) =>
                   b.items[0].statistics.viewCount -
                   a.items[0].statistics.viewCount,
               );
+              this.setState({mostViewed});
             })
             .catch(e => {
-              this.setState({loading: false, error: true});
               throw new Error(e);
             });
         });
       })
       .catch(e => {
-        this.setState({loading: false, error: true});
         throw new Error(e);
       });
   }
 
   render() {
-    console.log(this.state);
     return (
       <YoutubeDataContext.Provider
         value={{

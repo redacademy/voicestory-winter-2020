@@ -1,65 +1,88 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, ScrollView} from 'react-native';
 import styles from './styles';
 import VideoCard from '../VideoCard';
-import {YoutubeDataContext} from '../../context/YoutubeData';
 
-class VideoList extends Component {
-  render() {
-    console.log(this.props);
-    const {route, navigation, horizontal, offset, faveIds} = this.props;
-    if (route.name === 'Newest') {
-      console.log('newest');
-    }
-    if (route.name === 'Most Viewed') {
-      console.log('most viewed');
-    }
-    return (
-      <YoutubeDataContext.Consumer>
-        {value => (
-          <View style={styles.container}>
-            <ScrollView horizontal={horizontal} contentOffset={{x: offset}}>
-              {route.name === 'Most Viewed'
-                ? value.sortedVideos.map(item => {
-                    <VideoCard
-                      key={item.etag}
-                      route={route}
-                      navigation={navigation}
-                      id={item.items[0].id}
-                      faveIds={faveIds}
-                      video={item.items[0]}
-                    />;
-                  })
-                : value.videos.map(item => {
-                    return route.name === 'Faves' ? (
-                      faveIds.includes(item.items[0].id) && (
-                        <VideoCard
-                          key={item.etag}
-                          route={route}
-                          navigation={navigation}
-                          id={item.items[0].id}
-                          faveIds={faveIds}
-                          video={item.items[0]}
-                        />
-                      )
-                    ) : (
-                      <VideoCard
-                        video={item.items[0]}
-                        key={item.etag}
-                        route={route}
-                        navigation={navigation}
-                        id={item.items[0].id}
-                        faveIds={faveIds}
-                        addMostViewedData={this.addMostViewedData}
-                      />
-                    );
-                  })}
-            </ScrollView>
-          </View>
-        )}
-      </YoutubeDataContext.Consumer>
-    );
-  }
-}
+const VideoList = ({
+  route,
+  navigation,
+  horizontal,
+  offset,
+  faveIds,
+  videos,
+  currentVideo,
+}) => {
+  return (
+    <View style={styles.container}>
+      <ScrollView horizontal={horizontal} contentOffset={{x: offset, y: 0}}>
+        {route.name === 'Most Viewed' &&
+          videos.map(item => (
+            <VideoCard
+              key={item.etag}
+              route={route}
+              navigation={navigation}
+              id={item.items[0].id}
+              faveIds={faveIds}
+              video={item.items[0]}
+            />
+          ))}
+
+        {route.name === 'Newest' &&
+          videos.map(item => (
+            <VideoCard
+              key={item.etag}
+              route={route}
+              navigation={navigation}
+              id={item.items[0].id}
+              faveIds={faveIds}
+              video={item.items[0]}
+            />
+          ))}
+
+        {route.name === 'Faves' &&
+          videos.map(
+            item =>
+              faveIds.includes(item.items[0].id) && (
+                <VideoCard
+                  key={item.etag}
+                  route={route}
+                  navigation={navigation}
+                  id={item.items[0].id}
+                  faveIds={faveIds}
+                  video={item.items[0]}
+                />
+              ),
+          )}
+
+        {route.name === 'Explore' &&
+          videos.map(item => (
+            <VideoCard
+              video={item.items[0]}
+              key={item.etag}
+              route={route}
+              navigation={navigation}
+              id={item.items[0].id}
+              faveIds={faveIds}
+            />
+          ))}
+
+        {route.name === 'Video' &&
+          videos.map(
+            item =>
+              item.items[0].id !== currentVideo && (
+                <VideoCard
+                  video={item.items[0]}
+                  key={item.etag}
+                  route={route}
+                  navigation={navigation}
+                  id={item.items[0].id}
+                  faveIds={faveIds}
+                />
+              ),
+          )}
+      </ScrollView>
+    </View>
+  );
+};
 
 export default VideoList;

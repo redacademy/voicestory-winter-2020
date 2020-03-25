@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
-
+import {YoutubeDataContext} from '../../context/YoutubeData';
 const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
   const onShare = async video => {
     try {
@@ -48,108 +48,116 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
     return `${mins}:${secs}`;
   };
   return (
-    <ScrollView>
-      <View style={styles.root}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Now Playing', {item: video});
-          }}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{uri: video.snippet.thumbnails.high.url}}
-            />
-          </View>
-          <View style={styles.play}>
-            <Icon name="play" size={55} color="rgb(255,255,255)" />
-          </View>
-        </TouchableOpacity>
-        <View style={styles.info}>
-          <CustomText style={styles.speakerName}>
-            {parseSpeakerName(video)}
-          </CustomText>
-          <CustomText style={styles.videoTitle}>{parseTitle(video)}</CustomText>
-          <View style={styles.videoActions}>
-            <CustomText style={styles.videoLength}>
-              {parseDuration(video.contentDetails.duration)}
-            </CustomText>
-            <View style={styles.divider}></View>
-
-            {faveIds.includes(video.id) ? (
-              <TouchableOpacity
-                onPress={() => {
-                  removeFave(video.id);
-                }}>
-                <Icon
-                  style={styles.icon}
-                  name="heart"
-                  size={18}
-                  color="#db4f48"
-                />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() => {
-                  addFave(video.id);
-                }}>
-                <Icon
-                  style={styles.icon}
-                  name="heart-outline"
-                  size={18}
-                  color="#db4f48"
-                />
-              </TouchableOpacity>
-            )}
-
-            <TouchableOpacity onPress={() => {}}>
-              <Icon
-                style={styles.icon}
-                name="download-outline"
-                size={18}
-                color="#2f9e99"
-              />
-            </TouchableOpacity>
+    <YoutubeDataContext.Consumer>
+      {value => (
+        <ScrollView>
+          <View style={styles.root}>
             <TouchableOpacity
               onPress={() => {
-                onShare(video);
+                navigation.navigate('Now Playing', {item: video});
               }}>
-              <Icon
-                style={styles.icon}
-                name="share-variant"
-                size={18}
-                color="#507ea2"
-              />
+              <View style={styles.imageContainer}>
+                <Image
+                  style={styles.image}
+                  source={{uri: video.snippet.thumbnails.high.url}}
+                />
+              </View>
+              <View style={styles.play}>
+                <Icon name="play" size={55} color="rgb(255,255,255)" />
+              </View>
             </TouchableOpacity>
+            <View style={styles.info}>
+              <CustomText style={styles.speakerName}>
+                {parseSpeakerName(video)}
+              </CustomText>
+              <CustomText style={styles.videoTitle}>
+                {parseTitle(video)}
+              </CustomText>
+              <View style={styles.videoActions}>
+                <CustomText style={styles.videoLength}>
+                  {parseDuration(video.contentDetails.duration)}
+                </CustomText>
+                <View style={styles.divider}></View>
+
+                {faveIds.includes(video.id) ? (
+                  <TouchableOpacity
+                    onPress={() => {
+                      removeFave(video.id);
+                    }}>
+                    <Icon
+                      style={styles.icon}
+                      name="heart"
+                      size={18}
+                      color="#db4f48"
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => {
+                      addFave(video.id);
+                    }}>
+                    <Icon
+                      style={styles.icon}
+                      name="heart-outline"
+                      size={18}
+                      color="#db4f48"
+                    />
+                  </TouchableOpacity>
+                )}
+
+                <TouchableOpacity onPress={() => {}}>
+                  <Icon
+                    style={styles.icon}
+                    name="download-outline"
+                    size={18}
+                    color="#2f9e99"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    onShare(video);
+                  }}>
+                  <Icon
+                    style={styles.icon}
+                    name="share-variant"
+                    size={18}
+                    color="#507ea2"
+                  />
+                </TouchableOpacity>
+              </View>
+              <CustomText style={styles.description}>
+                {video.snippet.description}
+              </CustomText>
+            </View>
           </View>
-          <CustomText style={styles.description}>
-            {video.snippet.description}
-          </CustomText>
-        </View>
-      </View>
-      <View style={styles.externalLinks}>
-        <View style={styles.speakerContainer}>
-          <CustomText style={styles.title}>About The Speaker</CustomText>
-          <View style={styles.speakerCardContainer}>
-            {/* TODO - integrate actual speakers */}
-            <SpeakerCard
-              style={styles.speakerCard}
-              name="Ivan Dai"
-              source={require('../../assets/images/winstonatstage.jpg')}
-              route={route}
-            />
+          <View style={styles.externalLinks}>
+            <View style={styles.speakerContainer}>
+              <CustomText style={styles.title}>About The Speaker</CustomText>
+              <View style={styles.speakerCardContainer}>
+                {/* TODO - integrate actual speakers */}
+                <SpeakerCard
+                  style={styles.speakerCard}
+                  name="Ivan Dai"
+                  source={require('../../assets/images/winstonatstage.jpg')}
+                  route={route}
+                />
+              </View>
+              <CustomText style={styles.title}>Watch Next</CustomText>
+            </View>
+            <View style={styles.watchNextContainer}>
+              <VideoList
+                route={route}
+                navigation={navigation}
+                horizontal={true}
+                offset={-25}
+                videos={value.videos}
+                currentVideo={video.id}
+              />
+            </View>
           </View>
-          <CustomText style={styles.title}>Watch Next</CustomText>
-        </View>
-        <View style={styles.watchNextContainer}>
-          <VideoList
-            route={route}
-            navigation={navigation}
-            horizontal={true}
-            offset={-20}
-          />
-        </View>
-      </View>
-    </ScrollView>
+        </ScrollView>
+      )}
+    </YoutubeDataContext.Consumer>
   );
 };
 
