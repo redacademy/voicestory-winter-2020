@@ -24,7 +24,11 @@ class TopDrawer extends Component {
       },
     };
   }
-
+  componentDidUpdate(prevProps) {
+    if (this.props.userID !== prevProps.userID) {
+      this.fetchData(this.props.userID);
+    }
+  }
   render() {
     const navigation = this.props.navigation;
 

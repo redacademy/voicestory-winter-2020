@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useReducer, useState} from 'react';
 import {Image, View, TouchableOpacity} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import Button from '../../components/Button/';

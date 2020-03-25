@@ -130,15 +130,15 @@ export const sharedScreenOptions = props => {
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            {/* {drawerRef.state && !drawerRef.state.isOpen ? ( */}
-            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-              <MeatballButton {...props} />
-            </TouchableOpacity>
-            {/* ) : (
+            {drawerRef.state && !drawerRef.state.isOpen ? (
+              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+                <MeatballButton {...props} />
+              </TouchableOpacity>
+            ) : (
               <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
                 <CloseButton {...props} />
               </TouchableOpacity>
-            )} */}
+            )}
           </View>
         </>
       );

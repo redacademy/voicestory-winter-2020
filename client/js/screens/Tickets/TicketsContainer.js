@@ -4,10 +4,12 @@ import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import Loader from '../../components/Loader';
+import {UserContext} from '../../context/UserContext';
 
 const OWNED_TICKETS = gql`
   {
     users {
+      id
       ownedTickets {
         title
         description
@@ -28,6 +30,7 @@ const OWNED_TICKETS = gql`
     }
   }
 `;
+
 export default class TicketsContainer extends Component {
   render() {
     return (
@@ -35,13 +38,24 @@ export default class TicketsContainer extends Component {
         {({loading, error, data}) => {
           if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
-          const ownedTickets = data.users.map(user => user.ownedTickets);
           if (data)
             return (
-              <Tickets
-                tickets={ownedTickets}
-                navigation={this.props.navigation}
-              />
+              <UserContext.Consumer>
+                {({user}) => {
+                  const currentUser = user;
+
+                  const ticketOwner = data.users.filter(user =>
+                    currentUser.id.includes(user.id),
+                  );
+                  return (
+                    <Tickets
+                      ticketOwner={ticketOwner}
+                      navigation={this.props.navigation}
+                      route={this.props.route}
+                    />
+                  );
+                }}
+              </UserContext.Consumer>
             );
         }}
       </Query>
