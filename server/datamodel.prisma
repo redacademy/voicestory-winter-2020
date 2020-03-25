@@ -29,12 +29,6 @@ type Speaker {
   videos: [Video]! 
 }
 
-type Location {
-  id: ID! @id
-  latitude: Float!
-  longitude: Float!
-}
-
 type Event {
   id: ID! @id
   title: String!
@@ -44,7 +38,6 @@ type Event {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: Location! 
   price: Float
   maxTickets: Int!
   soldTickets: Int @default(value: 0)
