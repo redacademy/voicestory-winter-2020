@@ -6,21 +6,22 @@ import styles from './styles';
 import EventCard from '../../components/EventCard';
 
 const Tickets = ({navigation, route, ticketOwner}) => {
-  console.log(ticketOwner);
   return (
     <ScrollView style={styles.scrollview}>
       <View style={styles.main}>
-        {ticketOwner[0].ownedTickets.map(ownedTicket => (
-          <EventCard
-            title={ownedTicket.title}
-            location={ownedTicket.location_name}
-            address={ownedTicket.location_address}
-            time={ownedTicket.time}
-            navigation={navigation}
-            route={route}
-            ticket={ownedTicket}
-          />
-        ))}
+        {ticketOwner[0].ownedTickets &&
+          ticketOwner[0].ownedTickets.map(ownedTicket => (
+            <EventCard
+              key={ownedTicket}
+              title={ownedTicket.title}
+              location={ownedTicket.location_name}
+              address={ownedTicket.location_address}
+              time={ownedTicket.time}
+              navigation={navigation}
+              route={route}
+              ownedTicket={ownedTicket}
+            />
+          ))}
       </View>
     </ScrollView>
   );

@@ -15,9 +15,6 @@ const ALL_EVENTS = gql`
       location_address
       date
       time
-      location {
-        id
-      }
       price
       maxTickets
       soldTickets

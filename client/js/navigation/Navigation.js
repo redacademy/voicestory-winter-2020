@@ -92,7 +92,7 @@ const EventsStackScreens = props => {
         }}
       />
       <EventsStack.Screen
-        name="EventInfo"
+        name="Event Info"
         component={EventInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',

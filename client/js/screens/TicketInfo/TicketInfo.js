@@ -6,7 +6,8 @@ import styles from './styles';
 import SpeakerCard from '../../components/SpeakerCard';
 import {ScrollView} from 'react-native-gesture-handler';
 
-const TicketInfo = ({navigation}) => {
+const TicketInfo = ({ownedTicket, navigation}) => {
+  console.group(ownedTicket);
   return (
     <>
       <ScrollView style={styles.ticket}>

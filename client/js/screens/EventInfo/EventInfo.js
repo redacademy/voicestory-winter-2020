@@ -7,6 +7,7 @@ import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 
 const EventInfo = ({event, navigation}) => {
+  console.log(event);
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}

@@ -11,6 +11,7 @@ const EventCard = ({
   time,
   date,
   event,
+  ownedTicket,
   navigation,
   route,
 }) => {
@@ -18,18 +19,17 @@ const EventCard = ({
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
       : {uri: 'https://placedog.net/500'};
-  console.log(route);
+  const ticketimg =
+    ownedTicket && ownedTicket.thumbnail_url
+      ? {uri: ownedTicket.thumbnail_url}
+      : {uri: 'https://placedog.net/500'};
+  console.log(ownedTicket);
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.push(
-          route.name === 'Events' ? 'EventInfo' : 'My Tickets',
-          route.name === 'Events'
-            ? {
-                event: event,
-              }
-            : {ticket: ticket},
-        )
+        route.name === 'Events'
+          ? navigation.navigate('Event Info', {event: event})
+          : navigation.navigate('Ticket Info', {ownedTicket: ownedTicket})
       }
       style={styles.card}>
       <View style={styles.contentbox}>
@@ -47,7 +47,10 @@ const EventCard = ({
             <Text style={styles.text}>{address}</Text>
           </View>
         </View>
-        <Image style={styles.image} source={eventimg} />
+        <Image
+          style={styles.image}
+          source={route.name === 'Events' ? eventimg : ticketimg}
+        />
       </View>
     </TouchableOpacity>
   );

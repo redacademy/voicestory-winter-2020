@@ -11,6 +11,7 @@ const OWNED_TICKETS = gql`
     users {
       id
       ownedTickets {
+        id
         title
         description
         date
@@ -18,11 +19,6 @@ const OWNED_TICKETS = gql`
         price
         location_name
         location_address
-        location {
-          id
-          latitude
-          longitude
-        }
         speakers {
           id
         }
