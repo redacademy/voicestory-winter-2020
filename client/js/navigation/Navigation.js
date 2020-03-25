@@ -98,6 +98,13 @@ const EventsStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <ExploreStack.Screen
+        name="SpeakerProfile"
+        component={SpeakerScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </EventsStack.Navigator>
   );
 };
