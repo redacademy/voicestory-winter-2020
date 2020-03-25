@@ -13,6 +13,8 @@ const ALL_EVENTS = gql`
       thumbnail_url
       location_name
       location_address
+      date
+      time
       location {
         id
       }
