@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Light',
   },
   button: {
+    marginTop: 35,
+    marginLeft: 30,
+    marginRight: 30,
     alignSelf: 'center',
     justifyContent: 'center',
     flex: 1,

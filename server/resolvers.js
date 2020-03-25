@@ -17,6 +17,7 @@ const resolvers = {
       const user = await ctx.prisma.createUser({
         email,
         password: hashedPassword,
+        // TODO Change name to custom
         name: "Test Name"
       });
       return user;

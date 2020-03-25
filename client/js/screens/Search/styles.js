@@ -5,12 +5,13 @@ const styles = StyleSheet.create({
     color: '#FBF7EF',
     fontSize: 18,
     fontFamily: 'Lato-Bold',
-    alignSelf: 'center',
-    transform: [{translateY: -10}],
+    flex: 2,
+    textAlign: 'center',
+    transform: [{translateX: 20}, {translateY: 25}],
   },
   headerContainer: {
     backgroundColor: '#DB4F48',
-    height: 100,
+    flexDirection: 'row',
   },
   heading: {
     color: '#FBF7EF',
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
   },
   close: {
-    marginLeft: 15,
+    marginRight: 20,
   },
   border: {
     borderBottomColor: '#DB4F48',

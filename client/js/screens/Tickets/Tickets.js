@@ -5,7 +5,6 @@ import EventCard from '../../components/EventCard';
 import styles from './styles';
 
 const Tickets = ({navigation, tickets}) => {
-  // console.log(tickets);
   return (
     <>
       <TouchableOpacity onPress={() => navigation.navigate('Ticket Info')}>
