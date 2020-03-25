@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
+import {UserContext} from '../../context/UserContext';
 
 const SignUpForm = ({
   fullName,
@@ -21,13 +22,21 @@ const SignUpForm = ({
   setEmail,
   route,
 }) => {
-  const createFullName = () => {
-    return;
+  const {setUser} = useContext(UserContext);
+  const createFullName = async () => {
+    await setFullName(firstName + ' ' + lastName);
   };
-  const handleSignUp = () => {
-    createFullName();
+  const handleSignUp = async () => {
+    await createFullName();
     signup();
+    console.log(data);
   };
+  useEffect(() => {
+    if (data) {
+      setUser(data.register);
+      navigation.navigate('Main');
+    }
+  }, [data]);
   return (
     <>
       <KeyboardAvoidingView style={styles.form} behavior="position">
