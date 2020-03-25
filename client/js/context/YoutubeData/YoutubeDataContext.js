@@ -10,6 +10,7 @@ class YoutubeDataProvider extends Component {
       data: {},
       mostViewed: [],
       videos: [],
+      playlists: [],
     };
   }
 
@@ -49,6 +50,15 @@ class YoutubeDataProvider extends Component {
             });
         });
       })
+      .catch(e => {
+        throw new Error(e);
+      });
+
+    fetch(
+      `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UCNaiQ7SzX7OQGxi2Kcho_aQ&maxResults=3&key=${key}`,
+    )
+      .then(resp => resp.json())
+      .then(data => this.setState({playlists: [...data]}))
       .catch(e => {
         throw new Error(e);
       });
