@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  modal: {
+    height: 350,
+    width: 350,
+  },
 });
 
 export default styles;

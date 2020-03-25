@@ -1,12 +1,16 @@
-import React from 'react';
-import {TouchableOpacity, View, Image, ScrollView} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {TouchableOpacity, View, Image, ScrollView, Modal} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
+import {UserContext} from '../../context/UserContext';
 
 const EventInfo = ({event, navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const {user} = useContext(UserContext);
+
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
@@ -32,6 +36,24 @@ const EventInfo = ({event, navigation}) => {
   return (
     <View style={styles.eventcontainer}>
       <ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={styles.modal}>
+            <Text>Testing testing</Text>
+            <TouchableOpacity
+              style={{...styles.openButton, backgroundColor: '#2196F3'}}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
         <Image style={styles.headerimg} source={hero} />
         <View style={styles.details}>
           <View style={styles.infobox}>
@@ -98,8 +120,11 @@ const EventInfo = ({event, navigation}) => {
             </ScrollView>
           </View>
         </View>
-        <TouchableOpacity style={styles.buyticketbtn}>
-          {/* not linked yet */}
+        <TouchableOpacity
+          style={styles.buyticketbtn}
+          onPress={() => {
+            setModalVisible(true);
+          }}>
           <Text style={styles.buytext}>Get Tickets</Text>
         </TouchableOpacity>
       </ScrollView>
