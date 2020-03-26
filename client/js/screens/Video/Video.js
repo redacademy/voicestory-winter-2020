@@ -1,5 +1,12 @@
 import React from 'react';
-import {TouchableOpacity, View, Image, ScrollView, Share} from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+  Share,
+  Animated,
+} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from '../../components/CustomText';
@@ -7,6 +14,32 @@ import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 import {YoutubeDataContext} from '../../context/YoutubeData';
 const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
+  // const [animate, setAnimate] = React.useState(false);
+  const [text, setText] = React.useState(false);
+  const yPositionAnimation = React.useRef(new Animated.Value(-50)).current;
+
+  const moveIn = () => {
+    Animated.timing(yPositionAnimation, {
+      toValue: 0,
+      duration: 600,
+    }).start();
+  };
+
+  const moveOut = () => {
+    Animated.timing(yPositionAnimation, {
+      toValue: -50,
+      duration: 600,
+    }).start();
+  };
+  const animate = () => {
+    setText(!text);
+
+    moveIn();
+    setTimeout(() => {
+      moveOut();
+    }, 2000);
+  };
+
   const onShare = async video => {
     try {
       const result = await Share.share({
@@ -52,6 +85,17 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
       {value => (
         <ScrollView>
           <View style={styles.root}>
+            {
+              <Animated.View
+                style={[styles.addedToFaves, {top: yPositionAnimation}]}>
+                <Image
+                  source={require('../../assets/icons/whiteHeart-x1.png')}
+                />
+                <CustomText style={styles.addText}>
+                  {text ? 'Added to' : 'Removed from'} favourites
+                </CustomText>
+              </Animated.View>
+            }
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('Now Playing', {item: video});
@@ -82,6 +126,7 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
                 {faveIds.includes(video.id) ? (
                   <TouchableOpacity
                     onPress={() => {
+                      animate();
                       removeFave(video.id);
                     }}>
                     <Icon
@@ -94,6 +139,7 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
                 ) : (
                   <TouchableOpacity
                     onPress={() => {
+                      animate();
                       addFave(video.id);
                     }}>
                     <Icon
@@ -140,6 +186,7 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
                   name="Ivan Dai"
                   source={require('../../assets/images/winstonatstage.jpg')}
                   route={route}
+                  navigation={navigation}
                 />
               </View>
               <CustomText style={styles.title}>Watch Next</CustomText>

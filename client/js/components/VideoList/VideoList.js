@@ -10,6 +10,7 @@ const VideoList = ({
   offset,
   faveIds,
   videos,
+  currentVideo,
 }) => {
   return (
     <View style={styles.container}>
