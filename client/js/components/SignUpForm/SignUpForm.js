@@ -17,6 +17,8 @@ const SignUpForm = ({
   setFirst_name,
   setLast_name,
   setEmail,
+  email,
+  password,
   route,
 }) => {
   const {setUser} = useContext(UserContext);
@@ -34,67 +36,74 @@ const SignUpForm = ({
     }
   }, [data]);
   return (
-    <>
-      <KeyboardAvoidingView style={styles.form} behavior="position">
-        <View style={styles.formcontent}>
-          <TextInput
-            style={styles.textinput}
-            placeholder="First Name"
-            placeholderTextColor="white"
-            onSubmitEditing={() => {
-              handleSignUp();
-            }}
-            onChangeText={value => {
-              setFirst_name(value);
-            }}
-          />
-          <TextInput
-            style={styles.textinput}
-            placeholder="Last Name"
-            placeholderTextColor="white"
-            onSubmitEditing={() => {
-              handleSignUp();
-            }}
-            onChangeText={value => {
-              setLast_name(value);
-            }}
-          />
-          <TextInput
-            style={styles.textinput}
-            placeholder="Email"
-            placeholderTextColor="white"
-            onSubmitEditing={() => {
-              handleSignUp();
-            }}
-            onChangeText={value => {
-              setEmail(value);
-            }}
-          />
-          <TextInput
-            style={styles.textinput}
-            placeholder="Password"
-            secureTextEntry={true}
-            placeholderTextColor="white"
-            onSubmitEditing={() => {
-              handleSignUp();
-            }}
-            onChangeText={value => {
-              setPassword(value);
-            }}
-          />
-        </View>
-        <View style={styles.buttonbox}>
-          <Button
-            buttonStyle={styles.button}
-            titleStyle={styles.title}
-            title="Sign Up"
-            onPress={() => {
-              handleSignUp();
-            }}
-          />
-        </View>
-      </KeyboardAvoidingView>
-    </>
+    <KeyboardAvoidingView style={styles.form} behavior="position">
+      <View style={styles.formcontent}>
+        <TextInput
+          style={styles.textinput}
+          value={firstName}
+          autoCompleteType="name"
+          placeholder="First Name"
+          placeholderTextColor="white"
+          onSubmitEditing={() => {
+            handleSignUp();
+          }}
+          onChangeText={value => {
+            setFirst_name(value);
+          }}
+        />
+        <TextInput
+          autoCompleteType="name"
+          style={styles.textinput}
+          value={lastName}
+          placeholder="Last Name"
+          placeholderTextColor="white"
+          onSubmitEditing={() => {
+            handleSignUp();
+          }}
+          onChangeText={value => {
+            setLast_name(value);
+          }}
+        />
+        <TextInput
+          autoCompleteType="email"
+          style={styles.textinput}
+          value={email}
+          placeholder="Email"
+          placeholderTextColor="white"
+          onSubmitEditing={() => {
+            handleSignUp();
+          }}
+          onChangeText={value => {
+            setEmail(value);
+          }}
+        />
+        <TextInput
+          autoCompleteType="password"
+          style={styles.textinput}
+          value={password}
+          placeholder="Password"
+          secureTextEntry={true}
+          textContentType="newPassword"
+          placeholderTextColor="white"
+          onSubmitEditing={() => {
+            handleSignUp();
+          }}
+          onChangeText={value => {
+            setPassword(value);
+          }}
+        />
+      </View>
+      <View style={styles.buttonbox}>
+        <Button
+          buttonStyle={styles.button}
+          titleStyle={styles.title}
+          title="Sign Up"
+          onPress={() => {
+            handleSignUp();
+          }}
+        />
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
