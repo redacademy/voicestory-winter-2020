@@ -13,10 +13,18 @@ import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 import {YoutubeDataContext} from '../../context/YoutubeData';
-const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
-  // const [animate, setAnimate] = React.useState(false);
+const Video = ({
+  route,
+  navigation,
+  video,
+  faveIds,
+  addFave,
+  removeFave,
+  users,
+}) => {
   const [text, setText] = React.useState(false);
   const yPositionAnimation = React.useRef(new Animated.Value(-50)).current;
+  const fadeAnimation = React.useRef(new Animated.Value(0)).current;
 
   const moveIn = () => {
     Animated.timing(yPositionAnimation, {
@@ -31,11 +39,28 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
       duration: 600,
     }).start();
   };
+  const fadeIn = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 1,
+      duration: 600,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 0,
+      duration: 600,
+    }).start();
+  };
+
   const animate = () => {
     setText(!text);
 
+    fadeIn();
     moveIn();
+
     setTimeout(() => {
+      fadeOut();
       moveOut();
     }, 2000);
   };
@@ -80,6 +105,23 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
     }
     return `${mins}:${secs}`;
   };
+
+  let speakerList;
+  const findIndividualSpeaker = () => {
+    const speakers = [];
+    const speakerNames = parseSpeakerName(video);
+    if (speakerNames.includes('&')) {
+      speakers.push(speakerNames.slice(0, speakerNames.indexOf('&') - 1));
+      speakers.push(speakerNames.slice(speakerNames.indexOf('&') + 2));
+    }
+
+    speakers.map(speaker => {
+      speakerList = users.filter(user => user.name === speaker);
+    });
+  };
+
+  findIndividualSpeaker();
+  console.log(speakerList);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -87,7 +129,10 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
           <View style={styles.root}>
             {
               <Animated.View
-                style={[styles.addedToFaves, {top: yPositionAnimation}]}>
+                style={[
+                  styles.addedToFaves,
+                  {top: yPositionAnimation, opacity: fadeAnimation},
+                ]}>
                 <Image
                   source={require('../../assets/icons/whiteHeart-x1.png')}
                 />
@@ -178,17 +223,24 @@ const Video = ({route, navigation, video, faveIds, addFave, removeFave}) => {
           </View>
           <View style={styles.externalLinks}>
             <View style={styles.speakerContainer}>
-              <CustomText style={styles.title}>About The Speaker</CustomText>
-              <View style={styles.speakerCardContainer}>
-                {/* TODO - integrate actual speakers */}
-                <SpeakerCard
-                  style={styles.speakerCard}
-                  name="Ivan Dai"
-                  source={require('../../assets/images/winstonatstage.jpg')}
-                  route={route}
-                  navigation={navigation}
-                />
-              </View>
+              {speakerList.length > 0 &&
+                speakerList.map(speaker => (
+                  <>
+                    <CustomText style={styles.title}>
+                      About The Speaker
+                    </CustomText>
+                    <View style={styles.speakerCardContainer}>
+                      <SpeakerCard
+                        style={styles.speakerCard}
+                        name={speaker.name}
+                        source={speaker.isSpeaker.profile_picture}
+                        route={route}
+                        navigation={navigation}
+                      />
+                    </View>
+                  </>
+                ))}
+
               <CustomText style={styles.title}>Watch Next</CustomText>
             </View>
             <View style={styles.watchNextContainer}>
