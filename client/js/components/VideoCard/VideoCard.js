@@ -1,31 +1,10 @@
 import React, {Component} from 'react';
-import {View, TouchableHighlight, Image, ActivityIndicator} from 'react-native';
+import {View, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from '../CustomText';
-import {key} from '../../apiKeys';
 
 class VideoCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      error: false,
-      data: {},
-    };
-  }
-  componentDidMount() {
-    fetch(
-      `https://www.googleapis.com/youtube/v3/videos?id=${this.props.id}&key=${key}&part=snippet,contentDetails,statistics`,
-    )
-      .then(resp => resp.json())
-      .then(data => this.setState({data, loading: false}))
-      .catch(e => {
-        this.setState({loading: false, error: true});
-        throw new Error(e);
-      });
-  }
-
   parseSpeakerName = item => {
     const indexCheck = item.snippet.title.indexOf('|');
     if (indexCheck !== -1) {
@@ -39,38 +18,40 @@ class VideoCard extends Component {
   };
 
   render() {
-    const {route, navigation, faveIds, id} = this.props;
+    const {route, navigation, faveIds, id, video} = this.props;
     const buttonStyle =
-      route.name === 'Videos' || route.name === 'Faves'
+      route.name === 'Newest' ||
+      route.name === 'Theme' ||
+      route.name === 'Most Viewed' ||
+      route.name === 'Faves'
         ? styles.largeButton
         : styles.smallButton;
     const cardStyle =
-      route.name === 'Videos' || route.name === 'Faves'
+      route.name === 'Newest' ||
+      route.name === 'Theme' ||
+      route.name === 'Most Viewed' ||
+      route.name === 'Faves'
         ? styles.largeCard
         : styles.smallCard;
     const playIcon =
-      route.name === 'Videos' || route.name === 'Faves'
+      route.name === 'Newest' ||
+      route.name === 'Theme' ||
+      route.name === 'Most Viewed' ||
+      route.name === 'Faves'
         ? styles.play
         : styles.centerPlay;
-
-    return this.state.loading ? (
-      <ActivityIndicator style={styles.loader} />
-    ) : this.state.data.error ? (
-      <View style={styles.errorContainer}>
-        <CustomText>There was an error getting Videos</CustomText>
-      </View>
-    ) : route.name === 'Faves' ? (
+    return route.name === 'Faves' ? (
       faveIds.includes(id) && (
         <TouchableHighlight
           style={buttonStyle}
           onPress={() => {
-            navigation.navigate('Video', {video: this.state.data.items[0]});
+            navigation.navigate('Video', {video: video});
           }}
           underlayColor={'transparent'}>
           <View style={cardStyle}>
             <Image
               source={{
-                uri: this.state.data.items[0].snippet.thumbnails.high.url,
+                uri: video.snippet.thumbnails.high.url,
               }}
               style={styles.image}
             />
@@ -84,24 +65,30 @@ class VideoCard extends Component {
             <View style={styles.info}>
               <View style={styles.timeContainer}>
                 <CustomText style={styles.time}>
-                  {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+                  {video.contentDetails.duration.slice(2, 4)}
                 </CustomText>
                 <CustomText style={styles.min}>Mins</CustomText>
               </View>
               <View style={styles.titleContainer}>
-                {(route.name === 'Videos' || route.name === 'Faves') && (
+                {(route.name === 'Newest' ||
+                  route.name === 'Theme' ||
+                  route.name === 'Most Viewed' ||
+                  route.name === 'Faves') && (
                   <View style={playIcon}>
                     <Icon name="play" size={50} color="white" />
                   </View>
                 )}
                 <View>
-                  {(route.name === 'Videos' || route.name === 'Faves') && (
+                  {(route.name === 'Newest' ||
+                    route.name === 'Theme' ||
+                    route.name === 'Most Viewed' ||
+                    route.name === 'Faves') && (
                     <CustomText style={styles.speaker}>
-                      {this.parseSpeakerName(this.state.data.items[0])}
+                      {this.parseSpeakerName(video)}
                     </CustomText>
                   )}
                   <CustomText style={styles.title}>
-                    {this.parseTitle(this.state.data.items[0])}
+                    {this.parseTitle(video)}
                   </CustomText>
                 </View>
               </View>
@@ -113,12 +100,12 @@ class VideoCard extends Component {
       <TouchableHighlight
         style={buttonStyle}
         onPress={() => {
-          navigation.navigate('Video', {video: this.state.data.items[0]});
+          navigation.navigate('Video', {video: video});
         }}
         underlayColor={'transparent'}>
         <View style={cardStyle}>
           <Image
-            source={{uri: this.state.data.items[0].snippet.thumbnails.high.url}}
+            source={{uri: video.snippet.thumbnails.high.url}}
             style={styles.image}
           />
           {(route.name === 'Explore' || route.name === 'Video') && (
@@ -131,24 +118,30 @@ class VideoCard extends Component {
           <View style={styles.info}>
             <View style={styles.timeContainer}>
               <CustomText style={styles.time}>
-                {this.state.data.items[0].contentDetails.duration.slice(2, 4)}
+                {video.contentDetails.duration.slice(2, 4)}
               </CustomText>
               <CustomText style={styles.min}>Mins</CustomText>
             </View>
             <View style={styles.titleContainer}>
-              {(route.name === 'Videos' || route.name === 'Faves') && (
+              {(route.name === 'Newest' ||
+                route.name === 'Theme' ||
+                route.name === 'Most Viewed' ||
+                route.name === 'Faves') && (
                 <View style={playIcon}>
                   <Icon name="play" size={50} color="white" />
                 </View>
               )}
               <View>
-                {(route.name === 'Videos' || route.name === 'Faves') && (
+                {(route.name === 'Newest' ||
+                  route.name === 'Theme' ||
+                  route.name === 'Most Viewed' ||
+                  route.name === 'Faves') && (
                   <CustomText style={styles.speaker}>
-                    {this.parseSpeakerName(this.state.data.items[0])}
+                    {this.parseSpeakerName(video)}
                   </CustomText>
                 )}
                 <CustomText style={styles.title}>
-                  {this.parseTitle(this.state.data.items[0])}
+                  {this.parseTitle(video)}
                 </CustomText>
               </View>
             </View>
