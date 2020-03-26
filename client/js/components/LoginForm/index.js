@@ -1,3 +1,3 @@
-import LoginForm from './LoginForm';
+import LoginFormMutation from './LoginFormMutation';
 
-export default LoginForm;
+export default LoginFormMutation;

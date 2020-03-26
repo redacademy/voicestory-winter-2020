@@ -12,18 +12,17 @@ const resolvers = {
     }
   },
   Mutation: {
-    register: async (parent, { username, password }, ctx, info) => {
+    register: async (parent, { email, password, name }, ctx, info) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await ctx.prisma.createUser({
-        username,
+        email,
         password: hashedPassword,
-        name: "Test Name",
-        email: "testemailagain@gmail.com"
+        name
       });
       return user;
     },
-    login: async (parent, { username, password }, ctx, info) => {
-      const user = await ctx.prisma.user({ username });
+    login: async (parent, { email, password }, ctx, info) => {
+      const user = await ctx.prisma.user({ email });
 
       if (!user) {
         throw new Error("Invalid Login");
@@ -38,7 +37,7 @@ const resolvers = {
       const token = jwt.sign(
         {
           id: user.id,
-          username: user.email
+          email: user.email
         },
         "my-secret-from-env-file-in-prod",
         {
