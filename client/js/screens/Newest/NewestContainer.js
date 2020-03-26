@@ -3,6 +3,8 @@ import Newest from './Newest';
 
 export default class NewestContainer extends Component {
   render() {
-    return <Newest />;
+    return (
+      <Newest navigation={this.props.navigation} route={this.props.route} />
+    );
   }
 }

@@ -8,6 +8,7 @@ import {UserContextProvider} from './context/UserContext';
 export const DrawerContext = React.createContext();
 
 import FavesProvider from './context/FavesContext';
+import YoutubeDataProvider from './context/YoutubeData';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,11 @@ export default class App extends Component {
       <ApolloProvider client={client}>
         <UserContextProvider>
           <FavesProvider>
-            <NavigationContainer>
-              <RootNav />
-            </NavigationContainer>
+            <YoutubeDataProvider>
+              <NavigationContainer>
+                <RootNav />
+              </NavigationContainer>
+            </YoutubeDataProvider>
           </FavesProvider>
         </UserContextProvider>
       </ApolloProvider>

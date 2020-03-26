@@ -54,55 +54,57 @@ const VideoPlayer = ({item, addFave, removeFave, faveIds}) => {
           renderLoading={displaySpinner}
         />
         <View style={styles.infoContainer}>
-          <View style={styles.info}>
-            <CustomText style={styles.speakerName}>
-              {parseSpeakerName(item)}
-            </CustomText>
-            <CustomText style={styles.title}>{parseTitle(item)}</CustomText>
-          </View>
-          <View style={styles.actionContainer}>
-            {faveIds.includes(item.id) ? (
-              <TouchableOpacity
-                onPress={() => {
-                  removeFave(item.id);
-                }}>
-                <Icon
-                  style={styles.icon}
-                  name="heart"
-                  size={24}
-                  color="#db4f48"
-                />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() => {
-                  addFave(item.id);
-                }}>
-                <Icon
-                  style={styles.icon}
-                  name="heart-outline"
-                  size={24}
-                  color="#db4f48"
-                />
-              </TouchableOpacity>
-            )}
+          <View>
+            <View style={styles.info}>
+              <CustomText style={styles.speakerName}>
+                {parseSpeakerName(item)}
+              </CustomText>
+              <CustomText style={styles.title}>{parseTitle(item)}</CustomText>
+            </View>
+            <View style={styles.actionContainer}>
+              {faveIds.includes(item.id) ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    removeFave(item.id);
+                  }}>
+                  <Icon
+                    style={styles.icon}
+                    name="heart"
+                    size={24}
+                    color="#db4f48"
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => {
+                    addFave(item.id);
+                  }}>
+                  <Icon
+                    style={styles.icon}
+                    name="heart-outline"
+                    size={24}
+                    color="#db4f48"
+                  />
+                </TouchableOpacity>
+              )}
 
-            <TouchableOpacity onPress={() => {}}>
-              <Icon
-                style={styles.icon}
-                name="download-outline"
-                size={24}
-                color="#2f9e99"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onShare}>
-              <Icon
-                style={styles.icon}
-                name="share-variant"
-                size={24}
-                color="#507ea2"
-              />
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => {}}>
+                <Icon
+                  style={styles.icon}
+                  name="download-outline"
+                  size={24}
+                  color="#2f9e99"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onShare}>
+                <Icon
+                  style={styles.icon}
+                  name="share-variant"
+                  size={24}
+                  color="#507ea2"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

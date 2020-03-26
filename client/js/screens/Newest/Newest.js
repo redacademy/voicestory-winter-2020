@@ -1,11 +1,18 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import VideoList from '../../components/VideoList';
+import {YoutubeDataContext} from '../../context/YoutubeData';
 
-const Newest = () => {
+const Newest = ({route, navigation}) => {
   return (
-    <>
-      <Text>Newest</Text>
-    </>
+    <YoutubeDataContext.Consumer>
+      {value => (
+        <VideoList
+          navigation={navigation}
+          route={route}
+          videos={value.videos}
+        />
+      )}
+    </YoutubeDataContext.Consumer>
   );
 };
 

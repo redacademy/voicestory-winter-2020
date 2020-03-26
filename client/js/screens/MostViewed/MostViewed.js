@@ -1,11 +1,17 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-
-const MostViewed = () => {
+import VideoList from '../../components/VideoList';
+import {YoutubeDataContext} from '../../context/YoutubeData';
+const MostViewed = ({route, navigation}) => {
   return (
-    <>
-      <Text>Most Viewed</Text>
-    </>
+    <YoutubeDataContext.Consumer>
+      {value => (
+        <VideoList
+          navigation={navigation}
+          route={route}
+          videos={value.mostViewed}
+        />
+      )}
+    </YoutubeDataContext.Consumer>
   );
 };
 

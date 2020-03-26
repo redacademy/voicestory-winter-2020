@@ -3,6 +3,6 @@ import Themes from './Themes';
 
 export default class ThemesContainer extends Component {
   render() {
-    return <Themes />;
+    return <Themes navigation={this.props.navigation} />;
   }
 }
