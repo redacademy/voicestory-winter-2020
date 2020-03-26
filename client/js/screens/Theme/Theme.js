@@ -11,25 +11,31 @@ export default Theme = ({
   route,
   navigation,
 }) => {
-  const currentPlaylist = playlists.items.find(playlist =>
+  const currentPlaylistCheck = playlists.items.find(playlist =>
     playlist.snippet.title.includes(theme),
   );
 
-  let currentPlaylistVideos;
-  if (currentPlaylist !== undefined) {
-    currentPlaylistVideos = playlistVideos.find(
-      playlist => playlist.id === currentPlaylist.id,
+  let currentPlaylist;
+  if (currentPlaylistCheck !== undefined) {
+    currentPlaylist = playlistVideos.find(
+      playlist => playlist.id === currentPlaylistCheck.id,
     );
   }
-  console.log(currentPlaylistVideos);
-  return currentPlaylistVideos !== undefined ||
-    currentPlaylistVideos !== undefined ? (
-    <VideoList
-      videos={videos}
-      playlist={currentPlaylistVideos}
-      route={route}
-      navigation={navigation}
-    />
+
+  const currentVideos = [];
+  if (currentPlaylist !== undefined) {
+    currentPlaylist.data.items.forEach(playlistVideo => {
+      const filteredVideo = videos.filter(
+        video => playlistVideo.contentDetails.videoId === video.items[0].id,
+      );
+      return (
+        filteredVideo[0] !== undefined && currentVideos.push(filteredVideo[0])
+      );
+    });
+  }
+
+  return currentVideos.length > 0 ? (
+    <VideoList videos={currentVideos} route={route} navigation={navigation} />
   ) : (
     <View style={styles.error}>
       <CustomText>There was an error getting this playlist</CustomText>

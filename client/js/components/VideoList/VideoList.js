@@ -10,8 +10,6 @@ const VideoList = ({
   offset,
   faveIds,
   videos,
-  currentVideo,
-  playlist,
 }) => {
   return (
     <View style={styles.container}>
@@ -82,22 +80,16 @@ const VideoList = ({
               ),
           )}
         {route.name === 'Theme' &&
-          videos.map(item => {
-            return playlist.data.items.map(playlistVideo => {
-              return (
-                playlistVideo.contentDetails.videoId === item.items[0].id && (
-                  <VideoCard
-                    video={item.items[0]}
-                    key={item.etag}
-                    route={route}
-                    navigation={navigation}
-                    id={item.items[0].id}
-                    faveIds={faveIds}
-                  />
-                )
-              );
-            });
-          })}
+          videos.map(item => (
+            <VideoCard
+              video={item.items[0]}
+              key={item.etag}
+              route={route}
+              navigation={navigation}
+              id={item.items[0].id}
+              faveIds={faveIds}
+            />
+          ))}
       </ScrollView>
     </View>
   );
