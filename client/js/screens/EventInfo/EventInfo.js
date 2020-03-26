@@ -151,7 +151,8 @@ const EventInfo = ({event, navigation}) => {
             if (!user) {
               setModalVisible(true);
             } else {
-              navigation.navigate('Ticket Info');
+              console.log(event);
+              navigation.navigate('Ticket Info', {event: event});
             }
           }}>
           <Text style={styles.buytext}>Get Tickets</Text>
