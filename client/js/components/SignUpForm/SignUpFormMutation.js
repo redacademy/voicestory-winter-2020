@@ -6,13 +6,11 @@ import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({uri: 'http://localhost:8383/'});
 const SIGNUP = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        id
-        email
-      }
+  mutation register($email: String!, $password: String!, $name: String!) {
+    register(email: $email, password: $password, name: $name) {
+      id
+      email
+      name
     }
   }
 `;
@@ -23,17 +21,20 @@ const SignUpFormMutation = props => {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
   return (
     <Mutation
       mutation={SIGNUP}
       client={client}
       variables={{email: email, password: password, name: fullName}}>
       {(signup, {data, error}) => (
-        <LoginForm
+        <SignUpForm
+          fullName={fullName}
+          setFullName={setFullName}
           data={data}
           error={error}
           navigation={navigation}
-          login={signup}
+          signup={signup}
           password={password}
           firstName={firstName}
           lastName={lastName}
