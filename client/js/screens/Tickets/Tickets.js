@@ -12,11 +12,14 @@ const Tickets = ({navigation, route, ticketOwner}) => {
         {ticketOwner[0].ownedTickets &&
           ticketOwner[0].ownedTickets.map(ownedTicket => (
             <EventCard
-              key={ownedTicket}
+              style={styles.card}
+              key={ownedTicket.id}
               title={ownedTicket.title}
               location={ownedTicket.location_name}
               address={ownedTicket.location_address}
               time={ownedTicket.time}
+              date={ownedTicket.date}
+              ticketthumbnail={ownedTicket.thumbnail_url}
               navigation={navigation}
               route={route}
               ownedTicket={ownedTicket}

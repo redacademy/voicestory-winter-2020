@@ -14,9 +14,12 @@ import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Themes';
 import EventInfoScreen from '../screens/EventInfo';
 import TicketInfoScreen from '../screens/TicketInfo';
+import CheckoutScreen from '../screens/Checkout';
 import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
+import {profileStackOptions} from './config';
+
 import {Image} from 'react-native';
 
 const ExploreStack = createStackNavigator();
@@ -69,7 +72,7 @@ const ExploreStackScreens = props => {
         }}
       />
       <ExploreStack.Screen
-        name="SpeakerProfile"
+        name="Speaker Profile"
         component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -98,9 +101,16 @@ const EventsStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
-      <ExploreStack.Screen
-        name="SpeakerProfile"
+      <EventsStack.Screen
+        name="Speaker Profile"
         component={SpeakerScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <EventsStack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -136,7 +146,7 @@ const UserProfileStackScreens = props => {
   return (
     <UserProfileStack.Navigator
       initialRouteName="Profile"
-      screenOptions={sharedScreenOptions}>
+      screenOptions={profileStackOptions}>
       <UserProfileStack.Screen
         name="Profile"
         component={UserProfileScreen}

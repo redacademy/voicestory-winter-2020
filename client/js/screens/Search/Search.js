@@ -8,16 +8,18 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Searchbar from '../../components/SearchBar';
 
 const Search = ({navigation}) => {
+  let search = React.createRef();
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>
-        <Searchbar />
-        <Text style={styles.header}>Search</Text>
+        <Searchbar ref={search} />
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon style={styles.close} name="close" size={25} color="#FBF7EF" />
         </TouchableOpacity>
+        {console.log(search)}
       </SafeAreaView>
       <ScrollView style={styles.contentContainer}>
+        <Text style={styles.resultheader}>Search Results</Text>
         <View style={styles.border}>
           <Text style={styles.heading}>Events</Text>
         </View>

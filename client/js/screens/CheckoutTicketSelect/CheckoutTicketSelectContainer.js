@@ -6,6 +6,12 @@ export default class CheckoutTicketSelectContainer extends Component {
     super(props);
   }
   render() {
-    return <CheckoutTicketSelect navigation={this.props.navigation} />;
+    console.log(this.props);
+    return (
+      <CheckoutTicketSelect
+        // event={this.props.route.params.event}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }

@@ -26,11 +26,17 @@ export default class Search extends Component {
           backgroundColor: '#DB4F48',
           borderTopWidth: 0,
           borderBottomWidth: 0,
+          padding: 0,
+          margin: 0,
+          borderRadius: 10,
+          width: '90%',
+          transform: [{translateX: 25}, {translateY: 15}],
         }}
         inputContainerStyle={{
           backgroundColor: '#9F3833',
           borderRadius: 10,
-          width: 250,
+          width: '90%',
+          margin: 0,
         }}
         inputStyle={{
           fontFamily: 'Lato-Regular',

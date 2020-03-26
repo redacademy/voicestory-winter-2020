@@ -10,20 +10,21 @@ const EventCard = ({
   address,
   time,
   date,
+  eventthumbnail,
+  ticketthumbnail,
   event,
   ownedTicket,
   navigation,
   route,
 }) => {
   const eventimg =
-    event && event.thumbnail_url
-      ? {uri: event.thumbnail_url}
+    event && eventthumbnail
+      ? {uri: eventthumbnail}
       : {uri: 'https://placedog.net/500'};
   const ticketimg =
-    ownedTicket && ownedTicket.thumbnail_url
-      ? {uri: ownedTicket.thumbnail_url}
+    ownedTicket && ticketthumbnail
+      ? {uri: ticketthumbnail}
       : {uri: 'https://placedog.net/500'};
-  console.log(ownedTicket);
   return (
     <TouchableOpacity
       onPress={() =>

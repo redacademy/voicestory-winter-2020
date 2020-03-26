@@ -17,10 +17,15 @@ const OWNED_TICKETS = gql`
         date
         time
         price
+        thumbnail_url
         location_name
         location_address
         speakers {
           id
+          profile_picture
+          owner {
+            name
+          }
         }
       }
     }

@@ -3,9 +3,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FBF7EF',
-    height: '100%',
-    padding: 30,
-    paddingBottom: 50,
+    // height: Dimensions.get('window').height,
   },
   heading: {
     color: '#1D1D1D',
@@ -19,7 +17,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Regular',
     fontSize: 15,
     lineHeight: 25,
-    marginBottom: 30,
+  },
+  icon: {
+    width: 45,
+    height: 50,
+    resizeMode: 'contain',
+    marginRight: 20,
+  },
+  ticketinfo: {
+    flexDirection: 'row',
+    padding: 30,
+  },
+  price: {
+    backgroundColor: '#F4F0E8',
+    padding: 30,
+  },
+  dropdown: {
+    width: 10,
   },
 });
 

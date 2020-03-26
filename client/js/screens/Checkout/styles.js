@@ -1,25 +1,24 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  imageContainer: {
+    height: 135,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     backgroundColor: '#FBF7EF',
-    height: '100%',
-    padding: 30,
-    paddingBottom: 50,
   },
-  heading: {
-    color: '#1D1D1D',
+  title: {
     fontFamily: 'Lato-Bold',
     fontSize: 18,
-    marginBottom: 15,
+    paddingLeft: 30,
+    paddingTop: 30,
+    backgroundColor: '#FBF7EF',
   },
-  section: {},
-  text: {
-    color: '#1D1D1D',
-    fontFamily: 'Lato-Regular',
-    fontSize: 15,
-    lineHeight: 25,
-    marginBottom: 30,
+  image: {
+    width: Dimensions.get('window').width,
+    flex: 1,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
 

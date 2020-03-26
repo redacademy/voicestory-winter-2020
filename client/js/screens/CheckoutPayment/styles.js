@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     marginBottom: 30,
   },
+  main: {
+    height: Dimensions.get('window').height,
+  },
 });
 
 export default styles;

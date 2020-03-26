@@ -14,7 +14,7 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
 
   return route?.name === 'Video' ? (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      onPress={() => navigation.navigate('Speaker Profile', {speaker: speaker})}
       style={[styles.button, style]}>
       <Image
         style={styles.videoRoute}
@@ -25,7 +25,7 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
     </TouchableOpacity>
   ) : (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      onPress={() => navigation.navigate('Speaker Profile', {speaker: speaker})}
       style={[styles.button, style]}>
       <Image
         style={styles.otherRoute}

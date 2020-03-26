@@ -9,8 +9,14 @@ const Events = ({events, route, navigation}) => {
       {events &&
         events.map(event => (
           <EventCard
-            key={event}
+            key={event.id}
             event={event}
+            title={event.title}
+            location={event.location_name}
+            address={event.location_address}
+            time={event.time}
+            date={event.date}
+            eventthumbnail={event.thumbnail_url}
             route={route}
             navigation={navigation}
           />
