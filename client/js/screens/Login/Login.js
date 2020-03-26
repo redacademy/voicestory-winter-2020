@@ -33,7 +33,7 @@ const Login = props => {
         </TouchableOpacity>
       </View>
       {formToggle ? (
-        <SignUpForm />
+        <SignUpForm navigation={props.navigation} route={props.route} />
       ) : (
         <LoginForm navigation={props.navigation} route={props.route} />
       )}
