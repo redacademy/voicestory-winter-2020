@@ -44,7 +44,6 @@ const Speakers = ({users, navigation}) => {
                 style={styles.image}
               />
               <View style={styles.information}>
-                {console.log('Per Speaker', item)}
                 <Text style={styles.name}>{item.name}</Text>
                 <Text numberOfLines={1} style={styles.title}>
                   {item.isSpeaker.title}
@@ -55,6 +54,7 @@ const Speakers = ({users, navigation}) => {
           renderSectionHeader={({section: {title}}) => (
             <Text style={styles.header}>{title}</Text>
           )}
+          stickySectionHeadersEnabled={false}
         />
       </View>
     )
