@@ -15,6 +15,9 @@ const ALL_USERS = gql`
         title
         linkedin
         facebook
+        owner {
+          name
+        }
         description
         videos {
           id

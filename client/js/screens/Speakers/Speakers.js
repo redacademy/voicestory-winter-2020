@@ -22,7 +22,6 @@ const formatSessionData = users => {
 
 const Speakers = ({users, navigation}) => {
   users = users.filter(user => user.isSpeaker != null);
-  console.log('Speakers', users);
   return (
     users && (
       <View style={styles.container}>
@@ -31,7 +30,11 @@ const Speakers = ({users, navigation}) => {
           sections={formatSessionData(users)}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <TouchableOpacity style={styles.speaker}>
+            <TouchableOpacity
+              style={styles.speaker}
+              onPress={() =>
+                navigation.navigate('SpeakerProfile', {speaker: item.isSpeaker})
+              }>
               <Image
                 source={
                   item.isSpeaker.profile_picture
@@ -53,9 +56,6 @@ const Speakers = ({users, navigation}) => {
             <Text style={styles.header}>{title}</Text>
           )}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('SpeakerProfile')}>
-          <Text>Speaker</Text>
-        </TouchableOpacity>
       </View>
     )
   );
