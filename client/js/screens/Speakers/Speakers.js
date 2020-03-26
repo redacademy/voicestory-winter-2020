@@ -1,7 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, View, Image, Text} from 'react-native';
-
-// import Text from '../../components/CustomText/CustomText';
 import {SectionList} from 'react-native';
 import styles from './styles';
 
