@@ -1,6 +1,7 @@
 import React from 'react';
-import {TouchableOpacity, View, Image} from 'react-native';
-import Text from '../../components/CustomText/CustomText';
+import {TouchableOpacity, View, Image, Text} from 'react-native';
+
+// import Text from '../../components/CustomText/CustomText';
 import {SectionList} from 'react-native';
 import styles from './styles';
 
@@ -24,21 +25,33 @@ const Speakers = ({users, navigation}) => {
   console.log('Speakers', users);
   return (
     users && (
-      <View>
+      <View style={styles.container}>
         <SectionList
+          style={styles.content}
           sections={formatSessionData(users)}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <View>
+            <TouchableOpacity style={styles.speaker}>
               <Image
-                source={{uri: 'https://placedog.net/500'}}
-                style={{width: 100, height: 100}}
+                source={
+                  item.isSpeaker.profile_picture
+                    ? {uri: item.isSpeaker.profile_picture}
+                    : {uri: 'https://placedog.net/500'}
+                }
+                style={styles.image}
               />
-              <Text>{item.name}</Text>
-              <Text>{item.isSpeaker.title}</Text>
-            </View>
+              <View style={styles.information}>
+                {console.log('Per Speaker', item)}
+                <Text style={styles.name}>{item.name}</Text>
+                <Text numberOfLines={1} style={styles.title}>
+                  {item.isSpeaker.title}
+                </Text>
+              </View>
+            </TouchableOpacity>
           )}
-          renderSectionHeader={({section: {title}}) => <Text>{title}</Text>}
+          renderSectionHeader={({section: {title}}) => (
+            <Text style={styles.header}>{title}</Text>
+          )}
         />
         <TouchableOpacity onPress={() => navigation.navigate('SpeakerProfile')}>
           <Text>Speaker</Text>
