@@ -121,7 +121,6 @@ const Video = ({
   };
 
   findIndividualSpeaker();
-  console.log(speakerList);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
