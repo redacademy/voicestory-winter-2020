@@ -3,9 +3,9 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   form: {
     alignSelf: 'center',
-    width: 380,
+    width: '90%',
     padding: 20,
-    marginBottom: 20,
+    height: 450,
   },
   formcontent: {
     backgroundColor: '#D84F48',

@@ -41,6 +41,7 @@ const SignUpForm = ({
         <TextInput
           style={styles.textinput}
           value={firstName}
+          autoCorrect={false}
           autoCompleteType="name"
           placeholder="First Name"
           placeholderTextColor="white"
@@ -52,6 +53,7 @@ const SignUpForm = ({
           }}
         />
         <TextInput
+          autoCorrect={false}
           autoCompleteType="name"
           style={styles.textinput}
           value={lastName}
@@ -65,6 +67,7 @@ const SignUpForm = ({
           }}
         />
         <TextInput
+          autoCorrect={false}
           autoCompleteType="email"
           style={styles.textinput}
           value={email}
@@ -78,7 +81,9 @@ const SignUpForm = ({
           }}
         />
         <TextInput
+          autoCorrect={false}
           autoCompleteType="password"
+          autoCorrect={false}
           style={styles.textinput}
           value={password}
           placeholder="Password"
