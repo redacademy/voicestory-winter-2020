@@ -6,19 +6,16 @@ import styles from './styles';
 import {UserContext} from '../../context/UserContext';
 
 const SignUpForm = ({
-  fullName,
   setFullName,
   data,
   error,
   navigation,
   signup,
-  password,
   firstName,
   lastName,
   setPassword,
   setFirst_name,
   setLast_name,
-  email,
   setEmail,
   route,
 }) => {
@@ -29,7 +26,6 @@ const SignUpForm = ({
   const handleSignUp = async () => {
     await createFullName();
     signup();
-    console.log(data);
   };
   useEffect(() => {
     if (data) {

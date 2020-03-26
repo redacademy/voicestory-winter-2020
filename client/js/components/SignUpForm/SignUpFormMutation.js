@@ -6,7 +6,6 @@ import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({uri: 'http://localhost:8383/'});
 const SIGNUP = gql`
-  # Write your query or mutation here
   mutation register($email: String!, $password: String!, $name: String!) {
     register(email: $email, password: $password, name: $name) {
       id
