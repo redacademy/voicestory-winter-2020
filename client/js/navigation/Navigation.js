@@ -98,6 +98,13 @@ const EventsStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <TicketsStack.Screen
+        name="Ticket Info"
+        component={TicketInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
       <ExploreStack.Screen
         name="SpeakerProfile"
         component={SpeakerScreen}

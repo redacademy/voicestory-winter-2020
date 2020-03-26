@@ -2,7 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   eventcontainer: {
-    backgroundColor: '#f5f0ea',
+    backgroundColor: '#F5F0EA',
+  },
+  shadow: {
+    shadowOffset: {width: 1, height: 5},
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
   },
   headerimg: {
     height: 150,
@@ -22,9 +27,6 @@ const styles = StyleSheet.create({
   iconbox: {
     width: 43,
     height: 36,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
   },
   textbox: {
     marginLeft: 20,
@@ -62,12 +64,9 @@ const styles = StyleSheet.create({
   speakercard: {
     height: 150,
     width: 100,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
     marginRight: 20,
     marginBottom: 20,
+    shadowRadius: 5,
   },
   scroll: {
     paddingLeft: 30,
@@ -84,10 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#DB4F48',
     width: '86%',
     borderRadius: 10,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
     marginHorizontal: 30,
   },
   buytext: {
@@ -95,9 +90,45 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  modal: {
-    height: 350,
-    width: 350,
+  dimmed: {
+    height: '100%',
+    backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
+  },
+  modalbox: {
+    maxHeight: 210,
+    width: 320,
+    backgroundColor: '#FBF7EF',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    marginTop: 300,
+    borderRadius: 20,
+  },
+  icon: {
+    alignSelf: 'flex-end',
+    marginRight: 14,
+  },
+  iconbtn: {
+    alignSelf: 'flex-end',
+  },
+  modaltext: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: 240,
+  },
+  continuebtn: {
+    marginTop: 40,
+    marginBottom: 20,
+    height: 55,
+    width: 260,
+    borderRadius: 10,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#DB4F48',
   },
 });
 
