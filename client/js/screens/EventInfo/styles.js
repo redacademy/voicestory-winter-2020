@@ -94,46 +94,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  dimmed: {
-    height: '100%',
-    backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
-  },
-  modalbox: {
-    maxHeight: 210,
-    width: 320,
-    backgroundColor: '#FBF7EF',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    marginTop: 300,
-    borderRadius: 20,
-  },
-  icon: {
-    alignSelf: 'flex-end',
-    marginRight: 14,
-  },
-  iconbtn: {
-    alignSelf: 'flex-end',
-  },
-  modaltext: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    textAlign: 'center',
-    alignSelf: 'center',
-    width: 240,
-  },
-  continuebtn: {
-    marginTop: 40,
-    marginBottom: 20,
-    height: 55,
-    width: 260,
-    borderRadius: 10,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#DB4F48',
-  },
 });
 
 export default styles;
