@@ -127,8 +127,6 @@ const Explore = ({navigation, route, speakers}) => {
             </TouchableOpacity>
           </View>
           <View style={styles.speakerContainer}>
-            {console.log(speakers)}
-
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
