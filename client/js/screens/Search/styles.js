@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginBottom: 10,
   },
+  resultheader: {
+    color: '#DB4F48',
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 20,
+  },
 });
 
 export default styles;

@@ -113,6 +113,8 @@ const Video = ({
     if (speakerNames.includes('&')) {
       speakers.push(speakerNames.slice(0, speakerNames.indexOf('&') - 1));
       speakers.push(speakerNames.slice(speakerNames.indexOf('&') + 2));
+    } else {
+      speakers.push(speakerNames);
     }
 
     speakers.map(speaker => {
@@ -222,7 +224,7 @@ const Video = ({
           </View>
           <View style={styles.externalLinks}>
             <View style={styles.speakerContainer}>
-              {speakerList.length > 0 &&
+              {speakerList?.length > 0 &&
                 speakerList.map(speaker => (
                   <>
                     <CustomText style={styles.title}>
@@ -231,7 +233,7 @@ const Video = ({
                     <View style={styles.speakerCardContainer}>
                       <SpeakerCard
                         style={styles.speakerCard}
-                        name={speaker.name}
+                        speaker={speaker.isSpeaker}
                         source={speaker.isSpeaker.profile_picture}
                         route={route}
                         navigation={navigation}

@@ -6,6 +6,12 @@ export default class TicketContainer extends Component {
     super(props);
   }
   render() {
-    return <Ticket navigation={this.props.navigation} />;
+    console.log(this.props);
+    return (
+      <Ticket
+        // ticket={this.props.route.params.ticket}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }

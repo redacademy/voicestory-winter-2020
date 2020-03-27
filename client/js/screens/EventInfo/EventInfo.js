@@ -1,25 +1,13 @@
-import React, {useContext, useState} from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Image,
-  ScrollView,
-  Modal,
-  ImageBackground,
-} from 'react-native';
+import React from 'react';
+import {TouchableOpacity, View, Image, ScrollView} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
-import {UserContext} from '../../context/UserContext';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 
 const EventInfo = ({event, navigation}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const {user} = useContext(UserContext);
-
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
@@ -45,45 +33,13 @@ const EventInfo = ({event, navigation}) => {
   return (
     <View style={styles.eventcontainer}>
       <ScrollView>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
-          <ImageBackground style={styles.dimmed}>
-            <View style={styles.modalbox}>
-              <TouchableOpacity
-                style={styles.iconbtn}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Icon
-                  name="close"
-                  size={22}
-                  color="#DB4F48"
-                  style={[styles.shadow, styles.icon]}
-                />
-              </TouchableOpacity>
-              <Text style={styles.modaltext}>
-                To purchase tickets, please login or signup
-              </Text>
-              <TouchableOpacity
-                style={[styles.continuebtn, styles.shadow]}
-                onPress={() => {
-                  navigation.navigate('Login');
-                }}>
-                <Text style={styles.buytext}>Continue</Text>
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
-        </Modal>
         <Image style={styles.headerimg} source={hero} />
         <View style={styles.details}>
           <View style={styles.infobox}>
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/calender1x.png')}
+                source={require('../../assets/icons/calender.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -101,7 +57,7 @@ const EventInfo = ({event, navigation}) => {
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/location1x.png')}
+                source={require('../../assets/icons/location.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -113,7 +69,7 @@ const EventInfo = ({event, navigation}) => {
             <View style={[styles.iconbox, styles.shadow]}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/pricing1x.png')}
+                source={require('../../assets/icons/pricing.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -148,12 +104,10 @@ const EventInfo = ({event, navigation}) => {
         <TouchableOpacity
           style={[styles.buyticketbtn, styles.shadow]}
           onPress={() => {
-            if (!user) {
-              setModalVisible(true);
-            } else {
-              console.log(event);
-              navigation.navigate('Ticket Info', {event: event});
-            }
+            navigation.navigate('Checkout', {
+              screen: 'Select Ticket',
+              event: event,
+            });
           }}>
           <Text style={styles.buytext}>Get Tickets</Text>
         </TouchableOpacity>

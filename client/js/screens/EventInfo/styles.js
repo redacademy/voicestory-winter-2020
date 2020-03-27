@@ -22,7 +22,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    alignSelf: 'center',
+    width: 45,
+    height: 50,
+    resizeMode: 'contain',
+    marginRight: 20,
+    transform: [{translateY: -5}],
   },
   iconbox: {
     width: 43,
