@@ -7,10 +7,6 @@ module.exports = {
   count: Int!
 }
 
-type AggregateLocation {
-  count: Int!
-}
-
 type AggregateSpeaker {
   count: Int!
 }
@@ -19,28 +15,24 @@ type AggregateUser {
   count: Int!
 }
 
-type AggregateVideo {
-  count: Int!
-}
-
 type BatchPayload {
   count: Long!
 }
-
-scalar DateTime
 
 type Event {
   id: ID!
   title: String!
   description: String!
+  date: Int!
+  time: String
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: Location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker!]
+  theme: String
 }
 
 type EventConnection {
@@ -53,14 +45,16 @@ input EventCreateInput {
   id: ID
   title: String!
   description: String!
+  date: Int!
+  time: String
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: LocationCreateOneInput!
   price: Float
   maxTickets: Int!
   soldTickets: Int
   speakers: SpeakerCreateManyInput
+  theme: String
 }
 
 input EventCreateManyInput {
@@ -80,6 +74,10 @@ enum EventOrderByInput {
   title_DESC
   description_ASC
   description_DESC
+  date_ASC
+  date_DESC
+  time_ASC
+  time_DESC
   thumbnail_url_ASC
   thumbnail_url_DESC
   location_name_ASC
@@ -92,18 +90,23 @@ enum EventOrderByInput {
   maxTickets_DESC
   soldTickets_ASC
   soldTickets_DESC
+  theme_ASC
+  theme_DESC
 }
 
 type EventPreviousValues {
   id: ID!
   title: String!
   description: String!
+  date: Int!
+  time: String
   thumbnail_url: String!
   location_name: String!
   location_address: String!
   price: Float
   maxTickets: Int!
   soldTickets: Int
+  theme: String
 }
 
 input EventScalarWhereInput {
@@ -149,6 +152,28 @@ input EventScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  date: Int
+  date_not: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  date_lt: Int
+  date_lte: Int
+  date_gt: Int
+  date_gte: Int
+  time: String
+  time_not: String
+  time_in: [String!]
+  time_not_in: [String!]
+  time_lt: String
+  time_lte: String
+  time_gt: String
+  time_gte: String
+  time_contains: String
+  time_not_contains: String
+  time_starts_with: String
+  time_not_starts_with: String
+  time_ends_with: String
+  time_not_ends_with: String
   thumbnail_url: String
   thumbnail_url_not: String
   thumbnail_url_in: [String!]
@@ -215,6 +240,20 @@ input EventScalarWhereInput {
   soldTickets_lte: Int
   soldTickets_gt: Int
   soldTickets_gte: Int
+  theme: String
+  theme_not: String
+  theme_in: [String!]
+  theme_not_in: [String!]
+  theme_lt: String
+  theme_lte: String
+  theme_gt: String
+  theme_gte: String
+  theme_contains: String
+  theme_not_contains: String
+  theme_starts_with: String
+  theme_not_starts_with: String
+  theme_ends_with: String
+  theme_not_ends_with: String
   AND: [EventScalarWhereInput!]
   OR: [EventScalarWhereInput!]
   NOT: [EventScalarWhereInput!]
@@ -241,38 +280,45 @@ input EventSubscriptionWhereInput {
 input EventUpdateDataInput {
   title: String
   description: String
+  date: Int
+  time: String
   thumbnail_url: String
   location_name: String
   location_address: String
-  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
   speakers: SpeakerUpdateManyInput
+  theme: String
 }
 
 input EventUpdateInput {
   title: String
   description: String
+  date: Int
+  time: String
   thumbnail_url: String
   location_name: String
   location_address: String
-  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
   speakers: SpeakerUpdateManyInput
+  theme: String
 }
 
 input EventUpdateManyDataInput {
   title: String
   description: String
+  date: Int
+  time: String
   thumbnail_url: String
   location_name: String
   location_address: String
   price: Float
   maxTickets: Int
   soldTickets: Int
+  theme: String
 }
 
 input EventUpdateManyInput {
@@ -290,12 +336,15 @@ input EventUpdateManyInput {
 input EventUpdateManyMutationInput {
   title: String
   description: String
+  date: Int
+  time: String
   thumbnail_url: String
   location_name: String
   location_address: String
   price: Float
   maxTickets: Int
   soldTickets: Int
+  theme: String
 }
 
 input EventUpdateManyWithWhereNestedInput {
@@ -357,6 +406,28 @@ input EventWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  date: Int
+  date_not: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  date_lt: Int
+  date_lte: Int
+  date_gt: Int
+  date_gte: Int
+  time: String
+  time_not: String
+  time_in: [String!]
+  time_not_in: [String!]
+  time_lt: String
+  time_lte: String
+  time_gt: String
+  time_gte: String
+  time_contains: String
+  time_not_contains: String
+  time_starts_with: String
+  time_not_starts_with: String
+  time_ends_with: String
+  time_not_ends_with: String
   thumbnail_url: String
   thumbnail_url_not: String
   thumbnail_url_in: [String!]
@@ -399,7 +470,6 @@ input EventWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location: LocationWhereInput
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -427,140 +497,26 @@ input EventWhereInput {
   speakers_every: SpeakerWhereInput
   speakers_some: SpeakerWhereInput
   speakers_none: SpeakerWhereInput
+  theme: String
+  theme_not: String
+  theme_in: [String!]
+  theme_not_in: [String!]
+  theme_lt: String
+  theme_lte: String
+  theme_gt: String
+  theme_gte: String
+  theme_contains: String
+  theme_not_contains: String
+  theme_starts_with: String
+  theme_not_starts_with: String
+  theme_ends_with: String
+  theme_not_ends_with: String
   AND: [EventWhereInput!]
   OR: [EventWhereInput!]
   NOT: [EventWhereInput!]
 }
 
 input EventWhereUniqueInput {
-  id: ID
-}
-
-type Location {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-}
-
-type LocationConnection {
-  pageInfo: PageInfo!
-  edges: [LocationEdge]!
-  aggregate: AggregateLocation!
-}
-
-input LocationCreateInput {
-  id: ID
-  latitude: Float!
-  longitude: Float!
-}
-
-input LocationCreateOneInput {
-  create: LocationCreateInput
-  connect: LocationWhereUniqueInput
-}
-
-type LocationEdge {
-  node: Location!
-  cursor: String!
-}
-
-enum LocationOrderByInput {
-  id_ASC
-  id_DESC
-  latitude_ASC
-  latitude_DESC
-  longitude_ASC
-  longitude_DESC
-}
-
-type LocationPreviousValues {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-}
-
-type LocationSubscriptionPayload {
-  mutation: MutationType!
-  node: Location
-  updatedFields: [String!]
-  previousValues: LocationPreviousValues
-}
-
-input LocationSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: LocationWhereInput
-  AND: [LocationSubscriptionWhereInput!]
-  OR: [LocationSubscriptionWhereInput!]
-  NOT: [LocationSubscriptionWhereInput!]
-}
-
-input LocationUpdateDataInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateManyMutationInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateOneRequiredInput {
-  create: LocationCreateInput
-  update: LocationUpdateDataInput
-  upsert: LocationUpsertNestedInput
-  connect: LocationWhereUniqueInput
-}
-
-input LocationUpsertNestedInput {
-  update: LocationUpdateDataInput!
-  create: LocationCreateInput!
-}
-
-input LocationWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  latitude: Float
-  latitude_not: Float
-  latitude_in: [Float!]
-  latitude_not_in: [Float!]
-  latitude_lt: Float
-  latitude_lte: Float
-  latitude_gt: Float
-  latitude_gte: Float
-  longitude: Float
-  longitude_not: Float
-  longitude_in: [Float!]
-  longitude_not_in: [Float!]
-  longitude_lt: Float
-  longitude_lte: Float
-  longitude_gt: Float
-  longitude_gte: Float
-  AND: [LocationWhereInput!]
-  OR: [LocationWhereInput!]
-  NOT: [LocationWhereInput!]
-}
-
-input LocationWhereUniqueInput {
   id: ID
 }
 
@@ -573,12 +529,6 @@ type Mutation {
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   deleteEvent(where: EventWhereUniqueInput!): Event
   deleteManyEvents(where: EventWhereInput): BatchPayload!
-  createLocation(data: LocationCreateInput!): Location!
-  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
-  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
-  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
-  deleteLocation(where: LocationWhereUniqueInput!): Location
-  deleteManyLocations(where: LocationWhereInput): BatchPayload!
   createSpeaker(data: SpeakerCreateInput!): Speaker!
   updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
   updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
@@ -591,12 +541,6 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  createVideo(data: VideoCreateInput!): Video!
-  updateVideo(data: VideoUpdateInput!, where: VideoWhereUniqueInput!): Video
-  updateManyVideos(data: VideoUpdateManyMutationInput!, where: VideoWhereInput): BatchPayload!
-  upsertVideo(where: VideoWhereUniqueInput!, create: VideoCreateInput!, update: VideoUpdateInput!): Video!
-  deleteVideo(where: VideoWhereUniqueInput!): Video
-  deleteManyVideos(where: VideoWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -620,18 +564,12 @@ type Query {
   event(where: EventWhereUniqueInput!): Event
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
-  location(where: LocationWhereUniqueInput!): Location
-  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
-  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
   speaker(where: SpeakerWhereUniqueInput!): Speaker
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
   speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  video(where: VideoWhereUniqueInput!): Video
-  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video]!
-  videosConnection(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VideoConnection!
   node(id: ID!): Node
 }
 
@@ -643,7 +581,6 @@ type Speaker {
   linkedin: String
   facebook: String
   description: String!
-  videos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
 }
 
 type SpeakerConnection {
@@ -660,7 +597,6 @@ input SpeakerCreateInput {
   linkedin: String
   facebook: String
   description: String!
-  videos: VideoCreateManyWithoutAuthorInput
 }
 
 input SpeakerCreateManyInput {
@@ -673,24 +609,8 @@ input SpeakerCreateOneWithoutOwnerInput {
   connect: SpeakerWhereUniqueInput
 }
 
-input SpeakerCreateOneWithoutVideosInput {
-  create: SpeakerCreateWithoutVideosInput
-  connect: SpeakerWhereUniqueInput
-}
-
 input SpeakerCreateWithoutOwnerInput {
   id: ID
-  profile_picture: String!
-  title: String!
-  linkedin: String
-  facebook: String
-  description: String!
-  videos: VideoCreateManyWithoutAuthorInput
-}
-
-input SpeakerCreateWithoutVideosInput {
-  id: ID
-  owner: UserCreateOneWithoutIsSpeakerInput
   profile_picture: String!
   title: String!
   linkedin: String
@@ -842,7 +762,6 @@ input SpeakerUpdateDataInput {
   linkedin: String
   facebook: String
   description: String
-  videos: VideoUpdateManyWithoutAuthorInput
 }
 
 input SpeakerUpdateInput {
@@ -852,7 +771,6 @@ input SpeakerUpdateInput {
   linkedin: String
   facebook: String
   description: String
-  videos: VideoUpdateManyWithoutAuthorInput
 }
 
 input SpeakerUpdateManyDataInput {
@@ -897,26 +815,7 @@ input SpeakerUpdateOneWithoutOwnerInput {
   connect: SpeakerWhereUniqueInput
 }
 
-input SpeakerUpdateOneWithoutVideosInput {
-  create: SpeakerCreateWithoutVideosInput
-  update: SpeakerUpdateWithoutVideosDataInput
-  upsert: SpeakerUpsertWithoutVideosInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: SpeakerWhereUniqueInput
-}
-
 input SpeakerUpdateWithoutOwnerDataInput {
-  profile_picture: String
-  title: String
-  linkedin: String
-  facebook: String
-  description: String
-  videos: VideoUpdateManyWithoutAuthorInput
-}
-
-input SpeakerUpdateWithoutVideosDataInput {
-  owner: UserUpdateOneWithoutIsSpeakerInput
   profile_picture: String
   title: String
   linkedin: String
@@ -932,11 +831,6 @@ input SpeakerUpdateWithWhereUniqueNestedInput {
 input SpeakerUpsertWithoutOwnerInput {
   update: SpeakerUpdateWithoutOwnerDataInput!
   create: SpeakerCreateWithoutOwnerInput!
-}
-
-input SpeakerUpsertWithoutVideosInput {
-  update: SpeakerUpdateWithoutVideosDataInput!
-  create: SpeakerCreateWithoutVideosInput!
 }
 
 input SpeakerUpsertWithWhereUniqueNestedInput {
@@ -1031,9 +925,6 @@ input SpeakerWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  videos_every: VideoWhereInput
-  videos_some: VideoWhereInput
-  videos_none: VideoWhereInput
   AND: [SpeakerWhereInput!]
   OR: [SpeakerWhereInput!]
   NOT: [SpeakerWhereInput!]
@@ -1045,18 +936,16 @@ input SpeakerWhereUniqueInput {
 
 type Subscription {
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
-  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
   speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload
 }
 
 type User {
   id: ID!
   email: String
+  password: String!
   name: String!
   isSpeaker: Speaker
-  favouritedVideos(where: VideoWhereInput, orderBy: VideoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Video!]
   ownedTickets(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
 }
 
@@ -1069,9 +958,9 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String
+  password: String!
   name: String!
   isSpeaker: SpeakerCreateOneWithoutOwnerInput
-  favouritedVideos: VideoCreateManyInput
   ownedTickets: EventCreateManyInput
 }
 
@@ -1083,8 +972,8 @@ input UserCreateOneWithoutIsSpeakerInput {
 input UserCreateWithoutIsSpeakerInput {
   id: ID
   email: String
+  password: String!
   name: String!
-  favouritedVideos: VideoCreateManyInput
   ownedTickets: EventCreateManyInput
 }
 
@@ -1098,6 +987,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  password_ASC
+  password_DESC
   name_ASC
   name_DESC
 }
@@ -1105,6 +996,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String
+  password: String!
   name: String!
 }
 
@@ -1128,14 +1020,15 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   email: String
+  password: String
   name: String
   isSpeaker: SpeakerUpdateOneWithoutOwnerInput
-  favouritedVideos: VideoUpdateManyInput
   ownedTickets: EventUpdateManyInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
+  password: String
   name: String
 }
 
@@ -1150,8 +1043,8 @@ input UserUpdateOneWithoutIsSpeakerInput {
 
 input UserUpdateWithoutIsSpeakerDataInput {
   email: String
+  password: String
   name: String
-  favouritedVideos: VideoUpdateManyInput
   ownedTickets: EventUpdateManyInput
 }
 
@@ -1189,6 +1082,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -1204,9 +1111,6 @@ input UserWhereInput {
   name_ends_with: String
   name_not_ends_with: String
   isSpeaker: SpeakerWhereInput
-  favouritedVideos_every: VideoWhereInput
-  favouritedVideos_some: VideoWhereInput
-  favouritedVideos_none: VideoWhereInput
   ownedTickets_every: EventWhereInput
   ownedTickets_some: EventWhereInput
   ownedTickets_none: EventWhereInput
@@ -1218,333 +1122,6 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
-}
-
-type Video {
-  id: ID!
-  title: String!
-  url: String!
-  createdAt: DateTime
-  published: Boolean!
-  author: Speaker
-  theme: String!
-}
-
-type VideoConnection {
-  pageInfo: PageInfo!
-  edges: [VideoEdge]!
-  aggregate: AggregateVideo!
-}
-
-input VideoCreateInput {
-  id: ID
-  title: String!
-  url: String!
-  published: Boolean
-  author: SpeakerCreateOneWithoutVideosInput
-  theme: String!
-}
-
-input VideoCreateManyInput {
-  create: [VideoCreateInput!]
-  connect: [VideoWhereUniqueInput!]
-}
-
-input VideoCreateManyWithoutAuthorInput {
-  create: [VideoCreateWithoutAuthorInput!]
-  connect: [VideoWhereUniqueInput!]
-}
-
-input VideoCreateWithoutAuthorInput {
-  id: ID
-  title: String!
-  url: String!
-  published: Boolean
-  theme: String!
-}
-
-type VideoEdge {
-  node: Video!
-  cursor: String!
-}
-
-enum VideoOrderByInput {
-  id_ASC
-  id_DESC
-  title_ASC
-  title_DESC
-  url_ASC
-  url_DESC
-  createdAt_ASC
-  createdAt_DESC
-  published_ASC
-  published_DESC
-  theme_ASC
-  theme_DESC
-}
-
-type VideoPreviousValues {
-  id: ID!
-  title: String!
-  url: String!
-  createdAt: DateTime
-  published: Boolean!
-  theme: String!
-}
-
-input VideoScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  published: Boolean
-  published_not: Boolean
-  theme: String
-  theme_not: String
-  theme_in: [String!]
-  theme_not_in: [String!]
-  theme_lt: String
-  theme_lte: String
-  theme_gt: String
-  theme_gte: String
-  theme_contains: String
-  theme_not_contains: String
-  theme_starts_with: String
-  theme_not_starts_with: String
-  theme_ends_with: String
-  theme_not_ends_with: String
-  AND: [VideoScalarWhereInput!]
-  OR: [VideoScalarWhereInput!]
-  NOT: [VideoScalarWhereInput!]
-}
-
-type VideoSubscriptionPayload {
-  mutation: MutationType!
-  node: Video
-  updatedFields: [String!]
-  previousValues: VideoPreviousValues
-}
-
-input VideoSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: VideoWhereInput
-  AND: [VideoSubscriptionWhereInput!]
-  OR: [VideoSubscriptionWhereInput!]
-  NOT: [VideoSubscriptionWhereInput!]
-}
-
-input VideoUpdateDataInput {
-  title: String
-  url: String
-  published: Boolean
-  author: SpeakerUpdateOneWithoutVideosInput
-  theme: String
-}
-
-input VideoUpdateInput {
-  title: String
-  url: String
-  published: Boolean
-  author: SpeakerUpdateOneWithoutVideosInput
-  theme: String
-}
-
-input VideoUpdateManyDataInput {
-  title: String
-  url: String
-  published: Boolean
-  theme: String
-}
-
-input VideoUpdateManyInput {
-  create: [VideoCreateInput!]
-  update: [VideoUpdateWithWhereUniqueNestedInput!]
-  upsert: [VideoUpsertWithWhereUniqueNestedInput!]
-  delete: [VideoWhereUniqueInput!]
-  connect: [VideoWhereUniqueInput!]
-  set: [VideoWhereUniqueInput!]
-  disconnect: [VideoWhereUniqueInput!]
-  deleteMany: [VideoScalarWhereInput!]
-  updateMany: [VideoUpdateManyWithWhereNestedInput!]
-}
-
-input VideoUpdateManyMutationInput {
-  title: String
-  url: String
-  published: Boolean
-  theme: String
-}
-
-input VideoUpdateManyWithoutAuthorInput {
-  create: [VideoCreateWithoutAuthorInput!]
-  delete: [VideoWhereUniqueInput!]
-  connect: [VideoWhereUniqueInput!]
-  set: [VideoWhereUniqueInput!]
-  disconnect: [VideoWhereUniqueInput!]
-  update: [VideoUpdateWithWhereUniqueWithoutAuthorInput!]
-  upsert: [VideoUpsertWithWhereUniqueWithoutAuthorInput!]
-  deleteMany: [VideoScalarWhereInput!]
-  updateMany: [VideoUpdateManyWithWhereNestedInput!]
-}
-
-input VideoUpdateManyWithWhereNestedInput {
-  where: VideoScalarWhereInput!
-  data: VideoUpdateManyDataInput!
-}
-
-input VideoUpdateWithoutAuthorDataInput {
-  title: String
-  url: String
-  published: Boolean
-  theme: String
-}
-
-input VideoUpdateWithWhereUniqueNestedInput {
-  where: VideoWhereUniqueInput!
-  data: VideoUpdateDataInput!
-}
-
-input VideoUpdateWithWhereUniqueWithoutAuthorInput {
-  where: VideoWhereUniqueInput!
-  data: VideoUpdateWithoutAuthorDataInput!
-}
-
-input VideoUpsertWithWhereUniqueNestedInput {
-  where: VideoWhereUniqueInput!
-  update: VideoUpdateDataInput!
-  create: VideoCreateInput!
-}
-
-input VideoUpsertWithWhereUniqueWithoutAuthorInput {
-  where: VideoWhereUniqueInput!
-  update: VideoUpdateWithoutAuthorDataInput!
-  create: VideoCreateWithoutAuthorInput!
-}
-
-input VideoWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_lt: String
-  url_lte: String
-  url_gt: String
-  url_gte: String
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  published: Boolean
-  published_not: Boolean
-  author: SpeakerWhereInput
-  theme: String
-  theme_not: String
-  theme_in: [String!]
-  theme_not_in: [String!]
-  theme_lt: String
-  theme_lte: String
-  theme_gt: String
-  theme_gte: String
-  theme_contains: String
-  theme_not_contains: String
-  theme_starts_with: String
-  theme_not_starts_with: String
-  theme_ends_with: String
-  theme_not_ends_with: String
-  AND: [VideoWhereInput!]
-  OR: [VideoWhereInput!]
-  NOT: [VideoWhereInput!]
-}
-
-input VideoWhereUniqueInput {
-  id: ID
 }
 `
       }

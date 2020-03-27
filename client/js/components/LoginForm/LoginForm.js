@@ -1,22 +1,81 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
+import {View, KeyboardAvoidingView} from 'react-native';
+import {TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
+import styles from './styles';
+import {UserContext} from '../../context/UserContext';
 
-const LoginForm = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  //   const {signIn} = React.useContext(AuthContext);
-
+const LoginForm = props => {
+  const {setUser} = useContext(UserContext);
+  const {
+    data,
+    error,
+    navigation,
+    setEmail,
+    login,
+    password,
+    setPassword,
+    email,
+  } = props;
+  useEffect(() => {
+    if (data) {
+      setUser(data.login.user);
+      navigation.navigate('Main');
+    }
+  }, [data]);
   return (
-    <View>
-      <TextInput placeholder="email" value={email} onChangeText={setEmail} />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Login" onPress={() => signIn({email, password})} />
-    </View>
+    <KeyboardAvoidingView style={styles.form} behavior="position">
+      <View style={styles.formcontent}>
+        <TextInput
+          style={styles.textinput}
+          value={email}
+          placeholder="Email"
+          placeholderTextColor="white"
+          onSubmitEditing={() => {
+            login();
+          }}
+          onChangeText={value => {
+            setEmail(value);
+          }}
+        />
+        <TextInput
+          style={styles.textinput}
+          value={password}
+          placeholder="Password"
+          secureTextEntry={true}
+          placeholderTextColor="white"
+          textContentType="password"
+          onSubmitEditing={() => {
+            login();
+          }}
+          onChangeText={value => {
+            setPassword(value);
+          }}
+        />
+      </View>
+      <View style={styles.buttonbox}>
+        <Button
+          buttonStyle={
+            props.route.name == 'Login' ? styles.button : styles.buttonLogin
+          }
+          titleStyle={styles.title}
+          title="Login"
+          onPress={() => {
+            login();
+          }}
+        />
+        {props.route.name == 'Login' && (
+          <Button
+            buttonStyle={styles.button}
+            titleStyle={styles.title}
+            title="Sign Up"
+            onPress={() => {
+              navigation.navigate('Signup');
+            }}
+          />
+        )}
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

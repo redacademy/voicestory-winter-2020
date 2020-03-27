@@ -1,13 +1,26 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import MainScreens from './Navigation';
-import QRCodeScreen from '../screens/QRCode';
+import {BottomTabNavScreens} from './Navigation';
+import TicketScreen from '../screens/Ticket';
+import NotificationModal from '../screens/Notification';
+import SearchScreen from '../screens/Search';
+import {DrawerNavStackScreens} from './DrawerNavigation';
+import Home from '../screens/Home';
+import Login from '../screens/Login';
+import CheckoutConfirmation from '../screens/CheckoutConfirmation';
 
 const RootStack = createStackNavigator();
 const RootStackScreens = props => (
-  <RootStack.Navigator mode="modal" headerMode="none">
-    <RootStack.Screen name="Main" component={MainScreens} />
-    <RootStack.Screen name="QRCode" component={QRCodeScreen} />
+  <RootStack.Navigator headerMode="none">
+    <RootStack.Screen name="Login" component={Home} />
+    <RootStack.Screen name="Signup" component={Login} />
+    <RootStack.Screen name="Main" component={BottomTabNavScreens} />
+    <RootStack.Screen name="DrawerNav" component={DrawerNavStackScreens} />
+    <RootStack.Screen name="Ticket" component={TicketScreen} />
+    <RootStack.Screen name="Notification" component={NotificationModal} />
+    <RootStack.Screen name="Confirmation" component={CheckoutConfirmation} />
+    <RootStack.Screen name="Search" component={SearchScreen} />
   </RootStack.Navigator>
 );
+
 export default RootStackScreens;

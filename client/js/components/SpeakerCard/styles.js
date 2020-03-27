@@ -10,10 +10,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  labelContainer: {
+    width: 100,
+    height: 75,
+    flex: 1,
+    justifyContent: 'center',
+  },
   label: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: 'Lato-Bold',
-    transform: [{translateY: -14}],
+    marginLeft: 10,
+    fontSize: 12,
+  },
+  videoLabel: {
+    fontFamily: 'Lato-Bold',
+    paddingLeft: 10,
+    fontSize: 18,
+  },
+  videoRoute: {
+    height: '100%',
+    width: '25%',
+  },
+  otherRoute: {
+    height: '75%',
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
 });
 

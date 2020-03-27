@@ -1,34 +1,42 @@
 import React from 'react';
 import Text from '../../components/CustomText/CustomText';
-import {TouchableOpacity, Button, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styles from './styles';
+import Button from '../../components/Button';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const UserProfile = ({navigation, users}) => {
+const UserProfile = ({navigation, user}) => {
   return (
     <View style={styles.main}>
-      <View>
-        <Text style={styles.name}>Firstname Lastname Placeholder</Text>
-        <View style={styles.email}>
-          <Text>emailplaceholder@gmail.com</Text>
+      <View style={styles.user}>
+        <Text style={styles.name}>{user[0].name}</Text>
+        <View style={styles.emailContainer}>
+          <Text style={styles.email}>{user[0].email}</Text>
           <TouchableOpacity>
-            <Text>Edit</Text>
+            <Text style={styles.edit}>Edit</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View>
+      <View style={styles.buttonContainer}>
         <Button
-          title="Apply to be a Speaker"
+          style={styles.button}
+          bgcolor="#2F9E99"
+          label="Apply to be a Speaker"
+          icon={<Icon name="square-edit-outline" size={25} color="#FBF7EF" />}
           onPress={() => navigation.navigate('Application')}
-          style={(styles.apply, styles.button)}
         />
         <Button
-          title="Favorite Videos"
-          onPress={() => navigation.navigate('Fav')}
-          style={(styles.favourite, styles.button)}
+          style={styles.button}
+          bgcolor="#D84F48"
+          label="Favorite Videos"
+          icon={<Icon name="heart-outline" size={25} color="#FBF7EF" />}
+          onPress={() => navigation.navigate('Faves')}
         />
         <Button
-          title="Downloaded Videos"
-          style={(styles.download, styles.button)}
+          style={styles.button}
+          bgcolor="#507EA2"
+          label="Downloaded Videos"
+          icon={<Icon name="download" size={25} color="#FBF7EF" />}
         />
       </View>
     </View>

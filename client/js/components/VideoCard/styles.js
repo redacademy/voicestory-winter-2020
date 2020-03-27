@@ -1,31 +1,60 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  button: {
+  largeButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: Dimensions.get('window').width,
+    height: 275,
+    marginVertical: 20,
+    width: Dimensions.get('window').width - 75,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 8,
+      height: 2,
     },
-    shadowOpacity: 0.46,
-    shadowRadius: 11.14,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
 
-    elevation: 17,
+    elevation: 5,
   },
-  card: {
-    width: Dimensions.get('window').width - 75,
+  smallButton: {
+    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 175,
+    width: Dimensions.get('window').width * 0.6,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  largeCard: {
+    width: '100%',
     borderRadius: 10,
-    height: 275,
+    height: '100%',
     marginVertical: 20,
     overflow: 'hidden',
     position: 'relative',
   },
+  smallCard: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
   image: {
     height: '70%',
+    width: '100%',
     backgroundColor: 'blue',
+    position: 'relative',
+  },
+  speaker: {
+    fontWeight: '300',
   },
   info: {
     height: '30%',
@@ -54,13 +83,13 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 20,
     fontWeight: '600',
-    color: 'white',
+    color: '#fbf7ef',
   },
   min: {
-    color: 'white',
+    color: '#fbf7ef',
   },
   play: {
-    backgroundColor: '#454545',
+    backgroundColor: '#3c3c3c',
     height: 60,
     width: 60,
     borderRadius: 50,
@@ -77,6 +106,37 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
+  },
+  centerPlay: {
+    backgroundColor: '#3c3c3c',
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: '60%',
+    top: '50%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  loader: {
+    width: Dimensions.get('window').width * 0.6,
+    borderRadius: 10,
+    height: 175,
+    marginVertical: 20,
+    overflow: 'hidden',
+  },
+  errorContainer: {
+    height: 175,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

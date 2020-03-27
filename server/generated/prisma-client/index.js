@@ -9,15 +9,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Video",
-    embedded: false
-  },
-  {
     name: "Speaker",
-    embedded: false
-  },
-  {
-    name: "Location",
     embedded: false
   },
   {

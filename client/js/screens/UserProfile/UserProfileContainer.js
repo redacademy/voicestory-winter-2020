@@ -4,6 +4,7 @@ import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import styles from './styles';
+import {UserContext} from '../../context/UserContext';
 const ALL_USERS = gql`
   {
     users {
@@ -39,11 +40,21 @@ export default class UserProfileContainer extends Component {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error :(</Text>;
           return (
-            <UserProfile
-              navigation={this.props.navigation}
-              users={data.users}
-              style={styles.container}
-            />
+            <UserContext.Consumer>
+              {({user}) => {
+                const viewer = user;
+                const currentUser = data.users.filter(user =>
+                  viewer.id.includes(user.id),
+                );
+                return (
+                  <UserProfile
+                    navigation={this.props.navigation}
+                    user={currentUser}
+                    style={styles.container}
+                  />
+                );
+              }}
+            </UserContext.Consumer>
           );
         }}
       </Query>

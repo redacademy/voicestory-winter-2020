@@ -3,6 +3,11 @@ import EventInfo from './EventInfo';
 
 export default class EventInfoContainer extends Component {
   render() {
-    return <EventInfo navigation={this.props.navigation} />;
+    return (
+      <EventInfo
+        event={this.props.route.params.event}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }

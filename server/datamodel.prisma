@@ -1,20 +1,10 @@
 type User {
   id: ID! @id
   email: String @unique
+  password: String!
   name: String!
   isSpeaker: Speaker
-  favouritedVideos: [Video!]!
   ownedTickets: [Event!]!
-}
-
-type Video {
-  id: ID! @id
-  title: String!
-  url: String!
-  createdAt: DateTime @createdAt
-  published: Boolean! @default(value: false)
-  author: Speaker @relation(link: INLINE)
-  theme: String!
 }
 
 type Speaker {
@@ -25,25 +15,20 @@ type Speaker {
   linkedin: String
   facebook: String
   description: String!
-  videos: [Video]! 
-}
-
-type Location {
-  id: ID! @id
-  latitude: Float!
-  longitude: Float!
 }
 
 type Event {
   id: ID! @id
   title: String!
   description: String!
+  date: Int!
+  time: String
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: Location! 
   price: Float
   maxTickets: Int!
   soldTickets: Int @default(value: 0)
   speakers: [Speaker]!
+  theme: String
 }

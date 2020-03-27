@@ -1,12 +1,112 @@
-import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import React, {useReducer, useState} from 'react';
+import {Image, View, TouchableOpacity} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
-
-const TicketInfo = ({navigation}) => {
+import Button from '../../components/Button/';
+import styles from './styles';
+import SpeakerCard from '../../components/SpeakerCard';
+import {ScrollView} from 'react-native-gesture-handler';
+import moment from 'moment';
+import {mapKey} from '../../apiKeys';
+import openMap from 'react-native-open-maps';
+const TicketInfo = ({ticket, navigation}) => {
+  const getMap = async address => {
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
+    )
+      .then(resp => resp.json())
+      .then(data => {
+        openMap({
+          latitude: data.results[0].geometry.location.lat,
+          longitude: data.results[0].geometry.location.lng,
+          query: data.results[0].formatted_address,
+        });
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  };
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('QRCode')}>
-      <Text>View QR Ticket</Text>
-    </TouchableOpacity>
+    <>
+      <ScrollView style={styles.ticket}>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            resizeMode={'cover'}
+            source={{uri: ticket.thumbnail_url}}
+          />
+        </View>
+        <Text style={styles.title}>Voice Story Live</Text>
+        <Text style={styles.eventtitle}>{ticket.title}</Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            style={styles.button}
+            bgcolor="#D84F48"
+            label="View Ticket"
+            onPress={() => navigation.navigate('Ticket', {ticket: ticket})}
+          />
+        </View>
+        <View style={styles.ticketInfoContainer}>
+          <View style={styles.infoSections}>
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../assets/icons/calender.png')}
+              />
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.date}>
+                {moment(ticket.date).format('MMM Do YYYY')}
+              </Text>
+              <Text style={styles.time}>{ticket.time}</Text>
+            </View>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              getMap(ticket.location_address);
+            }}
+            style={styles.infoSections}>
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../assets/icons/location.png')}
+              />
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.location}>{ticket.location_name}</Text>
+              <Text style={styles.address}>{ticket.location_address}</Text>
+            </View>
+          </TouchableOpacity>
+          <View style={styles.infoSections}>
+            <View>
+              <Image
+                style={styles.icon}
+                source={require('../../assets/icons/pricing.png')}
+              />
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.price}>${ticket.price}</Text>
+              <Text style={styles.tax}>Not including taxes</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.aboutContainer}>
+          <Text style={styles.aboutTitle}>About</Text>
+          <Text style={styles.about}>{ticket.description}</Text>
+          <View style={styles.speakerContainer}>
+            <Text style={styles.speakerTitle}>Speakers</Text>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
+              <SpeakerCard
+                style={styles.speakerCard}
+                name="Alexandria Papodopoulos"
+                source={require('../../assets/images/winstonatstage.jpg')}
+              />
+            </ScrollView>
+          </View>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 
