@@ -7,7 +7,15 @@ module.exports = {
   count: Int!
 }
 
+type AggregateNotification {
+  count: Int!
+}
+
 type AggregateSpeaker {
+  count: Int!
+}
+
+type AggregateTheme {
   count: Int!
 }
 
@@ -18,6 +26,8 @@ type AggregateUser {
 type BatchPayload {
   count: Long!
 }
+
+scalar DateTime
 
 type Event {
   id: ID!
@@ -32,7 +42,7 @@ type Event {
   maxTickets: Int!
   soldTickets: Int
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker!]
-  theme: String
+  theme: Theme
 }
 
 type EventConnection {
@@ -54,7 +64,7 @@ input EventCreateInput {
   maxTickets: Int!
   soldTickets: Int
   speakers: SpeakerCreateManyInput
-  theme: String
+  theme: ThemeCreateOneInput
 }
 
 input EventCreateManyInput {
@@ -90,8 +100,6 @@ enum EventOrderByInput {
   maxTickets_DESC
   soldTickets_ASC
   soldTickets_DESC
-  theme_ASC
-  theme_DESC
 }
 
 type EventPreviousValues {
@@ -106,7 +114,6 @@ type EventPreviousValues {
   price: Float
   maxTickets: Int!
   soldTickets: Int
-  theme: String
 }
 
 input EventScalarWhereInput {
@@ -240,20 +247,6 @@ input EventScalarWhereInput {
   soldTickets_lte: Int
   soldTickets_gt: Int
   soldTickets_gte: Int
-  theme: String
-  theme_not: String
-  theme_in: [String!]
-  theme_not_in: [String!]
-  theme_lt: String
-  theme_lte: String
-  theme_gt: String
-  theme_gte: String
-  theme_contains: String
-  theme_not_contains: String
-  theme_starts_with: String
-  theme_not_starts_with: String
-  theme_ends_with: String
-  theme_not_ends_with: String
   AND: [EventScalarWhereInput!]
   OR: [EventScalarWhereInput!]
   NOT: [EventScalarWhereInput!]
@@ -289,7 +282,7 @@ input EventUpdateDataInput {
   maxTickets: Int
   soldTickets: Int
   speakers: SpeakerUpdateManyInput
-  theme: String
+  theme: ThemeUpdateOneInput
 }
 
 input EventUpdateInput {
@@ -304,7 +297,7 @@ input EventUpdateInput {
   maxTickets: Int
   soldTickets: Int
   speakers: SpeakerUpdateManyInput
-  theme: String
+  theme: ThemeUpdateOneInput
 }
 
 input EventUpdateManyDataInput {
@@ -318,7 +311,6 @@ input EventUpdateManyDataInput {
   price: Float
   maxTickets: Int
   soldTickets: Int
-  theme: String
 }
 
 input EventUpdateManyInput {
@@ -344,7 +336,6 @@ input EventUpdateManyMutationInput {
   price: Float
   maxTickets: Int
   soldTickets: Int
-  theme: String
 }
 
 input EventUpdateManyWithWhereNestedInput {
@@ -497,20 +488,7 @@ input EventWhereInput {
   speakers_every: SpeakerWhereInput
   speakers_some: SpeakerWhereInput
   speakers_none: SpeakerWhereInput
-  theme: String
-  theme_not: String
-  theme_in: [String!]
-  theme_not_in: [String!]
-  theme_lt: String
-  theme_lte: String
-  theme_gt: String
-  theme_gte: String
-  theme_contains: String
-  theme_not_contains: String
-  theme_starts_with: String
-  theme_not_starts_with: String
-  theme_ends_with: String
-  theme_not_ends_with: String
+  theme: ThemeWhereInput
   AND: [EventWhereInput!]
   OR: [EventWhereInput!]
   NOT: [EventWhereInput!]
@@ -529,12 +507,24 @@ type Mutation {
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   deleteEvent(where: EventWhereUniqueInput!): Event
   deleteManyEvents(where: EventWhereInput): BatchPayload!
+  createNotification(data: NotificationCreateInput!): Notification!
+  updateNotification(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+  updateManyNotifications(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): BatchPayload!
+  upsertNotification(where: NotificationWhereUniqueInput!, create: NotificationCreateInput!, update: NotificationUpdateInput!): Notification!
+  deleteNotification(where: NotificationWhereUniqueInput!): Notification
+  deleteManyNotifications(where: NotificationWhereInput): BatchPayload!
   createSpeaker(data: SpeakerCreateInput!): Speaker!
   updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
   updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
   upsertSpeaker(where: SpeakerWhereUniqueInput!, create: SpeakerCreateInput!, update: SpeakerUpdateInput!): Speaker!
   deleteSpeaker(where: SpeakerWhereUniqueInput!): Speaker
   deleteManySpeakers(where: SpeakerWhereInput): BatchPayload!
+  createTheme(data: ThemeCreateInput!): Theme!
+  updateTheme(data: ThemeUpdateInput!, where: ThemeWhereUniqueInput!): Theme
+  updateManyThemes(data: ThemeUpdateManyMutationInput!, where: ThemeWhereInput): BatchPayload!
+  upsertTheme(where: ThemeWhereUniqueInput!, create: ThemeCreateInput!, update: ThemeUpdateInput!): Theme!
+  deleteTheme(where: ThemeWhereUniqueInput!): Theme
+  deleteManyThemes(where: ThemeWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -553,6 +543,115 @@ interface Node {
   id: ID!
 }
 
+type Notification {
+  id: ID!
+  timestamp: DateTime
+  announcement: String
+}
+
+type NotificationConnection {
+  pageInfo: PageInfo!
+  edges: [NotificationEdge]!
+  aggregate: AggregateNotification!
+}
+
+input NotificationCreateInput {
+  id: ID
+  announcement: String
+}
+
+type NotificationEdge {
+  node: Notification!
+  cursor: String!
+}
+
+enum NotificationOrderByInput {
+  id_ASC
+  id_DESC
+  timestamp_ASC
+  timestamp_DESC
+  announcement_ASC
+  announcement_DESC
+}
+
+type NotificationPreviousValues {
+  id: ID!
+  timestamp: DateTime
+  announcement: String
+}
+
+type NotificationSubscriptionPayload {
+  mutation: MutationType!
+  node: Notification
+  updatedFields: [String!]
+  previousValues: NotificationPreviousValues
+}
+
+input NotificationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NotificationWhereInput
+  AND: [NotificationSubscriptionWhereInput!]
+  OR: [NotificationSubscriptionWhereInput!]
+  NOT: [NotificationSubscriptionWhereInput!]
+}
+
+input NotificationUpdateInput {
+  announcement: String
+}
+
+input NotificationUpdateManyMutationInput {
+  announcement: String
+}
+
+input NotificationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  timestamp: DateTime
+  timestamp_not: DateTime
+  timestamp_in: [DateTime!]
+  timestamp_not_in: [DateTime!]
+  timestamp_lt: DateTime
+  timestamp_lte: DateTime
+  timestamp_gt: DateTime
+  timestamp_gte: DateTime
+  announcement: String
+  announcement_not: String
+  announcement_in: [String!]
+  announcement_not_in: [String!]
+  announcement_lt: String
+  announcement_lte: String
+  announcement_gt: String
+  announcement_gte: String
+  announcement_contains: String
+  announcement_not_contains: String
+  announcement_starts_with: String
+  announcement_not_starts_with: String
+  announcement_ends_with: String
+  announcement_not_ends_with: String
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+}
+
+input NotificationWhereUniqueInput {
+  id: ID
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -564,9 +663,15 @@ type Query {
   event(where: EventWhereUniqueInput!): Event
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  notification(where: NotificationWhereUniqueInput!): Notification
+  notifications(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Notification]!
+  notificationsConnection(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NotificationConnection!
   speaker(where: SpeakerWhereUniqueInput!): Speaker
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
   speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
+  theme(where: ThemeWhereUniqueInput!): Theme
+  themes(where: ThemeWhereInput, orderBy: ThemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Theme]!
+  themesConnection(where: ThemeWhereInput, orderBy: ThemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ThemeConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -936,8 +1041,152 @@ input SpeakerWhereUniqueInput {
 
 type Subscription {
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
+  notification(where: NotificationSubscriptionWhereInput): NotificationSubscriptionPayload
   speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
+  theme(where: ThemeSubscriptionWhereInput): ThemeSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Theme {
+  id: ID!
+  name: String!
+  hexcode: String!
+}
+
+type ThemeConnection {
+  pageInfo: PageInfo!
+  edges: [ThemeEdge]!
+  aggregate: AggregateTheme!
+}
+
+input ThemeCreateInput {
+  id: ID
+  name: String!
+  hexcode: String
+}
+
+input ThemeCreateOneInput {
+  create: ThemeCreateInput
+  connect: ThemeWhereUniqueInput
+}
+
+type ThemeEdge {
+  node: Theme!
+  cursor: String!
+}
+
+enum ThemeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  hexcode_ASC
+  hexcode_DESC
+}
+
+type ThemePreviousValues {
+  id: ID!
+  name: String!
+  hexcode: String!
+}
+
+type ThemeSubscriptionPayload {
+  mutation: MutationType!
+  node: Theme
+  updatedFields: [String!]
+  previousValues: ThemePreviousValues
+}
+
+input ThemeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ThemeWhereInput
+  AND: [ThemeSubscriptionWhereInput!]
+  OR: [ThemeSubscriptionWhereInput!]
+  NOT: [ThemeSubscriptionWhereInput!]
+}
+
+input ThemeUpdateDataInput {
+  name: String
+  hexcode: String
+}
+
+input ThemeUpdateInput {
+  name: String
+  hexcode: String
+}
+
+input ThemeUpdateManyMutationInput {
+  name: String
+  hexcode: String
+}
+
+input ThemeUpdateOneInput {
+  create: ThemeCreateInput
+  update: ThemeUpdateDataInput
+  upsert: ThemeUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ThemeWhereUniqueInput
+}
+
+input ThemeUpsertNestedInput {
+  update: ThemeUpdateDataInput!
+  create: ThemeCreateInput!
+}
+
+input ThemeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  hexcode: String
+  hexcode_not: String
+  hexcode_in: [String!]
+  hexcode_not_in: [String!]
+  hexcode_lt: String
+  hexcode_lte: String
+  hexcode_gt: String
+  hexcode_gte: String
+  hexcode_contains: String
+  hexcode_not_contains: String
+  hexcode_starts_with: String
+  hexcode_not_starts_with: String
+  hexcode_ends_with: String
+  hexcode_not_ends_with: String
+  AND: [ThemeWhereInput!]
+  OR: [ThemeWhereInput!]
+  NOT: [ThemeWhereInput!]
+}
+
+input ThemeWhereUniqueInput {
+  id: ID
 }
 
 type User {
