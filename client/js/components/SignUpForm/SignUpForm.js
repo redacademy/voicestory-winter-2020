@@ -4,6 +4,7 @@ import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import Text from '../../components/CustomText';
 
 const SignUpForm = ({
   setFullName,
@@ -49,7 +50,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            setFirst_name(value);
+            value === '' ? (error = true) : setFirst_name(value);
           }}
         />
         <TextInput
@@ -63,7 +64,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            setLast_name(value);
+            value === '' ? (error = true) : setLast_name(value);
           }}
         />
         <TextInput
@@ -77,7 +78,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            setEmail(value);
+            value === '' ? (error = true) : setEmail(value);
           }}
         />
         <TextInput
@@ -94,10 +95,14 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            setPassword(value);
+            value === '' ? (error = true) : setPassword(value);
           }}
         />
       </View>
+      <Text style={styles.error}>
+        {error &&
+          'Invalid Sign Up. Make sure your username/email are unique and fill in all the fields.'}
+      </Text>
       <View style={styles.buttonbox}>
         <Button
           buttonStyle={styles.button}
