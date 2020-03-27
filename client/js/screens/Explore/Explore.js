@@ -18,8 +18,7 @@ const Explore = ({navigation, route}) => {
             <Text style={styles.heading}>Videos</Text>
             <TouchableOpacity
               onPress={() => {
-                value.videos.length > 0 &&
-                  navigation.navigate('Videos', {screen: 'Newest'});
+                navigation.navigate('Videos', {screen: 'Newest'});
               }}>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
@@ -39,10 +38,7 @@ const Explore = ({navigation, route}) => {
           <View style={styles.headingContainer}>
             <Text style={styles.heading}>Themes</Text>
             <TouchableOpacity
-              onPress={() =>
-                value.videos.length > 0 &&
-                navigation.navigate('Videos', {screen: 'Themes'})
-              }>
+              onPress={() => navigation.navigate('Videos', {screen: 'Themes'})}>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>
