@@ -11,7 +11,7 @@ import FavesScreen from '../screens/Faves';
 import VideoPlayer from '../screens/VideoPlayer';
 import SpeakersScreen from '../screens/Speakers';
 import SpeakerScreen from '../screens/SpeakerProfile';
-import ThemeScreen from '../screens/Themes';
+import ThemeScreen from '../screens/Theme';
 import EventInfoScreen from '../screens/EventInfo';
 import TicketInfoScreen from '../screens/TicketInfo';
 import CheckoutScreen from '../screens/Checkout';
@@ -23,7 +23,6 @@ import SearchScreen from '../screens/Search';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Image} from 'react-native';
-
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
   return (
@@ -46,10 +45,11 @@ const ExploreStackScreens = props => {
       />
       <ExploreStack.Screen
         name="Theme"
-        component={VideosScreen}
-        options={{
+        component={ThemeScreen}
+        options={({route}) => ({
           headerTintColor: '#FBF7EF',
-        }}
+          title: route.params.theme,
+        })}
       />
       <ExploreStack.Screen
         name="Video"

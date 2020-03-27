@@ -6,15 +6,18 @@ import client from '../config/api';
 import {UserContextProvider} from './context/UserContext';
 
 import FavesProvider from './context/FavesContext';
+import YoutubeDataProvider from './context/YoutubeData';
 export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
         <UserContextProvider>
           <FavesProvider>
-            <NavigationContainer>
-              <RootNav />
-            </NavigationContainer>
+            <YoutubeDataProvider>
+              <NavigationContainer>
+                <RootNav />
+              </NavigationContainer>
+            </YoutubeDataProvider>
           </FavesProvider>
         </UserContextProvider>
       </ApolloProvider>

@@ -3,8 +3,20 @@ import {StyleSheet, Dimensions} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     height: Dimensions.get('window').height,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     backgroundColor: '#FBF7EF',
+  },
+  images: {
+    alignItems: 'center',
+  },
+  logo: {
+    width: 350,
+    resizeMode: 'contain',
+  },
+  mic: {
+    width: 125,
+    height: 125,
+    resizeMode: 'contain',
   },
   toggleContainer: {
     width: 150,
