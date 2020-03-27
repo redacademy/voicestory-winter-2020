@@ -28,7 +28,7 @@ const Search = ({events, videos, speakers, navigation}) => {
     speaker.name.toLowerCase().match(search),
   );
   const speakerName = speakerResults.map(speaker => speaker.name);
-  console.log(speakerResults);
+  console.log(speakerResults.length);
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>
@@ -66,7 +66,6 @@ const Search = ({events, videos, speakers, navigation}) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon style={styles.close} name="close" size={25} color="#FBF7EF" />
         </TouchableOpacity>
-        {console.log(search)}
       </SafeAreaView>
       <ScrollView style={styles.contentContainer}>
         <Text style={styles.resultheader}>Search Results</Text>
