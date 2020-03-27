@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   error: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
   },
 });
 
