@@ -6,6 +6,7 @@ import styles from './styles';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const EventInfo = ({event, navigation}) => {
   const hero =
@@ -114,6 +115,11 @@ const EventInfo = ({event, navigation}) => {
       </ScrollView>
     </View>
   );
+};
+
+EventInfo.propType = {
+  event: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 export default EventInfo;

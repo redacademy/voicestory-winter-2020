@@ -97,9 +97,10 @@ const EventsStackScreens = props => {
       <EventsStack.Screen
         name="Event Info"
         component={EventInfoScreen}
-        options={{
+        options={({route}) => ({
+          title: route.params.title,
           headerTintColor: '#FBF7EF',
-        }}
+        })}
       />
       <TicketsStack.Screen
         name="Ticket Info"

@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     width: '86%',
     borderRadius: 10,
     marginHorizontal: 30,
+    marginBottom: 40,
   },
   buytext: {
     color: 'white',

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {BaseRouter} from '@react-navigation/native';
 
 const EventCard = ({
   title,
@@ -29,7 +28,7 @@ const EventCard = ({
     <TouchableOpacity
       onPress={() =>
         route.name === 'Events'
-          ? navigation.navigate('Event Info', {event: event})
+          ? navigation.navigate('Event Info', {event: event, title: title})
           : navigation.navigate('Ticket Info', {ownedTicket: ownedTicket})
       }
       style={styles.card}>
