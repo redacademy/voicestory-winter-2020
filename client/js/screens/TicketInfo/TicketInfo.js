@@ -32,7 +32,7 @@ const TicketInfo = ({ticket, navigation}) => {
           <Image
             style={styles.image}
             resizeMode={'cover'}
-            source={require('../../assets/images/winstonatstage.jpg')}
+            source={{uri: ticket.thumbnail_url}}
           />
         </View>
         <Text style={styles.title}>Voice Story Live</Text>

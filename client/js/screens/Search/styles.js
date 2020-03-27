@@ -1,17 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  header: {
-    color: '#FBF7EF',
-    fontSize: 18,
-    fontFamily: 'Lato-Bold',
-    flex: 2,
-    textAlign: 'center',
-    transform: [{translateX: 20}, {translateY: 25}],
+  searchContainer: {
+    height: Dimensions.get('window').height,
   },
   headerContainer: {
     backgroundColor: '#DB4F48',
-    flexDirection: 'row',
+    paddingBottom: 20,
   },
   heading: {
     color: '#FBF7EF',
@@ -22,9 +17,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#9F3833',
     paddingRight: 30,
     paddingLeft: 30,
-  },
-  close: {
-    marginRight: 20,
   },
   border: {
     borderBottomColor: '#DB4F48',
@@ -38,6 +30,29 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 20,
+  },
+  resultsContainer: {
+    backgroundColor: '#FBF7EF',
+    borderRadius: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    flexDirection: 'row',
+  },
+  imageContainer: {
+    width: 75,
+    height: 75,
+    overflow: 'hidden',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  image: {
+    flex: 1,
+    width: 75,
+  },
+  title: {
+    alignSelf: 'center',
+    marginLeft: 10,
+    fontFamily: 'Lato-Bold',
   },
 });
 

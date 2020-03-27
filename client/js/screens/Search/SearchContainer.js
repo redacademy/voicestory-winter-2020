@@ -10,6 +10,7 @@ const SEARCH = gql`
   {
     speakers {
       id
+      profile_picture
       owner {
         name
       }
@@ -17,6 +18,7 @@ const SEARCH = gql`
     events {
       id
       title
+      thumbnail_url
     }
     videos {
       id
@@ -40,10 +42,9 @@ export default class SearchContainer extends Component {
           if (data)
             return (
               <Search
-                input={this.input}
                 events={data.events}
                 videos={data.videos}
-                speakers={speakers}
+                speakers={data.speakers}
                 navigation={this.props.navigation}
                 route={this.props.route}
               />

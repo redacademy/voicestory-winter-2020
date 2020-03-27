@@ -2,27 +2,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React, {useState} from 'react';
 const {forwardRef, useRef, useImperativeHandle} = React;
 import {View, LayoutAnimation, TouchableOpacity, Text} from 'react-native';
-import SearchBar from '../components/SearchBar';
 import TopDrawer from './TopDrawer';
-
-const SearchButton = ({navigation}) => {
-  return (
-    <Icon
-      style={{
-        marginLeft: 10,
-        marginLeft: 10,
-        transform: [{translateY: 3}],
-        textShadowOffset: {width: 2, height: 2},
-        textShadowColor: '#9F3833',
-        textShadowRadius: 1,
-      }}
-      name="magnify"
-      color="white"
-      size={25}
-      onPress={() => navigation.navigate('Search')}
-    />
-  );
-};
 
 const NotificationButton = ({navigation}) => {
   return (
@@ -101,17 +81,12 @@ export const sharedScreenOptions = props => {
         props.route.name === 'Events' ||
         props.route.name === 'My Tickets' ||
         props.route.name === 'Profile' ? (
-        <>
-          <View style={{flexDirection: 'row'}}>
-            <SearchButton {...props} />
-          </View>
-          <TopDrawer
-            navigation={props.navigation}
-            ref={ref => {
-              drawerRef = ref;
-            }}
-          />
-        </>
+        <TopDrawer
+          navigation={props.navigation}
+          ref={ref => {
+            drawerRef = ref;
+          }}
+        />
       ) : (
         <>
           <View style={{flexDirection: 'row'}}>
@@ -133,15 +108,9 @@ export const sharedScreenOptions = props => {
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            {drawerRef.state && !drawerRef.state.isOpen ? (
-              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <MeatballButton {...props} />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-                <CloseButton {...props} />
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+              <MeatballButton {...props} />
+            </TouchableOpacity>
           </View>
         </>
       ) : null;
