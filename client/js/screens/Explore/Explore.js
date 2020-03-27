@@ -7,6 +7,7 @@ import Text from '../../components/CustomText/CustomText';
 import VideoList from '../../components/VideoList';
 import SpeakerCard from '../../components/SpeakerCard';
 import {YoutubeDataContext} from '../../context/YoutubeData';
+import Error from '../../components/Error/';
 
 const Explore = ({navigation, route}) => {
   return (
@@ -16,21 +17,32 @@ const Explore = ({navigation, route}) => {
           <View style={styles.headingContainer}>
             <Text style={styles.heading}>Videos</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Videos', {screen: 'Newest'})}>
+              onPress={() => {
+                value.videos.length > 0 &&
+                  navigation.navigate('Videos', {screen: 'Newest'});
+              }}>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>
-          <VideoList
-            horizontal={true}
-            route={route}
-            navigation={navigation}
-            offset={-25}
-            videos={value.videos}
-          />
+          {value.videos.length > 0 ? (
+            <VideoList
+              horizontal={true}
+              route={route}
+              navigation={navigation}
+              offset={-25}
+              videos={value.videos}
+            />
+          ) : (
+            <Error name={'videos'} />
+          )}
+
           <View style={styles.headingContainer}>
             <Text style={styles.heading}>Themes</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Videos', {screen: 'Themes'})}>
+              onPress={() =>
+                value.videos.length > 0 &&
+                navigation.navigate('Videos', {screen: 'Themes'})
+              }>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+
 import VideoList from '../../components/VideoList';
-import CustomText from '../../components/CustomText';
-import styles from './styles';
+import Error from '../../components/Error';
+
 export default Theme = ({
   theme,
   playlistVideos,
@@ -11,38 +11,34 @@ export default Theme = ({
   route,
   navigation,
 }) => {
-  const currentPlaylistCheck = playlists.items.find(playlist =>
-    playlist.snippet.title.includes(theme),
-  );
-
-  let currentPlaylist;
-  if (currentPlaylistCheck !== undefined) {
-    currentPlaylist = playlistVideos.find(
-      playlist => playlist.id === currentPlaylistCheck.id,
+  if (playlists?.items?.length > 0) {
+    const currentPlaylistCheck = playlists.items.find(playlist =>
+      playlist.snippet.title.includes(theme),
     );
-  }
 
-  const currentVideos = [];
-  if (currentPlaylist !== undefined) {
-    currentPlaylist.data.items.forEach(playlistVideo => {
-      const filteredVideo = videos.filter(
-        video => playlistVideo.contentDetails.videoId === video.items[0].id,
+    let currentPlaylist;
+    if (currentPlaylistCheck !== undefined) {
+      currentPlaylist = playlistVideos.find(
+        playlist => playlist.id === currentPlaylistCheck.id,
       );
-      return (
-        filteredVideo[0] !== undefined && currentVideos.push(filteredVideo[0])
-      );
-    });
-  }
+    }
 
-  return currentVideos.length > 0 ? (
-    <View style={styles.themeContainer}>
+    const currentVideos = [];
+    if (currentPlaylist !== undefined) {
+      currentPlaylist.data.items.forEach(playlistVideo => {
+        const filteredVideo = videos.filter(
+          video => playlistVideo.contentDetails.videoId === video.items[0].id,
+        );
+        return (
+          filteredVideo[0] !== undefined && currentVideos.push(filteredVideo[0])
+        );
+      });
+    }
+
+    return (
       <VideoList videos={currentVideos} route={route} navigation={navigation} />
-    </View>
-  ) : (
-    <View style={styles.themeContainer}>
-      <View style={styles.error}>
-        <CustomText>There was an error getting this playlist</CustomText>
-      </View>
-    </View>
-  );
+    );
+  } else {
+    return <Error name={'Playlist'} height={'100%'} />;
+  }
 };
