@@ -6,7 +6,6 @@ const Newest = ({route, navigation}) => {
   return (
     <YoutubeDataContext.Consumer>
       {value => {
-        console.log(value);
         return value.videos.length > 0 ? (
           <VideoList
             navigation={navigation}
