@@ -12,7 +12,8 @@ export default class Search extends Component {
 
   render() {
     const {search} = this.state;
-
+    const input = search.toLowerCase();
+    // console.log(input);
     return (
       <SearchBar
         placeholder="Search..."

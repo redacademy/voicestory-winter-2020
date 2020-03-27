@@ -93,6 +93,7 @@ const CloseButton = ({navigation}) => {
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
+
   return {
     headerBackTitleVisible: false,
     headerLeft: () => {
