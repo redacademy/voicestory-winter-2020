@@ -1,16 +1,32 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
-import EventCard from '../../components/EventCard';
+import {View} from 'react-native';
 import styles from './styles';
+import EventCard from '../../components/EventCard';
 
-const Tickets = ({navigation, tickets}) => {
+const Tickets = ({navigation, route, ticketOwner}) => {
   return (
-    <>
-      <TouchableOpacity onPress={() => navigation.navigate('Ticket Info')}>
-        <Text>Ticket Info</Text>
-      </TouchableOpacity>
-    </>
+    <ScrollView style={styles.scrollview}>
+      <View style={styles.main}>
+        {ticketOwner[0].ownedTickets &&
+          ticketOwner[0].ownedTickets.map(ownedTicket => (
+            <EventCard
+              style={styles.card}
+              key={ownedTicket.id}
+              title={ownedTicket.title}
+              location={ownedTicket.location_name}
+              address={ownedTicket.location_address}
+              time={ownedTicket.time}
+              date={ownedTicket.date}
+              ticketthumbnail={ownedTicket.thumbnail_url}
+              navigation={navigation}
+              route={route}
+              ownedTicket={ownedTicket}
+            />
+          ))}
+      </View>
+    </ScrollView>
   );
 };
 

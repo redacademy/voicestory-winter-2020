@@ -31,7 +31,9 @@ const Speakers = ({users, navigation}) => {
             <TouchableOpacity
               style={styles.speaker}
               onPress={() =>
-                navigation.navigate('SpeakerProfile', {speaker: item.isSpeaker})
+                navigation.navigate('Speaker Profile', {
+                  speaker: item.isSpeaker,
+                })
               }>
               <Image
                 source={

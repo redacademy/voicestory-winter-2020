@@ -24,7 +24,6 @@ class TopDrawer extends Component {
       },
     };
   }
-
   render() {
     const navigation = this.props.navigation;
 

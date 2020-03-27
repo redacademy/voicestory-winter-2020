@@ -93,6 +93,7 @@ const CloseButton = ({navigation}) => {
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
+
   return {
     headerBackTitleVisible: false,
     headerLeft: () => {
@@ -126,22 +127,24 @@ export const sharedScreenOptions = props => {
       );
     },
     headerRight: () => {
-      return (
+      return props.route.name === 'Explore' ||
+        props.route.name === 'Events' ||
+        props.route.name === 'My Tickets' ? (
         <>
           <View style={{flexDirection: 'row'}}>
             <NotificationButton {...props} navigation={props.navigation} />
-            {/* {drawerRef.state && !drawerRef.state.isOpen ? ( */}
-            <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-              <MeatballButton {...props} />
-            </TouchableOpacity>
-            {/* ) : (
+            {drawerRef.state && !drawerRef.state.isOpen ? (
+              <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
+                <MeatballButton {...props} />
+              </TouchableOpacity>
+            ) : (
               <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
                 <CloseButton {...props} />
               </TouchableOpacity>
-            )} */}
+            )}
           </View>
         </>
-      );
+      ) : null;
     },
     headerStyle: {
       backgroundColor: '#DB4F48',
@@ -156,6 +159,19 @@ export const sharedDrawerOptions = props => {
         <BackButton navigation={props.navigation} />
       </>
     ),
+    headerStyle: {
+      backgroundColor: '#DB4F48',
+    },
+  };
+};
+export const profileStackOptions = props => {
+  return {
+    headerBackTitleVisible: false,
+    headerLeft: () => {
+      return props.route.name === 'Profile' ? null : (
+        <BackButton navigation={props.navigation} />
+      );
+    },
     headerStyle: {
       backgroundColor: '#DB4F48',
     },
