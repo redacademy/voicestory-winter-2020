@@ -18,10 +18,14 @@ const EventCard = ({
   route,
   theme,
 }) => {
-  const tealConditional =
+  const tealCondition =
     (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
       ? styles.blue
       : styles.red;
+  const tealTextCondition =
+    (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
+      ? styles.bluetext
+      : styles.redtext;
   console.log(theme);
   const eventimg =
     event && eventthumbnail
@@ -41,30 +45,14 @@ const EventCard = ({
       style={styles.card}>
       <View style={styles.contentbox}>
         <View style={styles.datebox}>
-          <Text
-            style={[
-              styles.day,
-              styles.bold,
-              (theme && theme == 'Mental Health') ||
-              theme == 'Abuse' ||
-              theme == 'Growth'
-                ? styles.bluetext
-                : styles.redtext,
-            ]}>
+          <Text style={[styles.day, styles.bold, tealTextCondition]}>
             {moment(date).format('DD')}
           </Text>
-          <Text style={styles.month}>{moment(date).format('MMM')}</Text>
+          <Text style={[styles.month, tealTextCondition]}>
+            {moment(date).format('MMM')}
+          </Text>
         </View>
-        <View
-          style={[
-            styles.info,
-            tealConditional,
-            // (theme && theme == 'Love & Relationships') ||
-            // theme == 'Trauma' ||
-            // theme == 'Pain'
-            //   ? styles.red
-            //   : styles.blue,
-          ]}>
+        <View style={[styles.info, tealCondition]}>
           <View style={styles.details}>
             <Text style={[styles.bigText, styles.bold]}>{title}</Text>
             <Text style={styles.text}>{time}</Text>

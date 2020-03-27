@@ -27,12 +27,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
   },
   month: {
-    color: '#DB4F48',
     fontSize: 12,
     textTransform: 'uppercase',
   },
   day: {
-    color: '#DB4F48',
     fontSize: 20,
   },
   info: {
@@ -42,10 +40,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   blue: {
-    backgroundColor: 'lightblue',
+    backgroundColor: '#507EA2',
   },
   bluetext: {
-    color: 'lightblue',
+    color: '#507EA2',
   },
   red: {
     backgroundColor: '#DB4F48',
