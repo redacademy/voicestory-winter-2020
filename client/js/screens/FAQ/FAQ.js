@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import Collapsible from '../../components/Collapsible';
-import {CommonActions} from '@react-navigation/native';
 
 const FAQ = ({navigation}) => {
   return (

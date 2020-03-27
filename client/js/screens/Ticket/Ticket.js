@@ -3,8 +3,10 @@ import {TouchableOpacity, View, SafeAreaView, Image} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import moment from 'moment';
 
-const Ticket = ({navigation}) => {
+const Ticket = ({route, navigation}) => {
+  const ticket = route.params.ticket;
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>
@@ -22,9 +24,11 @@ const Ticket = ({navigation}) => {
         </View>
         <View style={styles.ticketInfo}>
           <Text style={styles.title}>VoiceStory Live</Text>
-          <Text style={styles.title}>Addicted to Pain</Text>
-          <Text style={styles.date}>Tues, Mar 17, 2020</Text>
-          <Text style={styles.time}>7:00 PM - 9:00 PM</Text>
+          <Text style={styles.title}>{ticket.title}</Text>
+          <Text style={styles.date}>
+            {moment(ticket.date).format('MMM Do YYYY')}
+          </Text>
+          <Text style={styles.time}>{ticket.time}</Text>
         </View>
       </View>
     </>

@@ -4,6 +4,8 @@ import {FavesContext} from '../../context/FavesContext';
 import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+
 const ALL_USERS = gql`
   {
     users {
@@ -19,10 +21,6 @@ const ALL_USERS = gql`
           name
         }
         description
-        videos {
-          id
-          title
-        }
       }
     }
   }
@@ -34,7 +32,7 @@ export default class VideoContainer extends Component {
       <Query query={ALL_USERS}>
         {({data, loading, error}) => {
           if (loading) return <Loader />;
-          if (error) return <Text>Error :(</Text>;
+          if (error) return <Error name={'video'} />;
 
           return (
             <FavesContext.Consumer>

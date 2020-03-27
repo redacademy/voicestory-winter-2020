@@ -5,13 +5,13 @@ import styles from './styles';
 import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const UserProfile = ({navigation, users}) => {
+const UserProfile = ({navigation, user}) => {
   return (
     <View style={styles.main}>
       <View style={styles.user}>
-        <Text style={styles.name}>Winston VoiceStory</Text>
+        <Text style={styles.name}>{user[0].name}</Text>
         <View style={styles.emailContainer}>
-          <Text style={styles.email}>emailplaceholder@gmail.com</Text>
+          <Text style={styles.email}>{user[0].email}</Text>
           <TouchableOpacity>
             <Text style={styles.edit}>Edit</Text>
           </TouchableOpacity>
