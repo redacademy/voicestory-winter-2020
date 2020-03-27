@@ -15,9 +15,6 @@ const ALL_EVENTS = gql`
       location_address
       date
       time
-      location {
-        id
-      }
       price
       maxTickets
       soldTickets
@@ -44,7 +41,11 @@ export default class EventsContainer extends Component {
           if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
           return (
-            <Events navigation={this.props.navigation} events={data.events} />
+            <Events
+              route={this.props.route}
+              navigation={this.props.navigation}
+              events={data.events}
+            />
           );
         }}
       </Query>

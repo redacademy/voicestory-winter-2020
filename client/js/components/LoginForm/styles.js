@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     backgroundColor: '#9F3833',
+    color: 'white',
     padding: 15,
     marginVertical: 5,
     borderRadius: 10,

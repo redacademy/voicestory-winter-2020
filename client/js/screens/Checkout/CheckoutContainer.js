@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import Ticket from './Ticket';
+import Checkout from './Checkout';
 
-export default class TicketContainer extends Component {
+export default class CheckoutContainer extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     console.log(this.props);
     return (
-      <Ticket
-        // ticket={this.props.route.params.ticket}
+      <Checkout
+        event={this.props.route.params.event}
         navigation={this.props.navigation}
       />
     );

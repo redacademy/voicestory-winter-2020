@@ -2,7 +2,6 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   drawerContainer: {
-    backgroundColor: 'transparent',
     width: Dimensions.get('window').width,
     transform: [{translateY: 168}],
     position: 'absolute',
@@ -11,7 +10,7 @@ const styles = StyleSheet.create({
   overlay: {
     height: Dimensions.get('window').height * 2,
     width: Dimensions.get('window').width,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   menu: {
     backgroundColor: '#9F3833',
