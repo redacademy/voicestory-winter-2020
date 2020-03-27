@@ -7,6 +7,7 @@ import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 
 const EventInfo = ({event, navigation}) => {
+  console.log(event);
   const hero =
     event && event.thumbnail_url
       ? {uri: event.thumbnail_url}
@@ -38,7 +39,7 @@ const EventInfo = ({event, navigation}) => {
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/calender1x.png')}
+                source={require('../../assets/icons/calender.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -54,7 +55,7 @@ const EventInfo = ({event, navigation}) => {
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/location1x.png')}
+                source={require('../../assets/icons/location.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -66,7 +67,7 @@ const EventInfo = ({event, navigation}) => {
             <View style={styles.iconbox}>
               <Image
                 style={styles.icon}
-                source={require('../../assets/icons/pricing1x.png')}
+                source={require('../../assets/icons/pricing.png')}
               />
             </View>
             <View style={styles.textbox}>
@@ -98,7 +99,14 @@ const EventInfo = ({event, navigation}) => {
             </ScrollView>
           </View>
         </View>
-        <TouchableOpacity style={styles.buyticketbtn}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Checkout', {
+              screen: 'Select Ticket',
+              event: event,
+            })
+          }
+          style={styles.buyticketbtn}>
           {/* not linked yet */}
           <Text style={styles.buytext}>Get Tickets</Text>
         </TouchableOpacity>

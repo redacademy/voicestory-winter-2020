@@ -17,7 +17,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    alignSelf: 'center',
+    width: 45,
+    height: 50,
+    resizeMode: 'contain',
+    marginRight: 20,
+    transform: [{translateY: -5}],
   },
   iconbox: {
     width: 43,
@@ -48,8 +52,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   aboutcontainer: {
-    // paddingHorizontal: 30,
-    // padding: 30,
     backgroundColor: '#f5f0ea',
   },
   about: {
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   abouttext: {
     marginBottom: 30,
     fontWeight: '400',
-    lineHeight: 20,
+    lineHeight: 23,
   },
   speakercard: {
     height: 150,

@@ -3,6 +3,23 @@ import {StyleSheet, Dimensions} from 'react-native';
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
+    position: 'relative',
+  },
+  addedToFaves: {
+    width: Dimensions.get('window').width,
+    backgroundColor: 'rgb(173, 75, 67)',
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 999,
+  },
+
+  addText: {
+    color: '#fbf7ef',
+    fontSize: 18,
+    marginHorizontal: 10,
   },
   imageContainer: {
     borderBottomEndRadius: 25,

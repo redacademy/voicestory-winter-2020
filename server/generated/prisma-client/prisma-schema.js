@@ -7,10 +7,6 @@ module.exports = {
   count: Int!
 }
 
-type AggregateLocation {
-  count: Int!
-}
-
 type AggregateSpeaker {
   count: Int!
 }
@@ -38,7 +34,6 @@ type Event {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: Location!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -60,7 +55,6 @@ input EventCreateInput {
   thumbnail_url: String!
   location_name: String!
   location_address: String!
-  location: LocationCreateOneInput!
   price: Float
   maxTickets: Int!
   soldTickets: Int
@@ -284,7 +278,6 @@ input EventUpdateDataInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -299,7 +292,6 @@ input EventUpdateInput {
   thumbnail_url: String
   location_name: String
   location_address: String
-  location: LocationUpdateOneRequiredInput
   price: Float
   maxTickets: Int
   soldTickets: Int
@@ -473,7 +465,6 @@ input EventWhereInput {
   location_address_not_starts_with: String
   location_address_ends_with: String
   location_address_not_ends_with: String
-  location: LocationWhereInput
   price: Float
   price_not: Float
   price_in: [Float!]
@@ -510,134 +501,6 @@ input EventWhereUniqueInput {
   id: ID
 }
 
-type Location {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-}
-
-type LocationConnection {
-  pageInfo: PageInfo!
-  edges: [LocationEdge]!
-  aggregate: AggregateLocation!
-}
-
-input LocationCreateInput {
-  id: ID
-  latitude: Float!
-  longitude: Float!
-}
-
-input LocationCreateOneInput {
-  create: LocationCreateInput
-  connect: LocationWhereUniqueInput
-}
-
-type LocationEdge {
-  node: Location!
-  cursor: String!
-}
-
-enum LocationOrderByInput {
-  id_ASC
-  id_DESC
-  latitude_ASC
-  latitude_DESC
-  longitude_ASC
-  longitude_DESC
-}
-
-type LocationPreviousValues {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-}
-
-type LocationSubscriptionPayload {
-  mutation: MutationType!
-  node: Location
-  updatedFields: [String!]
-  previousValues: LocationPreviousValues
-}
-
-input LocationSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: LocationWhereInput
-  AND: [LocationSubscriptionWhereInput!]
-  OR: [LocationSubscriptionWhereInput!]
-  NOT: [LocationSubscriptionWhereInput!]
-}
-
-input LocationUpdateDataInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateManyMutationInput {
-  latitude: Float
-  longitude: Float
-}
-
-input LocationUpdateOneRequiredInput {
-  create: LocationCreateInput
-  update: LocationUpdateDataInput
-  upsert: LocationUpsertNestedInput
-  connect: LocationWhereUniqueInput
-}
-
-input LocationUpsertNestedInput {
-  update: LocationUpdateDataInput!
-  create: LocationCreateInput!
-}
-
-input LocationWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  latitude: Float
-  latitude_not: Float
-  latitude_in: [Float!]
-  latitude_not_in: [Float!]
-  latitude_lt: Float
-  latitude_lte: Float
-  latitude_gt: Float
-  latitude_gte: Float
-  longitude: Float
-  longitude_not: Float
-  longitude_in: [Float!]
-  longitude_not_in: [Float!]
-  longitude_lt: Float
-  longitude_lte: Float
-  longitude_gt: Float
-  longitude_gte: Float
-  AND: [LocationWhereInput!]
-  OR: [LocationWhereInput!]
-  NOT: [LocationWhereInput!]
-}
-
-input LocationWhereUniqueInput {
-  id: ID
-}
-
 scalar Long
 
 type Mutation {
@@ -647,12 +510,6 @@ type Mutation {
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   deleteEvent(where: EventWhereUniqueInput!): Event
   deleteManyEvents(where: EventWhereInput): BatchPayload!
-  createLocation(data: LocationCreateInput!): Location!
-  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
-  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
-  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
-  deleteLocation(where: LocationWhereUniqueInput!): Location
-  deleteManyLocations(where: LocationWhereInput): BatchPayload!
   createSpeaker(data: SpeakerCreateInput!): Speaker!
   updateSpeaker(data: SpeakerUpdateInput!, where: SpeakerWhereUniqueInput!): Speaker
   updateManySpeakers(data: SpeakerUpdateManyMutationInput!, where: SpeakerWhereInput): BatchPayload!
@@ -694,9 +551,6 @@ type Query {
   event(where: EventWhereUniqueInput!): Event
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
-  location(where: LocationWhereUniqueInput!): Location
-  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
-  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
   speaker(where: SpeakerWhereUniqueInput!): Speaker
   speakers(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Speaker]!
   speakersConnection(where: SpeakerWhereInput, orderBy: SpeakerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SpeakerConnection!
@@ -1119,7 +973,6 @@ input SpeakerWhereUniqueInput {
 
 type Subscription {
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
-  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
   speaker(where: SpeakerSubscriptionWhereInput): SpeakerSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   video(where: VideoSubscriptionWhereInput): VideoSubscriptionPayload

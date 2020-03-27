@@ -1,3 +1,3 @@
-import SignUpForm from './SignUpForm';
+import SignUpFormMutation from './SignUpFormMutation';
 
-export default SignUpForm;
+export default SignUpFormMutation;

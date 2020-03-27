@@ -17,10 +17,6 @@ var models = [
     embedded: false
   },
   {
-    name: "Location",
-    embedded: false
-  },
-  {
     name: "Event",
     embedded: false
   }

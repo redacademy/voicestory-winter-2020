@@ -17,7 +17,6 @@ export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
   event: (where?: EventWhereInput) => Promise<boolean>;
-  location: (where?: LocationWhereInput) => Promise<boolean>;
   speaker: (where?: SpeakerWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
   video: (where?: VideoWhereInput) => Promise<boolean>;
@@ -61,25 +60,6 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => EventConnectionPromise;
-  location: (where: LocationWhereUniqueInput) => LocationNullablePromise;
-  locations: (args?: {
-    where?: LocationWhereInput;
-    orderBy?: LocationOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Location>;
-  locationsConnection: (args?: {
-    where?: LocationWhereInput;
-    orderBy?: LocationOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => LocationConnectionPromise;
   speaker: (where: SpeakerWhereUniqueInput) => SpeakerNullablePromise;
   speakers: (args?: {
     where?: SpeakerWhereInput;
@@ -159,22 +139,6 @@ export interface Prisma {
   }) => EventPromise;
   deleteEvent: (where: EventWhereUniqueInput) => EventPromise;
   deleteManyEvents: (where?: EventWhereInput) => BatchPayloadPromise;
-  createLocation: (data: LocationCreateInput) => LocationPromise;
-  updateLocation: (args: {
-    data: LocationUpdateInput;
-    where: LocationWhereUniqueInput;
-  }) => LocationPromise;
-  updateManyLocations: (args: {
-    data: LocationUpdateManyMutationInput;
-    where?: LocationWhereInput;
-  }) => BatchPayloadPromise;
-  upsertLocation: (args: {
-    where: LocationWhereUniqueInput;
-    create: LocationCreateInput;
-    update: LocationUpdateInput;
-  }) => LocationPromise;
-  deleteLocation: (where: LocationWhereUniqueInput) => LocationPromise;
-  deleteManyLocations: (where?: LocationWhereInput) => BatchPayloadPromise;
   createSpeaker: (data: SpeakerCreateInput) => SpeakerPromise;
   updateSpeaker: (args: {
     data: SpeakerUpdateInput;
@@ -235,9 +199,6 @@ export interface Subscription {
   event: (
     where?: EventSubscriptionWhereInput
   ) => EventSubscriptionPayloadSubscription;
-  location: (
-    where?: LocationSubscriptionWhereInput
-  ) => LocationSubscriptionPayloadSubscription;
   speaker: (
     where?: SpeakerSubscriptionWhereInput
   ) => SpeakerSubscriptionPayloadSubscription;
@@ -309,14 +270,6 @@ export type EventOrderByInput =
   | "soldTickets_ASC"
   | "soldTickets_DESC";
 
-export type LocationOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "latitude_ASC"
-  | "latitude_DESC"
-  | "longitude_ASC"
-  | "longitude_DESC";
-
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -328,15 +281,6 @@ export type UserOrderByInput =
   | "name_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
-export interface SpeakerUpdateWithWhereUniqueNestedInput {
-  where: SpeakerWhereUniqueInput;
-  data: SpeakerUpdateDataInput;
-}
-
-export type EventWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface VideoUpdateManyInput {
   create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
@@ -356,6 +300,19 @@ export interface VideoUpdateManyInput {
   updateMany?: Maybe<
     VideoUpdateManyWithWhereNestedInput[] | VideoUpdateManyWithWhereNestedInput
   >;
+}
+
+export type EventWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SpeakerUpdateOneWithoutVideosInput {
+  create?: Maybe<SpeakerCreateWithoutVideosInput>;
+  update?: Maybe<SpeakerUpdateWithoutVideosDataInput>;
+  upsert?: Maybe<SpeakerUpsertWithoutVideosInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
 export interface UserWhereInput {
@@ -427,42 +384,42 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface UserCreateWithoutIsSpeakerInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  password: String;
-  name: String;
-  favouritedVideos?: Maybe<VideoCreateManyInput>;
-  ownedTickets?: Maybe<EventCreateManyInput>;
+export interface SpeakerCreateOneWithoutVideosInput {
+  create?: Maybe<SpeakerCreateWithoutVideosInput>;
+  connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
-export interface VideoUpdateWithoutAuthorDataInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  theme?: Maybe<String>;
-}
-
-export interface VideoCreateManyInput {
-  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
-  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-}
-
-export interface VideoUpdateWithWhereUniqueNestedInput {
+export interface VideoUpsertWithWhereUniqueWithoutAuthorInput {
   where: VideoWhereUniqueInput;
-  data: VideoUpdateDataInput;
+  update: VideoUpdateWithoutAuthorDataInput;
+  create: VideoCreateWithoutAuthorInput;
 }
 
-export interface VideoCreateInput {
+export interface SpeakerCreateWithoutVideosInput {
   id?: Maybe<ID_Input>;
+  owner?: Maybe<UserCreateOneWithoutIsSpeakerInput>;
+  profile_picture: String;
   title: String;
-  url: String;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerCreateOneWithoutVideosInput>;
-  theme: String;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description: String;
 }
 
-export interface LocationWhereInput {
+export interface SpeakerUpdateWithoutVideosDataInput {
+  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
+  profile_picture?: Maybe<String>;
+  title?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface EventCreateManyInput {
+  create?: Maybe<EventCreateInput[] | EventCreateInput>;
+  connect?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+}
+
+export interface SpeakerWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -477,67 +434,109 @@ export interface LocationWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  latitude?: Maybe<Float>;
-  latitude_not?: Maybe<Float>;
-  latitude_in?: Maybe<Float[] | Float>;
-  latitude_not_in?: Maybe<Float[] | Float>;
-  latitude_lt?: Maybe<Float>;
-  latitude_lte?: Maybe<Float>;
-  latitude_gt?: Maybe<Float>;
-  latitude_gte?: Maybe<Float>;
-  longitude?: Maybe<Float>;
-  longitude_not?: Maybe<Float>;
-  longitude_in?: Maybe<Float[] | Float>;
-  longitude_not_in?: Maybe<Float[] | Float>;
-  longitude_lt?: Maybe<Float>;
-  longitude_lte?: Maybe<Float>;
-  longitude_gt?: Maybe<Float>;
-  longitude_gte?: Maybe<Float>;
-  AND?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-  OR?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-  NOT?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-}
-
-export interface SpeakerCreateOneWithoutVideosInput {
-  create?: Maybe<SpeakerCreateWithoutVideosInput>;
-  connect?: Maybe<SpeakerWhereUniqueInput>;
-}
-
-export interface VideoSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<VideoWhereInput>;
-  AND?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
-  OR?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
-  NOT?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
-}
-
-export interface SpeakerCreateWithoutVideosInput {
-  id?: Maybe<ID_Input>;
-  owner?: Maybe<UserCreateOneWithoutIsSpeakerInput>;
-  profile_picture: String;
-  title: String;
+  owner?: Maybe<UserWhereInput>;
+  profile_picture?: Maybe<String>;
+  profile_picture_not?: Maybe<String>;
+  profile_picture_in?: Maybe<String[] | String>;
+  profile_picture_not_in?: Maybe<String[] | String>;
+  profile_picture_lt?: Maybe<String>;
+  profile_picture_lte?: Maybe<String>;
+  profile_picture_gt?: Maybe<String>;
+  profile_picture_gte?: Maybe<String>;
+  profile_picture_contains?: Maybe<String>;
+  profile_picture_not_contains?: Maybe<String>;
+  profile_picture_starts_with?: Maybe<String>;
+  profile_picture_not_starts_with?: Maybe<String>;
+  profile_picture_ends_with?: Maybe<String>;
+  profile_picture_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
   linkedin?: Maybe<String>;
+  linkedin_not?: Maybe<String>;
+  linkedin_in?: Maybe<String[] | String>;
+  linkedin_not_in?: Maybe<String[] | String>;
+  linkedin_lt?: Maybe<String>;
+  linkedin_lte?: Maybe<String>;
+  linkedin_gt?: Maybe<String>;
+  linkedin_gte?: Maybe<String>;
+  linkedin_contains?: Maybe<String>;
+  linkedin_not_contains?: Maybe<String>;
+  linkedin_starts_with?: Maybe<String>;
+  linkedin_not_starts_with?: Maybe<String>;
+  linkedin_ends_with?: Maybe<String>;
+  linkedin_not_ends_with?: Maybe<String>;
   facebook?: Maybe<String>;
-  description: String;
+  facebook_not?: Maybe<String>;
+  facebook_in?: Maybe<String[] | String>;
+  facebook_not_in?: Maybe<String[] | String>;
+  facebook_lt?: Maybe<String>;
+  facebook_lte?: Maybe<String>;
+  facebook_gt?: Maybe<String>;
+  facebook_gte?: Maybe<String>;
+  facebook_contains?: Maybe<String>;
+  facebook_not_contains?: Maybe<String>;
+  facebook_starts_with?: Maybe<String>;
+  facebook_not_starts_with?: Maybe<String>;
+  facebook_ends_with?: Maybe<String>;
+  facebook_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  videos_every?: Maybe<VideoWhereInput>;
+  videos_some?: Maybe<VideoWhereInput>;
+  videos_none?: Maybe<VideoWhereInput>;
+  AND?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+  OR?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+  NOT?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
 }
 
-export interface SpeakerSubscriptionWhereInput {
+export interface VideoCreateManyWithoutAuthorInput {
+  create?: Maybe<
+    VideoCreateWithoutAuthorInput[] | VideoCreateWithoutAuthorInput
+  >;
+  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+}
+
+export interface UserSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SpeakerWhereInput>;
-  AND?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
-  OR?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
-  NOT?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
-export interface EventCreateManyInput {
-  create?: Maybe<EventCreateInput[] | EventCreateInput>;
-  connect?: Maybe<EventWhereUniqueInput[] | EventWhereUniqueInput>;
+export interface VideoCreateWithoutAuthorInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  url: String;
+  published?: Maybe<Boolean>;
+  theme: String;
 }
 
 export interface EventSubscriptionWhereInput {
@@ -551,34 +550,6 @@ export interface EventSubscriptionWhereInput {
   NOT?: Maybe<EventSubscriptionWhereInput[] | EventSubscriptionWhereInput>;
 }
 
-export interface VideoCreateManyWithoutAuthorInput {
-  create?: Maybe<
-    VideoCreateWithoutAuthorInput[] | VideoCreateWithoutAuthorInput
-  >;
-  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
-}
-
-export interface VideoUpdateInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
-  theme?: Maybe<String>;
-}
-
-export interface VideoCreateWithoutAuthorInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  url: String;
-  published?: Maybe<Boolean>;
-  theme: String;
-}
-
-export interface SpeakerUpsertWithoutOwnerInput {
-  update: SpeakerUpdateWithoutOwnerDataInput;
-  create: SpeakerCreateWithoutOwnerInput;
-}
-
 export interface EventUpdateInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
@@ -587,60 +558,18 @@ export interface EventUpdateInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location?: Maybe<LocationUpdateOneRequiredInput>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
   speakers?: Maybe<SpeakerUpdateManyInput>;
 }
 
-export interface SpeakerUpdateWithoutOwnerDataInput {
-  profile_picture?: Maybe<String>;
+export interface VideoUpdateInput {
   title?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description?: Maybe<String>;
-  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
-}
-
-export interface LocationUpdateOneRequiredInput {
-  create?: Maybe<LocationCreateInput>;
-  update?: Maybe<LocationUpdateDataInput>;
-  upsert?: Maybe<LocationUpsertNestedInput>;
-  connect?: Maybe<LocationWhereUniqueInput>;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  name?: Maybe<String>;
-  isSpeaker?: Maybe<SpeakerUpdateOneWithoutOwnerInput>;
-  favouritedVideos?: Maybe<VideoUpdateManyInput>;
-  ownedTickets?: Maybe<EventUpdateManyInput>;
-}
-
-export interface LocationUpdateDataInput {
-  latitude?: Maybe<Float>;
-  longitude?: Maybe<Float>;
-}
-
-export type SpeakerWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface LocationUpsertNestedInput {
-  update: LocationUpdateDataInput;
-  create: LocationCreateInput;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  password: String;
-  name: String;
-  isSpeaker?: Maybe<SpeakerCreateOneWithoutOwnerInput>;
-  favouritedVideos?: Maybe<VideoCreateManyInput>;
-  ownedTickets?: Maybe<EventCreateManyInput>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
+  theme?: Maybe<String>;
 }
 
 export interface SpeakerUpdateManyInput {
@@ -664,21 +593,19 @@ export interface SpeakerUpdateManyInput {
   >;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
+export interface SpeakerUpsertWithoutOwnerInput {
+  update: SpeakerUpdateWithoutOwnerDataInput;
+  create: SpeakerCreateWithoutOwnerInput;
+}
 
-export interface SpeakerUpsertWithWhereUniqueNestedInput {
+export interface SpeakerUpdateWithWhereUniqueNestedInput {
   where: SpeakerWhereUniqueInput;
-  update: SpeakerUpdateDataInput;
-  create: SpeakerCreateInput;
+  data: SpeakerUpdateDataInput;
 }
 
-export interface LocationUpdateManyMutationInput {
-  latitude?: Maybe<Float>;
-  longitude?: Maybe<Float>;
-}
+export type SpeakerWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface SpeakerUpdateDataInput {
   owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
@@ -690,17 +617,13 @@ export interface SpeakerUpdateDataInput {
   videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
 }
 
-export interface EventUpdateManyMutationInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  date?: Maybe<String>;
-  time?: Maybe<String>;
-  thumbnail_url?: Maybe<String>;
-  location_name?: Maybe<String>;
-  location_address?: Maybe<String>;
-  price?: Maybe<Float>;
-  maxTickets?: Maybe<Int>;
-  soldTickets?: Maybe<Int>;
+export interface UserUpdateInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  name?: Maybe<String>;
+  isSpeaker?: Maybe<SpeakerUpdateOneWithoutOwnerInput>;
+  favouritedVideos?: Maybe<VideoUpdateManyInput>;
+  ownedTickets?: Maybe<EventUpdateManyInput>;
 }
 
 export interface UserUpdateOneWithoutIsSpeakerInput {
@@ -712,13 +635,10 @@ export interface UserUpdateOneWithoutIsSpeakerInput {
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface SpeakerUpdateManyDataInput {
-  profile_picture?: Maybe<String>;
-  title?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description?: Maybe<String>;
-}
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
 
 export interface UserUpdateWithoutIsSpeakerDataInput {
   email?: Maybe<String>;
@@ -726,6 +646,16 @@ export interface UserUpdateWithoutIsSpeakerDataInput {
   name?: Maybe<String>;
   favouritedVideos?: Maybe<VideoUpdateManyInput>;
   ownedTickets?: Maybe<EventUpdateManyInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  password: String;
+  name: String;
+  isSpeaker?: Maybe<SpeakerCreateOneWithoutOwnerInput>;
+  favouritedVideos?: Maybe<VideoCreateManyInput>;
+  ownedTickets?: Maybe<EventCreateManyInput>;
 }
 
 export interface SpeakerScalarWhereInput {
@@ -818,6 +748,47 @@ export interface SpeakerScalarWhereInput {
   NOT?: Maybe<SpeakerScalarWhereInput[] | SpeakerScalarWhereInput>;
 }
 
+export interface SpeakerUpdateInput {
+  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
+  profile_picture?: Maybe<String>;
+  title?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description?: Maybe<String>;
+  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
+}
+
+export interface VideoUpdateWithWhereUniqueNestedInput {
+  where: VideoWhereUniqueInput;
+  data: VideoUpdateDataInput;
+}
+
+export interface EventUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  date?: Maybe<String>;
+  time?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+}
+
+export interface VideoUpdateDataInput {
+  title?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
+  theme?: Maybe<String>;
+}
+
+export interface SpeakerUpdateManyWithWhereNestedInput {
+  where: SpeakerScalarWhereInput;
+  data: SpeakerUpdateManyDataInput;
+}
+
 export interface VideoWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
@@ -900,31 +871,16 @@ export interface EventCreateInput {
   thumbnail_url: String;
   location_name: String;
   location_address: String;
-  location: LocationCreateOneInput;
   price?: Maybe<Float>;
   maxTickets: Int;
   soldTickets?: Maybe<Int>;
   speakers?: Maybe<SpeakerCreateManyInput>;
 }
 
-export interface VideoUpsertWithWhereUniqueWithoutAuthorInput {
-  where: VideoWhereUniqueInput;
-  update: VideoUpdateWithoutAuthorDataInput;
-  create: VideoCreateWithoutAuthorInput;
-}
-
-export interface LocationCreateInput {
-  id?: Maybe<ID_Input>;
-  latitude: Float;
-  longitude: Float;
-}
-
-export interface VideoUpdateDataInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  author?: Maybe<SpeakerUpdateOneWithoutVideosInput>;
-  theme?: Maybe<String>;
+export interface SpeakerUpsertWithWhereUniqueNestedInput {
+  where: SpeakerWhereUniqueInput;
+  update: SpeakerUpdateDataInput;
+  create: SpeakerCreateInput;
 }
 
 export interface SpeakerCreateInput {
@@ -938,191 +894,18 @@ export interface SpeakerCreateInput {
   videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
 }
 
-export interface SpeakerUpdateOneWithoutVideosInput {
-  create?: Maybe<SpeakerCreateWithoutVideosInput>;
-  update?: Maybe<SpeakerUpdateWithoutVideosDataInput>;
-  upsert?: Maybe<SpeakerUpsertWithoutVideosInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<SpeakerWhereUniqueInput>;
-}
-
-export interface EventWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  date?: Maybe<String>;
-  date_not?: Maybe<String>;
-  date_in?: Maybe<String[] | String>;
-  date_not_in?: Maybe<String[] | String>;
-  date_lt?: Maybe<String>;
-  date_lte?: Maybe<String>;
-  date_gt?: Maybe<String>;
-  date_gte?: Maybe<String>;
-  date_contains?: Maybe<String>;
-  date_not_contains?: Maybe<String>;
-  date_starts_with?: Maybe<String>;
-  date_not_starts_with?: Maybe<String>;
-  date_ends_with?: Maybe<String>;
-  date_not_ends_with?: Maybe<String>;
-  time?: Maybe<String>;
-  time_not?: Maybe<String>;
-  time_in?: Maybe<String[] | String>;
-  time_not_in?: Maybe<String[] | String>;
-  time_lt?: Maybe<String>;
-  time_lte?: Maybe<String>;
-  time_gt?: Maybe<String>;
-  time_gte?: Maybe<String>;
-  time_contains?: Maybe<String>;
-  time_not_contains?: Maybe<String>;
-  time_starts_with?: Maybe<String>;
-  time_not_starts_with?: Maybe<String>;
-  time_ends_with?: Maybe<String>;
-  time_not_ends_with?: Maybe<String>;
-  thumbnail_url?: Maybe<String>;
-  thumbnail_url_not?: Maybe<String>;
-  thumbnail_url_in?: Maybe<String[] | String>;
-  thumbnail_url_not_in?: Maybe<String[] | String>;
-  thumbnail_url_lt?: Maybe<String>;
-  thumbnail_url_lte?: Maybe<String>;
-  thumbnail_url_gt?: Maybe<String>;
-  thumbnail_url_gte?: Maybe<String>;
-  thumbnail_url_contains?: Maybe<String>;
-  thumbnail_url_not_contains?: Maybe<String>;
-  thumbnail_url_starts_with?: Maybe<String>;
-  thumbnail_url_not_starts_with?: Maybe<String>;
-  thumbnail_url_ends_with?: Maybe<String>;
-  thumbnail_url_not_ends_with?: Maybe<String>;
-  location_name?: Maybe<String>;
-  location_name_not?: Maybe<String>;
-  location_name_in?: Maybe<String[] | String>;
-  location_name_not_in?: Maybe<String[] | String>;
-  location_name_lt?: Maybe<String>;
-  location_name_lte?: Maybe<String>;
-  location_name_gt?: Maybe<String>;
-  location_name_gte?: Maybe<String>;
-  location_name_contains?: Maybe<String>;
-  location_name_not_contains?: Maybe<String>;
-  location_name_starts_with?: Maybe<String>;
-  location_name_not_starts_with?: Maybe<String>;
-  location_name_ends_with?: Maybe<String>;
-  location_name_not_ends_with?: Maybe<String>;
-  location_address?: Maybe<String>;
-  location_address_not?: Maybe<String>;
-  location_address_in?: Maybe<String[] | String>;
-  location_address_not_in?: Maybe<String[] | String>;
-  location_address_lt?: Maybe<String>;
-  location_address_lte?: Maybe<String>;
-  location_address_gt?: Maybe<String>;
-  location_address_gte?: Maybe<String>;
-  location_address_contains?: Maybe<String>;
-  location_address_not_contains?: Maybe<String>;
-  location_address_starts_with?: Maybe<String>;
-  location_address_not_starts_with?: Maybe<String>;
-  location_address_ends_with?: Maybe<String>;
-  location_address_not_ends_with?: Maybe<String>;
-  location?: Maybe<LocationWhereInput>;
-  price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  maxTickets?: Maybe<Int>;
-  maxTickets_not?: Maybe<Int>;
-  maxTickets_in?: Maybe<Int[] | Int>;
-  maxTickets_not_in?: Maybe<Int[] | Int>;
-  maxTickets_lt?: Maybe<Int>;
-  maxTickets_lte?: Maybe<Int>;
-  maxTickets_gt?: Maybe<Int>;
-  maxTickets_gte?: Maybe<Int>;
-  soldTickets?: Maybe<Int>;
-  soldTickets_not?: Maybe<Int>;
-  soldTickets_in?: Maybe<Int[] | Int>;
-  soldTickets_not_in?: Maybe<Int[] | Int>;
-  soldTickets_lt?: Maybe<Int>;
-  soldTickets_lte?: Maybe<Int>;
-  soldTickets_gt?: Maybe<Int>;
-  soldTickets_gte?: Maybe<Int>;
-  speakers_every?: Maybe<SpeakerWhereInput>;
-  speakers_some?: Maybe<SpeakerWhereInput>;
-  speakers_none?: Maybe<SpeakerWhereInput>;
-  AND?: Maybe<EventWhereInput[] | EventWhereInput>;
-  OR?: Maybe<EventWhereInput[] | EventWhereInput>;
-  NOT?: Maybe<EventWhereInput[] | EventWhereInput>;
-}
-
-export interface SpeakerUpdateWithoutVideosDataInput {
-  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
-  profile_picture?: Maybe<String>;
-  title?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
 export interface SpeakerUpsertWithoutVideosInput {
   update: SpeakerUpdateWithoutVideosDataInput;
   create: SpeakerCreateWithoutVideosInput;
 }
 
-export interface VideoUpdateManyMutationInput {
-  title?: Maybe<String>;
-  url?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  theme?: Maybe<String>;
+export interface UserCreateWithoutIsSpeakerInput {
+  id?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  password: String;
+  name: String;
+  favouritedVideos?: Maybe<VideoCreateManyInput>;
+  ownedTickets?: Maybe<EventCreateManyInput>;
 }
 
 export interface VideoUpsertWithWhereUniqueNestedInput {
@@ -1131,9 +914,14 @@ export interface VideoUpsertWithWhereUniqueNestedInput {
   create: VideoCreateInput;
 }
 
-export type LocationWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface VideoCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  url: String;
+  published?: Maybe<Boolean>;
+  author?: Maybe<SpeakerCreateOneWithoutVideosInput>;
+  theme: String;
+}
 
 export interface VideoScalarWhereInput {
   id?: Maybe<ID_Input>;
@@ -1207,14 +995,15 @@ export interface VideoScalarWhereInput {
   NOT?: Maybe<VideoScalarWhereInput[] | VideoScalarWhereInput>;
 }
 
-export interface SpeakerCreateWithoutOwnerInput {
-  id?: Maybe<ID_Input>;
-  profile_picture: String;
-  title: String;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description: String;
-  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
+export interface VideoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<VideoWhereInput>;
+  AND?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
+  OR?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
+  NOT?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
 }
 
 export interface VideoUpdateManyWithWhereNestedInput {
@@ -1222,12 +1011,11 @@ export interface VideoUpdateManyWithWhereNestedInput {
   data: VideoUpdateManyDataInput;
 }
 
-export interface SpeakerUpdateManyMutationInput {
-  profile_picture?: Maybe<String>;
+export interface VideoUpdateManyMutationInput {
   title?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description?: Maybe<String>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  theme?: Maybe<String>;
 }
 
 export interface VideoUpdateManyDataInput {
@@ -1237,9 +1025,13 @@ export interface VideoUpdateManyDataInput {
   theme?: Maybe<String>;
 }
 
-export interface LocationUpdateInput {
-  latitude?: Maybe<Float>;
-  longitude?: Maybe<Float>;
+export interface SpeakerUpdateWithoutOwnerDataInput {
+  profile_picture?: Maybe<String>;
+  title?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description?: Maybe<String>;
+  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
 }
 
 export interface EventUpdateManyInput {
@@ -1262,9 +1054,14 @@ export interface EventUpdateManyInput {
   >;
 }
 
-export interface SpeakerUpdateManyWithWhereNestedInput {
-  where: SpeakerScalarWhereInput;
-  data: SpeakerUpdateManyDataInput;
+export interface SpeakerCreateWithoutOwnerInput {
+  id?: Maybe<ID_Input>;
+  profile_picture: String;
+  title: String;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description: String;
+  videos?: Maybe<VideoCreateManyWithoutAuthorInput>;
 }
 
 export interface EventUpdateWithWhereUniqueNestedInput {
@@ -1272,9 +1069,12 @@ export interface EventUpdateWithWhereUniqueNestedInput {
   data: EventUpdateDataInput;
 }
 
-export interface LocationCreateOneInput {
-  create?: Maybe<LocationCreateInput>;
-  connect?: Maybe<LocationWhereUniqueInput>;
+export interface SpeakerUpdateManyMutationInput {
+  profile_picture?: Maybe<String>;
+  title?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface EventUpdateDataInput {
@@ -1285,16 +1085,18 @@ export interface EventUpdateDataInput {
   thumbnail_url?: Maybe<String>;
   location_name?: Maybe<String>;
   location_address?: Maybe<String>;
-  location?: Maybe<LocationUpdateOneRequiredInput>;
   price?: Maybe<Float>;
   maxTickets?: Maybe<Int>;
   soldTickets?: Maybe<Int>;
   speakers?: Maybe<SpeakerUpdateManyInput>;
 }
 
-export interface UserCreateOneWithoutIsSpeakerInput {
-  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface SpeakerUpdateManyDataInput {
+  profile_picture?: Maybe<String>;
+  title?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  facebook?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface EventUpsertWithWhereUniqueNestedInput {
@@ -1303,19 +1105,9 @@ export interface EventUpsertWithWhereUniqueNestedInput {
   create: EventCreateInput;
 }
 
-export interface LocationSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<LocationWhereInput>;
-  AND?: Maybe<
-    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
-  >;
-  OR?: Maybe<LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput>;
-  NOT?: Maybe<
-    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
-  >;
+export interface SpeakerCreateManyInput {
+  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
+  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
 }
 
 export interface EventScalarWhereInput {
@@ -1460,6 +1252,40 @@ export interface EventScalarWhereInput {
   NOT?: Maybe<EventScalarWhereInput[] | EventScalarWhereInput>;
 }
 
+export interface VideoCreateManyInput {
+  create?: Maybe<VideoCreateInput[] | VideoCreateInput>;
+  connect?: Maybe<VideoWhereUniqueInput[] | VideoWhereUniqueInput>;
+}
+
+export interface EventUpdateManyWithWhereNestedInput {
+  where: EventScalarWhereInput;
+  data: EventUpdateManyDataInput;
+}
+
+export interface SpeakerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SpeakerWhereInput>;
+  AND?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+  OR?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+  NOT?: Maybe<SpeakerSubscriptionWhereInput[] | SpeakerSubscriptionWhereInput>;
+}
+
+export interface EventUpdateManyDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  date?: Maybe<String>;
+  time?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_address?: Maybe<String>;
+  price?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+}
+
 export interface SpeakerUpdateOneWithoutOwnerInput {
   create?: Maybe<SpeakerCreateWithoutOwnerInput>;
   update?: Maybe<SpeakerUpdateWithoutOwnerDataInput>;
@@ -1469,19 +1295,15 @@ export interface SpeakerUpdateOneWithoutOwnerInput {
   connect?: Maybe<SpeakerWhereUniqueInput>;
 }
 
-export interface EventUpdateManyWithWhereNestedInput {
-  where: EventScalarWhereInput;
-  data: EventUpdateManyDataInput;
-}
+export type VideoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
-export interface SpeakerUpdateInput {
-  owner?: Maybe<UserUpdateOneWithoutIsSpeakerInput>;
-  profile_picture?: Maybe<String>;
+export interface VideoUpdateWithoutAuthorDataInput {
   title?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  facebook?: Maybe<String>;
-  description?: Maybe<String>;
-  videos?: Maybe<VideoUpdateManyWithoutAuthorInput>;
+  url?: Maybe<String>;
+  published?: Maybe<Boolean>;
+  theme?: Maybe<String>;
 }
 
 export interface VideoUpdateWithWhereUniqueWithoutAuthorInput {
@@ -1516,28 +1338,6 @@ export interface UserUpsertWithoutIsSpeakerInput {
   create: UserCreateWithoutIsSpeakerInput;
 }
 
-export interface EventUpdateManyDataInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  date?: Maybe<String>;
-  time?: Maybe<String>;
-  thumbnail_url?: Maybe<String>;
-  location_name?: Maybe<String>;
-  location_address?: Maybe<String>;
-  price?: Maybe<Float>;
-  maxTickets?: Maybe<Int>;
-  soldTickets?: Maybe<Int>;
-}
-
-export interface SpeakerCreateManyInput {
-  create?: Maybe<SpeakerCreateInput[] | SpeakerCreateInput>;
-  connect?: Maybe<SpeakerWhereUniqueInput[] | SpeakerWhereUniqueInput>;
-}
-
-export type VideoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
 export interface SpeakerCreateOneWithoutOwnerInput {
   create?: Maybe<SpeakerCreateWithoutOwnerInput>;
   connect?: Maybe<SpeakerWhereUniqueInput>;
@@ -1549,7 +1349,7 @@ export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
 }
 
-export interface SpeakerWhereInput {
+export interface EventWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1564,21 +1364,6 @@ export interface SpeakerWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  owner?: Maybe<UserWhereInput>;
-  profile_picture?: Maybe<String>;
-  profile_picture_not?: Maybe<String>;
-  profile_picture_in?: Maybe<String[] | String>;
-  profile_picture_not_in?: Maybe<String[] | String>;
-  profile_picture_lt?: Maybe<String>;
-  profile_picture_lte?: Maybe<String>;
-  profile_picture_gt?: Maybe<String>;
-  profile_picture_gte?: Maybe<String>;
-  profile_picture_contains?: Maybe<String>;
-  profile_picture_not_contains?: Maybe<String>;
-  profile_picture_starts_with?: Maybe<String>;
-  profile_picture_not_starts_with?: Maybe<String>;
-  profile_picture_ends_with?: Maybe<String>;
-  profile_picture_not_ends_with?: Maybe<String>;
   title?: Maybe<String>;
   title_not?: Maybe<String>;
   title_in?: Maybe<String[] | String>;
@@ -1593,34 +1378,6 @@ export interface SpeakerWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
-  linkedin?: Maybe<String>;
-  linkedin_not?: Maybe<String>;
-  linkedin_in?: Maybe<String[] | String>;
-  linkedin_not_in?: Maybe<String[] | String>;
-  linkedin_lt?: Maybe<String>;
-  linkedin_lte?: Maybe<String>;
-  linkedin_gt?: Maybe<String>;
-  linkedin_gte?: Maybe<String>;
-  linkedin_contains?: Maybe<String>;
-  linkedin_not_contains?: Maybe<String>;
-  linkedin_starts_with?: Maybe<String>;
-  linkedin_not_starts_with?: Maybe<String>;
-  linkedin_ends_with?: Maybe<String>;
-  linkedin_not_ends_with?: Maybe<String>;
-  facebook?: Maybe<String>;
-  facebook_not?: Maybe<String>;
-  facebook_in?: Maybe<String[] | String>;
-  facebook_not_in?: Maybe<String[] | String>;
-  facebook_lt?: Maybe<String>;
-  facebook_lte?: Maybe<String>;
-  facebook_gt?: Maybe<String>;
-  facebook_gte?: Maybe<String>;
-  facebook_contains?: Maybe<String>;
-  facebook_not_contains?: Maybe<String>;
-  facebook_starts_with?: Maybe<String>;
-  facebook_not_starts_with?: Maybe<String>;
-  facebook_ends_with?: Maybe<String>;
-  facebook_not_ends_with?: Maybe<String>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -1635,12 +1392,111 @@ export interface SpeakerWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  videos_every?: Maybe<VideoWhereInput>;
-  videos_some?: Maybe<VideoWhereInput>;
-  videos_none?: Maybe<VideoWhereInput>;
-  AND?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
-  OR?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
-  NOT?: Maybe<SpeakerWhereInput[] | SpeakerWhereInput>;
+  date?: Maybe<String>;
+  date_not?: Maybe<String>;
+  date_in?: Maybe<String[] | String>;
+  date_not_in?: Maybe<String[] | String>;
+  date_lt?: Maybe<String>;
+  date_lte?: Maybe<String>;
+  date_gt?: Maybe<String>;
+  date_gte?: Maybe<String>;
+  date_contains?: Maybe<String>;
+  date_not_contains?: Maybe<String>;
+  date_starts_with?: Maybe<String>;
+  date_not_starts_with?: Maybe<String>;
+  date_ends_with?: Maybe<String>;
+  date_not_ends_with?: Maybe<String>;
+  time?: Maybe<String>;
+  time_not?: Maybe<String>;
+  time_in?: Maybe<String[] | String>;
+  time_not_in?: Maybe<String[] | String>;
+  time_lt?: Maybe<String>;
+  time_lte?: Maybe<String>;
+  time_gt?: Maybe<String>;
+  time_gte?: Maybe<String>;
+  time_contains?: Maybe<String>;
+  time_not_contains?: Maybe<String>;
+  time_starts_with?: Maybe<String>;
+  time_not_starts_with?: Maybe<String>;
+  time_ends_with?: Maybe<String>;
+  time_not_ends_with?: Maybe<String>;
+  thumbnail_url?: Maybe<String>;
+  thumbnail_url_not?: Maybe<String>;
+  thumbnail_url_in?: Maybe<String[] | String>;
+  thumbnail_url_not_in?: Maybe<String[] | String>;
+  thumbnail_url_lt?: Maybe<String>;
+  thumbnail_url_lte?: Maybe<String>;
+  thumbnail_url_gt?: Maybe<String>;
+  thumbnail_url_gte?: Maybe<String>;
+  thumbnail_url_contains?: Maybe<String>;
+  thumbnail_url_not_contains?: Maybe<String>;
+  thumbnail_url_starts_with?: Maybe<String>;
+  thumbnail_url_not_starts_with?: Maybe<String>;
+  thumbnail_url_ends_with?: Maybe<String>;
+  thumbnail_url_not_ends_with?: Maybe<String>;
+  location_name?: Maybe<String>;
+  location_name_not?: Maybe<String>;
+  location_name_in?: Maybe<String[] | String>;
+  location_name_not_in?: Maybe<String[] | String>;
+  location_name_lt?: Maybe<String>;
+  location_name_lte?: Maybe<String>;
+  location_name_gt?: Maybe<String>;
+  location_name_gte?: Maybe<String>;
+  location_name_contains?: Maybe<String>;
+  location_name_not_contains?: Maybe<String>;
+  location_name_starts_with?: Maybe<String>;
+  location_name_not_starts_with?: Maybe<String>;
+  location_name_ends_with?: Maybe<String>;
+  location_name_not_ends_with?: Maybe<String>;
+  location_address?: Maybe<String>;
+  location_address_not?: Maybe<String>;
+  location_address_in?: Maybe<String[] | String>;
+  location_address_not_in?: Maybe<String[] | String>;
+  location_address_lt?: Maybe<String>;
+  location_address_lte?: Maybe<String>;
+  location_address_gt?: Maybe<String>;
+  location_address_gte?: Maybe<String>;
+  location_address_contains?: Maybe<String>;
+  location_address_not_contains?: Maybe<String>;
+  location_address_starts_with?: Maybe<String>;
+  location_address_not_starts_with?: Maybe<String>;
+  location_address_ends_with?: Maybe<String>;
+  location_address_not_ends_with?: Maybe<String>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  maxTickets?: Maybe<Int>;
+  maxTickets_not?: Maybe<Int>;
+  maxTickets_in?: Maybe<Int[] | Int>;
+  maxTickets_not_in?: Maybe<Int[] | Int>;
+  maxTickets_lt?: Maybe<Int>;
+  maxTickets_lte?: Maybe<Int>;
+  maxTickets_gt?: Maybe<Int>;
+  maxTickets_gte?: Maybe<Int>;
+  soldTickets?: Maybe<Int>;
+  soldTickets_not?: Maybe<Int>;
+  soldTickets_in?: Maybe<Int[] | Int>;
+  soldTickets_not_in?: Maybe<Int[] | Int>;
+  soldTickets_lt?: Maybe<Int>;
+  soldTickets_lte?: Maybe<Int>;
+  soldTickets_gt?: Maybe<Int>;
+  soldTickets_gte?: Maybe<Int>;
+  speakers_every?: Maybe<SpeakerWhereInput>;
+  speakers_some?: Maybe<SpeakerWhereInput>;
+  speakers_none?: Maybe<SpeakerWhereInput>;
+  AND?: Maybe<EventWhereInput[] | EventWhereInput>;
+  OR?: Maybe<EventWhereInput[] | EventWhereInput>;
+  NOT?: Maybe<EventWhereInput[] | EventWhereInput>;
+}
+
+export interface UserCreateOneWithoutIsSpeakerInput {
+  create?: Maybe<UserCreateWithoutIsSpeakerInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface NodeNode {
@@ -1678,25 +1534,25 @@ export interface VideoPreviousValuesSubscription
   theme: () => Promise<AsyncIterator<String>>;
 }
 
-export interface LocationConnection {
+export interface SpeakerConnection {
   pageInfo: PageInfo;
-  edges: LocationEdge[];
+  edges: SpeakerEdge[];
 }
 
-export interface LocationConnectionPromise
-  extends Promise<LocationConnection>,
+export interface SpeakerConnectionPromise
+  extends Promise<SpeakerConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<LocationEdge>>() => T;
-  aggregate: <T = AggregateLocationPromise>() => T;
+  edges: <T = FragmentableArray<SpeakerEdge>>() => T;
+  aggregate: <T = AggregateSpeakerPromise>() => T;
 }
 
-export interface LocationConnectionSubscription
-  extends Promise<AsyncIterator<LocationConnection>>,
+export interface SpeakerConnectionSubscription
+  extends Promise<AsyncIterator<SpeakerConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<LocationEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateLocationSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SpeakerEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSpeakerSubscription>() => T;
 }
 
 export interface SpeakerPreviousValues {
@@ -1730,32 +1586,43 @@ export interface SpeakerPreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Location {
-  id: ID_Output;
-  latitude: Float;
-  longitude: Float;
+export interface AggregateEvent {
+  count: Int;
 }
 
-export interface LocationPromise extends Promise<Location>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  latitude: () => Promise<Float>;
-  longitude: () => Promise<Float>;
-}
-
-export interface LocationSubscription
-  extends Promise<AsyncIterator<Location>>,
+export interface AggregateEventPromise
+  extends Promise<AggregateEvent>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  latitude: () => Promise<AsyncIterator<Float>>;
-  longitude: () => Promise<AsyncIterator<Float>>;
+  count: () => Promise<Int>;
 }
 
-export interface LocationNullablePromise
-  extends Promise<Location | null>,
+export interface AggregateEventSubscription
+  extends Promise<AsyncIterator<AggregateEvent>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  latitude: () => Promise<Float>;
-  longitude: () => Promise<Float>;
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface EventEdge {
@@ -1773,22 +1640,6 @@ export interface EventEdgeSubscription
     Fragmentable {
   node: <T = EventSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateEvent {
-  count: Int;
-}
-
-export interface AggregateEventPromise
-  extends Promise<AggregateEvent>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateEventSubscription
-  extends Promise<AsyncIterator<AggregateEvent>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface VideoEdge {
@@ -1833,68 +1684,20 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUser {
-  count: Int;
+export interface BatchPayload {
+  count: Long;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
     Fragmentable {
-  count: () => Promise<Int>;
+  count: () => Promise<Long>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface VideoSubscriptionPayload {
-  mutation: MutationType;
-  node: Video;
-  updatedFields: String[];
-  previousValues: VideoPreviousValues;
-}
-
-export interface VideoSubscriptionPayloadPromise
-  extends Promise<VideoSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = VideoPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = VideoPreviousValuesPromise>() => T;
-}
-
-export interface VideoSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<VideoSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = VideoSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = VideoPreviousValuesSubscription>() => T;
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface EventConnection {
@@ -1918,25 +1721,20 @@ export interface EventConnectionSubscription
   aggregate: <T = AggregateEventSubscription>() => T;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
+export interface AggregateUser {
+  count: Int;
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -1964,242 +1762,25 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateSpeaker {
-  count: Int;
-}
-
-export interface AggregateSpeakerPromise
-  extends Promise<AggregateSpeaker>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSpeakerSubscription
-  extends Promise<AsyncIterator<AggregateSpeaker>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Event {
-  id: ID_Output;
-  title: String;
-  description: String;
-  date?: String;
-  time?: String;
-  thumbnail_url: String;
-  location_name: String;
-  location_address: String;
-  price?: Float;
-  maxTickets: Int;
-  soldTickets?: Int;
-}
-
-export interface EventPromise extends Promise<Event>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  date: () => Promise<String>;
-  time: () => Promise<String>;
-  thumbnail_url: () => Promise<String>;
-  location_name: () => Promise<String>;
-  location_address: () => Promise<String>;
-  location: <T = LocationPromise>() => T;
-  price: () => Promise<Float>;
-  maxTickets: () => Promise<Int>;
-  soldTickets: () => Promise<Int>;
-  speakers: <T = FragmentableArray<Speaker>>(args?: {
-    where?: SpeakerWhereInput;
-    orderBy?: SpeakerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface EventSubscription
-  extends Promise<AsyncIterator<Event>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<String>>;
-  time: () => Promise<AsyncIterator<String>>;
-  thumbnail_url: () => Promise<AsyncIterator<String>>;
-  location_name: () => Promise<AsyncIterator<String>>;
-  location_address: () => Promise<AsyncIterator<String>>;
-  location: <T = LocationSubscription>() => T;
-  price: () => Promise<AsyncIterator<Float>>;
-  maxTickets: () => Promise<AsyncIterator<Int>>;
-  soldTickets: () => Promise<AsyncIterator<Int>>;
-  speakers: <T = Promise<AsyncIterator<SpeakerSubscription>>>(args?: {
-    where?: SpeakerWhereInput;
-    orderBy?: SpeakerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface EventNullablePromise
-  extends Promise<Event | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  date: () => Promise<String>;
-  time: () => Promise<String>;
-  thumbnail_url: () => Promise<String>;
-  location_name: () => Promise<String>;
-  location_address: () => Promise<String>;
-  location: <T = LocationPromise>() => T;
-  price: () => Promise<Float>;
-  maxTickets: () => Promise<Int>;
-  soldTickets: () => Promise<Int>;
-  speakers: <T = FragmentableArray<Speaker>>(args?: {
-    where?: SpeakerWhereInput;
-    orderBy?: SpeakerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface SpeakerConnection {
+export interface UserConnection {
   pageInfo: PageInfo;
-  edges: SpeakerEdge[];
+  edges: UserEdge[];
 }
 
-export interface SpeakerConnectionPromise
-  extends Promise<SpeakerConnection>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SpeakerEdge>>() => T;
-  aggregate: <T = AggregateSpeakerPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface SpeakerConnectionSubscription
-  extends Promise<AsyncIterator<SpeakerConnection>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SpeakerEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSpeakerSubscription>() => T;
-}
-
-export interface EventSubscriptionPayload {
-  mutation: MutationType;
-  node: Event;
-  updatedFields: String[];
-  previousValues: EventPreviousValues;
-}
-
-export interface EventSubscriptionPayloadPromise
-  extends Promise<EventSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = EventPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = EventPreviousValuesPromise>() => T;
-}
-
-export interface EventSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<EventSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = EventSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = EventPreviousValuesSubscription>() => T;
-}
-
-export interface LocationEdge {
-  node: Location;
-  cursor: String;
-}
-
-export interface LocationEdgePromise
-  extends Promise<LocationEdge>,
-    Fragmentable {
-  node: <T = LocationPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface LocationEdgeSubscription
-  extends Promise<AsyncIterator<LocationEdge>>,
-    Fragmentable {
-  node: <T = LocationSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface EventPreviousValues {
-  id: ID_Output;
-  title: String;
-  description: String;
-  date?: String;
-  time?: String;
-  thumbnail_url: String;
-  location_name: String;
-  location_address: String;
-  price?: Float;
-  maxTickets: Int;
-  soldTickets?: Int;
-}
-
-export interface EventPreviousValuesPromise
-  extends Promise<EventPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  date: () => Promise<String>;
-  time: () => Promise<String>;
-  thumbnail_url: () => Promise<String>;
-  location_name: () => Promise<String>;
-  location_address: () => Promise<String>;
-  price: () => Promise<Float>;
-  maxTickets: () => Promise<Int>;
-  soldTickets: () => Promise<Int>;
-}
-
-export interface EventPreviousValuesSubscription
-  extends Promise<AsyncIterator<EventPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<String>>;
-  time: () => Promise<AsyncIterator<String>>;
-  thumbnail_url: () => Promise<AsyncIterator<String>>;
-  location_name: () => Promise<AsyncIterator<String>>;
-  location_address: () => Promise<AsyncIterator<String>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  maxTickets: () => Promise<AsyncIterator<Int>>;
-  soldTickets: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface VideoConnection {
-  pageInfo: PageInfo;
-  edges: VideoEdge[];
-}
-
-export interface VideoConnectionPromise
-  extends Promise<VideoConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<VideoEdge>>() => T;
-  aggregate: <T = AggregateVideoPromise>() => T;
-}
-
-export interface VideoConnectionSubscription
-  extends Promise<AsyncIterator<VideoConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<VideoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateVideoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface Video {
@@ -2245,38 +1826,148 @@ export interface VideoNullablePromise
   theme: () => Promise<String>;
 }
 
-export interface UserEdge {
-  node: User;
-  cursor: String;
+export interface AggregateSpeaker {
+  count: Int;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface AggregateSpeakerPromise
+  extends Promise<AggregateSpeaker>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-export interface SpeakerEdge {
-  node: Speaker;
-  cursor: String;
-}
-
-export interface SpeakerEdgePromise extends Promise<SpeakerEdge>, Fragmentable {
-  node: <T = SpeakerPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SpeakerEdgeSubscription
-  extends Promise<AsyncIterator<SpeakerEdge>>,
+export interface AggregateSpeakerSubscription
+  extends Promise<AsyncIterator<AggregateSpeaker>>,
     Fragmentable {
-  node: <T = SpeakerSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Event {
+  id: ID_Output;
+  title: String;
+  description: String;
+  date?: String;
+  time?: String;
+  thumbnail_url: String;
+  location_name: String;
+  location_address: String;
+  price?: Float;
+  maxTickets: Int;
+  soldTickets?: Int;
+}
+
+export interface EventPromise extends Promise<Event>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  date: () => Promise<String>;
+  time: () => Promise<String>;
+  thumbnail_url: () => Promise<String>;
+  location_name: () => Promise<String>;
+  location_address: () => Promise<String>;
+  price: () => Promise<Float>;
+  maxTickets: () => Promise<Int>;
+  soldTickets: () => Promise<Int>;
+  speakers: <T = FragmentableArray<Speaker>>(args?: {
+    where?: SpeakerWhereInput;
+    orderBy?: SpeakerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface EventSubscription
+  extends Promise<AsyncIterator<Event>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<String>>;
+  time: () => Promise<AsyncIterator<String>>;
+  thumbnail_url: () => Promise<AsyncIterator<String>>;
+  location_name: () => Promise<AsyncIterator<String>>;
+  location_address: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  maxTickets: () => Promise<AsyncIterator<Int>>;
+  soldTickets: () => Promise<AsyncIterator<Int>>;
+  speakers: <T = Promise<AsyncIterator<SpeakerSubscription>>>(args?: {
+    where?: SpeakerWhereInput;
+    orderBy?: SpeakerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface EventNullablePromise
+  extends Promise<Event | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  date: () => Promise<String>;
+  time: () => Promise<String>;
+  thumbnail_url: () => Promise<String>;
+  location_name: () => Promise<String>;
+  location_address: () => Promise<String>;
+  price: () => Promise<Float>;
+  maxTickets: () => Promise<Int>;
+  soldTickets: () => Promise<Int>;
+  speakers: <T = FragmentableArray<Speaker>>(args?: {
+    where?: SpeakerWhereInput;
+    orderBy?: SpeakerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface AggregateVideo {
+  count: Int;
+}
+
+export interface AggregateVideoPromise
+  extends Promise<AggregateVideo>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateVideoSubscription
+  extends Promise<AsyncIterator<AggregateVideo>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface VideoSubscriptionPayload {
+  mutation: MutationType;
+  node: Video;
+  updatedFields: String[];
+  previousValues: VideoPreviousValues;
+}
+
+export interface VideoSubscriptionPayloadPromise
+  extends Promise<VideoSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = VideoPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = VideoPreviousValuesPromise>() => T;
+}
+
+export interface VideoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<VideoSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = VideoSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = VideoPreviousValuesSubscription>() => T;
 }
 
 export interface SpeakerSubscriptionPayload {
@@ -2393,67 +2084,130 @@ export interface UserNullablePromise
   }) => T;
 }
 
-export interface LocationPreviousValues {
+export interface EventPreviousValues {
   id: ID_Output;
-  latitude: Float;
-  longitude: Float;
+  title: String;
+  description: String;
+  date?: String;
+  time?: String;
+  thumbnail_url: String;
+  location_name: String;
+  location_address: String;
+  price?: Float;
+  maxTickets: Int;
+  soldTickets?: Int;
 }
 
-export interface LocationPreviousValuesPromise
-  extends Promise<LocationPreviousValues>,
+export interface EventPreviousValuesPromise
+  extends Promise<EventPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  latitude: () => Promise<Float>;
-  longitude: () => Promise<Float>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  date: () => Promise<String>;
+  time: () => Promise<String>;
+  thumbnail_url: () => Promise<String>;
+  location_name: () => Promise<String>;
+  location_address: () => Promise<String>;
+  price: () => Promise<Float>;
+  maxTickets: () => Promise<Int>;
+  soldTickets: () => Promise<Int>;
 }
 
-export interface LocationPreviousValuesSubscription
-  extends Promise<AsyncIterator<LocationPreviousValues>>,
+export interface EventPreviousValuesSubscription
+  extends Promise<AsyncIterator<EventPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  latitude: () => Promise<AsyncIterator<Float>>;
-  longitude: () => Promise<AsyncIterator<Float>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<String>>;
+  time: () => Promise<AsyncIterator<String>>;
+  thumbnail_url: () => Promise<AsyncIterator<String>>;
+  location_name: () => Promise<AsyncIterator<String>>;
+  location_address: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  maxTickets: () => Promise<AsyncIterator<Int>>;
+  soldTickets: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface LocationSubscriptionPayload {
+export interface EventSubscriptionPayload {
   mutation: MutationType;
-  node: Location;
+  node: Event;
   updatedFields: String[];
-  previousValues: LocationPreviousValues;
+  previousValues: EventPreviousValues;
 }
 
-export interface LocationSubscriptionPayloadPromise
-  extends Promise<LocationSubscriptionPayload>,
+export interface EventSubscriptionPayloadPromise
+  extends Promise<EventSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = LocationPromise>() => T;
+  node: <T = EventPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = LocationPreviousValuesPromise>() => T;
+  previousValues: <T = EventPreviousValuesPromise>() => T;
 }
 
-export interface LocationSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LocationSubscriptionPayload>>,
+export interface EventSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<EventSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LocationSubscription>() => T;
+  node: <T = EventSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LocationPreviousValuesSubscription>() => T;
+  previousValues: <T = EventPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateLocation {
-  count: Int;
+export interface UserEdge {
+  node: User;
+  cursor: String;
 }
 
-export interface AggregateLocationPromise
-  extends Promise<AggregateLocation>,
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateLocationSubscription
-  extends Promise<AsyncIterator<AggregateLocation>>,
+export interface VideoConnection {
+  pageInfo: PageInfo;
+  edges: VideoEdge[];
+}
+
+export interface VideoConnectionPromise
+  extends Promise<VideoConnection>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<VideoEdge>>() => T;
+  aggregate: <T = AggregateVideoPromise>() => T;
+}
+
+export interface VideoConnectionSubscription
+  extends Promise<AsyncIterator<VideoConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<VideoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateVideoSubscription>() => T;
+}
+
+export interface SpeakerEdge {
+  node: Speaker;
+  cursor: String;
+}
+
+export interface SpeakerEdgePromise extends Promise<SpeakerEdge>, Fragmentable {
+  node: <T = SpeakerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SpeakerEdgeSubscription
+  extends Promise<AsyncIterator<SpeakerEdge>>,
+    Fragmentable {
+  node: <T = SpeakerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Speaker {
@@ -2526,38 +2280,6 @@ export interface SpeakerNullablePromise
   }) => T;
 }
 
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface AggregateVideo {
-  count: Int;
-}
-
-export interface AggregateVideoPromise
-  extends Promise<AggregateVideo>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateVideoSubscription
-  extends Promise<AsyncIterator<AggregateVideo>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 /*
 DateTime scalar input type, allowing Date
 */
@@ -2611,10 +2333,6 @@ export const models: Model[] = [
   },
   {
     name: "Speaker",
-    embedded: false
-  },
-  {
-    name: "Location",
     embedded: false
   },
   {

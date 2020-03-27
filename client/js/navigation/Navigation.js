@@ -14,11 +14,13 @@ import SpeakerScreen from '../screens/SpeakerProfile';
 import ThemeScreen from '../screens/Theme';
 import EventInfoScreen from '../screens/EventInfo';
 import TicketInfoScreen from '../screens/TicketInfo';
+import CheckoutScreen from '../screens/Checkout';
 import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
-import {Image} from 'react-native';
+import {profileStackOptions} from './config';
 
+import {Image} from 'react-native';
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
   return (
@@ -41,10 +43,11 @@ const ExploreStackScreens = props => {
       />
       <ExploreStack.Screen
         name="Theme"
-        component={VideosScreen}
-        options={{
+        component={ThemeScreen}
+        options={({route}) => ({
           headerTintColor: '#FBF7EF',
-        }}
+          title: route.params.theme,
+        })}
       />
       <ExploreStack.Screen
         name="Video"
@@ -69,7 +72,7 @@ const ExploreStackScreens = props => {
         }}
       />
       <ExploreStack.Screen
-        name="SpeakerProfile"
+        name="Speaker Profile"
         component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -92,8 +95,22 @@ const EventsStackScreens = props => {
         }}
       />
       <EventsStack.Screen
-        name="EventInfo"
+        name="Event Info"
         component={EventInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <EventsStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <EventsStack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -115,7 +132,7 @@ const TicketsStackScreens = props => {
         }}
       />
       <TicketsStack.Screen
-        name="TicketInfo"
+        name="Ticket Info"
         component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -129,7 +146,7 @@ const UserProfileStackScreens = props => {
   return (
     <UserProfileStack.Navigator
       initialRouteName="Profile"
-      screenOptions={sharedScreenOptions}>
+      screenOptions={profileStackOptions}>
       <UserProfileStack.Screen
         name="Profile"
         component={UserProfileScreen}
@@ -158,12 +175,19 @@ const UserProfileStackScreens = props => {
           headerTintColor: '#FBF7EF',
         }}
       />
+      <UserProfileStack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
     </UserProfileStack.Navigator>
   );
 };
 
 const BottomTabNav = createBottomTabNavigator();
-const BottomTabNavScreens = props => (
+export const BottomTabNavScreens = props => (
   <BottomTabNav.Navigator
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
@@ -228,5 +252,3 @@ const BottomTabNavScreens = props => (
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
   </BottomTabNav.Navigator>
 );
-
-export default BottomTabNavScreens;

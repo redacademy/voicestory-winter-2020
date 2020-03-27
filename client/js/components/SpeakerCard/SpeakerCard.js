@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, View} from 'react-native';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
@@ -14,7 +14,7 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
 
   return route?.name === 'Video' ? (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      onPress={() => navigation.navigate('Speaker Profile', {speaker: speaker})}
       style={[styles.button, style]}>
       <Image
         style={styles.videoRoute}
@@ -25,14 +25,16 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
     </TouchableOpacity>
   ) : (
     <TouchableOpacity
-      onPress={() => navigation.navigate('SpeakerProfile', {speaker: speaker})}
+      onPress={() => navigation.navigate('Speaker Profile', {speaker: speaker})}
       style={[styles.button, style]}>
       <Image
         style={styles.otherRoute}
         resizeMode={'cover'}
         source={speakerimg}
       />
-      <Text style={styles.label}>{speakerName}</Text>
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{speakerName}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

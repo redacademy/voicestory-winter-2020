@@ -6,21 +6,13 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
   },
   container: {
-    height: Dimensions.get('window').height * 0.55,
+    height: Dimensions.get('window').height * 0.65,
     width: Dimensions.get('window').width,
     backgroundColor: '#1d1d1d',
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
-  player: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginRight: 30,
-    marginLeft: 30,
-  },
-  backgroundVideo: {
-    height: '70%',
-  },
+
   loadingContainer: {
     height: '100%',
     width: '100%',
@@ -37,11 +29,10 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 14,
     color: '#fbf7ef',
-    paddingTop: 20,
   },
   infoContainer: {
-    paddingTop: 20,
     alignItems: 'center',
+    justifyContent: 'center',
     height: '30%',
   },
   info: {
