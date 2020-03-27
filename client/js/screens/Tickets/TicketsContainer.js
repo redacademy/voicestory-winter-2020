@@ -16,11 +16,6 @@ const OWNED_TICKETS = gql`
         price
         location_name
         location_address
-        location {
-          id
-          latitude
-          longitude
-        }
         speakers {
           id
         }
