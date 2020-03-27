@@ -79,8 +79,14 @@ const Search = ({events, videos, speakers, navigation}) => {
         {search === ''
           ? null
           : eventResults.map(event => (
-              <TouchableOpacity>
-                <View key={event.id} style={styles.resultsContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Events', {
+                    screen: 'Event Info',
+                    event: event,
+                  })
+                }>
+                <View style={styles.resultsContainer}>
                   <View style={styles.imageContainer}>
                     <Image
                       style={styles.image}
@@ -88,7 +94,9 @@ const Search = ({events, videos, speakers, navigation}) => {
                       source={{uri: event.thumbnail_url}}
                     />
                   </View>
-                  <Text style={styles.title}>{event.title}</Text>
+                  <Text key={event.id} style={styles.title}>
+                    {event.title}
+                  </Text>
                 </View>
               </TouchableOpacity>
             ))}
@@ -100,8 +108,8 @@ const Search = ({events, videos, speakers, navigation}) => {
         {search === ''
           ? null
           : videoResults.map(video => (
-              <TouchableOpacity>
-                <View key={video.id} style={styles.resultsContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Video')}>
+                <View style={styles.resultsContainer}>
                   <View style={styles.imageContainer}>
                     <Image
                       style={styles.image}
@@ -111,7 +119,9 @@ const Search = ({events, videos, speakers, navigation}) => {
                       }}
                     />
                   </View>
-                  <Text style={styles.title}>{video.title}</Text>
+                  <Text key={video.id} style={styles.title}>
+                    {video.title}
+                  </Text>
                 </View>
               </TouchableOpacity>
             ))}
@@ -124,7 +134,7 @@ const Search = ({events, videos, speakers, navigation}) => {
           ? null
           : speakerResults.map(speaker => (
               <TouchableOpacity>
-                <View key={speaker.id} style={styles.resultsContainer}>
+                <View style={styles.resultsContainer}>
                   <View style={styles.imageContainer}>
                     <Image
                       style={styles.image}
@@ -132,7 +142,9 @@ const Search = ({events, videos, speakers, navigation}) => {
                       source={{uri: speaker.profile_picture}}
                     />
                   </View>
-                  <Text style={styles.title}>{speaker.owner.name}</Text>
+                  <Text key={speaker.id} style={styles.title}>
+                    {speaker.owner.name}
+                  </Text>
                 </View>
               </TouchableOpacity>
             ))}

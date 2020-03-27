@@ -8,7 +8,6 @@ import {ScrollView} from 'react-native-gesture-handler';
 import moment from 'moment';
 
 const TicketInfo = ({ticket, navigation}) => {
-  console.log(ticket);
   return (
     <>
       <ScrollView style={styles.ticket}>
@@ -16,7 +15,7 @@ const TicketInfo = ({ticket, navigation}) => {
           <Image
             style={styles.image}
             resizeMode={'cover'}
-            source={require('../../assets/images/winstonatstage.jpg')}
+            source={{uri: ticket.thumbnail_url}}
           />
         </View>
         <Text style={styles.title}>Voice Story Live</Text>
