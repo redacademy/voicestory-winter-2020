@@ -6,8 +6,25 @@ import styles from './styles';
 import SpeakerCard from '../../components/SpeakerCard';
 import {ScrollView} from 'react-native-gesture-handler';
 import moment from 'moment';
-
+import {mapKey} from '../../apiKeys';
+import openMap from 'react-native-open-maps';
 const TicketInfo = ({ticket, navigation}) => {
+  const getMap = async address => {
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
+    )
+      .then(resp => resp.json())
+      .then(data => {
+        openMap({
+          latitude: data.results[0].geometry.location.lat,
+          longitude: data.results[0].geometry.location.lng,
+          query: data.results[0].formatted_address,
+        });
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  };
   return (
     <>
       <ScrollView style={styles.ticket}>
@@ -43,7 +60,11 @@ const TicketInfo = ({ticket, navigation}) => {
               <Text style={styles.time}>{ticket.time}</Text>
             </View>
           </View>
-          <View style={styles.infoSections}>
+          <TouchableOpacity
+            onPress={() => {
+              getMap(ticket.location_address);
+            }}
+            style={styles.infoSections}>
             <View>
               <Image
                 style={styles.icon}
@@ -54,7 +75,7 @@ const TicketInfo = ({ticket, navigation}) => {
               <Text style={styles.location}>{ticket.location_name}</Text>
               <Text style={styles.address}>{ticket.location_address}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.infoSections}>
             <View>
               <Image
