@@ -54,7 +54,9 @@ const LoginForm = props => {
           }}
         />
       </View>
-      <Text>{error && 'Invalid Login. Check your username and password.'}</Text>
+      <Text style={styles.error}>
+        {error && 'Invalid Login. Check your username and password.'}
+      </Text>
       <View style={styles.buttonbox}>
         <Button
           buttonStyle={
