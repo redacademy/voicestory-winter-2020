@@ -35,10 +35,14 @@ export default Theme = ({
   }
 
   return currentVideos.length > 0 ? (
-    <VideoList videos={currentVideos} route={route} navigation={navigation} />
+    <View style={styles.themeContainer}>
+      <VideoList videos={currentVideos} route={route} navigation={navigation} />
+    </View>
   ) : (
-    <View style={styles.error}>
-      <CustomText>There was an error getting this playlist</CustomText>
+    <View style={styles.themeContainer}>
+      <View style={styles.error}>
+        <CustomText>There was an error getting this playlist</CustomText>
+      </View>
     </View>
   );
 };

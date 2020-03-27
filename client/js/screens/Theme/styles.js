@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
   },
+  themeContainer: {
+    backgroundColor: '#FBF7EF',
+    height: '100%',
+  },
 });
 
 export default styles;

@@ -101,7 +101,6 @@ const EventInfo = ({event, navigation}) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('Checkout', {
-              screen: 'Select Ticket',
               event: event,
             })
           }

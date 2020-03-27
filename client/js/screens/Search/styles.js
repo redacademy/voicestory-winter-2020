@@ -1,9 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  searchContainer: {
-    height: Dimensions.get('window').height,
-  },
   headerContainer: {
     backgroundColor: '#DB4F48',
     paddingBottom: 20,
@@ -17,6 +14,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#9F3833',
     paddingRight: 30,
     paddingLeft: 30,
+    paddingBottom: 125,
+    minHeight: Dimensions.get('window').height - 200,
   },
   border: {
     borderBottomColor: '#DB4F48',
@@ -50,9 +49,12 @@ const styles = StyleSheet.create({
     width: 75,
   },
   title: {
-    alignSelf: 'center',
     marginLeft: 10,
     fontFamily: 'Lato-Bold',
+  },
+  titleContainer: {
+    alignSelf: 'center',
+    width: 275,
   },
 });
 

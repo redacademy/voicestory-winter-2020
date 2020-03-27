@@ -193,9 +193,30 @@ const SearchStackScreens = props => {
     <SearchStack.Navigator
       initialRouteName="Search"
       screenOptions={sharedScreenOptions}>
-      <TicketsStack.Screen
+      <SearchStack.Screen
         name="Search"
         component={SearchScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Event Info"
+        component={EventInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
