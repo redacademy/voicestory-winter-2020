@@ -21,8 +21,10 @@ class YoutubeDataProvider extends Component {
     )
       .then(resp => {
         if (resp) {
-          resp.json();
-        } else return;
+          return resp.json();
+        } else {
+          return;
+        }
       })
       .then(data => {
         if (data) {
@@ -66,8 +68,10 @@ class YoutubeDataProvider extends Component {
     )
       .then(resp => {
         if (resp) {
-          resp.json();
-        } else return;
+          return resp.json();
+        } else {
+          return;
+        }
       })
       .then(async playlists => {
         if (playlists) {
