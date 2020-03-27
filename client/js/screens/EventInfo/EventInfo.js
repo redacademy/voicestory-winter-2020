@@ -5,6 +5,8 @@ import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const EventInfo = ({event, navigation}) => {
   const hero =
@@ -42,7 +44,9 @@ const EventInfo = ({event, navigation}) => {
               />
             </View>
             <View style={styles.textbox}>
-              <Text style={styles.boldtext}>{event.date}</Text>
+              <Text style={styles.boldtext}>
+                {moment(event.date).format('dddd, MMMM Do YYYY')}
+              </Text>
               <Text style={styles.lighttext}>{event.time}</Text>
             </View>
           </View>
@@ -63,7 +67,7 @@ const EventInfo = ({event, navigation}) => {
             </View>
           </TouchableOpacity>
           <View style={styles.infobox}>
-            <View style={styles.iconbox}>
+            <View style={[styles.iconbox, styles.shadow]}>
               <Image
                 style={styles.icon}
                 source={require('../../assets/icons/pricing.png')}
@@ -92,26 +96,30 @@ const EventInfo = ({event, navigation}) => {
                     key={speaker}
                     speaker={speaker}
                     navigation={navigation}
-                    style={styles.speakercard}
+                    style={[styles.speakercard, styles.shadow]}
                   />
                 ))}
             </ScrollView>
           </View>
         </View>
         <TouchableOpacity
-          onPress={() =>
+          style={[styles.buyticketbtn, styles.shadow]}
+          onPress={() => {
             navigation.navigate('Checkout', {
               screen: 'Select Ticket',
               event: event,
-            })
-          }
-          style={styles.buyticketbtn}>
-          {/* not linked yet */}
+            });
+          }}>
           <Text style={styles.buytext}>Get Tickets</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
   );
+};
+
+EventInfo.propType = {
+  event: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 export default EventInfo;

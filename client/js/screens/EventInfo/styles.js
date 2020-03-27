@@ -2,7 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   eventcontainer: {
-    backgroundColor: '#f5f0ea',
+    backgroundColor: '#F5F0EA',
+  },
+  shadow: {
+    shadowOffset: {width: 1, height: 5},
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
   },
   headerimg: {
     height: 150,
@@ -26,9 +31,6 @@ const styles = StyleSheet.create({
   iconbox: {
     width: 43,
     height: 36,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
   },
   textbox: {
     marginLeft: 20,
@@ -66,12 +68,9 @@ const styles = StyleSheet.create({
   speakercard: {
     height: 150,
     width: 100,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
     marginRight: 20,
     marginBottom: 20,
+    shadowRadius: 5,
   },
   scroll: {
     paddingLeft: 30,
@@ -88,11 +87,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#DB4F48',
     width: '86%',
     borderRadius: 10,
-    shadowOffset: {width: 1, height: 5},
-    shadowColor: '#000',
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
     marginHorizontal: 30,
+    marginBottom: 40,
   },
   buytext: {
     color: 'white',
