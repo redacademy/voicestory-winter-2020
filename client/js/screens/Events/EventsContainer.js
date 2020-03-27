@@ -18,6 +18,7 @@ const ALL_EVENTS = gql`
       price
       maxTickets
       soldTickets
+      theme
       speakers {
         id
         profile_picture
