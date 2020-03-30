@@ -1,13 +1,34 @@
-import React, {Component} from 'react';
-import {Modal, TouchableHighlight, View, Alert} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import NotificationsList from '../../components/NotificationsList';
+import moment from 'moment';
+const Notification = ({navigation, notifications}) => {
+  let month = notifications.filter(
+    notification =>
+      moment(notification.timestamp).format('X') >
+      moment()
+        .subtract(30, 'days')
+        .format('X'),
+  );
 
-const Notification = ({navigation}) => {
+  let week = month.filter(
+    notification =>
+      moment(notification.timestamp).format('X') >
+      moment()
+        .subtract(7, 'days')
+        .format('X'),
+  );
+
+  let today = week.filter(
+    notification =>
+      moment(notification.timestamp).format('YYYY, d') ===
+      moment().format('YYYY, d'),
+  );
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>
@@ -23,20 +44,33 @@ const Notification = ({navigation}) => {
           <Text style={styles.header}>Notifications</Text>
         </View>
       </SafeAreaView>
-      <ScrollView style={styles.contentContainer}>
-        <View style={styles.border}>
-          <Text style={styles.heading}>New</Text>
-        </View>
-        <NotificationsList />
-        <View style={styles.border}>
-          <Text style={styles.heading}>This Week</Text>
-        </View>
-        <NotificationsList />
 
-        <View style={styles.border}>
-          <Text style={styles.heading}>This Month</Text>
-        </View>
-        <NotificationsList />
+      <ScrollView style={styles.contentContainer}>
+        {today.length > 0 && (
+          <>
+            <View style={styles.border}>
+              <Text style={styles.heading}>New</Text>
+            </View>
+            <NotificationsList notifications={today} />
+          </>
+        )}
+
+        {week.length > 0 && (
+          <>
+            <View style={styles.border}>
+              <Text style={styles.heading}>This Week</Text>
+            </View>
+            <NotificationsList notifications={week} />
+          </>
+        )}
+        {month.length > 0 && (
+          <>
+            <View style={styles.border}>
+              <Text style={styles.heading}>This Month</Text>
+            </View>
+            <NotificationsList notifications={month} />
+          </>
+        )}
       </ScrollView>
     </>
   );

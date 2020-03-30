@@ -2,7 +2,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   banner: {
-    backgroundColor: '#FBF7EF',
+    backgroundColor: '#ffffff',
     flexDirection: 'row',
     height: 75,
     width: '100%',
@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
   image: {
     height: 60,
     width: 60,
+    borderRadius: 30,
+    backgroundColor: '#FBF7EF',
   },
   imageContainer: {
     flex: 1,
