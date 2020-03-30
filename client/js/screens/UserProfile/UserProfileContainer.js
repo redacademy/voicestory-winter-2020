@@ -16,14 +16,6 @@ const ALL_USERS = gql`
         profile_picture
         title
         description
-        videos {
-          id
-          title
-        }
-      }
-      favouritedVideos {
-        id
-        title
       }
       ownedTickets {
         id
