@@ -35,8 +35,10 @@ export default Theme = ({
       });
     }
 
-    return (
+    return currentVideos.length > 0 ? (
       <VideoList videos={currentVideos} route={route} navigation={navigation} />
+    ) : (
+      <Error name={'Playlist'} height={'100%'} />
     );
   } else {
     return <Error name={'Playlist'} height={'100%'} />;
