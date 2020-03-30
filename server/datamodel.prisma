@@ -30,5 +30,17 @@ type Event {
   maxTickets: Int!
   soldTickets: Int @default(value: 0)
   speakers: [Speaker]!
-  theme: String
+  theme: Theme @relation(link: INLINE)
+}
+
+type Notification {
+  id: ID! @id
+  timestamp: DateTime @createdAt
+  announcement: String
+}
+
+type Theme {
+  id: ID! @id
+  name: String!
+  hexcode: String! @default(value: "#DB4F48")
 }

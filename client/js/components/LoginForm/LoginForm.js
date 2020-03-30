@@ -1,6 +1,7 @@
 import React, {useEffect, useContext} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
+import Text from '../../components/CustomText';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
@@ -53,6 +54,9 @@ const LoginForm = props => {
           }}
         />
       </View>
+      <Text style={styles.error}>
+        {error && 'Invalid Login. Check your username and password.'}
+      </Text>
       <View style={styles.buttonbox}>
         <Button
           buttonStyle={

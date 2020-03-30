@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     padding: 20,
     height: 450,
   },
+  error: {
+    alignSelf: 'center',
+    color: '#DB4F48',
+  },
   formcontent: {
     backgroundColor: '#D84F48',
     padding: 10,
