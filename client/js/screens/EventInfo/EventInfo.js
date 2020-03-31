@@ -42,10 +42,11 @@ const EventInfo = ({event, navigation}) => {
                 style={styles.icon}
                 source={require('../../assets/icons/calender.png')}
               />
+              <Text style={styles.day}>{moment(event.date).format('DD')}</Text>
             </View>
             <View style={styles.textbox}>
               <Text style={styles.boldtext}>
-                {moment(event.date).format('dddd, MMMM Do YYYY')}
+                {moment(event.date).format('ddd, MMM DD YYYY')}
               </Text>
               <Text style={styles.lighttext}>{event.time}</Text>
             </View>
@@ -106,7 +107,6 @@ const EventInfo = ({event, navigation}) => {
           style={[styles.buyticketbtn, styles.shadow]}
           onPress={() => {
             navigation.navigate('Checkout', {
-              screen: 'Select Ticket',
               event: event,
             });
           }}>

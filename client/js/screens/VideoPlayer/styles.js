@@ -6,13 +6,15 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
   },
   container: {
-    height: Dimensions.get('window').height * 0.65,
+    height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     backgroundColor: '#1d1d1d',
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
-
+  videoContainer: {
+    height: Dimensions.get('window').height * 0.35,
+  },
   loadingContainer: {
     height: '100%',
     width: '100%',
@@ -37,12 +39,14 @@ const styles = StyleSheet.create({
   },
   info: {
     width: Dimensions.get('window').width - 60,
+    transform: [{translateY: -50}],
   },
   actionContainer: {
     paddingTop: 20,
     width: Dimensions.get('window').width - 60,
     flexDirection: 'row',
     alignItems: 'center',
+    transform: [{translateY: -50}],
   },
   icon: {
     paddingRight: 12,
