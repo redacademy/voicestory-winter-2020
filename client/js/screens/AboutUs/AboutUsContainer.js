@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import AboutUs from './AboutUs';
+import PropTypes from 'prop-types';
 
 export default class AboutUsContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <AboutUs navigation={this.props.navigation} />;
+    return <AboutUs />;
   }
 }
+
+AboutUsContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

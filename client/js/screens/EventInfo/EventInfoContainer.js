@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EventInfo from './EventInfo';
+import PropTypes from 'prop-types';
 
 export default class EventInfoContainer extends Component {
   render() {
@@ -11,3 +12,8 @@ export default class EventInfoContainer extends Component {
     );
   }
 }
+
+EventInfoContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

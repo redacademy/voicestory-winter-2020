@@ -106,6 +106,6 @@ VideoList.propTypes = {
   offset: PropTypes.number,
   faveIds: PropTypes.array,
   videos: PropTypes.array,
-  currentVideo: PropTypes.array,
+  currentVideo: PropTypes.string,
 };
 export default VideoList;

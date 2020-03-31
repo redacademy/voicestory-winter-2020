@@ -5,6 +5,7 @@ import styles from './styles';
 import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const CheckoutConfirmation = ({event, navigation}) => {
   return (
@@ -34,6 +35,11 @@ const CheckoutConfirmation = ({event, navigation}) => {
       </View>
     </>
   );
+};
+
+CheckoutConfirmation.propTypes = {
+  event: PropTypes.object,
+  navigation: PropTypes.object,
 };
 
 export default CheckoutConfirmation;

@@ -29,6 +29,6 @@ const NotificationBanner = ({notification}) => {
 };
 
 NotificationBanner.propTypes = {
-  notification: PropTypes.string,
+  notification: PropTypes.object,
 };
 export default NotificationBanner;

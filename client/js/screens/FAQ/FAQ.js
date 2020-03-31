@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import Collapsible from '../../components/Collapsible';
 
-const FAQ = ({navigation}) => {
+const FAQ = () => {
   return (
     <ScrollView>
       <Collapsible

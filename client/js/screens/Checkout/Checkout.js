@@ -11,6 +11,7 @@ import styles from './styles';
 import moment from 'moment';
 import {TextInput} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import PropTypes from 'prop-types';
 
 const Checkout = ({event, navigation}) => {
   const [unit, setUnit] = useState(1);
@@ -177,5 +178,8 @@ const Checkout = ({event, navigation}) => {
     </ScrollView>
   );
 };
-
+Checkout.propTypes = {
+  event: PropTypes.object,
+  navigation: PropTypes.object,
+};
 export default Checkout;

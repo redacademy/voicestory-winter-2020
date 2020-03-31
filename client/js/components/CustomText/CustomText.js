@@ -10,11 +10,12 @@ const CustomText = props => {
 };
 
 CustomText.propTypes = {
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.array,
+    PropTypes.number,
   ]),
 };
 export default CustomText;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Checkout from './Checkout';
+import PropTypes from 'prop-types';
 
 export default class CheckoutContainer extends Component {
   render() {
@@ -11,3 +12,8 @@ export default class CheckoutContainer extends Component {
     );
   }
 }
+
+CheckoutContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

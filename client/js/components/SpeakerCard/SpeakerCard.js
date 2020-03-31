@@ -42,7 +42,7 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
 SpeakerCard.propTypes = {
   navigation: PropTypes.object,
   speaker: PropTypes.object,
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   route: PropTypes.object,
 };
 export default SpeakerCard;

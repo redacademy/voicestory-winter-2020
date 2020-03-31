@@ -69,7 +69,7 @@ EventCard.propTypes = {
   eventthumbnail: PropTypes.string,
   ticketthumbnail: PropTypes.string,
   event: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  ownedTicket: PropTypes.string,
+  ownedTicket: PropTypes.object,
   navigation: PropTypes.object,
   route: PropTypes.object,
 };
