@@ -3,6 +3,7 @@ import {Image, View} from 'react-native';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../CustomText/CustomText';
+import PropTypes from 'prop-types';
 
 const SpeakerCard = ({navigation, speaker, style, route}) => {
   const speakerimg =
@@ -38,5 +39,10 @@ const SpeakerCard = ({navigation, speaker, style, route}) => {
     </TouchableOpacity>
   );
 };
-
+SpeakerCard.propTypes = {
+  navigation: PropTypes.object,
+  speaker: PropTypes.object,
+  style: PropTypes.object,
+  route: PropTypes.object,
+};
 export default SpeakerCard;

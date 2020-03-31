@@ -2,6 +2,7 @@ import React from 'react';
 import {View, ScrollView} from 'react-native';
 import styles from './styles';
 import VideoCard from '../VideoCard';
+import PropTypes from 'prop-types';
 
 const VideoList = ({
   route,
@@ -98,5 +99,13 @@ const VideoList = ({
     </View>
   );
 };
-
+VideoList.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.object,
+  horizontal: PropTypes.bool,
+  offset: PropTypes.number,
+  faveIds: PropTypes.array,
+  videos: PropTypes.array,
+  currentVideo: PropTypes.array,
+};
 export default VideoList;

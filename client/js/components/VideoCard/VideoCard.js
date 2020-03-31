@@ -3,6 +3,7 @@ import {View, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from '../CustomText';
+import PropTypes from 'prop-types';
 
 class VideoCard extends Component {
   parseSpeakerName = item => {
@@ -159,5 +160,11 @@ class VideoCard extends Component {
     );
   }
 }
-
+VideoCard.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.object,
+  faveIds: PropTypes.array,
+  id: PropTypes.string,
+  video: PropTypes.object,
+};
 export default VideoCard;
