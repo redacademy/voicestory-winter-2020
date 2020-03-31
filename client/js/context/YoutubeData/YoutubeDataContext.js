@@ -1,8 +1,10 @@
 import React, {createContext, Component} from 'react';
-export const YoutubeDataContext = createContext();
+import PropTypes from 'prop-types';
+
 import {key} from '../../apiKeys';
 import moment from 'moment';
 
+export const YoutubeDataContext = createContext();
 class YoutubeDataProvider extends Component {
   constructor(props) {
     super(props);
@@ -114,5 +116,7 @@ class YoutubeDataProvider extends Component {
     );
   }
 }
-
+YoutubeDataProvider.propTypes = {
+  children: PropTypes.object,
+};
 export default YoutubeDataProvider;

@@ -1,5 +1,7 @@
 import React, {createContext, Component} from 'react';
 import {addFave, removeFave, allFaves} from '../../../config/models';
+import PropTypes from 'prop-types';
+
 export const FavesContext = createContext();
 
 class FavesProvider extends Component {
@@ -60,5 +62,9 @@ class FavesProvider extends Component {
     );
   }
 }
+
+FavesProvider.propTypes = {
+  children: PropTypes.object,
+};
 
 export default FavesProvider;
