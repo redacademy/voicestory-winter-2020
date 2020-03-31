@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -22,9 +22,9 @@ const Video = ({
   removeFave,
   users,
 }) => {
-  const [text, setText] = React.useState(false);
-  const yPositionAnimation = React.useRef(new Animated.Value(-50)).current;
-  const fadeAnimation = React.useRef(new Animated.Value(0)).current;
+  const [text, setText] = useState(faveIds.includes(video.id));
+  const yPositionAnimation = useRef(new Animated.Value(-50)).current;
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
   const moveIn = () => {
     Animated.timing(yPositionAnimation, {
       toValue: 0,
@@ -225,7 +225,7 @@ const Video = ({
             <View style={styles.speakerContainer}>
               {speakerList?.length > 0 &&
                 speakerList.map(speaker => (
-                  <>
+                  <React.Fragment key={speaker.id}>
                     <CustomText style={styles.title}>
                       About The Speaker
                     </CustomText>
@@ -238,7 +238,7 @@ const Video = ({
                         navigation={navigation}
                       />
                     </View>
-                  </>
+                  </React.Fragment>
                 ))}
 
               <CustomText style={styles.title}>Watch Next</CustomText>

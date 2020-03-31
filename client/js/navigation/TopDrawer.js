@@ -17,7 +17,6 @@ class TopDrawer extends Component {
   }
   render() {
     const navigation = this.props.navigation;
-
     return (
       <>
         {this.state.isOpen ? (
@@ -56,6 +55,7 @@ class TopDrawer extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    this.props.setUser('guest');
                     navigation.navigate('Login');
                   }}
                   style={styles.border}>
