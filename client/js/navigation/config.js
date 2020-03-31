@@ -53,22 +53,6 @@ const BackButton = ({navigation}) => {
     />
   );
 };
-const CloseButton = ({navigation}) => {
-  return (
-    <Icon
-      style={{
-        marginLeft: 10,
-        marginRight: 10,
-        textShadowOffset: {width: 2, height: 2},
-        textShadowColor: '#9F3833',
-        textShadowRadius: 1,
-      }}
-      name="close"
-      color="white"
-      size={25}
-    />
-  );
-};
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
@@ -132,11 +116,12 @@ export const sharedDrawerOptions = props => {
     },
   };
 };
-export const profileStackOptions = props => {
+export const onlyBackStackOptions = props => {
   return {
     headerBackTitleVisible: false,
     headerLeft: () => {
-      return props.route.name === 'Profile' ? null : (
+      return props.route.name === 'Profile' ||
+        props.route.name === 'Search' ? null : (
         <BackButton navigation={props.navigation} />
       );
     },

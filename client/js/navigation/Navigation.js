@@ -18,10 +18,11 @@ import CheckoutScreen from '../screens/Checkout';
 import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
-import {profileStackOptions} from './config';
+import {onlyBackStackOptions} from './config';
 import SearchScreen from '../screens/Search';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
+
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
   return (
@@ -155,7 +156,7 @@ const UserProfileStackScreens = props => {
   return (
     <UserProfileStack.Navigator
       initialRouteName="Profile"
-      screenOptions={profileStackOptions}>
+      screenOptions={onlyBackStackOptions}>
       <UserProfileStack.Screen
         name="Profile"
         component={UserProfileScreen}
@@ -199,7 +200,7 @@ const SearchStackScreens = props => {
   return (
     <SearchStack.Navigator
       initialRouteName="Search"
-      screenOptions={sharedScreenOptions}>
+      screenOptions={onlyBackStackOptions}>
       <SearchStack.Screen
         name="Search"
         component={SearchScreen}

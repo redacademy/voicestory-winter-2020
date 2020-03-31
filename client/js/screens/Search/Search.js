@@ -4,9 +4,8 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 import {SearchBar} from 'react-native-elements';
-import VideoCard from '../../components/VideoCard';
 
-const Search = ({events, videos, speakers, route, navigation}) => {
+const Search = ({events, videos, speakers, navigation}) => {
   const [search, setSearch] = useState(null);
 
   const updateSearch = search => {

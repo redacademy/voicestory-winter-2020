@@ -1,9 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, View, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 
-const AboutUs = ({navigation}) => {
+const AboutUs = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
