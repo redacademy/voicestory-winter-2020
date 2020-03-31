@@ -20,7 +20,6 @@ const Search = ({events, videos, speakers, route, navigation}) => {
   const eventTitle = eventResults.map(event => event.title);
 
   // //videos
-  console.log(videos);
   const videoResults = videos.filter(video =>
     video[0].snippet.title.toLowerCase().match(search),
   );
