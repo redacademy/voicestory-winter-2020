@@ -1,7 +1,6 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, {useState} from 'react';
-const {forwardRef, useRef, useImperativeHandle} = React;
-import {View, LayoutAnimation, TouchableOpacity, Text} from 'react-native';
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import TopDrawer from './TopDrawer';
 
 const NotificationButton = ({navigation}) => {

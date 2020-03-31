@@ -42,6 +42,64 @@ class VideoCard extends Component {
         : styles.centerPlay;
     return route.name === 'Faves' ? (
       faveIds.includes(id) && (
+        <View style={styles.cardContainer}>
+          <TouchableHighlight
+            style={buttonStyle}
+            onPress={() => {
+              navigation.navigate('Video', {video: video});
+            }}
+            underlayColor={'transparent'}>
+            <View style={cardStyle}>
+              <Image
+                source={{
+                  uri: video.snippet.thumbnails.high.url,
+                }}
+                style={styles.image}
+              />
+              {(route.name === 'Explore' || route.name === 'Video') && (
+                <View
+                  style={playIcon}
+                  transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
+                  <Icon name="play" size={40} color="white" />
+                </View>
+              )}
+              <View style={styles.info}>
+                <View style={styles.timeContainer}>
+                  <CustomText style={styles.time}>
+                    {video.contentDetails.duration.slice(2, 4)}
+                  </CustomText>
+                  <CustomText style={styles.min}>Mins</CustomText>
+                </View>
+                <View style={styles.titleContainer}>
+                  {(route.name === 'Newest' ||
+                    route.name === 'Theme' ||
+                    route.name === 'Most Viewed' ||
+                    route.name === 'Faves') && (
+                    <View style={playIcon}>
+                      <Icon name="play" size={50} color="white" />
+                    </View>
+                  )}
+                  <View>
+                    {(route.name === 'Newest' ||
+                      route.name === 'Theme' ||
+                      route.name === 'Most Viewed' ||
+                      route.name === 'Faves') && (
+                      <CustomText style={styles.speaker}>
+                        {this.parseSpeakerName(video)}
+                      </CustomText>
+                    )}
+                    <CustomText style={styles.title}>
+                      {this.parseTitle(video)}
+                    </CustomText>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      )
+    ) : (
+      <View style={styles.cardContainer}>
         <TouchableHighlight
           style={buttonStyle}
           onPress={() => {
@@ -50,9 +108,7 @@ class VideoCard extends Component {
           underlayColor={'transparent'}>
           <View style={cardStyle}>
             <Image
-              source={{
-                uri: video.snippet.thumbnails.high.url,
-              }}
+              source={{uri: video.snippet.thumbnails.high.url}}
               style={styles.image}
             />
             {(route.name === 'Explore' || route.name === 'Video') && (
@@ -64,6 +120,10 @@ class VideoCard extends Component {
             )}
             <View style={styles.info}>
               <View style={styles.timeContainer}>
+                <Image
+                  style={styles.redbg}
+                  source={require('../../assets/icons/redbg.png')}
+                />
                 <CustomText style={styles.time}>
                   {video.contentDetails.duration.slice(2, 4)}
                 </CustomText>
@@ -95,59 +155,7 @@ class VideoCard extends Component {
             </View>
           </View>
         </TouchableHighlight>
-      )
-    ) : (
-      <TouchableHighlight
-        style={buttonStyle}
-        onPress={() => {
-          navigation.navigate('Video', {video: video});
-        }}
-        underlayColor={'transparent'}>
-        <View style={cardStyle}>
-          <Image
-            source={{uri: video.snippet.thumbnails.high.url}}
-            style={styles.image}
-          />
-          {(route.name === 'Explore' || route.name === 'Video') && (
-            <View
-              style={playIcon}
-              transform={[{translateX: '-50%'}, {translateY: '-50%'}]}>
-              <Icon name="play" size={40} color="white" />
-            </View>
-          )}
-          <View style={styles.info}>
-            <View style={styles.timeContainer}>
-              <CustomText style={styles.time}>
-                {video.contentDetails.duration.slice(2, 4)}
-              </CustomText>
-              <CustomText style={styles.min}>Mins</CustomText>
-            </View>
-            <View style={styles.titleContainer}>
-              {(route.name === 'Newest' ||
-                route.name === 'Theme' ||
-                route.name === 'Most Viewed' ||
-                route.name === 'Faves') && (
-                <View style={playIcon}>
-                  <Icon name="play" size={50} color="white" />
-                </View>
-              )}
-              <View>
-                {(route.name === 'Newest' ||
-                  route.name === 'Theme' ||
-                  route.name === 'Most Viewed' ||
-                  route.name === 'Faves') && (
-                  <CustomText style={styles.speaker}>
-                    {this.parseSpeakerName(video)}
-                  </CustomText>
-                )}
-                <CustomText style={styles.title}>
-                  {this.parseTitle(video)}
-                </CustomText>
-              </View>
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+      </View>
     );
   }
 }

@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     position: 'relative',
+    backgroundColor: '#FBF7EF',
   },
   addedToFaves: {
     width: Dimensions.get('window').width,

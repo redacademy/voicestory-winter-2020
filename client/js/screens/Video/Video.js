@@ -25,7 +25,6 @@ const Video = ({
   const [text, setText] = React.useState(false);
   const yPositionAnimation = React.useRef(new Animated.Value(-50)).current;
   const fadeAnimation = React.useRef(new Animated.Value(0)).current;
-
   const moveIn = () => {
     Animated.timing(yPositionAnimation, {
       toValue: 0,
@@ -123,6 +122,7 @@ const Video = ({
   };
 
   findIndividualSpeaker();
+  console.log(video);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -249,7 +249,7 @@ const Video = ({
                 route={route}
                 navigation={navigation}
                 horizontal={true}
-                offset={-25}
+                offset={-10}
                 videos={value.videos}
                 currentVideo={video.id}
               />

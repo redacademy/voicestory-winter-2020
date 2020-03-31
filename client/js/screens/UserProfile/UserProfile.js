@@ -36,7 +36,7 @@ const UserProfile = ({navigation, user}) => {
           style={styles.button}
           bgcolor="#507EA2"
           label="Downloaded Videos"
-          icon={<Icon name="download" size={25} color="#FBF7EF" />}
+          icon={<Icon name="download-outline" size={25} color="#FBF7EF" />}
         />
       </View>
     </View>
