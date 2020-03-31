@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {BaseRouter} from '@react-navigation/native';
 import moment from 'moment';
 
 const EventCard = ({

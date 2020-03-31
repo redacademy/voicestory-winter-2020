@@ -7,6 +7,8 @@ import Text from '../../components/CustomText/CustomText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import NotificationsList from '../../components/NotificationsList';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
 const Notification = ({navigation, notifications}) => {
   let month = notifications.filter(
     notification =>
@@ -75,5 +77,8 @@ const Notification = ({navigation, notifications}) => {
     </>
   );
 };
-
+Notification.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  notifications: PropTypes.array.isRequired,
+};
 export default Notification;

@@ -10,7 +10,6 @@ import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 
 const TicketInfo = ({ticket, route, navigation}) => {
-  console.log(ticket);
   const getMap = async address => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,

@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
 
 const ExploreStack = createStackNavigator();
-const ExploreStackScreens = props => {
+const ExploreStackScreens = () => {
   return (
     <ExploreStack.Navigator
       initialRouteName="Explore"
@@ -84,7 +84,7 @@ const ExploreStackScreens = props => {
   );
 };
 const EventsStack = createStackNavigator();
-const EventsStackScreens = props => {
+const EventsStackScreens = () => {
   return (
     <EventsStack.Navigator
       initialRouteName="Events"
@@ -129,7 +129,7 @@ const EventsStackScreens = props => {
   );
 };
 const TicketsStack = createStackNavigator();
-const TicketsStackScreens = props => {
+const TicketsStackScreens = () => {
   return (
     <TicketsStack.Navigator
       initialRouteName="Tickets"
@@ -152,7 +152,7 @@ const TicketsStackScreens = props => {
   );
 };
 const UserProfileStack = createStackNavigator();
-const UserProfileStackScreens = props => {
+const UserProfileStackScreens = () => {
   return (
     <UserProfileStack.Navigator
       initialRouteName="Profile"
@@ -196,7 +196,7 @@ const UserProfileStackScreens = props => {
   );
 };
 const SearchStack = createStackNavigator();
-const SearchStackScreens = props => {
+const SearchStackScreens = () => {
   return (
     <SearchStack.Navigator
       initialRouteName="Search"
@@ -241,7 +241,7 @@ const SearchStackScreens = props => {
 };
 
 const BottomTabNav = createBottomTabNavigator();
-export const BottomTabNavScreens = props => (
+export const BottomTabNavScreens = () => (
   <BottomTabNav.Navigator
     tabBarOptions={{
       activeTintColor: '#FBF7EF',
@@ -265,7 +265,7 @@ export const BottomTabNavScreens = props => (
       },
     }}
     screenOptions={({route}) => ({
-      tabBarIcon: ({focused}) => {
+      tabBarIcon: () => {
         if (route.name === 'Explore') {
           return (
             <Image

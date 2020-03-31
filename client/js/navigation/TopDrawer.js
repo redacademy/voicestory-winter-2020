@@ -3,6 +3,7 @@ import {View, LayoutAnimation} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../components/CustomText/CustomText';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 class TopDrawer extends Component {
   constructor(props) {
@@ -72,4 +73,8 @@ class TopDrawer extends Component {
     );
   }
 }
+TopDrawer.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
 export default TopDrawer;

@@ -9,7 +9,7 @@ import Login from '../screens/Login';
 import CheckoutConfirmation from '../screens/CheckoutConfirmation';
 
 const RootStack = createStackNavigator();
-const RootStackScreens = props => (
+const RootStackScreens = () => (
   <RootStack.Navigator headerMode="none">
     <RootStack.Screen name="Login" component={Home} />
     <RootStack.Screen name="Signup" component={Login} />

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Animated,
-  Easing,
-  View,
-  Platform,
-  UIManager,
-  LayoutAnimation,
-} from 'react-native';
+import {Animated, Easing, View, LayoutAnimation} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../../components/CustomText';
