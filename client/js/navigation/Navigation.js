@@ -21,7 +21,6 @@ import {sharedScreenOptions} from './config';
 import {profileStackOptions} from './config';
 import SearchScreen from '../screens/Search';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {Image} from 'react-native';
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -302,8 +301,8 @@ export const BottomTabNavScreens = props => (
     })}>
     <BottomTabNav.Screen name="Explore" component={ExploreStackScreens} />
     <BottomTabNav.Screen name="Events" component={EventsStackScreens} />
+    <BottomTabNav.Screen name="Search" component={SearchStackScreens} />
     <BottomTabNav.Screen name="Tickets" component={TicketsStackScreens} />
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
-    <BottomTabNav.Screen name="Search" component={SearchStackScreens} />
   </BottomTabNav.Navigator>
 );

@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {View, Image, Dimensions} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SearchBar} from 'react-native-elements';
+import VideoCard from '../../components/VideoCard';
 
-const Search = ({events, videos, speakers, navigation}) => {
+const Search = ({events, videos, speakers, route, navigation}) => {
   const [search, setSearch] = useState(null);
 
   const updateSearch = search => {
@@ -27,7 +26,6 @@ const Search = ({events, videos, speakers, navigation}) => {
   );
 
   const videoTitle = videoResults.map(video => video[0].snippet.title);
-  console.log(videoTitle);
 
   //speakers
   const speakerResults = speakers.filter(speaker =>
@@ -117,7 +115,10 @@ const Search = ({events, videos, speakers, navigation}) => {
           {search === ''
             ? null
             : videoResults.map(video => (
-                <TouchableOpacity onPress={() => navigation.navigate('Video')}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Video', {video: video[0]})
+                  }>
                   <View style={styles.resultsContainer}>
                     <View style={styles.imageContainer}>
                       <Image

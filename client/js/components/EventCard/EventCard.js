@@ -3,6 +3,7 @@ import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {BaseRouter} from '@react-navigation/native';
+import moment from 'moment';
 
 const EventCard = ({
   title,
@@ -35,8 +36,10 @@ const EventCard = ({
       style={styles.card}>
       <View style={styles.contentbox}>
         <View style={styles.datebox}>
-          <Text style={[styles.dateNum, styles.bold]}>17</Text>
-          <Text style={styles.dateText}>MAR</Text>
+          <Text style={[styles.dateNum, styles.bold]}>
+            {moment(date).format('DD')}
+          </Text>
+          <Text style={styles.dateText}>{moment(date).format('MMM')}</Text>
         </View>
         <View style={styles.info}>
           <View style={styles.details}>

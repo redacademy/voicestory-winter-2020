@@ -5,6 +5,7 @@ import SpeakerCard from '../../components/SpeakerCard';
 import styles from './styles';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
+import moment from 'moment';
 
 const EventInfo = ({event, navigation}) => {
   const hero =
@@ -40,9 +41,12 @@ const EventInfo = ({event, navigation}) => {
                 style={styles.icon}
                 source={require('../../assets/icons/calender.png')}
               />
+              <Text style={styles.day}>{moment(event.date).format('DD')}</Text>
             </View>
             <View style={styles.textbox}>
-              <Text style={styles.boldtext}>{event.date}</Text>
+              <Text style={styles.boldtext}>
+                {moment(event.date).format('ddd, MMM DD YYYY')}
+              </Text>
               <Text style={styles.lighttext}>{event.time}</Text>
             </View>
           </View>

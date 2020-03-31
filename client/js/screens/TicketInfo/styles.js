@@ -112,6 +112,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: 18,
   },
+  day: {
+    position: 'absolute',
+    color: '#FBF7EF',
+    fontFamily: 'Lato-Bold',
+    fontSize: 18,
+    top: '35%',
+    left: '18%',
+  },
 });
 
 export default styles;
