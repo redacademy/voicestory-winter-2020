@@ -111,7 +111,7 @@ const TicketInfo = ({ticket, navigation}) => {
     </>
   );
 };
-Theme.propTypes = {
+TicketInfo.propTypes = {
   theme: PropTypes.object,
   navigation: PropTypes.objectOf(PropTypes.func),
 };

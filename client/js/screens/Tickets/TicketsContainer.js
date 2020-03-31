@@ -5,6 +5,7 @@ import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import Loader from '../../components/Loader';
 import {UserContext} from '../../context/UserContext';
+import PropTypes from 'prop-types';
 
 const OWNED_TICKETS = gql`
   {
@@ -63,3 +64,8 @@ export default class TicketsContainer extends Component {
     );
   }
 }
+
+TicketsContainer.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

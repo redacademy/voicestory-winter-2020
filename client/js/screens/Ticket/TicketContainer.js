@@ -7,6 +7,6 @@ export default class TicketContainer extends Component {
     return <Ticket navigation={this.props.navigation} />;
   }
 }
-Theme.propTypes = {
+TicketContainer.propTypes = {
   navigation: PropTypes.objectOf(PropTypes.func),
 };

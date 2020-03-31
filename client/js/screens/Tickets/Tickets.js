@@ -30,4 +30,10 @@ const Tickets = ({navigation, route, ticketOwner}) => {
   );
 };
 
+Tickets.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+  ticketOwner: PropTypes.arrayOf(PropTypes.object),
+};
+
 export default Tickets;

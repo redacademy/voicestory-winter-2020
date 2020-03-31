@@ -6,3 +6,6 @@ export default class ThemesContainer extends Component {
     return <Themes navigation={this.props.navigation} />;
   }
 }
+ThemeContainer.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

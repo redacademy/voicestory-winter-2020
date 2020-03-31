@@ -12,7 +12,7 @@ export default class TicketInfoContainer extends Component {
   }
 }
 
-Theme.propTypes = {
+TicketInfoContainer.propTypes = {
   route: PropTypes.object,
   navigation: PropTypes.objectOf(PropTypes.func),
 };
