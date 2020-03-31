@@ -9,7 +9,8 @@ import moment from 'moment';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 
-const TicketInfo = ({ticket, navigation}) => {
+const TicketInfo = ({ticket, route, navigation}) => {
+  console.log(ticket);
   const getMap = async address => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
@@ -99,11 +100,15 @@ const TicketInfo = ({ticket, navigation}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Alexandria Papodopoulos"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
+              {ticket.speakers.map(speaker => (
+                <SpeakerCard
+                  style={styles.speakerCard}
+                  speaker={speaker}
+                  key={speaker.id}
+                  navigation={navigation}
+                  route={route}
+                />
+              ))}
             </ScrollView>
           </View>
         </View>

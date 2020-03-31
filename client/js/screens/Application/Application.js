@@ -3,6 +3,7 @@ import {View, ScrollView} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Button from '../../components/Button';
+
 const Application = ({navigation}) => {
   return (
     <>

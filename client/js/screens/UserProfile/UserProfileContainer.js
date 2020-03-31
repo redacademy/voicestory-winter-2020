@@ -5,6 +5,7 @@ import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import Loader from '../../components/Loader';
 const ALL_USERS = gql`
   {
     users {
@@ -29,7 +30,7 @@ export default class UserProfileContainer extends Component {
     return (
       <Query query={ALL_USERS}>
         {({data, loading, error}) => {
-          if (loading) return <Text>Loading...</Text>;
+          if (loading) return <Loader />;
           if (error) return <Text>Error :(</Text>;
           return (
             <UserContext.Consumer>
