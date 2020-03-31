@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -22,9 +22,9 @@ const Video = ({
   removeFave,
   users,
 }) => {
-  const [text, setText] = React.useState(false);
-  const yPositionAnimation = React.useRef(new Animated.Value(-50)).current;
-  const fadeAnimation = React.useRef(new Animated.Value(0)).current;
+  const [text, setText] = useState(faveIds.includes(video.id));
+  const yPositionAnimation = useRef(new Animated.Value(-50)).current;
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
   const moveIn = () => {
     Animated.timing(yPositionAnimation, {
       toValue: 0,
@@ -109,7 +109,7 @@ const Video = ({
   const findIndividualSpeaker = () => {
     const speakers = [];
     const speakerNames = parseSpeakerName(video);
-    if (speakerNames.includes('&')) {
+    if (speakerNames?.includes('&')) {
       speakers.push(speakerNames.slice(0, speakerNames.indexOf('&') - 1));
       speakers.push(speakerNames.slice(speakerNames.indexOf('&') + 2));
     } else {
@@ -122,7 +122,6 @@ const Video = ({
   };
 
   findIndividualSpeaker();
-  console.log(video);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -226,7 +225,7 @@ const Video = ({
             <View style={styles.speakerContainer}>
               {speakerList?.length > 0 &&
                 speakerList.map(speaker => (
-                  <>
+                  <React.Fragment key={speaker.id}>
                     <CustomText style={styles.title}>
                       About The Speaker
                     </CustomText>
@@ -239,7 +238,7 @@ const Video = ({
                         navigation={navigation}
                       />
                     </View>
-                  </>
+                  </React.Fragment>
                 ))}
 
               <CustomText style={styles.title}>Watch Next</CustomText>

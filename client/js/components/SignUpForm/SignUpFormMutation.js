@@ -29,7 +29,6 @@ const SignUpFormMutation = props => {
       variables={{email: email, password: password, name: fullName}}>
       {(signup, {data, error}) => (
         <SignUpForm
-          fullName={fullName}
           setFullName={setFullName}
           data={data}
           error={error}

@@ -28,12 +28,11 @@ const ALL_USERS = gql`
 
 export default class VideoContainer extends Component {
   render() {
-    console.log(this.props.route);
     return (
       <Query query={ALL_USERS}>
         {({data, loading, error}) => {
           if (loading) return <Loader />;
-          if (error) return <Error name={'video'} />;
+          if (error) return <Error name={'video'} height={'100%'} />;
 
           return (
             <FavesContext.Consumer>

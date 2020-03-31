@@ -6,10 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 
 const Ticket = ({route, navigation}) => {
-  console.log(route);
   const ticket = route.params.ticket;
-  const event = route.params.event;
-  console.log(event);
   return (
     <>
       <SafeAreaView style={styles.headerContainer}>

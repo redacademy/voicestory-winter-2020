@@ -80,6 +80,7 @@ const Search = ({events, videos, speakers, navigation}) => {
             ? null
             : eventResults.map(event => (
                 <TouchableOpacity
+                  key={event.id}
                   onPress={() =>
                     navigation.navigate('Event Info', {
                       event: event,
@@ -114,6 +115,7 @@ const Search = ({events, videos, speakers, navigation}) => {
             ? null
             : videoResults.map(video => (
                 <TouchableOpacity
+                  key={video[0].id}
                   onPress={() =>
                     navigation.navigate('Video', {video: video[0]})
                   }>
@@ -146,6 +148,7 @@ const Search = ({events, videos, speakers, navigation}) => {
             ? null
             : speakerResults.map(speaker => (
                 <TouchableOpacity
+                  key={speaker.id}
                   onPress={() =>
                     navigation.navigate('Speaker Profile', {
                       speaker: speaker,

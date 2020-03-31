@@ -29,6 +29,7 @@ const SEARCH = gql`
       time
       location_name
       location_address
+      price
     }
   }
 `;
