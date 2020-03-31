@@ -54,7 +54,11 @@ class TopDrawer extends Component {
                   style={styles.border}>
                   <Text style={styles.menuItem}>Privacy Policy</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Login');
+                  }}
+                  style={styles.border}>
                   <Text style={styles.menuItem}>Logout</Text>
                 </TouchableOpacity>
               </View>

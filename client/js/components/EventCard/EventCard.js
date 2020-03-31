@@ -30,7 +30,7 @@ const EventCard = ({
     <TouchableOpacity
       onPress={() =>
         route.name === 'Events'
-          ? navigation.navigate('Event Info', {event: event})
+          ? navigation.navigate('Event Info', {event: event, title: title})
           : navigation.navigate('Ticket Info', {ownedTicket: ownedTicket})
       }
       style={styles.card}>
