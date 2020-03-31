@@ -28,7 +28,6 @@ const ALL_USERS = gql`
 
 export default class VideoContainer extends Component {
   render() {
-    console.log(this.props.route);
     return (
       <Query query={ALL_USERS}>
         {({data, loading, error}) => {

@@ -215,6 +215,13 @@ const SearchStackScreens = props => {
         }}
       />
       <SearchStack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
         name="Video"
         component={VideoScreen}
         options={{
