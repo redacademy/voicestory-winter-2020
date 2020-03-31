@@ -29,7 +29,12 @@ const SignUpForm = ({
   };
   const handleSignUp = async () => {
     await createFullName();
-    if (email != '' && firstName != '' && lastName != '' && password != '') {
+    if (
+      email !== '' &&
+      firstName !== '' &&
+      lastName !== '' &&
+      password !== ''
+    ) {
       signup();
     } else {
       setEmptyFields(true);
