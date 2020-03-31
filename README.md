@@ -6,6 +6,10 @@ This is done through our monthly speaking platform – VoiceStory Live, educatio
 
 ## Screenshots
 
+![project gif](./screenshots/part-1.gif)
+![project gif](./screenshots/part-2.gif)
+![project gif](./screenshots/part-3.gif)
+
 ## Project Description
 
 The VoiceStory App allows the user to find speakers, videos and events, past or present, at Voicestory in one mobile React Native application. The user is able to favourite the select video and will be able to read up on the speaker. The main features of this project include:
