@@ -1,15 +1,6 @@
-import React, {useState, Component} from 'react';
-import {Dimensions} from 'react-native';
-import {
-  Animated,
-  Easing,
-  View,
-  Platform,
-  UIManager,
-  LayoutAnimation,
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, LayoutAnimation} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../components/CustomText/CustomText';
 import styles from './styles';
 

@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
     lineHeight: 0,
     textAlign: 'center',
   },
+  icon: {
+    position: 'absolute',
+    top: '65%',
+    left: '5%',
+  },
 });
 
 export default styles;

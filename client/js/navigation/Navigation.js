@@ -21,7 +21,6 @@ import {sharedScreenOptions} from './config';
 import {profileStackOptions} from './config';
 import SearchScreen from '../screens/Search';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {Image} from 'react-native';
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -201,9 +200,37 @@ const SearchStackScreens = props => {
     <SearchStack.Navigator
       initialRouteName="Search"
       screenOptions={sharedScreenOptions}>
-      <TicketsStack.Screen
+      <SearchStack.Screen
         name="Search"
         component={SearchScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Event Info"
+        component={EventInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -289,8 +316,8 @@ export const BottomTabNavScreens = props => (
     })}>
     <BottomTabNav.Screen name="Explore" component={ExploreStackScreens} />
     <BottomTabNav.Screen name="Events" component={EventsStackScreens} />
+    <BottomTabNav.Screen name="Search" component={SearchStackScreens} />
     <BottomTabNav.Screen name="Tickets" component={TicketsStackScreens} />
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
-    <BottomTabNav.Screen name="Search" component={SearchStackScreens} />
   </BottomTabNav.Navigator>
 );

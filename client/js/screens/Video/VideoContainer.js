@@ -32,7 +32,7 @@ export default class VideoContainer extends Component {
       <Query query={ALL_USERS}>
         {({data, loading, error}) => {
           if (loading) return <Loader />;
-          if (error) return <Error name={'video'} />;
+          if (error) return <Error name={'video'} height={'100%'} />;
 
           return (
             <FavesContext.Consumer>

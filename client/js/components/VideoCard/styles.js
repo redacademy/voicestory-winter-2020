@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
 
     elevation: 5,
   },
+  redbg: {
+    position: 'absolute',
+    height: '100%',
+  },
   smallButton: {
     marginHorizontal: 5,
     justifyContent: 'center',

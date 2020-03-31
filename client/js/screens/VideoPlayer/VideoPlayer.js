@@ -48,11 +48,13 @@ const VideoPlayer = ({item, addFave, removeFave, faveIds}) => {
   return (
     <View style={styles.root}>
       <View style={styles.container}>
-        <WebView
-          source={{uri: `https://www.youtube.com/embed/${item.id}`}}
-          startInLoadingState={true}
-          renderLoading={displaySpinner}
-        />
+        <View style={styles.videoContainer}>
+          <WebView
+            source={{uri: `https://www.youtube.com/embed/${item.id}`}}
+            startInLoadingState={true}
+            renderLoading={displaySpinner}
+          />
+        </View>
         <View style={styles.infoContainer}>
           <View>
             <View style={styles.info}>

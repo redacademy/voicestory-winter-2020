@@ -5,11 +5,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  errorContainer: {
-    height: 175,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#FBF7EF',
   },
 });
 

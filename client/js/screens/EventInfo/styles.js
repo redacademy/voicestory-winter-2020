@@ -95,6 +95,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  day: {
+    position: 'absolute',
+    color: '#FBF7EF',
+    fontFamily: 'Lato-Bold',
+    fontSize: 18,
+    top: '35%',
+    left: '28%',
+  },
 });
 
 export default styles;

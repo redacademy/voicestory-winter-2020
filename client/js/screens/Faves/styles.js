@@ -7,5 +7,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  container: {
+    backgroundColor: '#FBF7EF',
+    width: '100%',
+    height: '100%',
+  },
 });
 export default styles;
