@@ -7,6 +7,7 @@ import {UserContext} from '../../context/UserContext';
 import Text from '../../components/CustomText';
 
 const SignUpForm = ({
+  fullName,
   setFullName,
   data,
   error,
@@ -22,13 +23,19 @@ const SignUpForm = ({
   password,
   route,
 }) => {
+  let emptyFields = false;
   const {setUser} = useContext(UserContext);
   const createFullName = async () => {
     await setFullName(firstName + ' ' + lastName);
   };
   const handleSignUp = async () => {
     await createFullName();
-    signup();
+    if (email != '' && fullName != '' && password != '') {
+      signup();
+    } else {
+      emptyFields = true;
+      console.log('EmptyFields', emptyFields);
+    }
   };
   useEffect(() => {
     if (data) {
@@ -50,7 +57,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            value === '' ? (error = true) : setFirst_name(value);
+            setFirst_name(value);
           }}
         />
         <TextInput
@@ -64,7 +71,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            value === '' ? (error = true) : setLast_name(value);
+            setLast_name(value);
           }}
         />
         <TextInput
@@ -78,7 +85,7 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            value === '' ? (error = true) : setEmail(value);
+            setEmail(value);
           }}
         />
         <TextInput
@@ -95,11 +102,12 @@ const SignUpForm = ({
             handleSignUp();
           }}
           onChangeText={value => {
-            value === '' ? (error = true) : setPassword(value);
+            setPassword(value);
           }}
         />
       </View>
       <Text style={styles.error}>
+        {emptyFields && 'Try filling out the fields!'}
         {error &&
           'Invalid Sign Up. Make sure your username/email are unique and fill in all the fields.'}
       </Text>
