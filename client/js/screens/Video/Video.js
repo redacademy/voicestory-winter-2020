@@ -109,7 +109,7 @@ const Video = ({
   const findIndividualSpeaker = () => {
     const speakers = [];
     const speakerNames = parseSpeakerName(video);
-    if (speakerNames.includes('&')) {
+    if (speakerNames?.includes('&')) {
       speakers.push(speakerNames.slice(0, speakerNames.indexOf('&') - 1));
       speakers.push(speakerNames.slice(speakerNames.indexOf('&') + 2));
     } else {
@@ -122,7 +122,6 @@ const Video = ({
   };
 
   findIndividualSpeaker();
-  console.log(video);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
