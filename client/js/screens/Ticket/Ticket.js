@@ -4,6 +4,7 @@ import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const Ticket = ({route, navigation}) => {
   const ticket = route.params.ticket;

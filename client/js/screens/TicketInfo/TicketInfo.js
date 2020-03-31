@@ -8,7 +8,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import moment from 'moment';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
-
+import PropTypes from 'prop-types';
 const TicketInfo = ({ticket, navigation}) => {
   const getMap = async address => {
     fetch(
@@ -111,5 +111,8 @@ const TicketInfo = ({ticket, navigation}) => {
     </>
   );
 };
-
+Theme.propTypes = {
+  theme: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};
 export default TicketInfo;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Ticket from './Ticket';
+import PropTypes from 'prop-types';
 
 export default class TicketContainer extends Component {
   render() {
