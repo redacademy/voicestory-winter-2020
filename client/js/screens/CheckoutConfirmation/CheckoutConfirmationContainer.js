@@ -6,6 +6,11 @@ export default class CheckoutConfirmationContainer extends Component {
     super(props);
   }
   render() {
-    return <CheckoutConfirmation navigation={this.props.navigation} />;
+    return (
+      <CheckoutConfirmation
+        event={this.props.route.params.event}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }

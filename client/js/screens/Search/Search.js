@@ -1,41 +1,46 @@
-import React, {Component, useState} from 'react';
-import {Modal, View, Alert} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, {useState} from 'react';
+import {View, Image, Dimensions} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SearchBar} from 'react-native-elements';
+import VideoCard from '../../components/VideoCard';
 
-const Search = ({events, videos, speakers, navigation}) => {
-  const [search, setSearch] = useState('');
+const Search = ({events, videos, speakers, route, navigation}) => {
+  const [search, setSearch] = useState(null);
 
   const updateSearch = search => {
-    setSearch(search.toLowerCase());
+    search === '' ? setSearch(null) : setSearch(search.toLowerCase());
   };
+
   //events
   const eventResults = events.filter(event =>
     event.title.toLowerCase().match(search),
   );
   const eventTitle = eventResults.map(event => event.title);
-  //videos
+
+  // //videos
   const videoResults = videos.filter(video =>
-    video.title.toLowerCase().match(search),
+    video[0].snippet.title.toLowerCase().match(search),
   );
-  const videoTitle = videoResults.map(video => video.title);
+
+  const videoTitle = videoResults.map(video => video[0].snippet.title);
+
   //speakers
   const speakerResults = speakers.filter(speaker =>
-    speaker.name.toLowerCase().match(search),
+    speaker.owner.name.toLowerCase().match(search),
   );
-  const speakerName = speakerResults.map(speaker => speaker.name);
-  console.log(speakerResults.length);
+  const speakerName = speakerResults.map(speaker => speaker.owner.name);
+
   return (
-    <>
-      <SafeAreaView style={styles.headerContainer}>
+    <View style={styles.searchContainer}>
+      <View style={styles.headerContainer}>
         <SearchBar
           placeholder="Search..."
           onChangeText={value => updateSearch(value)}
           value={search}
+          autoCorrect={false}
+          autoCompleteType="name"
           searchIcon={null}
           clearIcon={{
             color: '#FBF7EF',
@@ -47,8 +52,8 @@ const Search = ({events, videos, speakers, navigation}) => {
             padding: 0,
             margin: 0,
             borderRadius: 10,
-            width: '90%',
-            transform: [{translateX: 25}, {translateY: 15}],
+            width: '100%',
+            transform: [{translateX: 20}, {translateY: 10}],
           }}
           inputContainerStyle={{
             backgroundColor: '#9F3833',
@@ -63,33 +68,113 @@ const Search = ({events, videos, speakers, navigation}) => {
           }}
           placeholderTextColor="#FBF7EF"
         />
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon style={styles.close} name="close" size={25} color="#FBF7EF" />
-        </TouchableOpacity>
-      </SafeAreaView>
-      <ScrollView style={styles.contentContainer}>
-        <Text style={styles.resultheader}>Search Results</Text>
-        {search === '' ? null : (
-          <View style={styles.border}>
-            <Text style={styles.heading}>Events</Text>
-          </View>
-        )}
-        <Text>{search === '' ? null : eventTitle}</Text>
-        {search === '' ? null : (
-          <View style={styles.border}>
-            <Text style={styles.heading}>Videos</Text>
-          </View>
-        )}
-        <Text>{search === '' ? null : videoTitle}</Text>
-
-        {search === '' ? null : (
-          <View style={styles.border}>
-            <Text style={styles.heading}>Speakers</Text>
-          </View>
-        )}
-        <Text>{search === '' ? null : speakerName}</Text>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.contentContainer}>
+          <Text style={styles.resultheader}>Search Results</Text>
+          {eventTitle.length > 0 ? (
+            <View style={styles.border}>
+              <Text style={styles.heading}>Events</Text>
+            </View>
+          ) : null}
+          {search === ''
+            ? null
+            : eventResults.map(event => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Event Info', {
+                      event: event,
+                    })
+                  }>
+                  <View style={styles.resultsContainer}>
+                    <View style={styles.imageContainer}>
+                      <Image
+                        style={styles.image}
+                        resizeMode={'cover'}
+                        source={{
+                          uri: event.thumbnail_url
+                            ? event.thumbnail_url
+                            : 'http://www.voicestory.ca/wp-content/uploads/2018/09/VoicSetory-Icon-1-1.png',
+                        }}
+                      />
+                    </View>
+                    <View style={styles.titleContainer}>
+                      <Text key={event.id} style={styles.title}>
+                        {event.title}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+          {videoTitle.length > 0 ? (
+            <View style={styles.border}>
+              <Text style={styles.heading}>Videos</Text>
+            </View>
+          ) : null}
+          {search === ''
+            ? null
+            : videoResults.map(video => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Video', {video: video[0]})
+                  }>
+                  <View style={styles.resultsContainer}>
+                    <View style={styles.imageContainer}>
+                      <Image
+                        style={styles.image}
+                        resizeMode={'cover'}
+                        source={{
+                          uri: video[0].snippet.thumbnails.standard.url
+                            ? video[0].snippet.thumbnails.standard.url
+                            : 'https://i.ytimg.com/vi/IC6m249zvI0/hqdefault.jpg',
+                        }}
+                      />
+                    </View>
+                    <View style={styles.titleContainer}>
+                      <Text key={video.id} style={styles.title}>
+                        {video[0].snippet.title}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+          {speakerName.length > 0 ? (
+            <View style={styles.border}>
+              <Text style={styles.heading}>Speakers</Text>
+            </View>
+          ) : null}
+          {search === ''
+            ? null
+            : speakerResults.map(speaker => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Speaker Profile', {
+                      speaker: speaker,
+                    })
+                  }>
+                  <View style={styles.resultsContainer}>
+                    <View style={styles.imageContainer}>
+                      <Image
+                        style={styles.image}
+                        resizeMode={'cover'}
+                        source={{
+                          uri: speaker.profile_picture
+                            ? speaker.profile_picture
+                            : 'http://www.voicestory.ca/wp-content/uploads/2018/09/VoicSetory-Icon-1-1.png',
+                        }}
+                      />
+                    </View>
+                    <View style={styles.titleContainer}>
+                      <Text key={speaker.id} style={styles.title}>
+                        {speaker.owner.name}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+        </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 

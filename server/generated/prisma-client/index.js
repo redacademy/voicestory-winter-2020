@@ -9,15 +9,19 @@ var models = [
     embedded: false
   },
   {
-    name: "Video",
-    embedded: false
-  },
-  {
     name: "Speaker",
     embedded: false
   },
   {
     name: "Event",
+    embedded: false
+  },
+  {
+    name: "Notification",
+    embedded: false
+  },
+  {
+    name: "Theme",
     embedded: false
   }
 ];

@@ -7,8 +7,9 @@ import Text from '../../components/CustomText/CustomText';
 import VideoList from '../../components/VideoList';
 import SpeakerCard from '../../components/SpeakerCard';
 import {YoutubeDataContext} from '../../context/YoutubeData';
+import Error from '../../components/Error/';
 
-const Explore = ({navigation, route}) => {
+const Explore = ({navigation, route, speakers}) => {
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -16,17 +17,24 @@ const Explore = ({navigation, route}) => {
           <View style={styles.headingContainer}>
             <Text style={styles.heading}>Videos</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Videos', {screen: 'Newest'})}>
+              onPress={() => {
+                navigation.navigate('Videos', {screen: 'Newest'});
+              }}>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>
-          <VideoList
-            horizontal={true}
-            route={route}
-            navigation={navigation}
-            offset={-25}
-            videos={value.videos}
-          />
+          {value.videos.length > 0 ? (
+            <VideoList
+              horizontal={true}
+              route={route}
+              navigation={navigation}
+              offset={-25}
+              videos={value.videos}
+            />
+          ) : (
+            <Error name={'videos'} />
+          )}
+
           <View style={styles.headingContainer}>
             <Text style={styles.heading}>Themes</Text>
             <TouchableOpacity
@@ -122,21 +130,15 @@ const Explore = ({navigation, route}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
+              {speakers?.map(speaker => (
+                <SpeakerCard
+                  style={styles.speakerCard}
+                  speaker={speaker}
+                  key={speaker.id}
+                  navigation={navigation}
+                  route={route}
+                />
+              ))}
             </ScrollView>
           </View>
         </View>

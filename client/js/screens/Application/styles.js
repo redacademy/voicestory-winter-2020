@@ -4,10 +4,12 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: '#F4F0E8',
     height: '100%',
+    alignItems: 'center',
   },
   mainDescription: {
     backgroundColor: '#FBF7EF',
-    padding: 30,
+    padding: 35,
+    alignSelf: 'center',
   },
   mainTitle: {
     fontFamily: 'Lato-Black',
@@ -15,7 +17,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   content: {
-    padding: 30,
+    padding: 35,
+    alignItems: 'center',
   },
   text: {
     lineHeight: 25,
@@ -27,6 +30,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
+    alignSelf: 'center',
   },
   speakerText: {
     lineHeight: 25,

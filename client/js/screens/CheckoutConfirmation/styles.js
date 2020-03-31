@@ -1,25 +1,36 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  main: {
     backgroundColor: '#FBF7EF',
     height: '100%',
-    padding: 30,
-    paddingBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
-  heading: {
-    color: '#1D1D1D',
-    fontFamily: 'Lato-Bold',
-    fontSize: 18,
-    marginBottom: 15,
+  content: {
+    alignItems: 'center',
+    marginTop: 50,
   },
-  section: {},
-  text: {
-    color: '#1D1D1D',
-    fontFamily: 'Lato-Regular',
-    fontSize: 15,
-    lineHeight: 25,
-    marginBottom: 30,
+  close: {
+    position: 'absolute',
+    top: '6%',
+    right: '8%',
+  },
+  heart: {
+    textShadowOffset: {width: 1, height: 1},
+    textShadowColor: '#8c8c8c',
+    textShadowRadius: 10,
+    marginBottom: 20,
+  },
+  thankyou: {
+    fontFamily: 'Lato-Black',
+    fontSize: 30,
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 16,
+    marginLeft: 50,
+    marginRight: 50,
   },
 });
 

@@ -19,7 +19,8 @@ import ApplicationScreen from '../screens/Application';
 import FAQScreen from '../screens/FAQ';
 import {sharedScreenOptions} from './config';
 import {profileStackOptions} from './config';
-
+import SearchScreen from '../screens/Search';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
 const ExploreStack = createStackNavigator();
 const ExploreStackScreens = props => {
@@ -97,12 +98,20 @@ const EventsStackScreens = props => {
       <EventsStack.Screen
         name="Event Info"
         component={EventInfoScreen}
+        options={({route}) => ({
+          title: route.params.title,
+          headerTintColor: '#FBF7EF',
+        })}
+      />
+      <TicketsStack.Screen
+        name="Ticket Info"
+        component={TicketInfoScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
       />
-      <EventsStack.Screen
-        name="Speaker Profile"
+      <ExploreStack.Screen
+        name="SpeakerProfile"
         component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -185,6 +194,43 @@ const UserProfileStackScreens = props => {
     </UserProfileStack.Navigator>
   );
 };
+const SearchStack = createStackNavigator();
+const SearchStackScreens = props => {
+  return (
+    <SearchStack.Navigator
+      initialRouteName="Search"
+      screenOptions={sharedScreenOptions}>
+      <SearchStack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Event Info"
+        component={EventInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <SearchStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+    </SearchStack.Navigator>
+  );
+};
 
 const BottomTabNav = createBottomTabNavigator();
 export const BottomTabNavScreens = props => (
@@ -196,17 +242,18 @@ export const BottomTabNavScreens = props => (
       inactiveBackgroundColor: '#DB4F48',
       tabStyle: {
         borderRadius: 20,
-        height: 100,
+        height: 120,
       },
       style: {
         backgroundColor: '#DB4F48',
         borderRadius: 20,
-        height: 100,
+        height: 80,
+        transform: [{translateY: -20}],
       },
       labelStyle: {
         fontSize: 14,
         fontFamily: 'Lato-Regular',
-        transform: [{translateY: -20}],
+        transform: [{translateY: -40}],
       },
     }}
     screenOptions={({route}) => ({
@@ -214,7 +261,7 @@ export const BottomTabNavScreens = props => (
         if (route.name === 'Explore') {
           return (
             <Image
-              style={{height: 40, width: 40}}
+              style={{height: 40, width: 40, transform: [{translateY: -15}]}}
               resizeMode={'contain'}
               source={require('../assets/icons/explore.png')}
             />
@@ -222,7 +269,7 @@ export const BottomTabNavScreens = props => (
         } else if (route.name === 'Events') {
           return (
             <Image
-              style={{height: 35, width: 35}}
+              style={{height: 35, width: 35, transform: [{translateY: -15}]}}
               resizeMode={'contain'}
               source={require('../assets/icons/event.png')}
             />
@@ -230,7 +277,7 @@ export const BottomTabNavScreens = props => (
         } else if (route.name === 'Tickets') {
           return (
             <Image
-              style={{height: 35, width: 35}}
+              style={{height: 35, width: 35, transform: [{translateY: -15}]}}
               resizeMode={'contain'}
               source={require('../assets/icons/ticket.png')}
             />
@@ -238,9 +285,23 @@ export const BottomTabNavScreens = props => (
         } else if (route.name === 'Profile') {
           return (
             <Image
-              style={{height: 30, width: 30}}
+              style={{height: 30, width: 30, transform: [{translateY: -15}]}}
               resizeMode={'contain'}
               source={require('../assets/icons/profile.png')}
+            />
+          );
+        } else if (route.name === 'Search') {
+          return (
+            <Icon
+              style={{
+                textShadowOffset: {width: 2, height: 2},
+                textShadowColor: '#9F3833',
+                textShadowRadius: 8,
+                transform: [{translateY: -15}],
+              }}
+              name="magnify"
+              color="white"
+              size={40}
             />
           );
         }
@@ -248,6 +309,7 @@ export const BottomTabNavScreens = props => (
     })}>
     <BottomTabNav.Screen name="Explore" component={ExploreStackScreens} />
     <BottomTabNav.Screen name="Events" component={EventsStackScreens} />
+    <BottomTabNav.Screen name="Search" component={SearchStackScreens} />
     <BottomTabNav.Screen name="Tickets" component={TicketsStackScreens} />
     <BottomTabNav.Screen name="Profile" component={UserProfileStackScreens} />
   </BottomTabNav.Navigator>

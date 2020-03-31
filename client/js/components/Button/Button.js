@@ -8,10 +8,8 @@ export default Button = ({style, label, onPress, bgcolor, icon}) => {
     <TouchableOpacity
       style={[style, styles.button, {backgroundColor: `${bgcolor}`}]}
       onPress={onPress}>
-      <Text style={styles.label}>
-        {icon}
-        {label}
-      </Text>
+      <Text style={styles.icon}>{icon}</Text>
+      <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   );
 };

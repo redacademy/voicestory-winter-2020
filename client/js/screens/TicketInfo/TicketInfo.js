@@ -8,6 +8,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import moment from 'moment';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
+
 const TicketInfo = ({ticket, navigation}) => {
   const getMap = async address => {
     fetch(
@@ -32,7 +33,7 @@ const TicketInfo = ({ticket, navigation}) => {
           <Image
             style={styles.image}
             resizeMode={'cover'}
-            source={require('../../assets/images/winstonatstage.jpg')}
+            source={{uri: ticket.thumbnail_url}}
           />
         </View>
         <Text style={styles.title}>Voice Story Live</Text>
@@ -52,10 +53,11 @@ const TicketInfo = ({ticket, navigation}) => {
                 style={styles.icon}
                 source={require('../../assets/icons/calender.png')}
               />
+              <Text style={styles.day}>{moment(ticket.date).format('DD')}</Text>
             </View>
             <View style={styles.info}>
-              <Text style={styles.date}>
-                {moment(ticket.date).format('MMM Do YYYY')}
+              <Text style={[styles.date, styles.bold]}>
+                {moment(ticket.date).format('ddd, MMM DD YYYY')}
               </Text>
               <Text style={styles.time}>{ticket.time}</Text>
             </View>

@@ -14,7 +14,10 @@ const VideoList = ({
 }) => {
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={horizontal} contentOffset={{x: offset, y: 0}}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal={horizontal}
+        contentOffset={{x: offset, y: 0}}>
         {route.name === 'Most Viewed' &&
           videos.map(item => (
             <VideoCard

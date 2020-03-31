@@ -19,10 +19,6 @@ const ALL_USERS = gql`
           name
         }
         description
-        videos {
-          id
-          title
-        }
       }
     }
   }
