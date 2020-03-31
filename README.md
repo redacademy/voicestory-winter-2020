@@ -8,6 +8,7 @@
 ![screenshot 4](./screenshots/screenshot4.png)
 ![screenshot 5](./screenshots/screenshot5.png)
 ![screenshot 6](./screenshots/screenshot6.png)
+![screenshot 7](./screenshots/screenshot7.png)
 
 ## Project Description
 
