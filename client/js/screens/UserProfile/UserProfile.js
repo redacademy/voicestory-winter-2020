@@ -4,6 +4,7 @@ import {TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import PropTypes from 'prop-types';
 
 const UserProfile = ({navigation, user}) => {
   return (
@@ -41,6 +42,10 @@ const UserProfile = ({navigation, user}) => {
       </View>
     </View>
   );
+};
+UserProfile.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.func),
+  user: PropTypes.object,
 };
 
 export default UserProfile;
