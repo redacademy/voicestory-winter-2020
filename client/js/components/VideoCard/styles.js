@@ -1,12 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    height: 185,
-  },
-  redbg: {
-    position: 'absolute',
-  },
   largeButton: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,6 +16,10 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  redbg: {
+    position: 'absolute',
+    height: '100%',
   },
   smallButton: {
     marginHorizontal: 5,
@@ -72,7 +70,6 @@ const styles = StyleSheet.create({
     width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
   },
   titleContainer: {
     height: '100%',
