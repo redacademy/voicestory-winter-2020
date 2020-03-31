@@ -34,5 +34,8 @@ const Ticket = ({route, navigation}) => {
     </>
   );
 };
-
+Theme.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};
 export default Ticket;
