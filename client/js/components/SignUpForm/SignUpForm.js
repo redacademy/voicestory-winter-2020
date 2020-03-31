@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
@@ -7,7 +7,6 @@ import {UserContext} from '../../context/UserContext';
 import Text from '../../components/CustomText';
 
 const SignUpForm = ({
-  fullName,
   setFullName,
   data,
   error,
@@ -23,18 +22,17 @@ const SignUpForm = ({
   password,
   route,
 }) => {
-  let emptyFields = false;
+  const [emptyFields, setEmptyFields] = useState(false);
   const {setUser} = useContext(UserContext);
   const createFullName = async () => {
     await setFullName(firstName + ' ' + lastName);
   };
   const handleSignUp = async () => {
     await createFullName();
-    if (email != '' && fullName != '' && password != '') {
+    if (email != '' && firstName != '' && lastName != '' && password != '') {
       signup();
     } else {
-      emptyFields = true;
-      console.log('EmptyFields', emptyFields);
+      setEmptyFields(true);
     }
   };
   useEffect(() => {
@@ -58,6 +56,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setFirst_name(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -72,6 +71,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setLast_name(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -86,6 +86,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setEmail(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -103,6 +104,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setPassword(value);
+            setEmptyFields(false);
           }}
         />
       </View>
