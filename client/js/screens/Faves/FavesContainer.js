@@ -4,11 +4,9 @@ import CustomText from '../../components/CustomText';
 import {FavesContext} from '../../context/FavesContext';
 import Faves from './Faves';
 import styles from './styles';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import PropTypes from 'prop-types';
+
 export default class FavesContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <FavesContext.Consumer>
@@ -29,3 +27,8 @@ export default class FavesContainer extends Component {
     );
   }
 }
+
+FavesContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

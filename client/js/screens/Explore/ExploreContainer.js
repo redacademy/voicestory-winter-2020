@@ -4,6 +4,7 @@ import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
+import PropTypes from 'prop-types';
 
 const ALL_SPEAKERS = gql`
   {
@@ -35,3 +36,8 @@ export default class ExploreContainer extends Component {
     );
   }
 }
+
+ExploreContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

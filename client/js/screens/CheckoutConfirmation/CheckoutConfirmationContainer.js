@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import CheckoutConfirmation from './CheckoutConfirmation';
+import PropTypes from 'prop-types';
 
 export default class CheckoutConfirmationContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <CheckoutConfirmation
@@ -14,3 +12,8 @@ export default class CheckoutConfirmationContainer extends Component {
     );
   }
 }
+
+CheckoutConfirmationContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from '../../components/LoginForm';
 import {View, Image} from 'react-native';
 import styles from './styles';
 
-const Home = props => {
+const Home = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.images}>
@@ -17,9 +17,13 @@ const Home = props => {
           style={styles.mic}
         />
       </View>
-      <LoginForm navigation={props.navigation} route={props.route} />
+      <LoginForm navigation={navigation} route={route} />
     </View>
   );
+};
+Home.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
 };
 
 export default Home;

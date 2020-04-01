@@ -3,6 +3,8 @@ import {View} from 'react-native';
 import VideoList from '../../components/VideoList';
 import {YoutubeDataContext} from '../../context/YoutubeData';
 import styles from './styles';
+import PropTypes from 'prop-types';
+
 const Faves = ({route, navigation, faveIds}) => {
   return (
     <View style={styles.container}>
@@ -19,5 +21,9 @@ const Faves = ({route, navigation, faveIds}) => {
     </View>
   );
 };
-
+Faves.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.object,
+  faveIds: PropTypes.array,
+};
 export default Faves;
