@@ -96,8 +96,6 @@ const SignUpForm = ({
         />
         <TextInput
           autoCorrect={false}
-          autoCompleteType="password"
-          autoCorrect={false}
           style={styles.textinput}
           value={password}
           placeholder="Password"
