@@ -45,7 +45,7 @@ const UserProfile = ({navigation, user}) => {
 };
 UserProfile.propTypes = {
   navigation: PropTypes.objectOf(PropTypes.func),
-  user: PropTypes.object,
+  user: PropTypes.array,
 };
 
 export default UserProfile;
