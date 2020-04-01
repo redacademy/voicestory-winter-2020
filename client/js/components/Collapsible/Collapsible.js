@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  Animated,
-  Easing,
-  View,
-  Platform,
-  UIManager,
-  LayoutAnimation,
-} from 'react-native';
+import {Animated, Easing, View, LayoutAnimation} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../../components/CustomText';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 class Collapsible extends React.Component {
   constructor(props) {
@@ -89,5 +83,10 @@ class Collapsible extends React.Component {
     );
   }
 }
+
+Collapsible.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+};
 
 export default Collapsible;

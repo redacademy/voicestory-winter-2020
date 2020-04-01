@@ -117,7 +117,7 @@ const EventInfo = ({event, navigation}) => {
   );
 };
 
-EventInfo.propType = {
+EventInfo.propTypes = {
   event: PropTypes.object,
   navigation: PropTypes.object,
 };

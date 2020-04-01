@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import NotificationBanner from '../NotificationBanner';
+import PropTypes from 'prop-types';
 
 const NotificationsList = ({notifications}) => {
   return (
@@ -12,4 +13,7 @@ const NotificationsList = ({notifications}) => {
   );
 };
 
+NotificationsList.propTypes = {
+  notification: PropTypes.array,
+};
 export default NotificationsList;

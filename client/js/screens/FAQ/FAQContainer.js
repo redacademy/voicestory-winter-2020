@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import FAQ from './FAQ';
+import PropTypes from 'prop-types';
 
 export default class FAQContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <FAQ navigation={this.props.navigation} />;
+    return <FAQ />;
   }
 }
+
+FAQContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

@@ -1,8 +1,10 @@
 import React from 'react';
-import {TouchableOpacity, View, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Button from '../../components/Button';
+import PropTypes from 'prop-types';
+
 const Application = ({navigation}) => {
   return (
     <>
@@ -66,4 +68,7 @@ const Application = ({navigation}) => {
   );
 };
 
+Application.propTypes = {
+  navigation: PropTypes.object,
+};
 export default Application;

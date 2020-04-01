@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, PointPropType} from 'react-native';
 import styles from './styles';
 import ThemesButton from '../../components/ThemesButton';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import VideoList from '../../components/VideoList';
 import SpeakerCard from '../../components/SpeakerCard';
 import {YoutubeDataContext} from '../../context/YoutubeData';
 import Error from '../../components/Error/';
+import PropTypes from 'prop-types';
 
 const Explore = ({navigation, route, speakers}) => {
   return (
@@ -147,4 +148,9 @@ const Explore = ({navigation, route, speakers}) => {
   );
 };
 
+Explore.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+  speakers: PropTypes.array,
+};
 export default Explore;

@@ -5,6 +5,7 @@ import Text from '../../components/CustomText';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import PropTypes from 'prop-types';
 
 const LoginForm = props => {
   const {setUser} = useContext(UserContext);
@@ -81,6 +82,18 @@ const LoginForm = props => {
       </View>
     </KeyboardAvoidingView>
   );
+};
+
+LoginForm.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+  data: PropTypes.object,
+  error: PropTypes.object,
+  setEmail: PropTypes.func,
+  login: PropTypes.func,
+  password: PropTypes.string,
+  setPassword: PropTypes.func,
+  email: PropTypes.string,
 };
 
 export default LoginForm;
