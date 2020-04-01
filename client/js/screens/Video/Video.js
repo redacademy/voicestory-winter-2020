@@ -13,6 +13,8 @@ import CustomText from '../../components/CustomText';
 import SpeakerCard from '../../components/SpeakerCard';
 import VideoList from '../../components/VideoList';
 import {YoutubeDataContext} from '../../context/YoutubeData';
+import PropTypes from 'prop-types';
+
 const Video = ({
   route,
   navigation,
@@ -258,6 +260,14 @@ const Video = ({
       )}
     </YoutubeDataContext.Consumer>
   );
+};
+Video.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+  video: PropTypes.object,
+  faveIds: PropTypes.arrayOf(PropTypes.string),
+  remove: PropTypes.func,
+  users: PropTypes.array,
 };
 
 export default Video;

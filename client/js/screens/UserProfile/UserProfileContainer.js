@@ -5,6 +5,8 @@ import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import PropTypes from 'prop-types';
+
 const ALL_USERS = gql`
   {
     users {
@@ -53,3 +55,6 @@ export default class UserProfileContainer extends Component {
     );
   }
 }
+UserProfileContainer.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

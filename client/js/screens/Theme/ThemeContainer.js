@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Theme from './Theme';
 import {YoutubeDataContext} from '../../context/YoutubeData';
+import PropTypes from 'prop-types';
 class ThemeContainer extends Component {
   render() {
     return (
@@ -19,5 +20,10 @@ class ThemeContainer extends Component {
     );
   }
 }
+
+ThemeContainer.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};
 
 export default ThemeContainer;
