@@ -11,6 +11,8 @@ import Error from '../../components/Error/';
 import PropTypes from 'prop-types';
 
 const Explore = ({navigation, route, speakers}) => {
+  speakers = speakers.filter(user => user.isSpeaker != null);
+  console.log('Ecplorre', speakers);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -134,7 +136,7 @@ const Explore = ({navigation, route, speakers}) => {
               {speakers?.map(speaker => (
                 <SpeakerCard
                   style={styles.speakerCard}
-                  speaker={speaker}
+                  speaker={speaker.isSpeaker}
                   key={speaker.id}
                   navigation={navigation}
                   route={route}

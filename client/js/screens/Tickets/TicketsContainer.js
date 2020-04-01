@@ -26,6 +26,7 @@ const OWNED_TICKETS = gql`
           profile_picture
           owner {
             name
+            email
           }
         }
       }
