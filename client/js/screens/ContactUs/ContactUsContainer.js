@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 export default class ContactUsContainer extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
   render() {
     return <ContactUs />;

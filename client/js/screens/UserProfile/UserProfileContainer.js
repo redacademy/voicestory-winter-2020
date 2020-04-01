@@ -13,7 +13,6 @@ const ALL_USERS = gql`
     user(where: $UserWhereUniqueInput) {
       id
       email
-      password
       name
       ownedTickets {
         id
@@ -28,7 +27,6 @@ export default class UserProfileContainer extends Component {
     return (
       <UserContext.Consumer>
         {({user}) => {
-          console.log('Profilecontainer User', user);
           const userid = user.id;
           return (
             <Query
@@ -37,7 +35,6 @@ export default class UserProfileContainer extends Component {
               {({data, loading, error}) => {
                 if (loading) return <Loader />;
                 if (error) return <Text>Error :(</Text>;
-                console.log('UserProfileContainer', data);
                 return (
                   <UserProfile
                     navigation={this.props.navigation}
