@@ -18,6 +18,7 @@ const EventCard = ({
   route,
   theme,
 }) => {
+  console.log(theme);
   const tealCondition =
     (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
       ? styles.blue
@@ -26,7 +27,6 @@ const EventCard = ({
     (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
       ? styles.bluetext
       : styles.redtext;
-  console.log(theme);
   const eventimg =
     event && eventthumbnail
       ? {uri: eventthumbnail}
@@ -45,7 +45,7 @@ const EventCard = ({
       style={styles.card}>
       <View style={styles.contentbox}>
         <View style={styles.datebox}>
-          <Text style={[styles.day, styles.bold, tealTextCondition]}>
+          <Text style={[styles.day, styles.bold]}>
             {moment(date).format('DD')}
           </Text>
           <Text style={[styles.month, tealTextCondition]}>
