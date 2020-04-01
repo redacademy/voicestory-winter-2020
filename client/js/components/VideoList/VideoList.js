@@ -2,6 +2,7 @@ import React from 'react';
 import {View, ScrollView} from 'react-native';
 import styles from './styles';
 import VideoCard from '../VideoCard';
+import PropTypes from 'prop-types';
 
 const VideoList = ({
   route,
@@ -14,7 +15,12 @@ const VideoList = ({
 }) => {
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={horizontal} contentOffset={{x: offset, y: 0}}>
+      <ScrollView
+        style={styles.scroll}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        horizontal={horizontal}
+        contentOffset={{x: offset, y: 0}}>
         {route.name === 'Most Viewed' &&
           videos.map(item => (
             <VideoCard
@@ -95,5 +101,13 @@ const VideoList = ({
     </View>
   );
 };
-
+VideoList.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.object,
+  horizontal: PropTypes.bool,
+  offset: PropTypes.number,
+  faveIds: PropTypes.array,
+  videos: PropTypes.array,
+  currentVideo: PropTypes.string,
+};
 export default VideoList;

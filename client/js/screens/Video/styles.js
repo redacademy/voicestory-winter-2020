@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     position: 'relative',
+    backgroundColor: '#FBF7EF',
   },
   addedToFaves: {
     width: Dimensions.get('window').width,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   },
   externalLinks: {
     paddingVertical: 30,
-    backgroundColor: 'rgb(244,240,235)',
+    backgroundColor: '#Fbf7ef',
     width: Dimensions.get('window').width,
     alignItems: 'center',
   },
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   watchNextContainer: {
-    paddingTop: 20,
+    padding: 20,
   },
 });
 

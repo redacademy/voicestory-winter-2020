@@ -5,12 +5,9 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#FBF7EF',
   },
-  errorContainer: {
-    height: 175,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  scroll: {height: 200},
 });
 
 export default styles;

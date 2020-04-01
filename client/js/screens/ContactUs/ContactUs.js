@@ -4,7 +4,7 @@ import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ContactUs = ({navigation}) => {
+const ContactUs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.emailContainer}>

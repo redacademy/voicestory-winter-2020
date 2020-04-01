@@ -1,14 +1,19 @@
 import React from 'react';
-import {View, SafeAreaView, ActivityIndicator} from 'react-native';
-import styles from './styles';
+import {View} from 'react-native';
 import NotificationBanner from '../NotificationBanner';
+import PropTypes from 'prop-types';
 
-const NotificationsList = () => {
+const NotificationsList = ({notifications}) => {
   return (
     <View>
-      <NotificationBanner />
+      {notifications.map(notification => (
+        <NotificationBanner key={notification.id} notification={notification} />
+      ))}
     </View>
   );
 };
 
+NotificationsList.propTypes = {
+  notification: PropTypes.array,
+};
 export default NotificationsList;

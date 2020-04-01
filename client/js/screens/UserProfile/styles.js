@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     width: '100%',
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 35,
+    paddingRight: 35,
     justifyContent: 'flex-start',
     backgroundColor: '#FBF7EF',
   },
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 20,
+    alignItems: 'center',
   },
   button: {
     marginTop: 20,

@@ -3,6 +3,7 @@ import SignUpForm from './SignUpForm';
 import {Mutation} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import ApolloClient from 'apollo-boost';
+import PropTypes from 'prop-types';
 
 const client = new ApolloClient({uri: 'http://localhost:8383/'});
 const SIGNUP = gql`
@@ -29,7 +30,6 @@ const SignUpFormMutation = props => {
       variables={{email: email, password: password, name: fullName}}>
       {(signup, {data, error}) => (
         <SignUpForm
-          fullName={fullName}
           setFullName={setFullName}
           data={data}
           error={error}
@@ -50,4 +50,7 @@ const SignUpFormMutation = props => {
   );
 };
 
+SignUpFormMutation.propTypes = {
+  navigation: PropTypes.object,
+};
 export default SignUpFormMutation;

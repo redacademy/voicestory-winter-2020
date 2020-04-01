@@ -1,9 +1,11 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import Text from '../../components/CustomText';
+import PropTypes from 'prop-types';
 
 const SignUpForm = ({
   setFullName,
@@ -19,15 +21,24 @@ const SignUpForm = ({
   setEmail,
   email,
   password,
-  route,
 }) => {
+  const [emptyFields, setEmptyFields] = useState(false);
   const {setUser} = useContext(UserContext);
   const createFullName = async () => {
     await setFullName(firstName + ' ' + lastName);
   };
   const handleSignUp = async () => {
     await createFullName();
-    signup();
+    if (
+      email !== '' &&
+      firstName !== '' &&
+      lastName !== '' &&
+      password !== ''
+    ) {
+      signup();
+    } else {
+      setEmptyFields(true);
+    }
   };
   useEffect(() => {
     if (data) {
@@ -50,6 +61,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setFirst_name(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -64,6 +76,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setLast_name(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -78,6 +91,7 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setEmail(value);
+            setEmptyFields(false);
           }}
         />
         <TextInput
@@ -95,9 +109,15 @@ const SignUpForm = ({
           }}
           onChangeText={value => {
             setPassword(value);
+            setEmptyFields(false);
           }}
         />
       </View>
+      <Text style={styles.error}>
+        {emptyFields && 'Try filling out the fields!'}
+        {error &&
+          'Invalid Sign Up. Make sure your username/email are unique and fill in all the fields.'}
+      </Text>
       <View style={styles.buttonbox}>
         <Button
           buttonStyle={styles.button}
@@ -110,6 +130,22 @@ const SignUpForm = ({
       </View>
     </KeyboardAvoidingView>
   );
+};
+
+SignUpForm.propTypes = {
+  setEmail: PropTypes.func,
+  setFullName: PropTypes.func,
+  data: PropTypes.object,
+  error: PropTypes.object,
+  navigation: PropTypes.object,
+  signup: PropTypes.func,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  setPassword: PropTypes.func,
+  setFirst_name: PropTypes.func,
+  setLast_name: PropTypes.func,
+  email: PropTypes.string,
+  password: PropTypes.string,
 };
 
 export default SignUpForm;

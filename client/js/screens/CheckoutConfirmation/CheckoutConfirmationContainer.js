@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 import CheckoutConfirmation from './CheckoutConfirmation';
+import PropTypes from 'prop-types';
 
 export default class CheckoutConfirmationContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <CheckoutConfirmation navigation={this.props.navigation} />;
+    return (
+      <CheckoutConfirmation
+        event={this.props.route.params.event}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }
+
+CheckoutConfirmationContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

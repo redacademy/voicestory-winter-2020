@@ -1,9 +1,11 @@
 import React, {useEffect, useContext} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
 import {TextInput} from 'react-native';
+import Text from '../../components/CustomText';
 import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
+import PropTypes from 'prop-types';
 
 const LoginForm = props => {
   const {setUser} = useContext(UserContext);
@@ -53,6 +55,9 @@ const LoginForm = props => {
           }}
         />
       </View>
+      <Text style={styles.error}>
+        {error && 'Invalid Login. Check your username and password.'}
+      </Text>
       <View style={styles.buttonbox}>
         <Button
           buttonStyle={
@@ -77,6 +82,18 @@ const LoginForm = props => {
       </View>
     </KeyboardAvoidingView>
   );
+};
+
+LoginForm.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+  data: PropTypes.object,
+  error: PropTypes.object,
+  setEmail: PropTypes.func,
+  login: PropTypes.func,
+  password: PropTypes.string,
+  setPassword: PropTypes.func,
+  email: PropTypes.string,
 };
 
 export default LoginForm;

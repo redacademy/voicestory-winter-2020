@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, PointPropType} from 'react-native';
 import styles from './styles';
 import ThemesButton from '../../components/ThemesButton';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -8,8 +8,9 @@ import VideoList from '../../components/VideoList';
 import SpeakerCard from '../../components/SpeakerCard';
 import {YoutubeDataContext} from '../../context/YoutubeData';
 import Error from '../../components/Error/';
+import PropTypes from 'prop-types';
 
-const Explore = ({navigation, route}) => {
+const Explore = ({navigation, route, speakers}) => {
   return (
     <YoutubeDataContext.Consumer>
       {value => (
@@ -130,21 +131,15 @@ const Explore = ({navigation, route}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Ivan Dai"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
+              {speakers?.map(speaker => (
+                <SpeakerCard
+                  style={styles.speakerCard}
+                  speaker={speaker}
+                  key={speaker.id}
+                  navigation={navigation}
+                  route={route}
+                />
+              ))}
             </ScrollView>
           </View>
         </View>
@@ -153,4 +148,9 @@ const Explore = ({navigation, route}) => {
   );
 };
 
+Explore.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+  speakers: PropTypes.array,
+};
 export default Explore;

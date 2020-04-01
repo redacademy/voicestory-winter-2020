@@ -1,8 +1,10 @@
 import React, {createContext, Component} from 'react';
-export const YoutubeDataContext = createContext();
+import PropTypes from 'prop-types';
+
 import {key} from '../../apiKeys';
 import moment from 'moment';
 
+export const YoutubeDataContext = createContext();
 class YoutubeDataProvider extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +23,10 @@ class YoutubeDataProvider extends Component {
     )
       .then(resp => {
         if (resp) {
-          resp.json();
-        } else return;
+          return resp.json();
+        } else {
+          return;
+        }
       })
       .then(data => {
         if (data) {
@@ -66,8 +70,10 @@ class YoutubeDataProvider extends Component {
     )
       .then(resp => {
         if (resp) {
-          resp.json();
-        } else return;
+          return resp.json();
+        } else {
+          return;
+        }
       })
       .then(async playlists => {
         if (playlists) {
@@ -110,5 +116,7 @@ class YoutubeDataProvider extends Component {
     );
   }
 }
-
+YoutubeDataProvider.propTypes = {
+  children: PropTypes.object,
+};
 export default YoutubeDataProvider;

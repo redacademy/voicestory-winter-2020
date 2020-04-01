@@ -4,6 +4,9 @@ import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import Events from '../Events/Events';
 import Loader from '../../components/Loader';
+import PropTypes from 'prop-types';
+import EventInfoContainer from '../EventInfo/EventInfoContainer';
+
 const ALL_EVENTS = gql`
   {
     events {
@@ -57,3 +60,7 @@ export default class EventsContainer extends Component {
     );
   }
 }
+EventsContainer.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
+};

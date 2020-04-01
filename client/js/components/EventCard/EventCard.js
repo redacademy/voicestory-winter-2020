@@ -3,6 +3,7 @@ import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const EventCard = ({
   title,
@@ -27,6 +28,14 @@ const EventCard = ({
     (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
       ? styles.bluetext
       : styles.redtext;
+  const blueCondition =
+    (theme && theme == 'Vulnerability') || theme == 'Miscellneous'
+      ? styles.teal
+      : styles.red;
+  const blueTextCondition =
+    (theme && theme == 'Vulnurability') || theme == 'Miscellneous'
+      ? styles.tealtext
+      : styles.redtext;
   const eventimg =
     event && eventthumbnail
       ? {uri: eventthumbnail}
@@ -48,11 +57,11 @@ const EventCard = ({
           <Text style={[styles.day, styles.bold]}>
             {moment(date).format('DD')}
           </Text>
-          <Text style={[styles.month, tealTextCondition]}>
+          <Text style={[styles.month, tealTextCondition, blueTextCondition]}>
             {moment(date).format('MMM')}
           </Text>
         </View>
-        <View style={[styles.info, tealCondition]}>
+        <View style={[styles.info, tealCondition, blueCondition]}>
           <View style={styles.details}>
             <Text style={[styles.bigText, styles.bold]}>{title}</Text>
             <Text style={styles.text}>{time}</Text>
@@ -69,6 +78,20 @@ const EventCard = ({
       </View>
     </TouchableOpacity>
   );
+};
+
+EventCard.propTypes = {
+  title: PropTypes.string,
+  location: PropTypes.string,
+  address: PropTypes.string,
+  time: PropTypes.string,
+  date: PropTypes.number,
+  eventthumbnail: PropTypes.string,
+  ticketthumbnail: PropTypes.string,
+  event: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ownedTicket: PropTypes.object,
+  navigation: PropTypes.object,
+  route: PropTypes.object,
 };
 
 export default EventCard;

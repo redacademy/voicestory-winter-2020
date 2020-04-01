@@ -1,8 +1,8 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, {useState} from 'react';
-const {forwardRef, useRef, useImperativeHandle} = React;
-import {View, LayoutAnimation, TouchableOpacity, Text} from 'react-native';
+import React, {useContext} from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import TopDrawer from './TopDrawer';
+import {UserContext} from '../context/UserContext';
 
 const NotificationButton = ({navigation}) => {
   return (
@@ -73,6 +73,7 @@ const CloseButton = ({navigation}) => {
 
 export const sharedScreenOptions = props => {
   let drawerRef = React.createRef();
+  const {user, setUser} = useContext(UserContext);
 
   return {
     headerBackTitleVisible: false,
@@ -83,6 +84,8 @@ export const sharedScreenOptions = props => {
         props.route.name === 'Profile' ? (
         <TopDrawer
           navigation={props.navigation}
+          setUser={setUser}
+          user={user}
           ref={ref => {
             drawerRef = ref;
           }}
@@ -94,6 +97,8 @@ export const sharedScreenOptions = props => {
           </View>
           <TopDrawer
             navigation={props.navigation}
+            setUser={setUser}
+            user={user}
             ref={ref => {
               drawerRef = ref;
             }}

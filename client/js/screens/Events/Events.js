@@ -26,11 +26,9 @@ const Events = ({events, route, navigation}) => {
     </View>
   );
 };
-
-Events.propType = {
-  events: PropTypes.object,
+Events.propTypes = {
+  events: PropTypes.array,
   route: PropTypes.object,
   navigation: PropTypes.object,
 };
-
 export default Events;
