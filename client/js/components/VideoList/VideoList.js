@@ -16,7 +16,9 @@ const VideoList = ({
   return (
     <View style={styles.container}>
       <ScrollView
+        style={styles.scroll}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         horizontal={horizontal}
         contentOffset={{x: offset, y: 0}}>
         {route.name === 'Most Viewed' &&

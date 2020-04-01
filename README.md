@@ -48,7 +48,9 @@ yarn install
 ## Client
 
 ```bash
-yarn installcd iospod install
+yarn install
+cd ios
+pod install
 ```
 
 ## Run - (./client)

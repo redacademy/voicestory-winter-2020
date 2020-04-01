@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FBF7EF',
   },
+  scroll: {height: 200},
 });
 
 export default styles;
