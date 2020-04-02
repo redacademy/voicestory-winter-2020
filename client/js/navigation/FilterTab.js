@@ -6,7 +6,7 @@ import React from 'react';
 
 const FilterTab = createMaterialTopTabNavigator();
 
-export default FilterTabNav = props => {
+export default FilterTabNav = () => {
   return (
     <FilterTab.Navigator
       sceneContainerStyle={{backgroundColor: '#FBF7EF'}}

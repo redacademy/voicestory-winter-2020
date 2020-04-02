@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import {View, Image, Dimensions} from 'react-native';
+import {View, Image} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 import {SearchBar} from 'react-native-elements';
-import VideoCard from '../../components/VideoCard';
+import PropTypes from 'prop-types';
 
-const Search = ({events, videos, speakers, route, navigation}) => {
+const Search = ({events, videos, speakers, navigation}) => {
   const [search, setSearch] = useState(null);
-
   const updateSearch = search => {
     search === '' ? setSearch(null) : setSearch(search.toLowerCase());
   };
@@ -180,5 +179,10 @@ const Search = ({events, videos, speakers, route, navigation}) => {
     </View>
   );
 };
-
+Search.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
+  speakers: PropTypes.array.isRequired,
+  videos: PropTypes.array.isRequired,
+};
 export default Search;

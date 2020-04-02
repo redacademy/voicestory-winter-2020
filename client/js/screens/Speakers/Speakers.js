@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View, Image, Text} from 'react-native';
 import {SectionList} from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const formatSessionData = users => {
   const formattedData = users
@@ -60,5 +61,11 @@ const Speakers = ({users, navigation}) => {
     )
   );
 };
-
+formatSessionData.propTypes = {
+  users: PropTypes.array.isRequired,
+};
+Speakers.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
+};
 export default Speakers;

@@ -3,6 +3,7 @@ import {View, Image, Linking} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import PropTypes from 'prop-types';
 
 const SpeakerProfile = ({speaker}) => {
   _onMailto = email => {
@@ -79,5 +80,7 @@ const SpeakerProfile = ({speaker}) => {
     </ScrollView>
   );
 };
-
+SpeakerProfile.propTypes = {
+  speaker: PropTypes.object.isRequired,
+};
 export default SpeakerProfile;

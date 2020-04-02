@@ -1,9 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 
-const Settings = ({navigation}) => {
+const Settings = () => {
   return (
     <>
       <View style={styles.container}>
