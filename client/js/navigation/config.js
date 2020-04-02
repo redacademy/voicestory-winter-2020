@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import TopDrawer from './TopDrawer';
 import {UserContext} from '../context/UserContext';
+import PropTypes from 'prop-types';
 
 const NotificationButton = ({navigation}) => {
   return (
@@ -21,7 +22,7 @@ const NotificationButton = ({navigation}) => {
   );
 };
 
-const MeatballButton = props => {
+const MeatballButton = () => {
   return (
     <Icon
       style={{
@@ -54,36 +55,20 @@ const BackButton = ({navigation}) => {
     />
   );
 };
-const CloseButton = ({navigation}) => {
-  return (
-    <Icon
-      style={{
-        marginLeft: 10,
-        marginRight: 10,
-        textShadowOffset: {width: 2, height: 2},
-        textShadowColor: '#9F3833',
-        textShadowRadius: 1,
-      }}
-      name="close"
-      color="white"
-      size={25}
-    />
-  );
-};
 
-export const sharedScreenOptions = props => {
+export const sharedScreenOptions = ({route, navigation}) => {
   let drawerRef = React.createRef();
   const {user, setUser} = useContext(UserContext);
 
   return {
     headerBackTitleVisible: false,
     headerLeft: () => {
-      return props.route.name === 'Explore' ||
-        props.route.name === 'Events' ||
-        props.route.name === 'My Tickets' ||
-        props.route.name === 'Profile' ? (
+      return route.name === 'Explore' ||
+        route.name === 'Events' ||
+        route.name === 'My Tickets' ||
+        route.name === 'Profile' ? (
         <TopDrawer
-          navigation={props.navigation}
+          navigation={navigation}
           setUser={setUser}
           user={user}
           ref={ref => {
@@ -93,10 +78,10 @@ export const sharedScreenOptions = props => {
       ) : (
         <>
           <View style={{flexDirection: 'row'}}>
-            <BackButton navigation={props.navigation} />
+            <BackButton navigation={navigation} />
           </View>
           <TopDrawer
-            navigation={props.navigation}
+            navigation={navigation}
             setUser={setUser}
             user={user}
             ref={ref => {
@@ -107,14 +92,14 @@ export const sharedScreenOptions = props => {
       );
     },
     headerRight: () => {
-      return props.route.name === 'Explore' ||
-        props.route.name === 'Events' ||
-        props.route.name === 'My Tickets' ? (
+      return route.name === 'Explore' ||
+        route.name === 'Events' ||
+        route.name === 'My Tickets' ? (
         <>
           <View style={{flexDirection: 'row'}}>
-            <NotificationButton {...props} navigation={props.navigation} />
+            <NotificationButton navigation={navigation} />
             <TouchableOpacity onPress={() => drawerRef.state.toggleHandle()}>
-              <MeatballButton {...props} />
+              <MeatballButton />
             </TouchableOpacity>
           </View>
         </>
@@ -125,12 +110,12 @@ export const sharedScreenOptions = props => {
     },
   };
 };
-export const sharedDrawerOptions = props => {
+export const sharedDrawerOptions = ({navigation}) => {
   return {
     headerBackTitleVisible: false,
     headerLeft: () => (
       <>
-        <BackButton navigation={props.navigation} />
+        <BackButton navigation={navigation} />
       </>
     ),
     headerStyle: {
@@ -138,16 +123,34 @@ export const sharedDrawerOptions = props => {
     },
   };
 };
-export const profileStackOptions = props => {
+export const onlyBackStackOptions = ({route, navigation}) => {
   return {
     headerBackTitleVisible: false,
     headerLeft: () => {
-      return props.route.name === 'Profile' ? null : (
-        <BackButton navigation={props.navigation} />
+      return route.name === 'Profile' || route.name === 'Search' ? null : (
+        <BackButton navigation={navigation} />
       );
     },
     headerStyle: {
       backgroundColor: '#DB4F48',
     },
   };
+};
+
+NotificationButton.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+BackButton.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+sharedScreenOptions.propTypes = {
+  route: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
+};
+sharedDrawerOptions.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+onlyBackStackOptions.propTypes = {
+  route: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
