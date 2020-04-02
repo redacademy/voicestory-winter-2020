@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {Mutation} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {UserContext} from '../../context/UserContext';
+import {OWNED_TICKETS} from '../Tickets/TicketsContainer';
+
 const ADD_TICKETS = gql`
   mutation updateUser(
     $UserWhereUniqueInput: UserWhereUniqueInput!
@@ -22,28 +24,38 @@ export default class CheckoutConfirmationContainer extends Component {
   render() {
     return (
       <UserContext.Consumer>
-        {({user}) => (
-          <Mutation
-            mutation={ADD_TICKETS}
-            variables={{
-              UserWhereUniqueInput: {id: user.id},
-              UserUpdateInput: {
-                ownedTickets: {
-                  connect: {id: this.props.route.params.event.id},
+        {({user}) => {
+          const currentUser = user.id;
+          const refetchQueries = [
+            {
+              query: OWNED_TICKETS,
+              variables: {UserWhereUniqueInput: {id: currentUser}},
+            },
+          ];
+          return (
+            <Mutation
+              refetchQueries={refetchQueries}
+              mutation={ADD_TICKETS}
+              variables={{
+                UserWhereUniqueInput: {id: user.id},
+                UserUpdateInput: {
+                  ownedTickets: {
+                    connect: {id: this.props.route.params.event.id},
+                  },
                 },
-              },
-            }}>
-            {(updateUser, {data, error}) => {
-              return (
-                <CheckoutConfirmation
-                  event={this.props.route.params.event}
-                  navigation={this.props.navigation}
-                  updateUser={updateUser}
-                />
-              );
-            }}
-          </Mutation>
-        )}
+              }}>
+              {(updateUser, {data, error}) => {
+                return (
+                  <CheckoutConfirmation
+                    event={this.props.route.params.event}
+                    navigation={this.props.navigation}
+                    updateUser={updateUser}
+                  />
+                );
+              }}
+            </Mutation>
+          );
+        }}
       </UserContext.Consumer>
     );
   }
