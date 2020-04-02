@@ -34,7 +34,6 @@ export default class CheckoutConfirmationContainer extends Component {
               },
             }}>
             {(updateUser, {data, error}) => {
-              console.log('Data', data, 'Error', error);
               return (
                 <CheckoutConfirmation
                   event={this.props.route.params.event}

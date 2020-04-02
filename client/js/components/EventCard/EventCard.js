@@ -19,7 +19,6 @@ const EventCard = ({
   route,
   theme,
 }) => {
-  console.log(theme);
   const red = '#DB4F48';
   const eventimg =
     event && eventthumbnail

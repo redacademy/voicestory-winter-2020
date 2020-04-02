@@ -13,10 +13,14 @@ const VideoList = ({
   videos,
   currentVideo,
 }) => {
+  let scroll;
+  if (horizontal) {
+    scroll = styles.scroll;
+  }
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.scroll}
+        style={scroll}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         horizontal={horizontal}
