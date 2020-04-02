@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1,
   },
+  teal: {
+    backgroundColor: '#507EA2',
+  },
+  tealtext: {
+    color: '#507EA2',
+  },
   blue: {
     backgroundColor: '#507EA2',
   },

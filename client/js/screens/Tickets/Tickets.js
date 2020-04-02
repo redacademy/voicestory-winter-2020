@@ -23,6 +23,7 @@ const Tickets = ({navigation, route, ticketOwner}) => {
               navigation={navigation}
               route={route}
               ownedTicket={ownedTicket}
+              theme={ownedTicket.theme}
             />
           ))}
       </View>

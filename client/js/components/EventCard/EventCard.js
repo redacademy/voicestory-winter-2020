@@ -20,22 +20,7 @@ const EventCard = ({
   theme,
 }) => {
   console.log(theme);
-  const tealCondition =
-    (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
-      ? styles.blue
-      : styles.red;
-  const tealTextCondition =
-    (theme && theme == 'Mental Health') || theme == 'Abuse' || theme == 'Growth'
-      ? styles.bluetext
-      : styles.redtext;
-  const blueCondition =
-    (theme && theme == 'Vulnerability') || theme == 'Miscellneous'
-      ? styles.teal
-      : styles.red;
-  const blueTextCondition =
-    (theme && theme == 'Vulnurability') || theme == 'Miscellneous'
-      ? styles.tealtext
-      : styles.redtext;
+  const red = '#DB4F48';
   const eventimg =
     event && eventthumbnail
       ? {uri: eventthumbnail}
@@ -54,14 +39,26 @@ const EventCard = ({
       style={styles.card}>
       <View style={styles.contentbox}>
         <View style={styles.datebox}>
-          <Text style={[styles.day, styles.bold]}>
+          <Text
+            style={[
+              theme ? {color: theme.hexcode} : {color: red},
+              [styles.day, styles.bold],
+            ]}>
             {moment(date).format('DD')}
           </Text>
-          <Text style={[styles.month, tealTextCondition, blueTextCondition]}>
+          <Text
+            style={[
+              theme ? {color: theme.hexcode} : {color: red},
+              styles.month,
+            ]}>
             {moment(date).format('MMM')}
           </Text>
         </View>
-        <View style={[styles.info, tealCondition, blueCondition]}>
+        <View
+          style={[
+            theme ? {backgroundColor: theme.hexcode} : {backgroundColor: red},
+            styles.info,
+          ]}>
           <View style={styles.details}>
             <Text style={[styles.bigText, styles.bold]}>{title}</Text>
             <Text style={styles.text}>{time}</Text>
