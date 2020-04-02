@@ -3,6 +3,7 @@ import styles from './styles';
 import {View, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const EventCard = ({
   title,
@@ -57,6 +58,20 @@ const EventCard = ({
       </View>
     </TouchableOpacity>
   );
+};
+
+EventCard.propTypes = {
+  title: PropTypes.string,
+  location: PropTypes.string,
+  address: PropTypes.string,
+  time: PropTypes.string,
+  date: PropTypes.number,
+  eventthumbnail: PropTypes.string,
+  ticketthumbnail: PropTypes.string,
+  event: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ownedTicket: PropTypes.object,
+  navigation: PropTypes.object,
+  route: PropTypes.object,
 };
 
 export default EventCard;

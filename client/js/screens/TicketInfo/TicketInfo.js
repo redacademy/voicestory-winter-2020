@@ -8,8 +8,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import moment from 'moment';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
-
-const TicketInfo = ({ticket, route, navigation}) => {
+import PropTypes from 'prop-types';
+const TicketInfo = ({ticket, navigation}) => {
   const getMap = async address => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
@@ -115,5 +115,8 @@ const TicketInfo = ({ticket, route, navigation}) => {
     </>
   );
 };
-
+TicketInfo.propTypes = {
+  theme: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};
 export default TicketInfo;

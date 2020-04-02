@@ -5,6 +5,7 @@ import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
+import PropTypes from 'prop-types';
 
 const ALL_USERS = gql`
   {
@@ -54,3 +55,8 @@ export default class VideoContainer extends Component {
     );
   }
 }
+
+VideoContainer.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

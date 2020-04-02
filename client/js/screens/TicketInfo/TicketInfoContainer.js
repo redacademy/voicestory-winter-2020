@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TicketInfo from './TicketInfo';
-
+import PropTypes from 'prop-types';
 export default class TicketInfoContainer extends Component {
   render() {
     return (
@@ -11,3 +11,8 @@ export default class TicketInfoContainer extends Component {
     );
   }
 }
+
+TicketInfoContainer.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

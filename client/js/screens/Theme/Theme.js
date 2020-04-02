@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import VideoList from '../../components/VideoList';
 import Error from '../../components/Error';
 
@@ -43,4 +43,13 @@ export default Theme = ({
   } else {
     return <Error name={'Playlist'} height={'100%'} />;
   }
+};
+
+Theme.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+  videos: PropTypes.arrayOf(PropTypes.object),
+  playlist: PropTypes.objectOf(PropTypes.string),
+  playlistVideos: PropTypes.array,
+  theme: PropTypes.string,
 };

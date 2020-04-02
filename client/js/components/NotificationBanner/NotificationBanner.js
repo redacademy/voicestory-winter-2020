@@ -3,7 +3,7 @@ import {View, Image} from 'react-native';
 import styles from './styles';
 import Text from '../../components/CustomText/CustomText';
 import CustomText from '../../components/CustomText/CustomText';
-
+import PropTypes from 'prop-types';
 const NotificationBanner = ({notification}) => {
   return (
     <View style={styles.banner}>
@@ -28,4 +28,7 @@ const NotificationBanner = ({notification}) => {
   );
 };
 
+NotificationBanner.propTypes = {
+  notification: PropTypes.object,
+};
 export default NotificationBanner;

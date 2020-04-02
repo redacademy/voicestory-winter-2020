@@ -4,6 +4,8 @@ import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import TicketContainer from './TicketContainer';
 
 const Ticket = ({route, navigation}) => {
   const ticket = route.params.ticket;
@@ -34,5 +36,8 @@ const Ticket = ({route, navigation}) => {
     </>
   );
 };
-
+Ticket.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+};
 export default Ticket;

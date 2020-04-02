@@ -3,6 +3,7 @@ import LoginForm from './LoginForm';
 import {Mutation} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import ApolloClient from 'apollo-boost';
+import PropTypes from 'prop-types';
 
 const client = new ApolloClient({uri: 'http://localhost:8383/'});
 const LOGIN = gql`
@@ -43,6 +44,11 @@ const LoginFormMutation = props => {
       )}
     </Mutation>
   );
+};
+
+LoginFormMutation.propTypes = {
+  navigation: PropTypes.object,
+  route: PropTypes.object,
 };
 
 export default LoginFormMutation;

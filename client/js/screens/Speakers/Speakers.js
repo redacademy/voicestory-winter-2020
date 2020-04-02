@@ -31,11 +31,11 @@ const Speakers = ({users, navigation}) => {
           renderItem={({item}) => (
             <TouchableOpacity
               style={styles.speaker}
-              onPress={() =>
+              onPress={() => {
                 navigation.navigate('Speaker Profile', {
                   speaker: item.isSpeaker,
-                })
-              }>
+                });
+              }}>
               <Image
                 source={
                   item.isSpeaker.profile_picture

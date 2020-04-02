@@ -5,6 +5,7 @@ import {Button} from 'react-native-elements';
 import styles from './styles';
 import {UserContext} from '../../context/UserContext';
 import Text from '../../components/CustomText';
+import PropTypes from 'prop-types';
 
 const SignUpForm = ({
   setFullName,
@@ -20,7 +21,6 @@ const SignUpForm = ({
   setEmail,
   email,
   password,
-  route,
 }) => {
   const [emptyFields, setEmptyFields] = useState(false);
   const {setUser} = useContext(UserContext);
@@ -96,8 +96,6 @@ const SignUpForm = ({
         />
         <TextInput
           autoCorrect={false}
-          autoCompleteType="password"
-          autoCorrect={false}
           style={styles.textinput}
           value={password}
           placeholder="Password"
@@ -130,6 +128,22 @@ const SignUpForm = ({
       </View>
     </KeyboardAvoidingView>
   );
+};
+
+SignUpForm.propTypes = {
+  setEmail: PropTypes.func,
+  setFullName: PropTypes.func,
+  data: PropTypes.object,
+  error: PropTypes.object,
+  navigation: PropTypes.object,
+  signup: PropTypes.func,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  setPassword: PropTypes.func,
+  setFirst_name: PropTypes.func,
+  setLast_name: PropTypes.func,
+  email: PropTypes.string,
+  password: PropTypes.string,
 };
 
 export default SignUpForm;
