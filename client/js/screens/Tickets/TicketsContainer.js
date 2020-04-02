@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import {UserContext} from '../../context/UserContext';
 import PropTypes from 'prop-types';
 
-const OWNED_TICKETS = gql`
+export const OWNED_TICKETS = gql`
   query user($UserWhereUniqueInput: UserWhereUniqueInput!) {
     user(where: $UserWhereUniqueInput) {
       id
@@ -21,6 +21,9 @@ const OWNED_TICKETS = gql`
         thumbnail_url
         location_name
         location_address
+        theme {
+          hexcode
+        }
         speakers {
           id
           profile_picture

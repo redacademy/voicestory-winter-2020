@@ -17,7 +17,9 @@ const EventCard = ({
   ownedTicket,
   navigation,
   route,
+  theme,
 }) => {
+  const red = '#DB4F48';
   const eventimg =
     event && eventthumbnail
       ? {uri: eventthumbnail}
@@ -36,12 +38,26 @@ const EventCard = ({
       style={styles.card}>
       <View style={styles.contentbox}>
         <View style={styles.datebox}>
-          <Text style={[styles.dateNum, styles.bold]}>
+          <Text
+            style={[
+              theme ? {color: theme.hexcode} : {color: red},
+              [styles.day, styles.bold],
+            ]}>
             {moment(date).format('DD')}
           </Text>
-          <Text style={styles.dateText}>{moment(date).format('MMM')}</Text>
+          <Text
+            style={[
+              theme ? {color: theme.hexcode} : {color: red},
+              styles.month,
+            ]}>
+            {moment(date).format('MMM')}
+          </Text>
         </View>
-        <View style={styles.info}>
+        <View
+          style={[
+            theme ? {backgroundColor: theme.hexcode} : {backgroundColor: red},
+            styles.info,
+          ]}>
           <View style={styles.details}>
             <Text style={[styles.bigText, styles.bold]}>{title}</Text>
             <Text style={styles.text}>{time}</Text>

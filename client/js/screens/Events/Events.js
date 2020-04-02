@@ -20,6 +20,7 @@ const Events = ({events, route, navigation}) => {
             eventthumbnail={event.thumbnail_url}
             route={route}
             navigation={navigation}
+            theme={event.theme}
           />
         ))}
     </View>
