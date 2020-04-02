@@ -52,7 +52,6 @@ const SpeakerProfile = ({speaker}) => {
           <View style={styles.iconbox}>
             <TouchableOpacity
               onPress={() => {
-                // console.log(speaker);
                 Linking.openURL(`mailto:${speaker.owner.email}`);
               }}>
               <Image

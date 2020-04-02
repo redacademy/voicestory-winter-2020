@@ -169,7 +169,10 @@ const Checkout = ({event, navigation}) => {
               bgcolor="#D84F48"
               label="Place Order"
               onPress={() =>
-                navigation.navigate('Confirmation', {event, event})
+                navigation.navigate('Confirmation', {
+                  event,
+                  event,
+                })
               }
             />
           </View>

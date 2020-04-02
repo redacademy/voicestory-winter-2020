@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 
 const Explore = ({navigation, route, speakers}) => {
   speakers = speakers.filter(user => user.isSpeaker != null);
-  console.log('Ecplorre', speakers);
   return (
     <YoutubeDataContext.Consumer>
       {value => (
