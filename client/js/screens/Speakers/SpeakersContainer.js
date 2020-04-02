@@ -17,6 +17,7 @@ const ALL_USERS = gql`
         facebook
         owner {
           name
+          email
         }
         description
       }

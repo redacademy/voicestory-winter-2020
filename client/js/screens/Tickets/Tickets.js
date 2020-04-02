@@ -4,13 +4,14 @@ import Text from '../../components/CustomText/CustomText';
 import {View} from 'react-native';
 import styles from './styles';
 import EventCard from '../../components/EventCard';
+import PropTypes from 'prop-types';
 
 const Tickets = ({navigation, route, ticketOwner}) => {
   return (
     <ScrollView style={styles.scrollview}>
       <View style={styles.main}>
-        {ticketOwner[0].ownedTickets &&
-          ticketOwner[0].ownedTickets.map(ownedTicket => (
+        {ticketOwner.ownedTickets &&
+          ticketOwner.ownedTickets.map(ownedTicket => (
             <EventCard
               style={styles.card}
               key={ownedTicket.id}
@@ -28,6 +29,12 @@ const Tickets = ({navigation, route, ticketOwner}) => {
       </View>
     </ScrollView>
   );
+};
+
+Tickets.propTypes = {
+  route: PropTypes.object,
+  navigation: PropTypes.objectOf(PropTypes.func),
+  ticketOwner: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Tickets;

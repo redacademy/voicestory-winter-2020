@@ -4,22 +4,20 @@ import {Query} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {Text} from 'react-native';
 import styles from './styles';
+import Loader from '../../components/Loader';
 import {UserContext} from '../../context/UserContext';
+import PropTypes from 'prop-types';
+
 const ALL_USERS = gql`
-  {
-    users {
+  query user($UserWhereUniqueInput: UserWhereUniqueInput!) {
+    user(where: $UserWhereUniqueInput) {
       id
       email
       name
-      isSpeaker {
-        id
-        profile_picture
-        title
-        description
-      }
       ownedTickets {
         id
         title
+        description
       }
     }
   }
@@ -27,29 +25,31 @@ const ALL_USERS = gql`
 export default class UserProfileContainer extends Component {
   render() {
     return (
-      <Query query={ALL_USERS}>
-        {({data, loading, error}) => {
-          if (loading) return <Text>Loading...</Text>;
-          if (error) return <Text>Error :(</Text>;
+      <UserContext.Consumer>
+        {({user}) => {
+          const userid = user.id;
           return (
-            <UserContext.Consumer>
-              {({user}) => {
-                const viewer = user;
-                const currentUser = data.users.filter(user =>
-                  viewer.id.includes(user.id),
-                );
+            <Query
+              query={ALL_USERS}
+              variables={{UserWhereUniqueInput: {id: userid}}}>
+              {({data, loading, error}) => {
+                if (loading) return <Loader />;
+                if (error) return <Text>Error :(</Text>;
                 return (
                   <UserProfile
                     navigation={this.props.navigation}
-                    user={currentUser}
+                    user={data.user}
                     style={styles.container}
                   />
                 );
               }}
-            </UserContext.Consumer>
+            </Query>
           );
         }}
-      </Query>
+      </UserContext.Consumer>
     );
   }
 }
+UserProfileContainer.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.func),
+};

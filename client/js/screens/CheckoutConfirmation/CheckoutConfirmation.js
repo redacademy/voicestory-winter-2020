@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-const CheckoutConfirmation = ({event, navigation}) => {
+const CheckoutConfirmation = ({event, navigation, updateUser}) => {
   return (
     <>
       <View style={styles.main}>
@@ -27,7 +27,10 @@ const CheckoutConfirmation = ({event, navigation}) => {
           </Text>
         </View>
         <Button
-          onPress={() => navigation.navigate('Tickets')}
+          onPress={() => {
+            updateUser();
+            navigation.navigate('Tickets');
+          }}
           style={styles.button}
           bgcolor="#DB4F48"
           label="View My Tickets"
