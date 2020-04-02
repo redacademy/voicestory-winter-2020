@@ -9,7 +9,7 @@ import moment from 'moment';
 import {mapKey} from '../../apiKeys';
 import openMap from 'react-native-open-maps';
 import PropTypes from 'prop-types';
-const TicketInfo = ({ticket, navigation}) => {
+const TicketInfo = ({route, ticket, navigation}) => {
   const getMap = async address => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${mapKey}`,
