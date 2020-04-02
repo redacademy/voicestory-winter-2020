@@ -26,18 +26,16 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderTopLeftRadius: 20,
   },
-  dateText: {
-    color: '#DB4F48',
+  month: {
     fontSize: 12,
+    textTransform: 'uppercase',
   },
-  dateNum: {
-    color: '#DB4F48',
+  day: {
     fontSize: 20,
   },
   info: {
     justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#DB4F48',
     height: '100%',
     flex: 1,
   },

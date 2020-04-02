@@ -92,6 +92,7 @@ const EventsStackScreens = props => {
         name="Events"
         component={EventsScreen}
         options={{
+          title: 'Upcoming Events',
           headerTintColor: '#FBF7EF',
         }}
       />
