@@ -39,24 +39,6 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1,
   },
-  teal: {
-    backgroundColor: '#507EA2',
-  },
-  tealtext: {
-    color: '#507EA2',
-  },
-  blue: {
-    backgroundColor: '#507EA2',
-  },
-  bluetext: {
-    color: '#507EA2',
-  },
-  red: {
-    backgroundColor: '#DB4F48',
-  },
-  redtext: {
-    color: '#DB4F48',
-  },
   details: {
     marginVertical: 5,
   },
