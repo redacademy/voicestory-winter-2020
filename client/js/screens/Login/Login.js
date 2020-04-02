@@ -7,9 +7,8 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Text from '../../components/CustomText/CustomText';
 import styles from './styles';
 
-const Login = props => {
+const Login = ({route, navigation}) => {
   const [formToggle, setFormToggle] = useState(true);
-
   return (
     <View style={styles.container}>
       <View style={styles.toggleContainer}>
@@ -33,12 +32,17 @@ const Login = props => {
         </TouchableOpacity>
       </View>
       {formToggle ? (
-        <SignUpForm navigation={props.navigation} route={props.route} />
+        <SignUpForm navigation={navigation} route={route} />
       ) : (
-        <LoginForm navigation={props.navigation} route={props.route} />
+        <LoginForm navigation={navigation} route={route} />
       )}
     </View>
   );
+};
+
+Login.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
 };
 
 export default Login;

@@ -5,7 +5,6 @@ import {Text} from 'react-native';
 import Events from '../Events/Events';
 import Loader from '../../components/Loader';
 import PropTypes from 'prop-types';
-import EventInfoContainer from '../EventInfo/EventInfoContainer';
 
 const ALL_EVENTS = gql`
   {
@@ -21,6 +20,11 @@ const ALL_EVENTS = gql`
       price
       maxTickets
       soldTickets
+      theme {
+        id
+        name
+        hexcode
+      }
       speakers {
         id
         profile_picture

@@ -7,7 +7,7 @@ import {sharedDrawerOptions} from './config';
 import React from 'react';
 
 const DrawerNavStack = createStackNavigator();
-export const DrawerNavStackScreens = props => {
+export const DrawerNavStackScreens = () => {
   return (
     <DrawerNavStack.Navigator mode="card" screenOptions={sharedDrawerOptions}>
       <DrawerNavStack.Screen

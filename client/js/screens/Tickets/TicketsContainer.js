@@ -21,6 +21,9 @@ const OWNED_TICKETS = gql`
         thumbnail_url
         location_name
         location_address
+        theme {
+          hexcode
+        }
         speakers {
           id
           profile_picture

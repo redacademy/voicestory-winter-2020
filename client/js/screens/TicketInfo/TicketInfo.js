@@ -99,11 +99,15 @@ const TicketInfo = ({ticket, navigation}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}>
-              <SpeakerCard
-                style={styles.speakerCard}
-                name="Alexandria Papodopoulos"
-                source={require('../../assets/images/winstonatstage.jpg')}
-              />
+              {ticket.speakers.map(speaker => (
+                <SpeakerCard
+                  style={styles.speakerCard}
+                  speaker={speaker}
+                  key={speaker.id}
+                  navigation={navigation}
+                  route={route}
+                />
+              ))}
             </ScrollView>
           </View>
         </View>
