@@ -8,8 +8,8 @@ import {UserContext} from '../../context/UserContext';
 import PropTypes from 'prop-types';
 
 const OWNED_TICKETS = gql`
-  {
-    users {
+  query user($UserWhereUniqueInput: UserWhereUniqueInput!) {
+    user(where: $UserWhereUniqueInput) {
       id
       ownedTickets {
         id
@@ -26,6 +26,7 @@ const OWNED_TICKETS = gql`
           profile_picture
           owner {
             name
+            email
           }
         }
       }
@@ -36,31 +37,28 @@ const OWNED_TICKETS = gql`
 export default class TicketsContainer extends Component {
   render() {
     return (
-      <Query query={OWNED_TICKETS}>
-        {({loading, error, data}) => {
-          if (loading) return <Loader />;
-          if (error) return <Text>Error :(</Text>;
-          if (data)
-            return (
-              <UserContext.Consumer>
-                {({user}) => {
-                  const currentUser = user;
-
-                  const ticketOwner = data.users.filter(user =>
-                    currentUser.id.includes(user.id),
-                  );
-                  return (
-                    <Tickets
-                      ticketOwner={ticketOwner}
-                      navigation={this.props.navigation}
-                      route={this.props.route}
-                    />
-                  );
-                }}
-              </UserContext.Consumer>
-            );
+      <UserContext.Consumer>
+        {({user}) => {
+          const currentUser = user.id;
+          return (
+            <Query
+              query={OWNED_TICKETS}
+              variables={{UserWhereUniqueInput: {id: currentUser}}}>
+              {({loading, error, data}) => {
+                if (loading) return <Loader />;
+                if (error) return <Text>Error :(</Text>;
+                return (
+                  <Tickets
+                    ticketOwner={data.user}
+                    navigation={this.props.navigation}
+                    route={this.props.route}
+                  />
+                );
+              }}
+            </Query>
+          );
         }}
-      </Query>
+      </UserContext.Consumer>
     );
   }
 }

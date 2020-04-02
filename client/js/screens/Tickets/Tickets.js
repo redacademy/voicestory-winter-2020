@@ -10,8 +10,8 @@ const Tickets = ({navigation, route, ticketOwner}) => {
   return (
     <ScrollView style={styles.scrollview}>
       <View style={styles.main}>
-        {ticketOwner[0].ownedTickets &&
-          ticketOwner[0].ownedTickets.map(ownedTicket => (
+        {ticketOwner.ownedTickets &&
+          ticketOwner.ownedTickets.map(ownedTicket => (
             <EventCard
               style={styles.card}
               key={ownedTicket.id}

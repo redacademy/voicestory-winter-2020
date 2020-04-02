@@ -7,6 +7,7 @@ import {UserContextProvider} from './context/UserContext';
 
 import FavesProvider from './context/FavesContext';
 import YoutubeDataProvider from './context/YoutubeData';
+console.disableYellowBox = true;
 export default class App extends Component {
   render() {
     return (

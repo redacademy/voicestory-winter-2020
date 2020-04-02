@@ -10,9 +10,9 @@ const UserProfile = ({navigation, user}) => {
   return (
     <View style={styles.main}>
       <View style={styles.user}>
-        <Text style={styles.name}>{user[0].name}</Text>
+        <Text style={styles.name}>{user.name}</Text>
         <View style={styles.emailContainer}>
-          <Text style={styles.email}>{user[0].email}</Text>
+          <Text style={styles.email}>{user.email}</Text>
           <TouchableOpacity>
             <Text style={styles.edit}>Edit</Text>
           </TouchableOpacity>
