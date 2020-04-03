@@ -27,7 +27,6 @@ export default class CheckoutConfirmationContainer extends Component {
     return (
       <UserContext.Consumer>
         {({user}) => {
-          console.log('CHeckCONCOntain', user);
           const currentUser = user.id;
           const refetchQueries = [
             {
@@ -48,10 +47,7 @@ export default class CheckoutConfirmationContainer extends Component {
                 },
               }}>
               {(updateUser, {loading, data, error}) => {
-                console.log('Data', data);
-                console.log('Error', error);
                 if (error) return <Text>error</Text>;
-                console.log('loading', loading);
                 if (loading) return <Text>Loading</Text>;
                 return (
                   <CheckoutConfirmation
