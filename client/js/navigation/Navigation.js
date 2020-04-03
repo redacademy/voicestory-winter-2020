@@ -113,7 +113,7 @@ const EventsStackScreens = () => {
         }}
       />
       <ExploreStack.Screen
-        name="SpeakerProfile"
+        name="Speaker Profile"
         component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
@@ -145,6 +145,13 @@ const TicketsStackScreens = () => {
       <TicketsStack.Screen
         name="Ticket Info"
         component={TicketInfoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <TicketsStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
@@ -189,6 +196,13 @@ const UserProfileStackScreens = () => {
       <UserProfileStack.Screen
         name="Video"
         component={VideoScreen}
+        options={{
+          headerTintColor: '#FBF7EF',
+        }}
+      />
+      <UserProfileStack.Screen
+        name="Speaker Profile"
+        component={SpeakerScreen}
         options={{
           headerTintColor: '#FBF7EF',
         }}
