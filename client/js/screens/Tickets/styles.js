@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FBF7EF',
     height: '100%',
   },
+  noTickets: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FBF7EF',
+  },
 });
 
 export default styles;

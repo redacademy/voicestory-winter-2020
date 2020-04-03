@@ -7,11 +7,11 @@ import EventCard from '../../components/EventCard';
 import PropTypes from 'prop-types';
 
 const Tickets = ({navigation, route, ticketOwner}) => {
-  return (
-    <ScrollView style={styles.scrollview}>
-      <View style={styles.main}>
-        {ticketOwner.ownedTickets &&
-          ticketOwner.ownedTickets.map(ownedTicket => (
+  {
+    return ticketOwner?.ownedTickets.length > 0 ? (
+      <ScrollView style={styles.scrollview}>
+        <View style={styles.main}>
+          {ticketOwner.ownedTickets.map(ownedTicket => (
             <EventCard
               style={styles.card}
               key={ownedTicket.id}
@@ -27,9 +27,14 @@ const Tickets = ({navigation, route, ticketOwner}) => {
               theme={ownedTicket.theme}
             />
           ))}
+        </View>
+      </ScrollView>
+    ) : (
+      <View style={styles.noTickets}>
+        <Text>No Tickets</Text>
       </View>
-    </ScrollView>
-  );
+    );
+  }
 };
 
 Tickets.propTypes = {

@@ -12,7 +12,10 @@ const CheckoutConfirmation = ({event, navigation, updateUser}) => {
     <>
       <View style={styles.main}>
         <Icon
-          onPress={() => navigation.navigate('Explore')}
+          onPress={() => {
+            updateUser();
+            navigation.navigate('Explore');
+          }}
           style={styles.close}
           name="close"
           size={20}
