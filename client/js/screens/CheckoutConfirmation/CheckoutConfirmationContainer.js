@@ -5,6 +5,7 @@ import {Mutation} from '@apollo/react-components';
 import {gql} from 'apollo-boost';
 import {UserContext} from '../../context/UserContext';
 import {OWNED_TICKETS} from '../Tickets/TicketsContainer';
+import {Text} from 'react-native';
 
 const ADD_TICKETS = gql`
   mutation updateUser(
@@ -12,6 +13,7 @@ const ADD_TICKETS = gql`
     $UserUpdateInput: UserUpdateInput!
   ) {
     updateUser(where: $UserWhereUniqueInput, data: $UserUpdateInput) {
+      id
       ownedTickets {
         id
         title
@@ -25,6 +27,7 @@ export default class CheckoutConfirmationContainer extends Component {
     return (
       <UserContext.Consumer>
         {({user}) => {
+          console.log('CHeckCONCOntain', user);
           const currentUser = user.id;
           const refetchQueries = [
             {
@@ -44,7 +47,12 @@ export default class CheckoutConfirmationContainer extends Component {
                   },
                 },
               }}>
-              {(updateUser, {data, error}) => {
+              {(updateUser, {loading, data, error}) => {
+                console.log('Data', data);
+                console.log('Error', error);
+                if (error) return <Text>error</Text>;
+                console.log('loading', loading);
+                if (loading) return <Text>Loading</Text>;
                 return (
                   <CheckoutConfirmation
                     event={this.props.route.params.event}
